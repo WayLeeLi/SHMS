@@ -1,0 +1,1596 @@
+﻿<div id="editDialog" style="display:none" class="container">
+	<div class="safety_fbox">
+		<h2 style="text-align: center;">駐衛警每月執勤督導檢核紀錄通報表</h2>
+		<br>
+		<form id="inputForm">
+			<input type="hidden" id="safety_fid">
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header">單位連線代號</td>
+						<td class="unitId">
+							1234
+						</td>
+
+
+						<td class="table-header">單位名稱</td>
+						<td class="unitName">
+							ＯＯ分行
+						</td>
+						<td class="table-header" width="" border='0'>督導檢核年月</td>
+						<td class="" border='0'>
+							<span class="itemYear"></span>年<span class="itemMonth"></span>月
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+			<table class="w-100 safe_form" id="form_table">
+				<thead>
+					<tr>
+						<td class="table-header" width="50">項次</td>
+						<td class="table-header text-center ">檢查事項</td>
+						<td class="table-header text-center" width="100">檢查結果</td>
+						<td class="table-header " width="300">備註</td>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="text-center" width="50">一</td>
+						<td name="formContent1">駐衛警無遲到、早退或經常請假之情事。</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="finished1">
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="*必填，輸入文字(100個中文字內)" maxlength="200" name="remark1"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">二</td>
+						<td name="formContent2">駐衛警應依規定辦理施工人員進出登記。</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="finished2">
+
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="*必填，輸入文字(100個中文字內)" maxlength="200" name="remark2"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">三</td>
+						<td name="formContent3">駐衛警應依規定填載「駐警工作紀錄簿」，並每日呈分行相關幹部核閱。</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="finished3">
+
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="*必填，輸入文字(100個中文字內)" maxlength="200" name="remark3"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">四</td>
+						<td name="formContent4">駐衛警執勤時應依規定配帶執勤時應有之裝備（瓦斯槍及警棍）且經常保養。</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="finished4">
+
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="*必填，輸入文字(100個中文字內)" maxlength="200" name="remark4"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">五</td>
+						<td name="formContent5">駐衛警請假時（含所有假別），分行應洽保全公司臨時機動派員支援執行保全警衛勤務。</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="finished5">
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="*必填，輸入文字(100個中文字內)" maxlength="200" name="remark5"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">六</td>
+						<td name="formContent6">駐衛警執勤時無外人經常探訪致影響或妨礙其勤務執行。</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="finished6">
+
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="*必填，輸入文字(100個中文字內)" maxlength="200" name="remark6"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">七</td>
+						<td name="formContent7">駐衛警無生活違常現象（如：不當借貸、資金往來異常等）。</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="finished7">
+
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="*必填，輸入文字(100個中文字內)" maxlength="200" name="remark7"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">八</td>
+						<td name="formContent8">駐衛警反應靈敏並熟悉各項執勤技巧及勤務管理要點。</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="finished8">
+
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="*必填，輸入文字(100個中文字內)" maxlength="200" name="remark8"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">九</td>
+						<td name="formContent9">駐衛警應不定時巡視營業廳大門及騎樓附近之安全狀況。</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="finished9">
+
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="*必填，輸入文字(100個中文字內)" maxlength="200" name="remark9"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十</td>
+						<td name="formContent10">駐衛警執勤時未擅離工作崗位之情事。</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="finished10">
+
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="*必填，輸入文字(100個中文字內)" maxlength="200" name="remark10"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十一</td>
+						<td name="formContent11">駐衛警之服從性及與同仁間之互動情形良好。</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="finished11">
+
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="*必填，輸入文字(100個中文字內)" maxlength="200" name="remark11"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十二</td>
+						<td name="formContent12">駐衛警執勤時，應穿著駐衛警制式之制服並依規定佩戴胸（臂）章。</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="finished12">
+
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="*必填，輸入文字(100個中文字內)" maxlength="200" name="remark12"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十三</td>
+						<td name="formContent13">駐衛警之服裝儀容應整齊清潔。</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="finished13">
+
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="*必填，輸入文字(100個中文字內)" maxlength="200" name="remark13"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十四</td>
+						<td name="formContent14">駐衛警執勤時應精神振作，未有散漫之情形。</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="finished14">
+
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="*必填，輸入文字(100個中文字內)" maxlength="200" name="remark14"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十五</td>
+						<td name="formContent15">駐衛警執勤應態度謙和有禮，注意應對技巧。</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="finished15">
+
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="*必填，輸入文字(100個中文字內)" maxlength="200" name="remark15"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十六</td>
+						<td name="formContent16">駐衛警執勤時無飲酒、抽煙或嚼食檳榔之情事。</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="finished16">
+
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="*必填，輸入文字(100個中文字內)" maxlength="200" name="remark16"></textarea>
+						</td>
+
+					</tr>
+
+				</tbody>
+			</table>
+			<br>
+			<table class="w-100 safe_form foottable">
+				<tbody>
+					<tr>
+						<td class="table-header " width="200">檢核人</td>
+						<td class="loginUser">
+							蔡小雯
+						</td>
+
+					</tr>
+
+
+				</tbody>
+			</table>
+			<div class="m-t50 m-b30">
+				<p>註：</p>
+				<p>一、依據本行「駐衛員警勤務管理要點」辦理。</p>
+				<p>二、本表須每週逐項確實辦理檢核乙次，並彙整後於次月五日前並陳單位主管(簽章)後，以網路檔案傳輸
+					作業系統上傳行政管理部彙辦。</p>
+				<p>三、對於缺失事項應具體填載，並檢核駐警人員是否確實改善。</p>
+				<p>四、完成自行檢核後，請自行留底備查。</p>
+			</div>
+		</form>
+		<br>
+		<div style="text-align: center;">
+			<button type="button" id="submitBtn_x" class="btn btn-warning  my-2">暫存</button>
+			<button type="button" id="submitBtn" class="btn btn-success  my-2">送出</button>
+
+		</div>
+		<div id="jsGrid_1"></div>
+	</div>
+</div>
+<div class="m-t50 m-b30">
+	<h2>駐衛警執勤督導檢核</h2>
+	<div class="date_time">
+		<div class="date_box">
+			<label>
+				<input id="startDate" name="startDate" type="text" readonly="readonly" class="w_100p"
+					placeholder="開始日期" />
+				<i class="iconfont icon-riqi1"></i>
+			</label>
+		</div>
+		<div class="date_box">
+			<label>
+				<input id="endDate" name="endDate" type="text" readonly="readonly" class="w_100p" placeholder="結束日期" />
+				<i class="iconfont icon-riqi1"></i>
+			</label>
+		</div>
+		<div class="date_box">
+			<label>
+				<input id="unitId_s" name="" type="text" class="w_100p" placeholder="連線代號" />
+			</label>
+		</div>
+		<div class="date_box">
+			<label>
+				<input id="unitName_s" name="" type="text" class="w_100p" placeholder="銀行名稱" />
+			</label>
+		</div>
+		<button class="btn btn-primary  my-2" id="getlist_search">查詢</button>
+	</div>
+
+
+	<div id="jsGrid"></div>
+</div>
+
+<div id="detailDialog1" style="display:none" class="container detailDialog">
+	<div id="printDiv">
+		<h2 style="text-align: center;">駐衛警每月執勤督導檢核紀錄通報表</h2>
+		<form id="">
+			<div>
+				<table class="w-100 safe_form headtable" id="">
+					<tbody>
+						<tr>
+							<td class="table-header" border='0' width="">單位連線代號</td>
+							<td class="unitId" border='0'>
+								1234
+							</td>
+							<td class="table-header" width="" border='0'>單位名稱</td>
+							<td class="unitName" border='0'>
+								ＯＯ分行
+							</td>
+							<td class="table-header" width="" border='0'>督導檢核年月</td>
+							<td class="" border='0'>
+								<span class="itemYear"></span>年<span class="itemMonth"></span>月
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<br>
+
+				<table class="w-100 safe_form" id="look_detail1" callpadding=0>
+					<thead>
+						<tr>
+							<td class="table-header" width="50">項次</td>
+							<td class="table-header text-center ">檢查事項</td>
+							<td class="table-header text-center" width="100">檢查結果</td>
+							<td class="table-header " width="300">備註</td>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="text-center" width="50">一</td>
+							<td name="formContent1"></td>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+
+						</tr>
+						<tr>
+							<td class="text-center" width="50">二</td>
+							<td name="formContent2"></td>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+
+						</tr>
+						<tr>
+							<td class="text-center" width="50">三</td>
+							<td name="formContent3"></td>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+
+						</tr>
+						<tr>
+							<td class="text-center" width="50">四</td>
+							<td name="formContent4"></td>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+
+						</tr>
+						<tr>
+							<td class="text-center" width="50">五</td>
+							<td name="formContent5"></td>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+
+						</tr>
+						<tr>
+							<td class="text-center" width="50">六</td>
+							<td name="formContent6"></td>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+
+						</tr>
+						<tr>
+							<td class="text-center" width="50">七</td>
+							<td name="formContent7"></td>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+
+						</tr>
+						<tr>
+							<td class="text-center" width="50">八</td>
+							<td name="formContent8"></td>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+
+						</tr>
+						<tr>
+							<td class="text-center" width="50">九</td>
+							<td name="formContent9"></td>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+
+						</tr>
+						<tr>
+							<td class="text-center" width="50">十</td>
+							<td name="formContent10"></td>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+
+						</tr>
+						<tr>
+							<td class="text-center" width="50">十一</td>
+							<td name="formContent11"></td>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+
+						</tr>
+						<tr>
+							<td class="text-center" width="50">十二</td>
+							<td name="formContent12"></td>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+
+						</tr>
+						<tr>
+							<td class="text-center" width="50">十三</td>
+							<td name="formContent13"></td>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+
+						</tr>
+						<tr>
+							<td class="text-center" width="50">十四</td>
+							<td name="formContent14"></td>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+
+						</tr>
+						<tr>
+							<td class="text-center" width="50">十五</td>
+							<td name="formContent15"></td>
+							<td>
+
+							</td>
+							<td>
+							</td>
+
+						</tr>
+						<tr>
+							<td class="text-center" width="50">十六</td>
+							<td name="formContent16"></td>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+
+						</tr>
+
+
+						<tr>
+							<td class="table-header " width="200">檢核人（襄理1）</td>
+							<td class="loginUser">
+								蔡小雯
+							</td>
+							<td>
+
+							</td>
+							<td>
+
+							</td>
+						</tr>
+
+
+					</tbody>
+				</table>
+			</div>
+
+		</form>
+	</div>
+	<div class="m-t50 m-b30 clear">
+		<p>註：</p>
+		<p>一、依據本行「駐衛員警勤務管理要點」辦理。</p>
+		<p>二、本表須每週逐項確實辦理檢核乙次，並彙整後於次月五日前並陳單位主管(簽章)後，以網路檔案傳輸
+			作業系統上傳行政管理部彙辦。</p>
+		<p>三、對於缺失事項應具體填載，並檢核駐警人員是否確實改善。</p>
+		<p>四、完成自行檢核後，請自行留底備查。</p>
+	</div>
+	<br>
+	<div class="dialog-alert" id="dialog-return">
+		<div class="dialog-return">
+			<textarea placeholder="退件原因" id="returnReason1" maxlength="100"></textarea>
+		</div>
+		<div class="dialog-alert-button text-center">
+			<button type="button" id="returncancel" class="btn btn-danger  my-2">取消</button>
+			<button type="button" id="returnFormSubmit" class="btn btn-primary  my-2 ">確認</button>
+
+		</div>
+	</div>
+	<div style="text-align: center;">
+		<button type="button" id="submitBtn_s" class="btn btn-success  my-2 reviewButton">審核通過</button>
+		<button type="button" id="return" class="btn btn-danger  my-2 returnButton">退件</button>
+		<button type="button" id="printBtn" class="btn btn-secondary  my-2">列印</button>
+	</div>
+	<div id="jsGrid_2"></div>
+</div>
+
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui", "print"], function (jquery, jquery_validate, jsgrid, jquery_ui, print) {
+		$(".select_unit").on("change", function () {
+			if ($(this).val() == '否') {
+				$(this).parents('tr').find('textarea').show()
+				$(this).parents('tr').find('textarea')[0].setAttribute("required", "true");
+			} else {
+				$(this).parents('tr').find('textarea').hide()
+				$(this).parents('tr').find('textarea').val('');
+				$(this).parents('tr').find('textarea').removeAttr("required");
+			}
+		});
+
+		//頁面讀取後執行
+		$(document).ready(function () {
+			var idv = '';
+			var currentDate = new Date();
+			var year = currentDate.getFullYear();
+			if (currentDate.getMonth() < 1) {
+				var month = 12;
+			} else {
+				var month = currentDate.getMonth();
+			}
+			var day = currentDate.getDate();
+			$(".itemYear").html(year);
+			$(".itemMonth").html(month)
+			$('#startDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				dateFormat: 'yy/mm/dd',
+				onClose: function (selectedDate) {
+					$("#endDate").datepicker("option", "minDate", selectedDate);
+				}, maxDate: 0
+
+			})
+
+			$('#endDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				dateFormat: 'yy/mm/dd',
+				minDate: $("#startDate").val(),
+				onClose: function (selectedDate) {
+					$("#startDate").datepicker("option", "maxDate", selectedDate);
+				}, maxDate: 0
+			})
+			//通報退件
+			$('#return').click(function () {
+				$('#dialog-return').addClass('shows');
+				$('#dialog-return').removeClass('hides');
+				$('#returnReason1').removeAttr('disabled')
+			})
+			$('#returnFormSubmit').click(function () {
+				cancleBtnsubmit()
+			})
+			$('#submitBtn_s').click(function () {
+				AuditBtnsubmit();
+			})
+			$('#returncancel').click(function () {
+				$('#dialog-return').addClass('hides');
+				$('#dialog-return').removeClass('shows');
+			})
+			function cancleBtnsubmit() {
+				var data = { safetyId: parseFloat(idv), rejectReason: $("#returnReason1").val() }
+				console.log(JSON.stringify(data))
+				return $.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenancePolice/api/reject',
+					data: JSON.stringify(data),
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					type: "POST",
+					dataType: "json",
+					success: function (data, textStatus) {
+						console.log(data)
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							if (data.code == 0) {
+								showAlert('拒絕駐衛警執勤督導檢核成功', '拒絕駐衛警執勤督導檢核成功', bodyHref("/content/safety/Safety_review.html"))
+								$.toast({ heading: '', text: '駐衛警執勤督導檢核' + textStatus, icon: 'success', position: 'toast-top-center', hideAfter: 6000, });
+
+							} else if (data.errorMsg) {
+								alert(data.errorMsg);
+							}
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+						alert('拒絕通報失敗' + data + ',' + JSON.stringify(updatingItem))
+					},
+				});
+			}
+			function AuditBtnsubmit() {
+
+				var data = { safetyId: parseFloat(idv) }
+				console.log(JSON.stringify(data))
+				return $.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenancePolice/api/review',
+					data: JSON.stringify(data),
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					type: "POST",
+					dataType: "json",
+					success: function (data, textStatus) {
+						console.log(data)
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							if (data.code == 0) {
+								showAlert('審核駐衛警執勤督導檢核成功', '審核駐衛警執勤督導檢核成功', bodyHref("/content/safety/Safety_review.html"))
+								$.toast({ heading: '', text: '審核駐衛警執勤督導檢核成功' + textStatus, icon: 'success', position: 'toast-top-center', hideAfter: 6000, });
+
+							} else if (data.errorMsg) {
+								alert(data.errorMsg);
+							}
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+						alert('審核通報失敗' + data + ',' + JSON.stringify(updatingItem))
+					},
+				});
+			}
+			getByMenuId()
+			$('#getlist_search').click(function () {
+				getByMenuId()
+			})
+			function getByMenuId() {
+				var menuid = 51;
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/buttonRole/api/getByMenuId?menuId=' + menuid,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							var menuData = data.data
+							get_list(menuData);
+
+							console.log(menuData)
+							// 		<button type="button" id='submit_o' class="btn btn-warning  my-2 pressing_hide tempButton">暫存</button>
+							// <button type="button" id='submit_s' class="btn btn-primary  my-2 pressing_hide sendButton">儲存送出</button>
+							// <button type="button" id="checkBtn" class="btn btn-success  my-2 pressing_hide reviewButton">審核通過</button>
+							// <button type="button" id="return" class="btn btn-danger  my-2 pressing_hide returnButton">退件</button>
+							// <button type="button" id='submit_p' class="btn btn-primary  my-2 pressing_show sendButton">儲存送出</button>
+							// <button type="button" id="printBtn1" class="btn btn-secondary  my-2 pressing_show printButton">列印</button>
+							// <button type="button" id="printBtn" class="btn btn-secondary  my-2 pressing_hide printButton">列印</button>
+
+							if (menuData.functionArray.indexOf('review') < 0) {
+								$('.reviewButton').hide()
+							}
+							if (menuData.functionArray.indexOf('temp') < 0) {
+								$('.tempButton').hide()
+							}
+							if (menuData.functionArray.indexOf('reject') < 0) {
+								$('.returnButton').hide()
+							}
+							if (menuData.functionArray.indexOf('temp') < 0) {
+								$('.tempButton').hide()
+							}
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			$(".select_unit").each(
+				function () {
+					if ($(this).val() == '否') {
+						$(this).parents('tr').find('textarea').show()
+						$(this).parents('tr').find('textarea')[0].setAttribute("required", "true");
+					} else {
+						$(this).parents('tr').find('textarea').hide();
+
+						$(this).parents('tr').find('textarea').val('');
+						$(this).parents('tr').find('textarea').removeAttr("required");
+					}
+				}
+			)
+
+			insert_mr();
+			$("#printBtn").click(function () {
+				//printByDiv(document.getElementById("printDiv"));
+				printJS({
+					printable: 'printDiv',
+					type: 'html',
+					header: '',
+					css: '../resources/css/print.css',
+
+
+
+				})
+			});
+			function printByDiv(printpage) {
+				var iframe = document.createElement('IFRAME');
+				iframe[0].setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+				document.body.appendChild(iframe);
+				iframe.contentWindow.document.write(printpage.innerHTML);
+				iframe.contentWindow.document.close(); //important!
+				iframe.contentWindow.focus(); //IE fix
+				iframe.contentWindow.print();
+				iframe.parentNode.removeChild(iframe);
+
+
+			}
+			//表單驗證提交事件
+			$("#submitBtn").click(function () {
+
+				var tableData = [];
+				var selectReturn = '是'
+				var tableData2 = [];
+				$('#form_table tbody tr').each(function (row, tr) {
+					tableData[row] = {
+						"title": $(tr).find('td:eq(1)').text(),
+						"selectData": $(tr).find('td:eq(2)').find("option:selected").val(),
+						"ramark": $(tr).find('td:eq(3)').find("textarea").val(),
+					}
+				});
+				var selectData = new Array();
+				$.each($("#form_table tbody tr").find("option:selected"), function (index, obj) {
+					selectData.push($(obj).text());
+					// alert($(this).val())
+				});
+				var selectData = selectData.join(",");
+				if (selectData.indexOf('否') >= 0) {
+					selectReturn = '否'
+				}
+				$('#form_table tbody tr').each(function (row, tr) {
+					tableData2[row] = {
+						"remark": $(tr).find('td:eq(3) textarea').val(),
+					}
+				});
+				var saveItem = {
+					safetyId: $('#safety_fid').val(),
+					formContent: JSON.stringify(tableData),
+					status: "n",
+					finished: selectReturn,
+					remark: JSON.stringify(tableData2),
+					version: "1.0.1"
+				}
+				console.log(saveItem)
+
+				insert(saveItem)
+
+
+
+			})
+			$("#submitBtn_x").click(function () {
+				var tableData = [];
+				var selectReturn = '是'
+				var tableData2 = [];
+				$('#form_table tbody tr').each(function (row, tr) {
+					tableData[row] = {
+						"title": $(tr).find('td:eq(1)').text(),
+						"selectData": $(tr).find('td:eq(2)').find("option:selected").val(),
+						"ramark": $(tr).find('td:eq(3)').find("textarea").val(),
+					}
+				});
+				var selectData = new Array();
+				$.each($("#form_table tbody tr").find("option:selected"), function (index, obj) {
+					selectData.push($(obj).text());
+				});
+				var selectData = selectData.join(",");
+				if (selectData.indexOf('否') >= 0) {
+					selectReturn = '否'
+				}
+				$('#form_table tbody tr').each(function (row, tr) {
+					tableData2[row] = {
+						"remark": $(tr).find('td:eq(3) textarea').val(),
+					}
+				});
+				var saveItem = {
+					safetyId: $('#safety_fid').val(),
+					formContent: JSON.stringify(tableData),
+					status: "t",
+					finished: selectReturn,
+					remark: JSON.stringify(tableData2),
+					version: "1.0.1"
+				}
+
+				insert(saveItem)
+
+			})
+			//送出
+			function insert(data) {
+				console.log(JSON.stringify(data))
+				$.ajax({
+					data: JSON.stringify(data),
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenancePolice/api/save',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						} if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} if (data.code == 7002 || data.code == '7002') {
+							showAlert('上傳資料已達最大數量', '上傳資料已達最大數量，無法上傳！', '')
+						} if (data.code == 7003 || data.code == '7002') {
+							showAlert('訊息', '本筆資料已經上傳，無需重複送出！', '')
+						} else {
+							$.toast({ heading: '', text: '資料上傳成功' + textStatus, icon: 'success', position: 'toast-top-center', hideAfter: 6000, });
+							showAlert('上傳成功', '駐衛警每月執勤督導檢核紀錄通報表上傳成功！', bodyHref("/content/safety/Safety_review.html"))
+							console.log(data);
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						//console.log(data);
+					},
+				});
+			};
+			function get_list(menuData) {
+				if (menuData.jobLevel == '7') {
+					var url = 'safetyMaintenancePolice/api/listAll?startDate=' + $('#startDate').val() + '&endDate=' + $('#endDate').val() + '&unitId=' + $('#unitId_s').val() + '&unitName=' + $('#unitName_s').val()
+				} else {
+					var url = 'safetyMaintenancePolice/api/list?startDate=' + $('#startDate').val() + '&endDate=' + $('#endDate').val()
+					$('#unitId_s').hide()
+					$('#unitName_s').hide()
+				}
+				console.log(url)
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/' + url,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+						if (data && data == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							console.log(data)
+							var data = data.data;
+							//console.log('1')
+
+							//提示
+							$.toast({ heading: '', text: '資料載入成功' + textStatus, icon: 'success', position: 'toast-top-center', hideAfter: 6000, });
+							$("#jsGrid").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: false, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: false,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+														callback(value.length)
+													}
+
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+															callback(item[key].toString().indexOf(value))
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+															callback(item[key].indexOf(value))
+														}
+													}
+
+												}
+
+											}
+											return true;
+										});
+										return result;
+									},
+
+								},
+
+								fields: [
+									{ title: "分行", name: "unitName", type: "text", },
+									{ title: "上傳日期", name: "addTime", type: "text", },
+									{
+										title: "督導檢核年月", name: "addTime", type: "text", itemTemplate: function (value, item) {
+
+											return $("<span>").text(item.itemYear + '年' + item.itemMonth + '月').attr('title', item.itemYear + '年' + item.itemMonth + '月').addClass('text-ellipsis')
+
+
+
+										}
+									},
+									{ title: "1-16項督導檢核項目是否均依規辦理(如有違反規定之項目請於備註欄說明)", name: "finished", type: "text", },
+									{
+										title: "備註", name: "remark", type: "text", width: 80, itemTemplate: function (value, item) {
+											if (value != undefined) {
+												var values = value.replace(/[^\u4e00-\u9fa5]/gi, "");
+												return $("<span>").text(values).attr('title', values).addClass('text-ellipsis')
+											}
+
+
+										}
+									},
+
+									{
+										title: "狀態", name: "status", type: "text", validate: "required", itemTemplate: function (value, item) {
+											if (value == 't') {
+												return $("<span>").text('暫存')
+											} if (value == 'n') {
+												return $("<span>").text('已送審')
+											} if (value == 'c') {
+												return $("<span>").text('已審核')
+											} if (value == 'r') {
+												return $("<span class='text-danger'>").text('已退件')
+											}
+											if (value == 'p') {
+												return $("<span>").text('已處理')
+											}
+										}
+									},
+									{ title: "檢核人（襄理)", name: "checkName", type: "text", validate: "required" },
+
+									{
+										title: "操作", name: "safetyId", filtercss: "display:none;", sorting: false, type: "control", width: 180,
+										itemTemplate: function (value, item) {
+											var $result = jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments);
+
+											if (menuData.functionArray.indexOf('edit') < 0) {
+												var $customEditButton = ""
+											} else {
+												var $customEditButton = $("<button>").attr("type", "button").text("編輯").addClass("btn btn-primary")
+													.on("click", function () {
+
+														if (menuData.functionArray.indexOf('edit') < 0) {
+															showAlert('無編輯權限', '您沒有編輯權限', '')
+														} else {
+
+															if (item.status == 'r' || item.status == 't') {
+																get_old(value)
+
+
+															} else {
+																shmsToast((item.reviewId ? "當前狀態" : "當前狀態") + "無法編輯！！！");
+															}
+
+														}
+													})
+											}
+
+
+											var $customLookButton = $("<button>").attr("type", "button").text("查看").addClass("btn btn-success")
+												.on("click", function () {
+													showDetailsDialog1("查看", value);
+												});
+											return $("<div>").append($customEditButton).append($customLookButton);
+										}, headerTemplate: function () {
+											if (menuData.functionArray.indexOf('add') < 0) {
+												return "操作";
+											} else {
+												return $("<button>").attr("type", "button").text("新增").addClass("btn btn-primary")
+													.on("click", function () {
+
+
+														$.ajax({
+															url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenancePolice/api/check?testNum=0',
+															contentType: "application/json;charset=utf-8", // 因為上面是JSON
+															async: false,
+															cache: false,
+															type: "GET",
+															success: function (data, textStatus) {
+																console.log(data.data)
+																if (data.data == 0 || data.data == "0") {
+																	get_old('0');
+																} else {
+																	shmsToast((data.data ? "已上傳紀錄" : "已上傳紀錄") + "，目前無法新增");
+																}
+															}
+														});
+													});
+											}
+
+										}
+
+									},
+
+
+								]
+
+
+							});
+							$("#jsGrid_1").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: false, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: false,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+														callback(value.length)
+													}
+
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+															callback(item[key].toString().indexOf(value))
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+															callback(item[key].indexOf(value))
+														}
+													}
+
+												}
+
+											}
+											return true;
+										});
+										return result;
+									},
+
+								},
+
+								fields: [
+									{ title: "分行", name: "unitName", type: "text", },
+									{ title: "上傳日期", name: "addTime", type: "text", },
+									{ title: "1-16項督導檢核項目是否均依規辦理(如有違反規定之項目請於備註欄說明)", name: "finished", type: "text", },
+									{
+										title: "備註", name: "remark", type: "text", width: 80, itemTemplate: function (value, item) {
+											if (value != undefined) {
+												var values = value.replace(/[^\u4e00-\u9fa5]/gi, "");
+												return $("<span>").text(values).attr('title', values).addClass('text-ellipsis')
+											}
+
+
+										}
+									},
+
+									{
+										title: "狀態", name: "status", type: "text", validate: "required", itemTemplate: function (value, item) {
+											if (value == 't') {
+												return $("<span>").text('暫存')
+											} if (value == 'n') {
+												return $("<span>").text('已送審')
+											} if (value == 'c') {
+												return $("<span>").text('已審核')
+											} if (value == 'r') {
+												return $("<span class='text-danger'>").text('已退件')
+											}
+											if (value == 'p') {
+												return $("<span>").text('已處理')
+											}
+										}
+									},
+									{ title: "檢核人（襄理)", name: "checkName", type: "text", validate: "required" },
+								]
+
+
+							});
+
+							$("#jsGrid_2").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: false, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: false,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+														callback(value.length)
+													}
+
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+															callback(item[key].toString().indexOf(value))
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+															callback(item[key].indexOf(value))
+														}
+													}
+
+												}
+
+											}
+											return true;
+										});
+										return result;
+									},
+
+								},
+
+								fields: [
+									{ title: "分行", name: "unitName", type: "text", },
+									{ title: "上傳日期", name: "addTime", type: "text", },
+									{ title: "1-16項督導檢核項目是否均依規辦理(如有違反規定之項目請於備註欄說明)", name: "finished", type: "text", },
+									{
+										title: "備註", name: "remark", type: "text", width: 80, itemTemplate: function (value, item) {
+											if (value != undefined) {
+												var values = value.replace(/[^\u4e00-\u9fa5]/gi, "");
+												return $("<span>").text(values).attr('title', values).addClass('text-ellipsis')
+											}
+
+
+										}
+									},
+
+									{
+										title: "狀態", name: "status", type: "text", validate: "required", itemTemplate: function (value, item) {
+											if (value == 't') {
+												return $("<span>").text('暫存')
+											} if (value == 'n') {
+												return $("<span>").text('已送審')
+											} if (value == 'c') {
+												return $("<span>").text('已審核')
+											} if (value == 'r') {
+												return $("<span class='text-danger'>").text('已退件')
+											}
+											if (value == 'p') {
+												return $("<span>").text('已處理')
+											}
+										}
+									},
+									{ title: "檢核人（襄理)", name: "checkName", type: "text", validate: "required" },
+
+
+
+
+								]
+
+
+							});
+
+
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						//console.log(data);
+					},
+				});
+			}
+			//取得默認資料
+			function insert_mr() {
+				let id = 0;
+				$("#id").val(id);
+				$.ajax({
+					data: JSON.stringify({ "safetyNo": "" }),
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenance/api/getInitData',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+						if (data && data == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							initPage(data);
+							//console.log(data);
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						//console.log(data);
+					},
+				});
+			};
+			//默認資料帶入
+			function initPage(data) {
+				tempData = data;
+				$(".unitId").html(data.unit.unitId);
+				$(".unitName").html(data.unit.unitName);
+				$(".loginUser").html(data.loginUser.name);
+
+
+			}
+			var formSubmitHandler = $.noop;
+
+			function get_old(item) {
+				showeditDialog('駐衛警每月執勤督導檢核紀錄通報表', item)
+				$('.safety_fbox').show();
+				var item = item
+				console.log(item)
+				if (item != '0') {
+					$.ajax({
+
+						url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenancePolice/api/get?safetyId=' + item,
+						contentType: "application/json;charset=utf-8", // 因為上面是JSON
+						async: false,
+						cache: false,
+						type: "GET",
+						success: function (data, textStatus) {
+
+							if (data.code == 4000) {
+								alert('您登入已逾時或未登入，請重新登入！')
+								location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+							}
+							if (data && data == 5000) {
+								showAlert('沒有權限', '沒有權限', '')
+							} else {
+								console.log(data.data);
+								var data = data.data;
+								$('form #safety_fid').val(data.safetyId);
+								$('form .unitId').html(data.unitId);
+								$('form  .unitName').html(data.unitName);
+								$('form  .loginUser').html(data.checkName);
+								$('form  .itemYear').html(data.itemYear);
+								$('form  .itemMonth').html(data.itemMonth);
+
+								if (data.status == 'r') {
+$("#return").hide();
+									$('.foottable tbody').append('<tr><td class="table-header " width="200">退件原因</td><td class="">' + data.rejectReason + '</td></tr>');
+								}
+								if (data.status == 'c') {
+									$("#submitBtn_s").hide();
+								}
+								if (data.formContent != '[{formContentJson}]' && data.formContent != 'undefined' && data.formContent != undefined) {
+									var jsonStr = data.formContent
+
+									var jsonObj = $.parseJSON(jsonStr);
+
+									var data_g = [];
+									$.each(jsonObj, function (index, item) {
+										data_g[index] = {
+											"title": item.title,
+											"selectData": item.selectData,
+											"ramark": item.ramark,
+										}
+
+									});
+
+									// $('#update_table tbody tr').each(function (row, tr) {
+
+									// 	$(tr).find('td:eq(-3)').text(data_g.title+'old')
+									// 	$(tr).find('td:eq(-2)').text(data_g.selectData)
+									// 	$(tr).find('td:eq(-1)').text(data_g.ramark)
+
+									// });
+
+									$.each(data_g, function (index, item) {
+										$('#form_table tbody tr').eq(index).find('td:eq(-3)').text(item.title)
+										$('#form_table tbody tr').eq(index).find('td:eq(-2)').find('select').val(item.selectData);
+										if (item.selectData == '否') {
+											$('#form_table tbody tr').eq(index).find('td:eq(-1) textarea').show()
+										}
+										$('#form_table tbody tr').eq(index).find('td:eq(-1) textarea').val(item.ramark)
+
+									});
+								}
+							}
+						}
+					});
+				} else {
+					$('#safety_fid').val('0')
+				}
+
+			}
+			var showeditDialog = function (dialogType, item) {
+				idv = item
+				$("#editDialog").dialog("option", "title", dialogType + "").dialog("open");
+			}
+			var showDetailsDialog1 = function (dialogType, item) {
+				var item = item
+				idv = item
+				$("#detailDialog1").dialog("option", "title", dialogType + "").dialog("open");
+				if (item == 'undefined' || item == undefined) {
+					showAlert('提示', '當前資料內容為空，請編輯後查看！', '')
+				} else {
+					$.ajax({
+
+						url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenancePolice/api/get?safetyId=' + item,
+						contentType: "application/json;charset=utf-8", // 因為上面是JSON
+						async: false,
+						cache: false,
+						type: "GET",
+						success: function (data, textStatus) {
+							if (data.code == 4000) {
+								alert('您登入已逾時或未登入，請重新登入！')
+								location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+							}
+							if (data && data.code == "5000") {
+								showAlert('沒有權限', '沒有權限', '')
+							} else {
+								console.log(data.data);
+								var data = data.data;
+								$('#detailDialog1 #safetyId').val(data.safetyId);
+								$('#detailDialog1  .unitId').html(data.unitId);
+								$('#detailDialog1  .unitName').html(data.unitName);
+								$('#detailDialog1  .loginUser').html(data.checkName);
+								$('#detailDialog1  .itemYear').html(data.itemYear);
+								$('#detailDialog1  .itemMonth').html(data.itemMonth);
+								if (data.status == 'r') {
+
+									$('#look_detail1 tbody').append('<tr><td class="table-header " width="200">退件原因</td><td class="" colspan="3">' + data.rejectReason + '</td></tr>');
+
+								}
+								if (data.formContent != '[{formContentJson}]' && data.formContent != 'undefined' && data.formContent != undefined) {
+									var jsonStr = data.formContent
+
+									var jsonObj = $.parseJSON(jsonStr);
+
+									var data_g = [];
+									$.each(jsonObj, function (index, item) {
+										data_g[index] = {
+											"title": item.title,
+											"selectData": item.selectData,
+											"ramark": item.ramark,
+										}
+
+									});
+									$('#look_detail1 tbody tr').each(function (row, tr) {
+
+										$(tr).find('td:eq(-3)').text(data_g.title)
+										$(tr).find('td:eq(-2)').text(data_g.selectData)
+										$(tr).find('td:eq(-1)').text(data_g.ramark)
+
+									});
+
+									$.each(data_g, function (index, item) {
+										$('#look_detail1 tbody tr').eq(index).find('td:eq(-3)').text(item.title)
+										$('#look_detail1 tbody tr').eq(index).find('td:eq(-2)').text(item.selectData)
+										$('#look_detail1 tbody tr').eq(index).find('td:eq(-1)').text(item.ramark)
+
+									});
+								}
+
+							}
+						}
+					});
+
+				}
+			};
+			$(".detailDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 960,
+				height: 550,
+
+				modal: true,
+				close: function () {
+
+
+				},
+				open: function (event, ui) {
+
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+			$("#editDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 960,
+				height: 550,
+
+				modal: true,
+				close: function () {
+					bodyHref("/content/safety/Safety_review.html");
+
+				},
+				open: function (event, ui) {
+
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+
+			var saveItem = function (item, isNew) {
+				$.extend(item, {
+					cfgType: $("#cfgType").val(),
+					cfgKey: $("#cfgKey").val(),
+					cfgName: $("#cfgName").val(),
+					cfgValue: $("#cfgValue").val(),
+					cfgMemo: $("#cfgMemo").val(),
+					cfgInUse: $('input[name*=cfgInUse]:checked').val()
+				});
+
+				$("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", item);
+
+				$("#tableDialog").dialog("close");
+				bodyHref("/content/situation/Safetysituationreport.html");
+			};
+
+			function Processing(id) {
+				bodyHref("/content/situation/Safetysituationreport_form7.html");
+			}
+
+		});
+
+
+	});
+</script>

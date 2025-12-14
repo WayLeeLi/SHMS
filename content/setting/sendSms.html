@@ -1,0 +1,214 @@
+﻿<div>
+	<h4>發送簡訊通知</h4>
+	
+	<form id="dialogForm">
+		<div class="details-form-field">
+            <label for="phone">手機 (ctrl+滑鼠左鍵 可複選)</label>
+            	<select class="custom-select" id="sendGroupType" name="sendGroupType" multiple></select>
+            	<br>or 指定電話: <input id="phone" name="phone" type="text" class="my-1 w-15"/>
+        </div>
+        <div class="details-form-field my-2">
+            <label for="content">內容</label>
+            	<input id="content" name="content" type="text" class="w-100"/>
+        </div>
+		<div class="details-form-field my-1">
+            <button type="submit" id="dialogFormSubmit" class="btn btn-primary">送出</button>
+        </div>
+	</form>
+</div>
+
+<div>
+	<h4>簡訊 LOG</h4>
+	
+	<div id="jsGrid" >
+	</div>
+</div>
+
+<script>
+//需要用的JS
+require(["jquery", "global_setting" , "jquery_validate" , "jquery_validate_addition"], function (jquery, jquery_validate) {
+	//頁面讀取後執行
+	$(document).ready(function(){
+
+	    $.ajax({
+		    url: "/"+CONFIG.SYSTEM_NAME + '/sendSms/api/init',
+		    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    async: false,
+		    cache: false,
+		    type: "GET",
+		    success: function(data, textStatus){  
+		    	
+		    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    		 alert("沒有權限");
+		    	 }else{
+
+		    		//產生寄件群組下拉選單
+		    		 $.ajax({
+ 		 			    url: "/"+CONFIG.SYSTEM_NAME + '/sendSms/api/getSendGroupType',
+ 		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+ 		 			    async: false,
+ 		 			    cache: false,
+ 		 			    type: "GET",
+ 		 			    success: function(data, textStatus){   
+ 		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+ 					    		alert("沒有權限");
+ 					    	 }else{ 					    		 
+ 					    		createSelect("sendGroupType", data, "SEND_GROUP_TYPE", "GROUP_NAME"); 					    		
+ 					    	 }
+ 		 			    },
+ 		 			    error: function (data, textStatus, errorThrown) {
+ 		 			        console.log(data);
+ 		 			    },
+ 		 			});
+		    		 		    		 
+		    		//產生sms log table		    		 
+		    		 $.ajax({
+		    			    url: "/"+CONFIG.SYSTEM_NAME + '/sendSms/api/getSmsLog',
+		    			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    			    async: false,
+		    			    cache: false,
+		    			    type: "GET",
+		    			    success: function(data, textStatus){  
+		    			    	
+		    			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    			    		 alert("沒有權限");
+		    			    	 }else{
+		    				    	 $("#jsGrid").jsGrid({
+		    			    	        width: "100%",
+		    			    	        height: "auto",
+		    			    	        heading: true,
+		    			    		    filtering: false,
+		    			    		    inserting: false,
+		    			    		    editing: false,
+		    			    		    selecting: false,
+		    			    		    sorting: true,
+		    			    		    paging: true,
+		    			    		    pageLoading: false,
+		    			    		    pageSize: 10,
+		    			    		    
+		    			    	        data: data,
+		    			    	 
+		    			    	        fields: [
+		    			    	            { title:"內容", name: "content", type: "text	", width: 150 },
+		    			    	            { title:"收件者", name: "recipient", type: "text", width: 50 },
+		    			    	            { title:"發送時間", name: "sendTime", type: "text", width: 50 },
+		    			    	            { title:"狀態", name: "status", type: "text", width: 30, itemTemplate: function(e){ 
+		    			    	            	switch(e){
+		    			    	            	case 1:
+		    			    	            		return "已審核";
+		    			    	            	case 2:
+		    			    	            		return "被退回";
+		    			    	            	default:
+		    			    	            		return "未審核";
+		    			    	            	}
+		    			    	            } },
+		    			    	        ],
+		    				            
+		    			    	    });
+		    				    	 
+		    				    	//依時間排序
+		    				    	$("#jsGrid").jsGrid("sort", "sendTime","desc");
+		    				    	
+		    			    	 }
+		    			    	 
+		    			    },
+		    			    error: function (data, textStatus, errorThrown) {
+		    			        console.log(data);
+		    			    },
+		    			});		 
+		    		
+		    		 
+		    		 
+		    	 }
+		    	 
+		    },
+		    error: function (data, textStatus, errorThrown) {
+		        console.log(data);
+		    },
+		});
+	    
+	    $("#dialogForm").validate({
+	    	 //錯誤訊息元素預設為label改成p會換行
+			 errorElement: "p",
+	         rules: {
+	        	 content: { required: true, maxlength:200, minlength:2},
+	        	 phone: {maxlength:10, minlength:10, phoneTW:true}
+	         },
+	         messages: {
+			        content:{
+			          required: "請輸入內容",
+			          minlength:"至少2個字元",
+					  maxlength:"最多200個字元"
+			        }
+	         },
+	         submitHandler: function() {
+	        	 	//中止form submit換頁事件
+	        	 	debugger;
+	        		 $.noop;
+	        	 	var item = {};
+   	        	$.extend(item, {
+   	        		phone: $("#phone").val(),
+   	        		content: $("#content").val(),
+   	        		sendGroupType: $("#sendGroupType").val()
+   	            });
+   	        	if(item.phone != ""){
+   	        		$("#sendGroupType").prop("selectedIndex", -1);
+   	        		item.sendGroupType = [];
+   	        		if(!validatePhone(item.phone)){
+   	        			alert("電話號碼格式錯誤，應為: 09XXXXXXXX");
+	    	        		return;
+   	        		}
+   	        	}
+		        	$.ajax({
+		 			    url: "/"+CONFIG.SYSTEM_NAME + '/sendSms/api/sendReview',
+		 			    data: JSON.stringify(item),
+		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		 			    async: false,
+		 			    cache: false,
+		 			    type: "POST",
+		 			    success: function(data, textStatus){   
+		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+					    		 alert("沒有權限");
+					    	 }else{
+					    		 if(data.result == "success"){
+					    			 alert("已送出審核");
+					    			 bodyHref("/content/setting/sendSms.html");
+					    		 }else if(data.errorMsg){
+					    			 alert(data.errorMsg);
+					    		 }
+					    	 }
+		 			    },
+		 			    error: function (data, textStatus, errorThrown) {
+		 			        console.log(data);
+		 			    },
+		 			});
+		        	
+		        	
+        		}
+	     });
+	    
+	    
+	    function createSelect(id, data, key, val, selectedKey){
+	    	//$('#' + id).append($('<option>').val("").text("請選擇"));
+			$.each(data, function( index, item ) {
+				if(item[key] == selectedKey){
+					if(item[val]){
+						$('#' + id).append($('<option>').val(item[key]).text(item[val]).attr('selected','selected'));	
+					}else{
+						$('#' + id).append($('<option>').val(item[key]).text(val).attr('selected','selected'));
+					}
+					
+				}else{
+					if(item[val]){
+						$('#' + id).append($('<option>').val(item[key]).text(item[val]));	
+					}else{
+						$('#' + id).append($('<option>').val(item[key]).text(val));
+					}
+				}
+			});
+		}
+	    
+    
+	});  
+});
+</script>

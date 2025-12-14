@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<!-- FOR UI DESIGN, DO NOT LOAD IN RUNTIME-->
+<link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../resources/css/A4.css"> 
+<style>
+	
+	.header{
+		font-size: 100px;position:center;
+	}
+	
+	.title{
+		font-size: 70px;-webkit-writing-mode: vertical-lr;-ms-writing-mode: vertical-lr;writing-mode: vertical-lr;text-orientation: upright;height: 400px;
+	}
+	.name{
+		font-size: 90px;
+		writing-mode: vertical-lr;
+		-webkit-writing-mode: vertical-lr;
+  		-ms-writing-mode: vertical-lr;
+		text-orientation: upright;
+		height: 450px;
+	}
+	@media print{
+
+	}
+	/*word style indent*/
+	@counter-style chinese-list {
+	  system: fixed;
+	  symbols: 一 二 三 四 五 六 七 八 九 十;
+	  suffix: " ";
+	}
+
+	ol {
+	  list-style-type: none;
+	  counter-reset: item;
+	  margin: 0;
+	  padding: 0;
+	}
+	
+	ol > li {
+	  display: table;
+	  counter-increment: item;
+	  margin-bottom: 0.6em;
+	}
+	
+	ol > li:before {
+	  content: counters(item, "、", chinese-list) "、 ";
+	  display: table-cell;
+	  padding-right: 0.6em;    
+	}
+	
+	li ol > li {
+	  margin: 0;
+	}
+	
+	li ol > li:before {
+	  content: counters(item, "、", chinese-list) " ";
+	}
+</style>
+</head>
+<body>
+
+<div class="container-fluid">
+	<div class="row border justify-content-center">
+		<span class="header">職安衛法三證人員</span>
+	</div>
+
+	<div class="row  text-center text-wrap">
+		<div class="col-4  justify-content-center   border d-flex"><span class="title align-self-center">職業安全衛生業務主管</span></div>
+		<div class="col-4 justify-content-center   border d-flex"><span class="title align-self-center">急救人員</span></div>
+		<div class="col-4 justify-content-center   border d-flex"><span class="title align-self-center">防火管理人</span></div>
+	</div>
+	
+	<div class="row   text-center text-wrap ">
+		<div class="col-4  justify-content-center   border d-flex"><p class="name align-self-center">@SAVA_MANAGER</p></div>
+		<div class="col-4  justify-content-center   border d-flex"><p class="name align-self-center">@HELPER</p></div>
+		<div class="col-4  justify-content-center   border d-flex"><p class="name align-self-center">@FIRE_HELPER</p></div>
+	</div>
+	
+	<div class="row">
+		<div class="col-7  align-items-start">
+		    <p>註：</p>
+			<ol>
+				<li>上述三項證照人員，係依職業安全衛生、消防等法令規定辦理設置。</li>
+				<li>職業安全衛生業務主管：<br>負責督導急救人員、防火管理人，與執行、管理單位有關安全維護、職業安全衛生及消防法令規定之業務事項。</li>
+				<li>	急救人員：<br>負責執行、管理單位有關職業安全衛生法令規定之急救藥品、設備器材及急救業務事項。</li>
+				<li>	防火管理人：<br>負責執行、管理單位有關消防法令規定之防火安全等業務事項。</li>
+			</ol>
+		</div>
+		<div class="col-5  align-items-end">
+				<canvas id="unitSignature" height="350px" class="float-right"></canvas>
+		</div>
+		
+	</div>
+</div>
+</body>
+</html>
+<script>
+	var cv = document.getElementById("unitSignature");
+	var ctx = cv.getContext("2d");
+	ctx.beginPath();
+	ctx.strokeStyle = "#ddd";
+	ctx.ellipse(150,240,150,100, Math.PI,0,2*Math.PI);
+	ctx.stroke();
+	ctx.font = "18pt Arial";
+	ctx.strokeStyle = "#eee";
+	ctx.strokeText("單位橢圓章", 90, 240);
+	ctx.strokeText("    年    日    月", 70, 275);
+</script>

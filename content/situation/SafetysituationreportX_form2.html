@@ -1,0 +1,106 @@
+<div class="no-print">
+
+    <div>
+        <h2 style="text-align: center;">重大發生單位/主管單位 重大偶發事件通報單</h2>
+        <form id="inputForm">
+            <table class="w-100 safe_form">
+                <tbody>
+                    <tr>
+                        <td class="table-header  text-center">通報單位名稱</td>
+                        <td class="table-header text-center">報告人稱職姓名<br/>
+                            (副理或經理)</td>
+                        <td class="table-header text-center">報告時間</td>
+                    
+                    </tr>
+                    <tr>
+                        
+                        <td>
+                            OOO分行
+                        </td>
+                    
+                        <td>
+                            經理 OOO
+                        </td>
+                        <td>
+                            111/04/14 08:30:00
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table><br />
+        <h4>一、案情節略： (含預估損失)</h4>
+        <div style="min-height: 120px;">  自動帶入內容自動帶入內容自動帶入內容自動帶入內容自動帶入內容，自動帶入內容自動帶入內容自動帶入內容自動帶入內容自動帶入內容 自動帶入內容自動帶入內容自動帶入內容自動帶入內容自動帶入內容，自動帶入內容自動帶入內容自動帶入內容自動帶入內容自動帶入內容</div>
+        <h4>二、案發後續處理情形：</h4>
+        <div style="min-height: 120px;"> 自動帶入內容自動帶入內容自動帶入內容自動帶入內容自動帶入內容，自動帶入內容自動帶入內容自動帶入內容自動帶入內容自動帶入內容 自動帶入內容自動帶入內容自動帶入內容自動帶入內容自動帶入內容，自動帶入內容自動帶入內容自動帶入內容自動帶入內容自動帶入內容 自動帶入內容自動帶入內容自動帶入內容自動帶入內容自動帶入內容，自動帶入內容自動帶入內容自動帶入內容自動帶入內容自動帶入內容</div>
+        </form>
+    </div>
+    <br/>
+    <div>
+        <hr/>
+        備註：<br/>
+1.通報程序請參閱本行「通報重大偶發事件標準程序處理要點」之「重大偶發事件通報
+程序流程圖」。<br/>
+2.「事件發生單位」:<br/>
+<blockquote class="ml-3">
+(1)應立即以電話及填具之本「通報單」傳真通報「主管部門」及董事會稽核部。<br/>
+(2)應於重大偶發事件發生後二個營業日內，將詳細狀況或後續處理情形(應涵蓋案情經過、處理過程、確定損失金額、犯案人員評述及所採保全或防範措施等相關事項)
+函報「主管部門」。<br/>
+</blockquote>
+3.「主管部門」:<br/>
+<blockquote class="ml-3">
+(1)接獲「事件發生單位」通報後應立即將「通報單」簽報總經理。<br/>
+(2)電告及傳送本「通報單」向董事會稽核部通報。<br/>
+(3)接獲「事件發生單位」之函報即應於簽報總經理核定後，函報董事會稽核部。<br/>
+電話： (02)2173-8888#1525(#1511、#1512) 傳真號碼： (02)2731-7132
+</blockquote>
+<table border="0" width="100%">
+<tbody>
+<tr>
+<td align="center" style="border:0">事件發生單位<br/>
+    橢圓章及主管職章
+<div class="text-center" style="height:90px; margin: 20px auto; padding-top: 50px; background-image: url(../resources/image/yin.png); background-position: center; background-repeat: no-repeat;">
+2023年02月19日
+</div>
+</td>
+<td  align="center" style="border:0">主管部門<br/>
+    橢圓章及主管職章
+<div class="text-center" style="height:90px; margin: 20px auto; padding-top: 50px;background-image: url(../resources/image/yin.png); background-position: center; background-repeat: no-repeat;">
+2023年02月19日
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+<br>
+<div style="text-align: center;">
+
+    <button type="button" id="printBtn" class="btn btn-secondary  my-2">列印</button>
+    <button type="button" id="sBtn" class="btn btn-success  my-2">匯出</button>
+    <button type="button" id="return" class="btn btn-warning  my-2">返回列表</button>
+    </div>
+<div class="container-fluid" id="templateContainer">
+
+</div>
+<script>
+//需要用的JS
+require(["jquery", "jquery_validate", "jsgrid", "jquery_ui"], function (jquery, jquery_validate, jsgrid, jquery_ui ) {
+	//頁面讀取後執行
+$(document).ready(function(){
+    $('#submitBtn').on("click",
+        function (){
+            bodyHref("/content/situation/SafetysituationreportX.html");
+        }
+    );
+    $('#return').on("click",
+        function (){
+            bodyHref("/content/situation/SafetysituationreportX.html");
+        }
+    );
+	});
+	
+	
+});
+</script>

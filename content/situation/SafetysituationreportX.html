@@ -1,0 +1,2798 @@
+﻿<div>
+	<h4>轉置重大偶發緊急事件通報作業</h4>
+
+	<div id="jsGrid"></div>
+	<div id="jsGrid_show"></div>
+	<div class="text-right">
+		<button type="button" id="return_back" class="btn btn-warning btn-hide  my-2">返回上一頁</button>
+	</div>
+
+</div>
+
+<div id="printDiv1" style="display:none">
+	<div>
+		<div class="">
+
+			<div>
+				<h2 style="text-align: center; font-size: 2rem;font-weight: 500;    margin-bottom: 0.5rem;">重大發生單位/主管單位 重大偶發事件通報單</h2>
+				<form id="inputForm">
+					<table class="w-100 safe_form" border="1" cellspacing=0 cellpadding=5 width='100%'>
+						<tbody>
+							<tr>
+								<td class="table-header  text-center">通報單位名稱</td>
+								<td class="table-header text-center">報告人稱職姓名<br />(副理或經理)</td>
+								<td class="table-header text-center">報告時間</td>
+
+							</tr>
+							<tr>
+
+								<td id="zz_unitName_p">
+									OOO分行
+								</td>
+
+								<td >
+									<span id="zz_safetyName_p"></span><span id="zz_safetyWorkMan_p" style="display: none;">()</span>
+								</td>
+								<td id="zz_addTime_p">
+									2025/04/14 08:30:00
+								</td>
+							</tr>
+
+						</tbody>
+					</table><br />
+					<h4>一、案情節略： (含預估損失)</h4>
+					<div style="min-height: 120px;"> <span id="zz_eventContent_p"></span>
+						<!-- <p id="zz_lossSelect_p"></p> -->
+					</div>
+					<h4>二、案發後續處理情形：</h4>
+					<div style="min-height: 120px;"> <span id="zz_lossSolution_p"></span></div>
+				</form>
+			</div>
+			<br />
+
+			<hr />
+			備註：<br />
+			1.通報程式請參閱本行「通報重大偶發事件標準程式處理要點」之「重大偶發事件通報
+			程式流程圖」。<br />
+			2.「事件發生單位」:<br />
+			<blockquote class="ml-3">
+				(1)應立即以電話及填具之本「通報單」傳真通報「主管部門」及董事會稽核部。<br />
+				(2)應於重大偶發事件發生後二個營業日內，將詳細狀況或後續處理情形(應涵蓋案情經過、處理過程、確定損失金額、犯案人員評述及所採保全或防範措施等相關事項)
+				函報「主管部門」。<br />
+			</blockquote>
+			3.「主管部門」:<br />
+			<blockquote class="ml-3">
+				(1)接獲「事件發生單位」通報後應立即將「通報單」簽報總經理。<br />
+				(2)電告及傳送本「通報單」向董事會稽核部通報。<br />
+				(3)接獲「事件發生單位」之函報即應於簽報總經理核定後，函報董事會稽核部。<br />
+				電話： (02)2173-8888#1525(#1511、#1512) 傳真號碼： (02)2731-7132
+			</blockquote>
+			<table border="0" width="100%">
+				<tbody>
+					<tr>
+						<td align="center" style="border:0">事件發生單位<br />
+							橢圓章及主管職章
+							<div class="text-center"
+								style="height:90px; margin: 20px auto; padding-top: 50px; background-image: url(/resources/image/yin.png); background-position: center; background-repeat: no-repeat;">
+								<span id="zz_date1_p"></span>
+							</div>
+						</td>
+						<td align="center" style="border:0">主管部門<br />
+							橢圓章及主管職章
+							<div class="text-center"
+								style="height:90px; margin: 20px auto; padding-top: 50px;background-image: url(/resources/image/yin.png); background-position: center; background-repeat: no-repeat;">
+								<span id="zz_date2_p"></span>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+
+</div>
+</div>
+
+<div id="printDiv2" style="display:none">
+	<div class="">
+		<div class="">
+
+			<div>
+				<h2 style="text-align: center; font-size: 2rem;font-weight: 500;    margin-bottom: 0.5rem;">合作金庫銀行經營危機事件通報單</h2>
+				<form id="inputForm">
+					<div class="text-right">日期：<span id="parentsafetyTime_p"></span></div>
+					<table class="w-100 safe_form" border="1" cellspacing=0 cellpadding=5 width='100%'>
+						<tbody>
+							<tr>
+								<td class="table-header text-center" width="120">總行業管單位</td>
+								<td class="table-header  text-center" id="parentUnitName_p">
+									&nbsp;
+								</td>
+								<td class="table-header  text-center" id="">
+									聯絡人
+								</td>
+								<td class="table-header  text-center" id="contactName_p">
+									&nbsp;
+								</td>
+							</tr>
+
+							<tr>
+								<td class="table-header  text-center">事件發生原因</td>
+								<td colspan="3" id="parenteventReason_p">
+
+								</td>
+
+							</tr>
+							<tr>
+								<td class="table-header  text-center">受影響狀況
+								</td>
+								<td colspan="3" id="eventDamageSituation_p">
+
+								</td>
+							</tr>
+							<tr>
+								<td class="table-header  text-center">是否肇致<br />經營危機</td>
+								<td colspan="3" id="lossSelect_p">
+									<div class="custom-control custom-radio custom-control-inline">
+										<input id="lossSelect_1q" name="lossSelectQ" type="radio" value="是"
+											class="custom-control-input">
+										<label class="custom-control-label" for="lossSelect_1q">是</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input id="lossSelect_0q" name="lossSelectQ" type="radio" value="否"
+											class="custom-control-input">
+										<label class="custom-control-label" for="lossSelect_0q">否</label>
+
+									</div>
+									
+
+								</td>
+							</tr>
+						
+							<tr>
+								<td class="table-header  text-center">待支援之<br />
+									緊急需求
+								</td>
+								<td colspan="3" id="require_p">
+
+								</td>
+							</tr>
+							<tr>
+								<td class="table-header  text-center">經營危機<br />狀況</td>
+								<td colspan="3" id="result_p">
+									<div class="custom-control custom-radio custom-control-inline">
+										<input id="result_1q" name="result" type="radio" value="營運中斷"
+											class="custom-control-input">
+										<label class="custom-control-label" for="result_1q">營運中斷</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input id="result_0q" name="result" type="radio" value="資本不足"
+											class="custom-control-input">
+										<label class="custom-control-label" for="result_0q">資本不足</label>
+
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input id="result_2q" name="result" type="radio" value="流動性不足"
+											class="custom-control-input">
+										<label class="custom-control-label" for="result_2q">流動性不足</label>
+
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="table-header  text-center">通報單位
+								</td>
+								<td colspan="3" height="100" class="parentUnitName1_p">
+
+								</td>
+							</tr>
+							<tr>
+								<td class="table-header  text-center">會核單位
+								</td>
+								<td colspan="3" id="parentreviewId_p">
+
+								</td>
+							</tr>
+							
+							<tr>
+								<td class="table-header  text-center">經營危機<br />處理小組
+								</td>
+								<td colspan="3" id="processGroup_p">
+
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+<div id="printDiv3" style="display:none">
+	<div class="">
+		<div class="">
+
+			<div>
+				<h2 style="text-align: center; font-size: 2rem;font-weight: 500;    margin-bottom: 0.5rem;">合庫金控及子公司重大事項通報表</h2>
+				<form id="inputForm">
+					<div style="padding: 8px 0;"><span class="pull-left">公司(單位)名稱：合作金庫商業銀行股份有限公司<b id="unitName3_p" style="display: none;"></b></span> 
+						<span class="pull-right" style="float: right;">填報日期：<span class="tb_Year"></span>年<span class="tb_Month"></span>月<span class="tb_Day"></span>日</span>
+					</div>
+
+					<table class="w-100 safe_form" border="1" cellspacing=0 cellpadding=5 width='100%'>
+						<thead>
+							<tr>
+								<td class="table-header text-center" width="35%">事項名稱</td>
+								<td class="table-header  text-center">通報件數</td>
+								<td class="table-header  text-center" width="40%">事件名稱</td>
+
+							</tr>
+							</thead>
+							<tbody>
+							<tr>
+								<td style="padding: 8px 5px;">風險控管重大缺失</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td style="padding: 8px 5px;">法令遵循(含洗錢防制)
+									重大缺失</td>
+									<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td style="padding: 8px 5px;">內部控制重大缺失</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td style="padding: 8px 5px;">內部稽核制度重大缺失</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td style="padding: 8px 5px;">評等調降之虞情事</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td style="padding: 8px 5px;">受國內外主管機關裁罰之虞
+									情事(如陳報陳述書等者)</td>
+									<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td style="padding: 8px 5px;">其他重大事項(對公司經營
+									或公股權益有不利影響者)</td>
+									<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td style="padding: 8px 5px;">重大偶發事件(事件範圍請依
+									各業別主管機關之規定)</td>
+									<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td style="padding: 8px 5px;">主管機關規定應通報之
+									其他重大事項</td>
+									<td></td>
+								<td></td>
+							</tr>
+
+
+						</tbody>
+					</table>
+					<div>
+						<p>1.如有發生表列情事，請由統一窗口(專責部門)即時彙整陳核後報送本公司。</p>
+						<p>2.通報表請簡要陳述，並於次頁「重大事項通報說明」中詳述。</p>
+						<table style="border: 0; width: 100%;">
+							<tr>
+								<td width="50%" style="border: 0;">
+									<p>承辦人：</p>
+									<p>連絡電話：</p>
+								</td>
+								<td width="50%" style="border: 0;" align="center">
+									<div
+										style="height: 60px; width: 240px; border:2px dotted #ccc; padding-top: 100px;">
+										(請加蓋統一窗口章戳)
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+<div id="printDiv4" style="display:none">
+	<div class="">
+		<div class="">
+			<div>
+				<h2 style="text-align: center; font-size: 2rem;font-weight: 500;    margin-bottom: 0.5rem;">合庫金控及子公司重大事項通報說明</h2>
+				<form id="inputForm">
+
+					<table class="w-100 safe_form" border="1" cellspacing=0 cellpadding=5 width='100%'>
+						<tbody>
+							<tr>
+								<td class="table-header" colspan="2" height="50">事件名稱： (每單一事件填載一份通報說明)</td>
+
+
+							</tr>
+
+							<tr>
+								<td width="120" align="center">事件經過</td>
+								<td id="eventReason4_p" height="145">
+
+								</td>
+
+							</tr>
+							<tr>
+								<td align="center">處置情形</td>
+								<td id="eventSituation_p" height="145">
+
+								</td>
+
+							</tr>
+							<tr>
+								<td align="center">可能影響</td>
+								<td id="canImpact_p" height="145">
+
+								</td>
+
+							</tr>
+							<tr>
+								<td align="center">預計(業已)<br>
+									提報董事會<br>
+									日期</td>
+								<td id="submitDate_p" height="100">
+
+								</td>
+
+							</tr>
+							<tr>
+								<td align="center">其他</td>
+								<td id="other_p" height="145">
+
+								</td>
+
+							</tr>
+
+
+						</tbody>
+					</table>
+
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>
+<div id="Tracking_tableDialog" style="display:none" class="container">
+
+	<div class="Tracking-dialog">
+		<ul id="Tracking">
+
+		</ul>
+	</div>
+
+</div>
+
+<div id="tableDialog" style="display:none" class="container">
+
+	<div class="steps_1 show">
+		<h2 id="safetyTitle" style="text-align: center;">轉置重大偶發緊急事件通報</h2>
+		<form id="dialogForm" enctype="multipart/form-data" class="dialogform">
+			<div class="clear-fix"><input type="hidden" id="safetyId" name="safetyId" />
+				通報編號: <span id="safetyNo"></span>
+			</div>
+			<br>
+
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header">單位名稱</td>
+						<td id="unitName">
+							△△分行
+						</td>
+						<td class="table-header">通報人員</td>
+						<td id="safetyWorkMan">
+							副理
+						</td>
+						<td id="safetyName">
+							王五
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header">事件發生時間</td>
+						<td>
+							<span id="eventTime"></span>
+
+						</td>
+						<td class="table-header ">單位電話</td>
+						<td id="unitTel">
+							09-99999999
+						</td>
+						<td>
+							分機<span id="unitTelOth">999</span>
+						</td>
+					</tr>
+
+				</tbody>
+			</table><br />
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header text-center" width="120" rowspan=2>案由<br />
+							<small class="text-grey">(請重點敘明)<br />
+								(100中文字內)</small>
+						</td>
+						<td class="table-header  text-center">
+							類別
+						</td>
+						<td>
+							<select class="custom-select" id="safetyType" name="safetyType" disabled autofocus>
+							</select>
+						</td>
+						<td class="table-header  text-center">
+							等級
+						</td>
+						<td>
+							<select class="custom-select" id="safetyLevel" name="safetyLevel" disabled>
+							</select>
+						</td>
+						<td class="table-header  text-center">
+							來源
+						</td>
+						<td>
+							<select class="custom-select" id="safetySource" name="safetySource" disabled></select>
+						</td>
+					</tr>
+					<tr>
+
+						<td colspan="6">
+							<textarea id="eventContent" name="eventContent" disabled maxlength="2000"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header  text-center">案件發生原因<br />
+							<small class="text-grey">(請詳敘明發生時間、內容)</small>
+						</td>
+						<td colspan="6">
+							<textarea id="eventReason" name="eventReason" disabled maxlength="2000"></textarea>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header  text-center">受損情形及處置措施<br />
+							<small class="text-grey">(請詳敘明受損處置、處置內容)</small>
+						</td>
+						<td colspan="6">
+							<textarea id="lossSolution" name="lossSolution" disabled maxlength="2000"></textarea>
+						</td>
+
+					</tr>
+
+					<tr>
+						<td class="table-header  text-center">預估財務損失</td>
+						<td colspan="6">
+							<div class="custom-control custom-radio custom-control-inline">
+								<input id="isSafe_1" name="lossSelect" disabled type="radio" value="無"
+									class="custom-control-input">
+								<label class="custom-control-label" for="isSafe_1">無</label>
+							</div>
+							<div class="custom-control custom-radio custom-control-inline">
+								<input id="isSafe_0" name="lossSelect" disabled Checked type="radio" value="有"
+									class="custom-control-input">
+								<label class="custom-control-label" for="isSafe_0">有，新臺幣：$</label>
+								<input type="text" id="lossMoney" disabled name="lossMoney" value="0" maxlength="13"></input>
+							</div>
+
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header  text-center" rowspan="2">營業狀況</td>
+						<td><select class="custom-select" disabled id="businessStatus" name="businessStatus">
+							</select></td>
+						<td colspan="5">&nbsp;</td>
+					</tr>
+					<tr>
+
+						<td colspan="6"><textarea placeholder="說明" id="businessStatusStatement"
+								name="businessStatusStatement" disabled maxlength="2000"></textarea></td>
+					</tr>
+					<tr>
+						<td class="table-header  text-center" rowspan="2">須總行協助</td>
+						<td><select class="custom-select" disabled id="needAssistance" name="needAssistance">
+							</select></td>
+						<td colspan="5">&nbsp;</td>
+					</tr>
+					<tr>
+
+						<td colspan="6"><textarea placeholder="說明" id="needAssistanceStatement"
+								name="needAssistanceStatement" disabled maxlength="2000"></textarea></td>
+					</tr>
+					<tr>
+						<td class="table-header  text-center">照片上傳</td>
+						<td colspan="6">
+							<div class="upload-content">
+
+								<div class="content-img">
+									<DIV class="sys_imglist">
+										<ul class="content-img-list"></ul>
+									</DIV>
+
+								</div>
+								<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+									aria-labelledby="myLargeModalLabel">
+									<div class="modal-dialog modal-lg" role="document">
+										<div class="modal-content">
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+
+					</tr>
+
+					<tr>
+						<td class="table-header  text-center">審核人員</td>
+						<td id="reviewId">
+							<!-- <select class="custom-select" disabled id="reviewId" name="reviewId">
+							</select> -->
+						</td>
+						<td colspan="2">
+						</td>
+						<td class="table-header  text-center">
+							通報時間
+						</td>
+						<td colspan="2" id="safetyTime">
+
+						</td>
+					</tr>
+
+
+				</tbody>
+			</table><br>
+			<div style="text-align: center;">
+				<div class="dialog-alert" id="dialog-alert">
+					<div class="dialog-alert-c">
+						通報單即將<span id="alert-d"></span>,確認資料填寫無誤請按確認。
+					</div>
+					<div class="dialog-alert-button text-center">
+						<button type="button" id="cancel" class="btn btn-danger  my-2">取消</button>
+						<button type="submit" id="dialogFormSubmit"
+							class="btn btn-primary  my-2 pressing_hide">確認</button>
+						<button type="button" id="pressingFormSubmit"
+							class="btn btn-primary  my-2 pressing_show">確認</button>
+					</div>
+				</div>
+
+				<button type="button" id="steps_1" class="btn btn-primary  my-2">下一頁</button>
+				<button type="button" id="return" class="btn btn-warning  my-2">返回</button>
+			</div>
+		</form>
+	</div>
+	<div class="steps_2">
+		<h2 style="text-align: center;">轉置重大偶發緊急事件通報</h2>
+		<form id="inputForm">
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header">單位名稱</td>
+						<td id="unitName_s">
+							△△分行
+						</td>
+						<td class="table-header">通報人員</td>
+						<td id="safetyWorkMan_s">
+							副理
+						</td>
+						<td id="safetyName_s">
+							王五
+							<input id="rocId" type="hidden">
+							<input id='safetyId' type="hidden">
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header">事件發生時間</td>
+						<td>
+							<span id="eventTime_s"></span>
+
+						</td>
+						<td class="table-header ">單位電話</td>
+						<td id="unitTel_s">
+							09-99999999
+						</td>
+						<td>
+							分機<span id="unitTelOth_s"></span>
+						</td>
+					</tr>
+
+				</tbody>
+			</table><br />
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header text-center" width="120" rowspan=2>案由<br />
+							<small class="text-grey">(請重點敘明)<br />
+								(100中文字內)</small>
+						</td>
+						<td class="table-header  text-center">
+							類別
+						</td>
+						<td>
+							<select class="custom-select" id="safetyType_s" name="safetyType" disabled autofocus>
+							</select>
+						</td>
+						<td class="table-header  text-center">
+							等級
+						</td>
+						<td>
+							<select class="custom-select" id="safetyLevel_s" name="safetyLevel" disabled>
+							</select>
+						</td>
+						<td class="table-header  text-center">
+							來源
+						</td>
+						<td>
+							<select class="custom-select" id="safetySource_s" name="safetySource" disabled></select>
+						</td>
+					</tr>
+					<tr>
+
+						<td colspan="6">
+							<textarea disabled id="eventContent_s" maxlength="2000"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header  text-center">匯出檔案</td>
+						<td colspan="3">
+							<select class="custom-select" id="exportName" name="exportName">
+
+								<option value="1">董事會稽核部_重大偶發事件通報</option>
+								<option value="2">業務發展部_經營危機事件通報單</option>
+								<option value="3">金控_重大事項通報表</option>
+								<option value="4">金控_重大事項通報說明</option>
+
+							</select>
+						</td>
+						<td colspan="3"></td>
+					</tr>
+					<tr>
+						<td class="table-header  text-center">匯出格式
+						</td>
+						<td colspan="3">
+							<select class="custom-select" id="exportType" name="exportType">
+								<option value="PDF">PDF</option>
+
+							</select>
+						</td>
+						<td colspan="3"></td>
+					</tr>
+
+
+				</tbody>
+			</table>
+		</form>
+		<br />
+		<div>
+			填表說明：
+			一、天然災害：如地震、水災、火災、風災等。<br />
+			二、重大偶發事件範圍如下：搶奪強盜、重大竊盜、行舍或設備遭破壞及媒體報導足以影響本行信
+			譽等。<br />
+			三、緊急事件：人為或天然災害、安全維護及緊急傷病事故之安全問題等。<br />
+			四、通報方式：如有上述事項，請立即填報本單位，如適逢假日亦請於上班後第一個營業日上午
+			09:30前主動填報及聯絡電話(02)2173-8888分機3213、3215、3235、3218。<br />
+		</div>
+		<br>
+		<div style="text-align: center;">
+			<button type="button" id="steps_2" class="btn btn-primary  my-2">儲存</button>
+			<button type="button" id="return" class="btn btn-warning  my-2">上一頁</button>
+		</div>
+	</div>
+	<div class="steps_3_1">
+		<div class="no-print">
+
+			<h2 style="text-align: center;">重大發生單位/主管單位 重大偶發事件通報單</h2>
+			<form id="zhongda">
+				<table class="w-100 safe_form">
+					<tbody>
+						<tr>
+							<td class="table-header  text-center">通報單位名稱</td>
+							<td class="table-header text-center">報告人稱職姓名<br />
+								(副理或經理)</td>
+							<td class="table-header text-center">報告時間</td>
+
+						</tr>
+						<tr>
+
+							<td id="zz_unitName">
+								OOO分行
+							</td>
+
+							<td>
+								
+								<span id="zz_safetyName"></span><span id="zz_safetyWorkMan" style="display: none;">()</span>
+							</td>
+							<td id="zz_addTime">
+								111/04/14 08:30:00
+							</td>
+						</tr>
+
+					</tbody>
+				</table><br />
+				<h4>一、案情節略： (含預估損失)</h4>
+				<div style="min-height: 120px;">
+					<p id="zz_eventContent"></p>
+					<p id="zz_lossSelect"></p>
+				</div>
+				<h4>二、案發後續處理情形：</h4>
+				<div style="min-height: 120px;">
+					<p id="zz_lossSolution">
+					</p>
+				</div>
+			</form>
+
+			<br />
+
+			<hr />
+			備註：<br />
+			1.通報程式請參閱本行「通報重大偶發事件標準程式處理要點」之「重大偶發事件通報
+			程式流程圖」。<br />
+			2.「事件發生單位」:<br />
+			<blockquote class="ml-3">
+				(1)應立即以電話及填具之本「通報單」傳真通報「主管部門」及董事會稽核部。<br />
+				(2)應於重大偶發事件發生後二個營業日內，將詳細狀況或後續處理情形(應涵蓋案情經過、處理過程、確定損失金額、犯案人員評述及所採保全或防範措施等相關事項)
+				函報「主管部門」。<br />
+			</blockquote>
+			3.「主管部門」:<br />
+			<blockquote class="ml-3">
+				(1)接獲「事件發生單位」通報後應立即將「通報單」簽報總經理。<br />
+				(2)電告及傳送本「通報單」向董事會稽核部通報。<br />
+				(3)接獲「事件發生單位」之函報即應於簽報總經理核定後，函報董事會稽核部。<br />
+				電話： (02)2173-8888#1525(#1511、#1512) 傳真號碼： (02)2731-7132
+			</blockquote>
+			<table border="0" width="100%">
+				<tbody>
+					<tr>
+						<td align="center" style="border:0">事件發生單位<br />
+							橢圓章及主管職章
+							<div class="text-center"
+								style="height:90px; margin: 20px auto; padding-top: 50px; background-image: url(../resources/image/yin.png); background-position: center; background-repeat: no-repeat;">
+								<span id="zz_date1"></span>
+							</div>
+						</td>
+						<td align="center" style="border:0">主管部門<br />
+							橢圓章及主管職章
+							<div class="text-center"
+								style="height:90px; margin: 20px auto; padding-top: 50px;background-image: url(../resources/image/yin.png); background-position: center; background-repeat: no-repeat;">
+								<span id="zz_date2"></span>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<br>
+		<div style="text-align: center;">
+			<button type="button" id="printBtn_3_1"
+				class="btn btn-secondary zhuanzhibtn  my-2 sendButton">儲存及列印/匯出</button>
+			<button type="button" id="printBtn_3_1_1"
+				class="btn btn-secondary chakanbtn  my-2 printButton">列印/匯出</button>
+			<!-- <button type="button" id="sBtn_3_1" class="btn btn-success  my-2 sendButton">儲存及列印</button>
+			<button type="button" id="sBtn_3_1_1" class="btn btn-success  my-2 printButton">匯出</button> -->
+
+		</div>
+	</div>
+
+	<div class="steps_3_2">
+		<div class="no-print">
+
+			<div>
+				<h2 style="text-align: center;">合作金庫銀行經營危機事件通報單</h2>
+				<form id="jingying">
+					<div class="text-right">日期：<span id="parentsafetyTime"></span></div>
+					<table class="w-100 safe_form">
+						<tbody>
+
+							<tr>
+
+								<td class="table-header text-center" width="120">總行業管單位</td>
+								<td class="table-header  text-center" id="parentUnitName">
+									&nbsp;
+								</td>
+								<td class="table-header  text-center" width="120" id="">
+									聯絡人
+								</td>
+								<td class="table-header  text-center" id="contactName">
+									&nbsp;
+								</td>
+							</tr>
+
+							<tr>
+								<td class="table-header  text-center">事件發生原因</td>
+								<td colspan="3">
+									<textarea id="parenteventReason" maxlength="2000" placeholder="(請詳敘明發生原因、內容)"></textarea>
+								</td>
+
+							</tr>
+							<tr>
+								<td class="table-header  text-center">受影響狀況
+								</td>
+								<td colspan="3">
+									<textarea id="eventDamageSituation" maxlength="2000" placeholder="(請詳敘本行受經營危機事件影響狀況)"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td class="table-header  text-center" rowspan="2">是否肇致<br />經營危機</td>
+								<td colspan="3">
+									<div class="custom-control custom-radio custom-control-inline">
+										<input id="lossSelect_1" name="lossSelectQ" checked type="radio" value="是"
+											class="custom-control-input">
+										<label class="custom-control-label" for="lossSelect_1">是</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input id="lossSelect_0" name="lossSelectQ" type="radio" value="否"
+											class="custom-control-input">
+										<label class="custom-control-label" for="lossSelect_0">否</label>
+
+									</div>
+									
+
+								</td>
+							</tr>
+							<tr>
+
+								<td colspan="3">
+									請備妥財務與營運狀況資料
+
+								</td>
+							</tr>
+							<tr>
+								<td class="table-header  text-center">待支援之<br />
+									緊急需求
+								</td>
+								<td colspan="3">
+									<textarea id="require" maxlength="2000" placeholder="(簽註意見或處理情形)"></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td class="table-header  text-center">經營危機<br />狀況</td>
+								<td colspan="3">
+									<div class="custom-control custom-radio custom-control-inline">
+										<input id="result_1" name="result" type="radio" checked value="營運中斷"
+											class="custom-control-input">
+										<label class="custom-control-label" for="result_1">營運中斷</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input id="result_0" name="result" type="radio" value="資本不足"
+											class="custom-control-input">
+										<label class="custom-control-label" for="result_0">資本不足</label>
+
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input id="result_2" name="result" type="radio" value="流動性不足"
+											class="custom-control-input">
+										<label class="custom-control-label" for="result_2">流動性不足</label>
+
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="table-header  text-center">通報單位
+								</td>
+								<td colspan="3">
+									<textarea id="parentUnitName1" maxlength="2000"></textarea>
+
+								</td>
+							</tr>
+							<tr>
+								<td class="table-header  text-center">會核單位
+								</td>
+								<td colspan="3">
+									<!-- <input id="parentreviewId" disabled> -->
+									<div id="parentreview">
+
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td class="table-header  text-center">經營危機<br />處理小組
+								</td>
+								<td colspan="3">
+									<textarea id="processGroup" maxlength="2000"></textarea>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+				</form>
+			</div>
+			<br>
+			<div style="text-align: center;">
+
+				<button type="button" id="printBtn_3_2"
+					class="btn btn-secondary zhuanzhibtn my-2 sendButton">儲存及列印/匯出</button>
+				<button type="button" id="printBtn_3_2_2"
+					class="btn btn-secondary chakanbtn my-2 printButton">列印/匯出</button>
+				<!-- <button type="button" id="sBtn_3_2" class="btn btn-success  my-2 sendButton">儲存及列印</button>
+			<button type="button" id="sBtn_3_2_2" class="btn btn-success  my-2 printButton">匯出</button> -->
+			</div>
+		</div>
+	</div>
+	<div class="steps_3_3">
+		<div class="no-print">
+
+			<div>
+				<h2 style="text-align: center;">合庫金控及子公司重大事項通報表</h2>
+				<form id="hezuo">
+					<div><span class="pull-left">公司(單位)名稱：合作金庫商業銀行股份有限公司<span id="unitName3" style="display: none;"></span></span> <span class="pull-right">填報日期：<span class="tb_Year"></span>年<span class="tb_Month"></span>月<span class="tb_Day"></span>日</span>
+					</div>
+
+					<table class="w-100 safe_form"  border="1" cellspacing=0 cellpadding=5 width='100%'>
+						<thead>
+							<tr>
+								<td class="table-header text-center" width="35%">事項名稱</td>
+								<td class="table-header  text-center">通報件數</td>
+								<td class="table-header  text-center" width="40%">事件名稱</td>
+
+							</tr>
+</thead>
+							<tbody>
+					
+
+							<tr>
+								<td>風險控管重大缺失</td>
+								<td><input type="text" name="tb_Number"></td>
+								<td><input type="text" name="tb_Title"></td>
+							</tr>
+							<tr>
+								<td>法令遵循(含洗錢防制)
+									重大缺失</td>
+									<td><input type="text" name="tb_Number"></td>
+									<td><input type="text" name="tb_Title"></td>
+							</tr>
+							<tr>
+								<td>內部控制重大缺失</td>
+								<td><input type="text" name="tb_Number"></td>
+								<td><input type="text" name="tb_Title"></td>
+							</tr>
+							<tr>
+								<td>內部稽核制度重大缺失</td>
+								<td><input type="text" name="tb_Number"></td>
+								<td><input type="text" name="tb_Title"></td>
+							</tr>
+							<tr>
+								<td>評等調降之虞情事</td>
+								<td><input type="text" name="tb_Number"></td>
+								<td><input type="text" name="tb_Title"></td>
+							</tr>
+							<tr>
+								<td>受國內外主管機關裁罰之虞
+									情事(如陳報陳述書等者)</td>
+									<td><input type="text" name="tb_Number"></td>
+									<td><input type="text" name="tb_Title"></td>
+							</tr>
+							<tr>
+								<td>其他重大事項(對公司經營
+									或公股權益有不利影響者)</td>
+								<td><input type="text" name="tb_Number"></td>
+								<td><input type="text" name="tb_Title"></td>
+							</tr>
+							<tr>
+								<td>重大偶發事件(事件範圍請依
+									各業別主管機關之規定)</td>
+									<td><input type="text" name="tb_Number"></td>
+									<td><input type="text" name="tb_Title"></td>
+							</tr>
+							<tr>
+								<td>主管機關規定應通報之
+									其他重大事項</td>
+									<td><input type="text" name="tb_Number"></td>
+									<td><input type="text" name="tb_Title"></td>
+							</tr>
+
+
+						</tbody>
+					</table>
+					<div>
+						<p>1.如有發生表列情事，請由統一窗口(專責部門)即時彙整陳核後報送本公司。</p>
+						<p>2.通報表請簡要陳述，並於次頁「重大事項通報說明」中詳述。</p>
+						<table style="border: 0; width: 100%;">
+							<tr>
+								<td width="50%" style="border: 0;">
+									<p>承辦人：</p>
+									<p>連絡電話：</p>
+								</td>
+								<td width="50%" style="border: 0;" align="center">
+									<div
+										style="height: 160px; width: 240px; border:2px dotted #ccc; padding-top: 100px;">
+										(請加蓋統一窗口章戳)
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</form>
+			</div>
+			<br>
+			<div style="text-align: center;">
+
+
+				<button type="button" id="printBtn_3_3"
+					class="btn btn-secondary zhuanzhibtn  my-2 sendButton">儲存及列印/匯出</button>
+				<button type="button" id="printBtn_3_3_3"
+					class="btn btn-secondary chakanbtn  my-2 printButton">列印/匯出</button>
+				<!-- <button type="button" id="sBtn_3_3" class="btn btn-success  my-2 sendButton">儲存及列印</button>
+			<button type="button" id="sBtn_3_3_3" class="btn btn-success  my-2 printButton">匯出</button> -->
+
+			</div>
+		</div>
+	</div>
+	<div class="steps_3_4">
+		<div class="no-print">
+			<div>
+				<h2 style="text-align: center;">合庫金控及子公司重大事項通報說明</h2>
+				<form id="heku">
+
+					<table class="w-100 safe_form">
+						<tbody>
+							<tr>
+								<td class="table-header" colspan="2">事件名稱： (每單一事件填載一份通報說明)</td>
+
+
+							</tr>
+
+							<tr>
+								<td width="120" align="center">事件經過</td>
+								<td>
+									<textarea id="eventReason4" maxlength="2000"></textarea>
+								</td>
+
+							</tr>
+							<tr>
+								<td align="center">處置情形</td>
+								<td>
+									<textarea id="eventSituation" maxlength="2000"></textarea>
+								</td>
+
+							</tr>
+							<tr>
+								<td align="center">可能影響</td>
+								<td>
+									<textarea id="canImpact" maxlength="2000"></textarea>
+								</td>
+
+							</tr>
+							<tr>
+								<td align="center">預計(業已)<br>
+									提報董事會<br>
+									日期</td>
+								<td>
+									<div class="date_box">
+										<label>
+											<input id="submitDate" name="submitDate" type="text" readonly="readonly"
+												class="w_100p" placeholder="日期" />
+											<i class="iconfont icon-riqi1"></i>
+										</label>
+									</div>
+
+								</td>
+
+							</tr>
+							<tr>
+								<td align="center">其他</td>
+								<td>
+									<textarea id="other" maxlength="2000"></textarea>
+								</td>
+
+							</tr>
+
+
+						</tbody>
+					</table>
+
+				</form>
+			</div>
+			<br>
+			<div style="text-align: center;">
+				<button type="button" id="printBtn_3_4"
+					class="btn btn-secondary zhuanzhibtn  my-2 sendButton">儲存及列印/匯出</button>
+				<button type="button" id="printBtn_3_4_4"
+					class="btn btn-secondary chakanbtn  my-2 printButton">列印/匯出</button>
+				<!-- <button type="button" id="sBtn_3_4" class="btn btn-success  my-2 sendButton">儲存及列印</button>
+			<button type="button" id="sBtn_3_4_4" class="btn btn-success  my-2 printButton">匯出</button> -->
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+</style>
+<div id="template_checkbox" style="display:none;" class="custom-control custom-checkbox">
+	<input type='checkbox' class='custom-control-input' id="@INPUT_ID@"  name="@INPUT_NAME@" value="@INPUT_VALUE@" />
+	<label class='custom-control-label' for="@INPUT_ID@">@LABEL@</label>
+</div>
+<div id="template_radiobox" style="display:none;" class="custom-control custom-radio custom-control-inline">
+	<input type='radio' class='custom-control-input' id=" @INPUT_ID@" name="@INPUT_NAME@" value="@INPUT_VALUE@"
+		data-error="inline" disabled />
+	<label class='custom-control-label' for="@INPUT_ID@">@LABEL@</label>
+</div>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui", "jquery_cookie", "print"], function (jquery, jquery_validate, jsgrid, jquery_ui,) {
+		//頁面讀取後執行
+
+		$(document).ready(function () {
+			var currentDate = new Date();
+ var year = currentDate.getFullYear();
+ var month = currentDate.getMonth() + 1;
+ var day = currentDate.getDate();
+ var formattedDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
+console.log(formattedDate)
+ $('.tb_Year').text(year);
+ $('.tb_Month').text((month < 10 ? '0' + month : month));
+ $('.tb_Day').text((day < 10 ? '0' + day : day));
+ //新增默認資料
+ var review
+			$.ajax({
+				
+				url: "/" + CONFIG.SYSTEM_NAME + '/unitData/api/getUnitChecker',
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+				async: false,
+				cache: false,
+				type: "GET",
+				success: function (data, textStatus) {
+					if (data && data == "<script>alert('沒有權限')<\/script>") {
+						//showAlert('沒有權限','沒有權限','')
+						showAlert('沒有權限', '沒有權限', '')
+					} else {
+						review=data
+						
+						
+					}
+				},
+				error: function (data, textStatus, errorThrown) {
+					console.log(data);
+				},
+			});
+			$.ajax({
+				
+				url: "/" + CONFIG.SYSTEM_NAME + '/safetyNotification/api/headUnitList',
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+				async: false,
+				cache: false,
+				type: "GET",
+				success: function (data, textStatus) {
+					
+					if (data && data.code == 5000) {
+						showAlert('沒有權限', '沒有權限', '')
+					} if (data && data == 4000) {
+						alert('您登入已逾時或未登入，請重新登入！')
+						location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+					} else {
+
+const unitlist = data.data;
+
+// 過濾條件
+const filteredArray = $.grep(unitlist, function(unit) {
+  return (
+    unit.unitName !== "總行" &&          // 排除總行
+    unit.unitName.indexOf("暫存單位") === -1 // 排除名稱含「暫存單位」
+  );
+});
+					
+						createCheckBox("parentreview", "unitId", filteredArray, "unitName", '')
+						createCheckBox("parentreviewId_p", "unitId", filteredArray, "unitName", '')
+						// $("#parentreviewId").val(data.unit.unitName);
+
+
+					}
+				},
+				error: function (data, textStatus, errorThrown) {
+					console.log(data);
+				},
+			});
+			function isLogin() {
+			
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/login/api/getLogin',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "get",
+					success: function (data, textStatus) {
+						if (data.msg != "success") {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+						console.log(data);
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/user/api/getInitData',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "get",
+					success: function (data, textStatus) {
+						console.log(data.authLevel);
+const hasNumber = (num) => $.inArray(num, data.authLevel) > -1;
+const has2 = hasNumber(2);
+const has11 = hasNumber(11);
+if(has2 && has11) {
+    console.log('都在')
+} else if(has2) {
+    $('#exportName option[value="3"]').each(function() {
+                $(this).data('hidden', true).detach();
+            });$('#exportName option[value="4"]').each(function() {
+                $(this).data('hidden', true).detach();
+            });
+} else if(has11) {
+    $('#exportName option[value="1"]').each(function() {
+                $(this).data('hidden', true).detach();
+            });$('#exportName option[value="2"]').each(function() {
+                $(this).data('hidden', true).detach();
+            });
+} else {
+   $('#exportName option[value="1"]').each(function() {
+                $(this).data('hidden', true).detach();
+            });$('#exportName option[value="2"]').each(function() {
+                $(this).data('hidden', true).detach();
+            });
+			$('#exportName option[value="3"]').each(function() {
+                $(this).data('hidden', true).detach();
+            });$('#exportName option[value="4"]').each(function() {
+                $(this).data('hidden', true).detach();
+            });
+}
+					
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+			isLogin();//登入狀態
+			
+
+			$("#submitDate").datepicker({
+				changeMonth: true,
+				changeYear: true,
+				dateFormat: "yy/mm/dd",
+			
+
+			});
+			$.validator.addMethod('filesize', function (value, element, param) {
+				// param = size (en bytes) 
+				// element = element to validate (<input>)
+				// value = value of the element (file name)
+				$.validator.messages.filesize = "檔案大小超過限制";
+				return this.optional(element) || (element.files[0].size <= param)
+			});
+
+
+
+			function get_list(menuData) {
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyNotification/api/list',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data.code == "5000") {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							var data = data.data;
+							//提示
+							$.toast({ heading: '', text: '資料載入成功' + textStatus, icon: 'success', position: 'toast-top-center', hideAfter: 6000, });
+							$("#jsGrid").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: true, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: true,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+													}
+
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+														}
+													}
+
+												}
+											}
+											return true;
+										});
+										return result;
+									},
+
+								},
+
+								fields: [
+									{ title: "通報編號", name: "safetyNo", type: "text", width: 120, validate: "required" },
+									{ title: "通報時間", name: "safetyTime", type: "text", width: 120 },
+									{ title: "通報單位", name: "unitName", type: "text", width: 130 },
+									{
+										title: "事件內容", name: "eventContent", type: "text", width: 200, classes: "text-ellipsis", itemTemplate: function (value, item) {
+											return $("<span>").text(value).attr('title', value).addClass('text-ellipsis')
+										}
+									},
+
+
+									{
+										title: "狀態", name: "status", type: "select",
+										items: [{ Name: "", Id: '' },
+										{ Name: "暫存", Id: 't' },
+										{ Name: "新發佈", Id: 'n' },
+										{ Name: "已審核", Id: 'c' },
+										{ Name: "已退件", Id: 'r' },
+										{ Name: "已處理", Id: 'p' }],
+										valueField: "Id",
+										textField: "Name", width: 120, itemTemplate: function (value, item) {
+											if (value == 't') {
+												return $("<span>").text('暫存')
+											} if (value == 'n') {
+												return $("<span>").text('新發佈')
+											} if (value == 'c') {
+												return $("<span>").text('已審核')
+											} if (value == 'r') {
+												return $("<span class='text-danger'>").text('已退件')
+											}
+											if (value == 'p') {
+												return $("<span>").text('已處理')
+											}
+										}
+									},
+
+									{
+										type: "control",
+										name: "id",
+										width: 150,
+										editButton: false,
+										deleteButton: false,
+										modeSwitchButton: false,
+										filtercss: "display:none;",
+										itemTemplate: function (value, item) {
+											var $result = jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments);
+
+											var $customTracksButton = $("<button>").attr("type", "button").text("追蹤").addClass("btn btn-warning")
+												.on("click", function (args) {
+													showTracksDialog("案件追蹤", value);
+
+												});
+											var $customTransButton = $("<button>").attr("type", "button").text("轉置").addClass("btn btn-primary")
+												.on("click", function () {
+
+													if (item.status == 'r') {
+														showAlert('不可轉置權限', '當前通報已退件，不可轉置。', '')
+													} else {
+														$("#safetyId").val(value);
+														showDetailsDialog("轉置", value);
+													}
+
+
+												});
+
+											var $customLookButton = $("<button>").attr("type", "button").text("查看").addClass("btn btn-success")
+												.on("click", function () {
+													console.log(value)
+													showListX("查看", value);
+													// bodyHrefX("/content/situation/SafetysituationreportX2.html","測試ID"+value);
+
+												})
+
+											if (menuData.functionArray.indexOf('trans') < 0) {
+												return $("<div>").append($customLookButton).append($customTracksButton)
+											} else {
+												return $("<div>").append($customLookButton).append($customTracksButton).append($customTransButton);
+											}
+
+										}, headerTemplate: function () {
+
+											return "操作";
+
+
+										}
+									}
+								],
+								rowClick: function (args) {
+									//  if(args.item.reviewTime){
+									// 	 shmsToast("審核完成，無法編輯", '', 'info');
+									// 	 return;
+									//  }
+									//  if(args.item.isSend ==1){
+									// 	 shmsToast("已送審，無法編輯", '', 'info');
+									// 	 return;
+									//  }
+
+									//showDetailsDialog("編輯", args.item.id);
+									//console.log(args)
+								},
+								deleteConfirm: function (item) {
+									return "公告 \"" + item.announcementName + "\" 確認刪除?";
+								},
+
+							});
+
+							//依時間排序
+							$("#jsGrid").jsGrid("sort", "safetyTime", "desc");
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+
+			}
+			//獲取按鈕權限
+
+			var menuArray;
+			//獲取按鈕權限d
+			functionArray()
+			function functionArray() {
+				
+				var menuid = 32;
+
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/buttonRole/api/getByMenuId?menuId=' + menuid,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							console.log(data)
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							var menuData = data.data
+							get_list(menuData);
+							menuArray = menuData.functionArray;
+							console.log(menuData.functionArray)
+							console.log(menuArray)
+					
+							if (menuData.functionArray.indexOf('add') < 0) {
+								$('.addButton').hide()
+							}
+							if (menuData.functionArray.indexOf('review') < 0) {
+								$('.reviewButton').hide()
+							}
+							if (menuData.functionArray.indexOf('temp') < 0) {
+								$('.tempButton').hide()
+							}
+							if (menuData.functionArray.indexOf('reject') < 0) {
+								$('.returnButton').hide()
+							}
+							if (menuData.functionArray.indexOf('temp') < 0) {
+								$('.tempButton').hide()
+							}
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			//刪除列
+			function delcol(col) {
+				var l = $("#jsGrid tr").length;
+				for (var i = 0; i < l; i++) {
+					$("#jsGrid tr").eq(i).find("td").eq(col).remove();
+					$("#jsGrid tr").eq(i).find("th").eq(col).remove();
+				}
+			}
+			//轉置查看
+			function showListX(title, id) {
+				var safetyId = id
+				console.log(safetyId);
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyNotification/api/listTrans?safetyId=' + safetyId,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "get",
+					success: function (data, textStatus) {
+						console.log(data)
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						} if (data && data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+						} else {
+							var data = data.data;
+							console.log(data.length)
+							if (data.length > 0) {
+								$("#jsGrid").hide()
+								$("#jsGrid_show").show()
+								$("#return_back").show()
+								$.ajax({
+									data: JSON.stringify({ "safetyNo": "" }),
+									url: "/" + CONFIG.SYSTEM_NAME + '/safetyNotification/api/getInitData',
+									contentType: "application/json;charset=utf-8", // 因為上面是JSON
+									async: false,
+									cache: false,
+									type: "POST",
+									success: function (data, textStatus) {
+										if (data && data.code == 5000) {
+											showAlert('沒有權限', '沒有權限', '')
+										} else {
+
+											var unitdata = data.unitList;
+										}
+
+
+									},
+									error: function (data, textStatus, errorThrown) {
+										console.log(data);
+									},
+								});
+							} else {
+								showAlert('提示', '當前報告暫無轉置', "")
+								$("#jsGrid_show").hide()
+							}
+							//提示
+							$.toast({ heading: '', text: '資料載入' + textStatus, icon: 'success', position: 'toast-top-center', hideAfter: 6000, });
+							$("#jsGrid_show").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: true, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: false,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+													}
+
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+														}
+													}
+
+												}
+											}
+											return true;
+										});
+										return result;
+									},
+
+								},
+
+								fields: [
+									{ title: "表單名稱", name: "exportName", type: "text", width: 150, validate: "required" },
+									{ title: "通報單位", name: "unitName", type: "text", width: 150 },
+									{ title: "通報時間", name: "addTime", type: "text", width: 130 },
+									{
+										title: "查看", name: "transType", type: "control", width: 100, filtercss: "display:none;", itemTemplate: function (value, item) {
+											return $("<button>").attr("type", "button").text("查看").addClass("btn btn-primary")
+												.on("click", function () {
+													safetyLook(item.id, value);
+
+												});
+										}, headerTemplate: function () {
+											return "查看";
+										}, filterTemplate: function () {
+											return "";
+										}
+									},
+								],
+
+
+							});
+
+							//依時間排序
+							$("#jsGrid_show").jsGrid("sort", "addTime", "desc");
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+
+			//追蹤
+			$("#Tracking_tableDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 550,
+				modal: true,
+				close: function () {
+					$("#Tracking li").remove();
+					$("#dialogForm").find(".error").removeClass("error");
+					$('#announcementDate').datepicker('disable');
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				open: function (event, ui) {
+					$('#announcementDate').datepicker('enable');
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+			var formSubmitHandler = $.noop;
+
+			var showTracksDialog = function (dialogType, item) {
+
+				$("#Tracking_tableDialog").dialog("option", "title", dialogType + " ").dialog("open");
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyNotification/api/listTrack?safetyId=' + item,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data.code == "5000") {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							console.log(data.data);
+							var data = data.data;
+							$.each(data, function (index, value) {
+								console.log(value);
+								$("#Tracking").append('<li>' + value.addTime + "<b style='padding:0 8px'>" + value.trackName + "</b>" + value.trackContent + '</li>');
+							})
+						}
+					}
+				});
+			};
+			//表單增、改、看、處理
+			$("#tableDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 960,
+				height: 550,
+
+				modal: true,
+				close: function () {
+					$('#tableDialog input').attr("disabled", false);
+					$('#tableDialog textarea').attr("disabled", false);
+					$('#tableDialog select').attr("disabled", false);
+					$("#dialogForm").validate().resetForm();
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.steps_2').siblings().removeClass('show');
+					$('.steps_2').removeClass('show');
+					$('.steps_1').addClass('show')
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+					selectremove();
+					$("#dialogForm input[type='text']").val();
+					$("#dialogForm textarea").html();
+					$("#dialogForm textarea").val();
+					bodyHref("/content/situation/SafetysituationreportX.html");
+				},
+				open: function (event, ui) {
+
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+
+			$("#lookDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 850,
+				height: 550,
+
+				modal: true,
+				close: function () {
+					$("#dialogForm").validate().resetForm();
+					$("#dialogForm").find(".error").removeClass("error");
+
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+					selectremove();
+					$('#dialogForm').addClass('dialogform');
+
+				},
+				open: function (event, ui) {
+
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+
+
+			var showDetailsDialog = function (dialogType, item) {
+				if (dialogType === "轉置" && item != '') {
+					look_detail(item, "轉置");
+					$('.zhuanzhibtn').show();
+					$('.chakanbtn').hide();
+				} else {
+					$('.zhuanzhibtn').hide();
+					$('.chakanbtn').show();
+				}
+				$("#tableDialog").dialog("option", "title", " 轉置重大偶發緊急事件通報作業_" + dialogType).dialog("open");
+			};
+			$('#steps_1').click(function () {
+				$(this).parents().find('.steps_1').siblings().removeClass('show');
+				$(this).parents().find('.steps_1').removeClass('show');
+				$('.steps_2').addClass('show');
+				$('#unitName_s').html($('#unitName').html())
+				$('#safetyWorkMan_s').html($('#safetyWorkMan').html());
+				$('#safetyName_s').html($('#safetyName').html());
+				$('#eventTime_s').html($('#eventTime').html());
+				$('#unitTel_s').html($('#unitTel').html());
+				$('#unitTelOth_s').html($('#unitTelOth').html());
+				$('#eventContent_s').html($('#eventContent').val());
+			})
+			$('.steps_2 #return').click(function () {
+				$(this).parents().find('.steps_2').siblings().removeClass('show');
+				$(this).parents().find('.steps_2').removeClass('show');
+				$('.steps_1').addClass('show')
+			})
+			$('#steps_2').click(function () {
+				$(this).parents().find('.steps_2').siblings().removeClass('show');
+				$(this).parents().find('.steps_2').removeClass('show');
+				var exportName = $('#exportName').val();
+				var exportType = $('#exportType').val();
+
+				$('.steps_2').removeClass('show');
+				$('.steps_3_' + exportName).addClass('show');
+				var safetyId = $('#safetyId').val()
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyNotification/api/get?safetyId=' + safetyId,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "get",
+					success: function (data, textStatus) {
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						} if (data && data == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+						} else {
+
+							$('#unitName3').html(data.data.unitName)
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+				$.ajax({
+					data: JSON.stringify({ "safetyNo": "" }),
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyNotification/api/getInitData',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						} if (data && data == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+						} else {
+							console.log(data)
+							$('#parentUnitName').html(data.unit.unitName);
+							$('#contactName').html(data.loginUser.name);
+							$('#parentUnitworkMan').html(data.workMan);
+							$('#parentsafetyTime').html(data.safetyTime);
+							$("#zz_unitName").html(data.unit.unitName);
+							$("#zz_safetyWorkMan").html(data.workMan);
+							$("#zz_safetyName").html(data.loginUser.name);
+							$("#zz_addTime").html(data.safetyTime);
+						
+							// $("#parentreviewId").val(data.unit.unitName);
+
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+				$.ajax({
+				
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyNotification/api/headUnitList',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						} if (data && data == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+						} else {
+							
+							
+						const unitlist = data.data;
+
+// 過濾條件
+const filteredArray = $.grep(unitlist, function(unit) {
+  return (
+    unit.unitName !== "總行" &&          // 排除總行
+    unit.unitName.indexOf("暫存單位") === -1 // 排除名稱含「暫存單位」
+  );
+});
+					
+						createCheckBox("parentreview", "unitId", filteredArray, "unitName", '')
+							// $("#parentreviewId").val(data.unit.unitName);
+
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+
+			})
+			$('.steps_3 #return').click(function () {
+				$(this).parents().find('.steps_3_1').siblings().removeClass('show');
+				$(this).parents().find('.steps_3_1').removeClass('show');
+				$('.steps_2').addClass('show');
+			})
+			$('#printBtn_3_1').click(function () {
+				saferyX();
+			});
+			$('#printBtn_3_2').click(function () {
+				saferyX()
+			});
+			var tb_Number_var = [];
+			var tb_Title_var = [];
+			$('#printBtn_3_3').click(function () {		
+    tb_Number_var = [];
+    tb_Title_var = [];
+    $('.steps_3_3 tbody tr').each(function() {
+        // 獲取當前行的第二列中的input元素
+		if (!$(this).is(':first-child') || $(this).find('th').length === 0) {
+            var inputValue = $(this).find('td:eq(1) input').val();
+		var inputValue1 = $(this).find('td:eq(2) input').val();
+        
+        // 將input元素的值添加到數組中
+        tb_Number_var.push(inputValue);
+		tb_Title_var.push(inputValue1);
+        }
+        
+    });
+    
+    // 將數組中的值以逗號分隔的形式儲存到變數中
+    // var result = tb_Number_var.join('tb_Number:');
+	// var result1 = tb_Title_var.join('tb_Title:');
+    
+    // 輸出结果
+    console.log(tb_Number_var+'---'+tb_Title_var);
+				saferyX()
+				
+			});
+			$('#printBtn_3_4').click(function () {
+				saferyX()
+			});
+			$('#sBtn_3_1').click(function () {
+				saferyX()
+			});
+			$('#sBtn_3_2').click(function () {
+				saferyX()
+			});
+			$('#sBtn_3_3').click(function () {
+				saferyX()
+			});
+			$('#sBtn_3_4').click(function () {
+				saferyX()
+			});
+
+			$('#printBtn_3_1_1').click(function () {
+				printByDiv(document.getElementById("printDiv1"));
+			});
+			$('#printBtn_3_2_2').click(function () {
+				printByDiv(document.getElementById("printDiv2"));
+			});
+			$('#printBtn_3_3_3').click(function () {
+				printByDiv(document.getElementById("printDiv3"));
+			});
+			$('#printBtn_3_4_4').click(function () {
+				printByDiv(document.getElementById("printDiv4"));
+			});
+			$('#sBtn_3_1_1').click(function () {
+				getPdf('#printDiv1', '重大發生單位/主管單位 重大偶發事件通報單')
+			});
+			$('#sBtn_3_2_2').click(function () {
+				getPdf('#printDiv2', '經營危機事件通報單')
+			});
+			$('#sBtn_3_3_3').click(function () {
+				getPdf('#printDiv3', '合庫金控及子公司重大事項通報表')
+			});
+			$('#sBtn_3_4_4').click(function () {
+				getPdf('#printDiv4', '合庫金控及子公司重大事項通報說明')
+			});
+			function saferyX() {
+				var safetyId = $('#safetyId').val()
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyNotification/api/get?safetyId=' + safetyId,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "get",
+					success: function (data, textStatus) {
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						}if (data && data.code == 7000) {
+							showAlert('服務異常', data.msg, '')
+						} if (data && data == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+						} else {
+
+							var detailData = data;
+							$.ajax({
+								data: JSON.stringify({ "safetyNo": "" }),
+								url: "/" + CONFIG.SYSTEM_NAME + '/safetyNotification/api/getInitData',
+								contentType: "application/json;charset=utf-8", // 因為上面是JSON
+								async: false,
+								cache: false,
+								type: "POST",
+								success: function (data, textStatus) {
+									if (data && data.code == 5000) {
+										showAlert('沒有權限', '沒有權限', '')
+									} if (data && data == 4000) {
+										alert('您登入已逾時或未登入，請重新登入！')
+										location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+									} else {
+
+										// safetyX_s(detailData, data)
+										var exportName = $('#exportName').val();
+										if (exportName == '1') {
+											
+											validateForm('#zhongda', submit_data, '',detailData, data,'請完整填寫或選擇所有必填欄位！');
+										}
+										if (exportName == '2') {
+									
+											validateForm('#jingying', submit_data, '',detailData, data,'請完整填寫或選擇所有必填欄位，會核單位為非必要填寫，其他均必填！');
+										}
+										if (exportName == '3') {
+										
+											validateForm('#hezuo', submit_data, '',detailData, data,'請完整填寫或選擇所有必填欄位！');
+										}
+										if (exportName == '4') {
+											
+											validateForm('#heku', submit_data, '',detailData, data,'請完整填寫或選擇所有必填欄位！');
+										}
+
+									}
+								},
+								error: function (data, textStatus, errorThrown) {
+									console.log(data);
+								},
+							});
+
+
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+
+function validateForm(ID, successCallback, exclude = "", detailData, initData,tips) {
+  const $elements = $(`${ID} td select, ${ID} td input[type="text"], ${ID} td input[type="checkbox"], ${ID} td textarea`).not(exclude);
+  let allFilled = true;
+
+  // 用於儲存已檢查的複選框組別
+  const checkedGroups = new Set();
+
+  $elements.each(function() {
+    const $el = $(this);
+    if ($el.is(':disabled')) return;
+
+    // 處理複選框群組驗證
+    // if ($el.is('input[type="checkbox"]')) {
+    //   const groupName = $el.attr('name'); // 假設同組複選框有相同 name
+    //   if (!groupName || checkedGroups.has(groupName)) return;
+
+    //   // 檢查同組是否至少有一個被選中
+    //   const hasChecked = $(`input[name="${groupName}"]:checked`).not(exclude).length > 0;
+    //   if (!hasChecked) {
+    //     allFilled = false;
+    //     return false; // 中止遍歷
+    //   }
+    //   checkedGroups.add(groupName);
+    // } 
+    // 驗證其他類型元素
+    else if ($.trim($el.val()) === '') {
+      allFilled = false;
+      return false;
+    }
+  });
+
+  allFilled ? successCallback(detailData, initData) : showAlert('提示', tips, '');
+}
+function submit_data(detailData, initData){
+var data = detailData.data;
+				var initData = initData;
+				var exportName = $('#exportName').val();
+				var exportType = $('#exportType').val();
+				if(initData.loginUser.phone==undefined || initData.loginUser.phone=='undefined'){
+					var loginUserphone=''
+				}
+				if (data.safetyNotificationDetail.lossSelect == '有') {
+					var lossMoney_demo=data.safetyNotificationDetail.lossMoney.toLocaleString('en-US');
+			
+					var eventRemarkval = data.eventContent + '<br>預估損失：有，新臺幣：$' +lossMoney_demo
+				
+				} else {
+					var eventRemarkval =data.eventContent +'<br>預估損失：無'
+				}
+				var eventProcessval = $("#zz_lossSolution_p").text()
+				if (exportName == '1') {
+					var updatingItem = {
+						safetyId: data.safetyNotificationDetail.safetyId,
+						safetyNo: data.safetyNotificationDetail.safetyNo,
+						unitName: data.unitName,
+						safetyWorkMan: data.jobName,
+						safetyName: data.safetyNotificationDetail.safetyName,
+						safetyTime: data.safetyTime,
+						unitId: data.unitId,
+						rocId: data.rocId,
+						exportName: $("#exportName").find("option:selected").text(),
+						exportType: exportType,
+						eventRemark: eventRemarkval,
+						eventProcess: eventProcessval
+
+					}
+				}
+				if (exportName == '2') {
+					var selected = [];
+
+					$('#parentreview input[name=unitId]:checked').each(function (i) {
+
+						selected[i] = $(this).val();
+					});
+					arrToStr = selected.toString();
+					console.log(arrToStr)
+					var updatingItem = {
+						safetyId: data.safetyNotificationDetail.safetyId,
+						safetyNo: data.safetyNotificationDetail.safetyNo,
+						unitName: $('#parentUnitName').html(),
+						safetyWorkMan: data.jobName,
+						safetyName: data.safetyNotificationDetail.safetyName,
+						safetyTime: data.safetyTime,
+						unitId: data.unitId,
+						rocId: data.rocId,
+						exportName: $("#exportName").find("option:selected").text(),
+						exportType: exportType,
+						eventRemark: "eventRemark",
+						eventProcess: "eventProcess",
+						parentUnitName: $('#parentUnitName1').val(),
+						contactName: initData.loginUser.name,
+						eventReason: $('#parenteventReason').val(),
+						eventDamageSituation: $('#eventDamageSituation').val(),
+						lossSelect: $("input[name='lossSelectQ']:checked").val(),
+						require: $('#require').val(),
+						result: $("input[name='result']:checked").val(),
+						reviewer: arrToStr,
+						// parentUnitName: arrToStr,
+						processGroup: $('#processGroup').val(),
+
+					}
+				}
+				if (exportName == '3') {
+
+					var updatingItem = {
+						safetyId: data.safetyNotificationDetail.safetyId,
+						safetyNo: data.safetyNotificationDetail.safetyNo,
+						unitName: data.unitName,
+						safetyWorkMan: data.jobName,
+						safetyName: data.safetyNotificationDetail.safetyName,
+						safetyTime: data.safetyTime,
+						unitId: data.unitId,
+						rocId: data.rocId,
+						exportName: $("#exportName").find("option:selected").text(),
+						exportType: exportType,
+						eventRemark: "eventRemark",
+						formContent: "tb_Number("+tb_Number_var+");tb_Title("+tb_Title_var+")",
+						contactTel: loginUserphone,
+						contactName: initData.loginUser.name
+
+					}
+				}
+				if (exportName == '4') {
+
+					var updatingItem = {
+						safetyId: data.safetyNotificationDetail.safetyId,
+						safetyNo: data.safetyNotificationDetail.safetyNo,
+						unitName: data.unitName,
+						safetyWorkMan: data.jobName,
+						safetyName: data.safetyNotificationDetail.safetyName,
+						safetyTime: data.safetyTime,
+						unitId: data.unitId,
+						rocId: data.rocId,
+						exportName: $("#exportName").find("option:selected").text(),
+						exportType: exportType,
+						eventRemark: "eventRemark",
+						eventReason: $("#eventReason4").val(),
+						eventSituation: $("#eventSituation").val(),
+						canImpact: $("#canImpact").val(),
+						submitDate: $("#submitDate").val(),
+						other: $("#other").val()
+
+					}
+				}
+				safetyX_s(detailData,updatingItem,initData)
+}
+			
+			function safetyX_s(detailData,updatingItem, initData) {
+				var data = detailData.data;
+				var initData = initData;
+				var exportName = $('#exportName').val();
+				var exportType = $('#exportType').val();
+				return $.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyNotification/api/saveTrans' + exportName,
+					data: JSON.stringify(updatingItem),
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					type: "POST",
+					dataType: "json",
+					success: function (data, textStatus) {
+
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						}if (data && data.code == 7000) {
+							showAlert('服務異常', data.msg, '')
+						}  if (data && data == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+						} else {
+							console.log(data);
+							if (data.msg == "success" || data.code == 0 || data.code == "0") {
+								safetyLook(data.data, exportName)
+								printByDiv(document.getElementById("printDiv" + exportName));
+								$.toast({ heading: '', text: '轉置成功' + textStatus, icon: 'success', position: 'toast-top-center', hideAfter: 6000, });
+							} else if (data.errorMsg) {
+								alert(data.errorMsg);
+							}
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+						alert('更新失敗' + data + ',' + JSON.stringify(updatingItem))
+					},
+				});
+			}
+			//轉置送出後列印資料帶入
+
+			//查看資料帶入
+			var detailData = [];
+			function look_detail(safetyId, seting) {
+				var safetyId = safetyId
+				console.log(safetyId);
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyNotification/api/get?safetyId=' + safetyId,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "get",
+					success: function (data, textStatus) {
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						} if (data && data == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+						} else {
+							var lookdata = data;
+							detailData.push(lookdata);
+							$.ajax({
+								data: JSON.stringify({ "safetyNo": "" }),
+								url: "/" + CONFIG.SYSTEM_NAME + '/safetyNotification/api/getInitData',
+								contentType: "application/json;charset=utf-8", // 因為上面是JSON
+								async: false,
+								cache: false,
+								type: "POST",
+								success: function (data, textStatus) {
+									if (data && data.code == 5000) {
+										showAlert('沒有權限', '沒有權限', '')
+									} if (data && data == 4000) {
+										alert('您登入已逾時或未登入，請重新登入！')
+										location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+									} else {
+
+										lookPage(lookdata, data,review);
+
+
+
+									}
+								},
+								error: function (data, textStatus, errorThrown) {
+									console.log(data);
+								},
+							});
+
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+			//轉置單查看
+			function safetyLook(safetyId, seting) {
+				var safetyId = safetyId
+				console.log(safetyId);
+				$('.steps_3_' + seting).siblings().removeClass('show');
+				$('.steps_3_' + seting).addClass('show');
+				$('.steps_3_' + seting + ' input').attr("disabled", true);
+				$('.steps_3_' + seting + ' textarea').attr("disabled", true);
+				$('.steps_3_' + seting + ' select').attr("disabled", true);
+
+				showDetailsDialog("查看", safetyId);
+
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyNotification/api/getTrans?transId=' + safetyId,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "get",
+					success: function (data, textStatus) {
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						} if (data && data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+						} else {
+							console.log(data)
+							var lookdata = data;
+							$.ajax({
+								data: JSON.stringify({ "safetyNo": "" }),
+								url: "/" + CONFIG.SYSTEM_NAME + '/safetyNotification/api/getInitData',
+								contentType: "application/json;charset=utf-8", // 因為上面是JSON
+								async: false,
+								cache: false,
+								type: "POST",
+								success: function (data, textStatus) {
+									if (data && data.code == 5000) {
+										showAlert('沒有權限', '沒有權限', '')
+									} if (data && data == 4000) {
+										alert('您登入已逾時或未登入，請重新登入！')
+										location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+									} else {
+										safetyPage(lookdata, data, seting);
+
+									}
+								},
+								error: function (data, textStatus, errorThrown) {
+									console.log(data);
+								},
+							});
+
+
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+
+			//表單驗證
+			$("#dialogForm").validate({
+				//錯誤訊息元素預設為label改成p會換行
+				errorElement: "p",
+				rules: {
+					eventTime: { required: true },
+					eventContent: { required: true, maxlength: 200, minlength: 2 },
+					eventReason: { required: true, maxlength: 200, minlength: 2 }
+				},
+				messages: {
+					// eventTime:{
+					// 	  required: "請輸入公告時間"
+					// 	},
+					// 	eventContent:{
+					// 	  required: "請輸入公告名稱",
+					// 	  minlength:"至少2個字元",
+					// 	  maxlength:"最多200個字元"
+					// 	},
+					// 	eventReason:{
+					// 	  required: "請選擇檔案，檔案只能是PDF檔，最大不得超過10MB"
+					// 	}
+				},
+				submitHandler: function () {
+					formSubmitHandler();
+				}
+			});
+
+
+			//查看資料帶入
+			function lookPage(data, mrdata,review) {
+				var mrdata = mrdata
+				var data = data.data;
+				console.log(data)
+				//類別
+				$(" #needAssistance").html('');
+				$(" #businessStatus").html('');
+				$("#safetyType").html('');
+				$(" #safetySource").html('');
+				$(" #safetyLevel").html('');
+				$("#safetyId").val(data.safetyNotificationDetail.safetyId);
+				$("#eventTime").html(data.safetyNotificationDetail.eventTime);
+				$("#eventTime_b").html(data.safetyNotificationDetail.eventTime);
+
+				$("#rocId").val(data.rocId);
+				$("#safetyType").html(eachSelect("safetyType", mrdata.safetyNotificationTypeList, "cfgKey", "cfgValue", "", data.safetyNotificationDetail.safetyType));
+				$(" #safetySource").html(eachSelect("safetySource", mrdata.safetyNotificationSourceList, "cfgKey", "cfgValue", "", data.safetyNotificationDetail.safetySource));
+				$(" #safetyLevel").html(eachSelect("safetyLevel", mrdata.safetyNotificationLevelList, "cfgKey", "cfgValue", "", data.safetyNotificationDetail.safetyLevel));
+				$("#safetyType_s").html(eachSelect("safetyType_s", mrdata.safetyNotificationTypeList, "cfgKey", "cfgValue", "", data.safetyNotificationDetail.safetyType));
+				$(" #safetySource_s").html(eachSelect("safetySource_s", mrdata.safetyNotificationSourceList, "cfgKey", "cfgValue", "", data.safetyNotificationDetail.safetySource));
+				$(" #safetyLevel_s").html(eachSelect("safetyLevel_s", mrdata.safetyNotificationLevelList, "cfgKey", "cfgValue", "", data.safetyNotificationDetail.safetyLevel));
+				$(" #eventContent").val(data.eventContent);
+				$(" #parenteventReason").val(data.safetyNotificationDetail.eventReason);
+				$(" #eventReason").val(data.safetyNotificationDetail.eventReason);
+				$(" #lossSolution").val(data.safetyNotificationDetail.lossSolution);
+				$(" #eventDamageSituation").val(data.safetyNotificationDetail.lossSolution);
+				$(" #returnReason").val(data.safetyNotificationDetail.returnReason);
+				if (data.safetyNotificationDetail.lossSelect == '有') {
+					$("#isSafe_0").prop('checked', 'checked')
+					$("#isSafe_1").removeAttr('checked')
+				} else {
+					$("#isSafe_1").prop('checked', 'checked')
+					$("#isSafe_0").removeAttr('checked')
+				}
+
+				$(" #lossMoney").val(data.safetyNotificationDetail.lossMoney);
+				$(" #businessStatus").html(eachSelect("businessStatus", mrdata.safetyNotificationBusinessList, "cfgKey", "cfgValue", "", data.safetyNotificationDetail.businessStatus));
+				$(" #businessStatusStatement").html(data.safetyNotificationDetail.businessStatusStatement);
+				$(" #needAssistance").html(eachSelect("needAssistance", mrdata.safetyNotificationAssistanceList, "cfgKey", "cfgValue", "", data.safetyNotificationDetail.needAssistance));
+				$(" #needAssistanceStatement").html(data.safetyNotificationDetail.needAssistanceStatement);
+				//單位名稱
+				//createSelect("safetyLevel", data.unitList, "unitId", "unitName");
+				//審核人員
+				$(" #reviewId").html(data.reviewName);
+				// console.log(review)
+				// createSelect("reviewId", review, "rocId", "name", '');
+				// $(" #reviewId").val(data.reviewId)
+				//長影響類別
+				//createCheckBox("effectTypeDiv", "effectType", data.eventEffectTypeList, "cfgKey", "cfgValue");
+				//createTable(data);
+				//setCreateId(data.loginUser.rocId);
+				//單位名稱
+				$(" #unitName").html(data.unitName);
+				//職位
+				$(" #safetyWorkMan").html(data.jobName);
+				//姓名
+				$(" #safetyName").html(data.safetyNotificationDetail.safetyName);
+				 //單位電話
+        $("#unitTel").html(data.safetyNotificationDetail.unitTel);
+        //單位電話
+        $(" #unitTelOth").html(data.safetyNotificationDetail.unitTelOth);
+				//通報編號
+				$(" #safetyNo").html(data.safetyNo);
+				$(" #safetyId").val(data.id);
+				$(" #id").val(data.id);
+				//通報時間
+				$(" #safetyTime").html(data.safetyTime);
+
+
+				if (data.safetyNotificationDetail.lossSelect == '有') {
+					var lossMoney_demo=data.safetyNotificationDetail.lossMoney.toLocaleString('en-US');
+					$("#zz_lossSelect_p").html('預估損失：有，新臺幣：$' + lossMoney_demo);
+				} else {
+					$("#zz_lossSelect_p").html('預估損失：無')
+				}
+				$("#zz_lossSolution_p").html(data.safetyNotificationDetail.lossSolution);
+
+				if (data.safetyNotificationDetail.lossSelect == '有') {
+					var lossMoney_demo=data.safetyNotificationDetail.lossMoney.toLocaleString('en-US');
+					$("#zz_lossSelect").html('預估損失：有，新臺幣：$' + lossMoney_demo);
+				} else {
+					$("#zz_lossSelect").html('預估損失：無')
+				}
+				var zz_date = mrdata.safetyTime;
+				var zz_datex = zz_date.substring(0, 4) + "年" + zz_date.substring(5, 7) + "月" + zz_date.substring(8, 10) + '日';
+				$("#zz_lossSolution_p").html(data.safetyNotificationDetail.lossSolution);
+				$("#zz_date1_p").html(zz_datex);
+				$("#zz_date2_p").html(zz_datex);
+				$("#zz_lossSolution").html(data.safetyNotificationDetail.lossSolution);
+				$("#zz_date1").html(zz_datex);
+				$("#zz_date2").html(zz_datex);
+				$("#zz_eventContent").html(data.eventContent);
+				$("#zz_eventContent_p").html(data.eventContent);
+
+
+
+				var imgdata = data.safetyNotificationDetail.imgPath
+				var imgurl = data.safetyNotificationDetail.images
+				console.log(imgdata.length)
+				if (imgdata.length > 0) {
+					var imgArr = imgdata.split(",");
+					console.log(imgArr)
+					//var imgArro = imgdata.split(",").split('.').pop().trim();
+					eachImgContent('.sys_imglist .content-img-list', imgArr, imgurl);
+
+				}
+			}
+
+			//圖片顯示
+			function eachImgContent(obj, imgdata, imgurl) {
+				$(obj).html("");
+				for (var a = 0; a < imgdata.length; a++) {
+					var oldBox = $(obj).html();
+					$(obj).html(oldBox + '<li class="content-img-list-item"><img data-zoom="' + imgurl[a] + '" src="' + imgurl[a].replace("." + imgurl[a].split('.').pop().trim(), "_s." + imgurl[a].split('.').pop().trim()) + '" alt="">' +
+						'<div class="hide">' +
+						'<a index="' + a + '" class="big-btn" type="button" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="iconfont icon-iczoomout"></i></a></div></li>');
+				}
+
+			}
+
+			//轉置查看資料帶入
+			function safetyPage(data, mrdata, transType) {
+				var transType = transType
+				var data = data.data;
+				var mrdata = mrdata;
+				console.log(data)
+				console.log(transType)
+				//類別
+
+				if (transType == '1') {
+					var zz_date = data.safetyNotificationTrans1.receiveTime;
+					console.log(data.safetyNotificationTrans1)
+					var zz_datex = zz_date.substring(0, 4) + "年" + zz_date.substring(5, 7) + "月" + zz_date.substring(8, 10) + '日';
+					$("#zz_unitName").html(data.safetyNotificationTrans1.unitName);
+					$("#zz_safetyWorkMan").html(data.safetyNotificationTrans1.safetyWorkMan);
+					$("#zz_safetyName").html(data.safetyNotificationTrans1.safetyName);
+					$("#zz_addTime").html(data.safetyNotificationTrans1.safetyTime);
+					$("#zz_unitName_p").html(data.safetyNotificationTrans1.unitName);
+					$("#zz_safetyWorkMan_p").html(data.safetyNotificationTrans1.safetyWorkMan);
+					$("#zz_safetyName_p").html(data.safetyNotificationTrans1.safetyName);
+					$("#zz_addTime_p").html(data.safetyNotificationTrans1.addTime);
+					$("#zz_eventContent").html(data.safetyNotificationTrans1.eventRemark);
+					$("#zz_lossSolution").html(data.safetyNotificationTrans1.eventProcess);
+					$("#zz_eventContent_p").html(data.safetyNotificationTrans1.eventRemark);
+					$("#zz_lossSolution_p").html(data.safetyNotificationTrans1.eventProcess);
+					$("#zz_lossSelect").html('');
+					$("#zz_lossSelect_p").html('');
+					$("#zz_date1").html(zz_datex);
+					$("#zz_date2").html(zz_datex);
+					$("#zz_date1_p").html(zz_datex);
+					$("#zz_date2_p").html(zz_datex);
+
+				}
+				if (transType == '2') {
+					console.log(transType)
+					console.log(data.unitName)
+					$('#parentsafetyTime').html(data.safetyNotificationTrans2.safetyTime);
+					$('#parentUnitName').html(data.safetyNotificationTrans2.unitName);
+					$('#parentUnitName1').val(data.safetyNotificationTrans2.parentUnitName);
+					$('#contactName').html(data.safetyNotificationTrans2.contactName);
+					$('#parenteventReason').val(data.safetyNotificationTrans2.eventReason);
+					$('#eventDamageSituation').val(data.safetyNotificationTrans2.eventDamageSituation);
+					$("input[name=lossSelectQ][value=" + data.safetyNotificationTrans2.lossSelect + "]").attr("checked", 'checked');
+					$('#require').val(data.safetyNotificationTrans2.require);
+
+					$("input[name=result][value=" + data.safetyNotificationTrans2.result + "]").attr("checked", 'checked');
+					// $('#parentreview').html(data.safetyNotificationTrans2.reviewer);
+					var reviewervar=data.safetyNotificationTrans2.reviewer
+					$.ajax({
+				
+				url: "/" + CONFIG.SYSTEM_NAME + '/safetyNotification/api/headUnitList',
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+				async: false,
+				cache: false,
+				type: "GET",
+				success: function (data, textStatus) {
+					
+					if (data && data.code == 5000) {
+						showAlert('沒有權限', '沒有權限', '')
+					} if (data && data == 4000) {
+						alert('您登入已逾時或未登入，請重新登入！')
+						location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+					} else {
+						
+						
+						createCheckBox("parentreview", "unitId", data.data, "unitName", reviewervar)
+						createCheckBox("parentreviewId_p", "unitId", data.data, "unitName", reviewervar)
+						// $("#parentreviewId").val(data.unit.unitName);
+
+
+					}
+				},
+				error: function (data, textStatus, errorThrown) {
+					console.log(data);
+				},
+			});
+					$('#processGroup').val(data.safetyNotificationTrans2.processGroup);
+					$('#parentsafetyTime_p').html(data.safetyNotificationTrans2.safetyTime);
+					$('#parentUnitName_p').html(data.safetyNotificationTrans2.unitName);
+					$('.parentUnitName1_p').html(data.safetyNotificationTrans2.parentUnitName);
+					$('.parentUnitworkMan_p').html(data.safetyNotificationTrans2.parentUnitworkMan);
+					$('#contactName_p').html(data.safetyNotificationTrans2.contactName);
+					$('#parenteventReason_p').html(data.safetyNotificationTrans2.eventReason.replace(/\n/g, '<br>'));
+					$('#eventDamageSituation_p').html(data.safetyNotificationTrans2.eventDamageSituation.replace(/\n/g, '<br>'));
+					$("input[name=lossSelectQ][value=" + data.safetyNotificationTrans2.lossSelect + "]").attr("checked", 'checked');
+					if(data.safetyNotificationTrans2.lossSelect==='是'){
+						$('#lossSelect_p').html(data.safetyNotificationTrans2.lossSelect+'       請備妥財務與營運狀況資料');
+					}else{
+						$('#lossSelect_p').html(data.safetyNotificationTrans2.lossSelect);
+					}
+					
+					$('#require_p').html(data.safetyNotificationTrans2.require);
+
+					$("input[name=result][value=" + data.safetyNotificationTrans2.result + "]").attr("checked", 'checked');
+					$('#result_p').html(data.safetyNotificationTrans2.result);
+					 $('#parentreviewId_p').html(data.safetyNotificationTrans2.reviewer.replace(/\n/g, '<br>'));
+					$('#processGroup_p').html(data.safetyNotificationTrans2.processGroup.replace(/\n/g, '<br>'));
+
+				}
+				if (transType == "3") {
+					console.log(transType)
+					console.log(data.safetyNotificationTrans3.unitName)
+					$('#unitName3').html(data.safetyNotificationTrans3.unitName);
+					$('#unitName3_p').html(data.safetyNotificationTrans3.unitName);
+					var dataString = data.safetyNotificationTrans3.formContent;
+
+// 使用分號(;)將字串分割成數組
+var dataArray = dataString.split(';');
+
+// 現在 dataArray 包含兩個元素：'tb_Number(1,2,3,4,5,6,7,8,9,)' 和 'tb_Title(11,22,33,44,55,66,77,88,99,)'
+var tbNumberData = dataArray[0].trim(); // 去除可能存在的空格
+var tbTitleData = dataArray[1].trim(); // 去除可能存在的空格
+
+// 去除前後的括號和末尾的逗號，然後分割字串成數組
+function parseData(dataStr) {
+return dataStr.replace(/^\w+\(|\)$/g, '').replace(/,$/, '').split(',');
+}
+
+var numbers = parseData(tbNumberData);
+var titles = parseData(tbTitleData);
+
+// 確保兩個數組的長度一致（這裏我們假設它們是一致的）
+var maxLength = Math.min(numbers.length, $('#printDiv3 tbody tr').length - 1); // 減1是因爲不包括表頭行
+
+// 填充表格
+$('#printDiv3 tbody tr').each(function(index) {
+if (index < maxLength) {
+$(this).find('td:nth-child(2)').text(numbers[index]); // 第二列
+$(this).find('td:nth-child(3)').text(titles[index]); // 第三列
+}
+});
+
+$('.steps_3_3 tbody tr').each(function(index) {
+if (index < maxLength) {
+$(this).find('td:nth-child(2)').text(numbers[index]); // 第二列
+$(this).find('td:nth-child(3)').text(titles[index]); // 第三列
+}
+});
+				}
+				if (transType == "4") {
+
+					$("#eventReason4").val(data.safetyNotificationTrans4.eventReason);
+					$("#eventSituation").val(data.safetyNotificationTrans4.eventSituation);
+					$("#canImpact").val(data.safetyNotificationTrans4.canImpact);
+					$("#submitDate").val(data.safetyNotificationTrans4.submitDate);
+					$("#other").val(data.safetyNotificationTrans4.other);
+
+					$("#eventReason4_p").html(data.safetyNotificationTrans4.eventReason);
+					$("#eventSituation_p").html(data.safetyNotificationTrans4.eventSituation);
+					$("#canImpact_p").html(data.safetyNotificationTrans4.canImpact);
+					$("#submitDate_p").html(data.safetyNotificationTrans4.submitDate);
+					$("#other_p").html(data.safetyNotificationTrans4.other);
+
+				}
+
+			}
+
+			//select option清理重複
+			function selectremove() {
+				//清理select裡的option類別
+				$(" #needAssistance").html('');
+				$(" #businessStatus").html('');
+				$("#safetyType").html('');
+				$(" #safetySource").html('');
+				$(" #safetyLevel").html('');
+			}
+			//select option
+			function createSelect(id, data, key, val, eventKey) {
+				$.each(data, function (index, item) {
+					$('#' + id).append($('<option>').val(item[key]).text(eventKey ? item[eventKey] + "_" + item[val] : item[val]));
+					$('#' + id + '1').append($('<a>').html(item[val]).addClass('dropdown-item'));
+				});
+			}
+			// function createCheckBox(appenId, id, data, key, val) {
+			// 	var val = val.split(',');
+			// 	$("#" + appenId).html('');
+			// 	$.each(data, function (index, item) {
+			// 		let template = $("#template_checkbox").clone();
+			// 		template.removeAttr("style");
+			// 		template.removeAttr("id");
+			// 		let template_html = template.html()
+			// 			.replace(/@INPUT_ID@/g, item[id])
+			// 			.replace(/@INPUT_NAME@/g, id)
+			// 			.replace(/@INPUT_VALUE@/g, item[key])
+			// 			.replace(/@LABEL@/g, item[key]);
+			// 		template.html(template_html);
+			// 		$('#' + appenId).append(template);
+			// 	});
+			// }
+			function createCheckBox(appenId, id, data, key, val) {
+    var selectedValues = val.split(','); //將傳入的val字串轉換為數組
+    $("#" + appenId).html(''); // 清空目標元素的内容
+ 
+    $.each(data, function (index, item) {
+        let template = $("#template_checkbox").clone(); //
+        template.removeAttr("style"); // 移除内聯樣式
+        template.removeAttr("id"); // 移除id屬性，避免ID衝突
+ 
+        // 替换範本中的佔位
+        let templateHtml = template.html()
+            .replace(/@INPUT_ID@/g, appenId+'_'+item[id])
+            .replace(/@INPUT_NAME@/g, id)
+            .replace(/@INPUT_VALUE@/g, item[key])
+            .replace(/@LABEL@/g, item[key]);
+ 
+        template.html(templateHtml); // 設置替換後的HTML内容
+ 
+        // 檢查當前複選框的值是否在selectedValues數組中
+        if (selectedValues.includes(item[key])) {
+            template.find('input[type="checkbox"]').attr('checked', 'checked');
+			// 設置複選框為選中狀態
+        }
+ 
+        $('#' + appenId).append(template); // 將複選框添加到目標元素
+    });
+}
+			//select option,有選中值的
+			function eachSelect(id, data, key, val, eventKey, lookval) {
+
+				$.each(data, function (index, item) {
+					$('#' + id).append($('<option>').val(item[key]).text(eventKey ? item[eventKey] + "_" + item[val] : item[val]));
+					$("#" + id + " option[value='" + lookval + "']").attr("selected", "selected");
+					$('#' + id + '1').append($('<a>').html(item[val]).addClass('dropdown-item'));
+				});
+			}
+
+
+			$("#downloadExcelBtn").click(function () {
+				downloadExcel();
+			});
+
+
+			function printByDiv(printpage) {
+				var iframe = document.createElement('IFRAME');
+				iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+				document.body.appendChild(iframe);
+				iframe.contentWindow.document.write(printpage.innerHTML);
+				iframe.contentWindow.document.close(); //important!
+				iframe.contentWindow.focus(); //IE fix
+				iframe.contentWindow.print();
+				iframe.parentNode.removeChild(iframe);
+			}
+
+			function downloadExcel() {
+				var newForm = jQuery('<form>', {
+					'action': "/" + CONFIG.SYSTEM_NAME + '/announcement/api/downloadExcel',
+					'method': 'post',
+					'target': '_blank'
+				}).append(jQuery('<input>', {
+					'name': '_csrf',
+					'value': $.cookie("XSRF-TOKEN"),
+					'type': 'text'
+				}));
+				var iframe = document.createElement('IFRAME');
+				iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+				$(iframe).append(newForm);
+				document.body.appendChild(iframe);
+				newForm.submit();
+				iframe.parentNode.removeChild(iframe);
+			}
+
+			$('#return_back').click(function () {
+				bodyHref("/content/situation/SafetysituationreportX.html");
+			})
+
+			// 滑鼠經過顯示刪除按鈕
+			$('.content-img-list').on('mouseover', '.content-img-list-item', function () {
+				$(this).children('div').removeClass('hide');
+			});
+			// 滑鼠離開隱藏刪除按鈕
+			$('.content-img-list').on('mouseleave', '.content-img-list-item', function () {
+				$(this).children('div').addClass('hide');
+			});
+
+		});
+
+		$(".sys_imglist .content-img-list").on("click", '.content-img-list-item a .icon-iczoomout', function () {
+			var bigurl = $(this).parent().parent().siblings().attr('data-zoom');
+
+			$(".modal-content").html("");
+
+			var bigimg = $(".modal-content").html();
+			$(".modal-content").html(bigimg + '<div class="show"><img src="' + bigurl + '" alt=""><div>');
+
+
+		});
+
+
+
+
+
+
+
+	});
+</script>

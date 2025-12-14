@@ -1,0 +1,996 @@
+﻿<div>
+
+	<div class="m-t50 m-b30">
+		<h4>醫材設備檢測紀錄及管理</h4>
+		<div class="date_time">
+			<div class="date_box">
+				<label>
+					<select class="custom-select" id="deviceKey">
+
+						<option value="">請選擇設備名稱</option>
+
+					</select>
+				</label>
+			</div>
+
+			<button type="button" id="search" class="btn btn-primary  my-2">搜尋</button>
+			<button type="button" id="download_btn" class="btn btn-success  my-2">匯出</button>
+		</div>
+
+	</div>
+	<div id="jsGrid"></div>
+	<!-- <div style="text-align: center;" class="m-t50 m-b30">
+		<button type="button" id="submitBtn" class="btn btn-success  my-2">匯出</button>
+		<button type="button" id="submitBtn" class="btn btn-primary  my-2">存檔</button>
+	</div> -->
+</div>
+<div id="AddDialog" style="display:none" class="container">
+	<div id="PrintDiv">
+		<h2 style="text-align: center;">醫材設備檢測紀錄及管理</h2>
+		<br>
+		<form id="inputForm">
+			<input type="hidden" name="" id="addOredit">
+			<input type="hidden" name="" id="editid">
+			<table class="w-100 safe_form">
+				<tbody>
+
+					<tr>
+						<td class="table-header text-center">廠牌</td>
+						<td>
+							<input type="text" name="brand">
+						</td>
+						<td class="table-header text-center">設備名稱</td>
+						<td>
+							<select class="custom-select" name="deviceKey" id="deviceKey1">
+
+								<option>請選擇設備名稱</option>
+
+							</select>
+						</td>
+					</tr>
+				
+					<tr>
+						<td class="table-header text-center">購買日期</td>
+						<td>
+							<div class="date_box">
+								<label>
+									<input type="text" name="purchaseDate" id="shop_date" readonly placeholder="購買日期" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+
+						</td>
+						<td class="table-header text-center">設置日期</td>
+						<td>
+							<div class="date_box">
+								<label>
+									<input type="text" name="setDate" id="set_date" readonly placeholder="設置日期" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header text-center">地點</td>
+						<td>
+							<input type="text" name="setLocation">
+						</td>
+						<td class="table-header text-center">位置</td>
+						<td>
+							<input type="text" name="position">
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header text-center">主機序號</td>
+						<td>
+							<input type="text" name="hostNumber">
+						</td>
+						<td class="table-header text-center">保固年限</td>
+						<td>
+							<select name="warrantyPeriod" class="custom-select select_unit w_200p">
+
+								<option value="1年">1年</option>
+								<option value="2年">2年</option>
+								<option value="3年">3年</option>
+								<option value="4年">4年</option>
+								<option value="5年">5年</option>
+
+							</select>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header text-center">電池效期</td>
+						<td>
+							<div class="date_box">
+								<label>
+									<input type="text" name="batteryLife" id="clear_date" readonly placeholder="設置日期" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+
+						</td>
+						<td class="table-header text-center">貼片效期</td>
+						<td>
+							<div class="date_box">
+								<label>
+									<input type="text" name="patchLife" id="teip_date" readonly placeholder="貼片效期" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header text-center">最後維護日期</td>
+						<td>
+<div class="date_box">
+								<label>
+									<input type="text" name="lastDate" id="edit_date" readonly placeholder="最後維護日期" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+						</td>
+						<td class="table-header text-center">購買金額</td>
+						<td>
+							<input type="text" name="amount">
+						</td>
+
+					</tr>
+<tr>
+						<td class="table-header text-center">購買廠商</td>
+						<td>
+<input type="text" name="manufacturer">
+						</td>
+						<td class="table-header text-center">窗口</td>
+						<td>
+							<input type="text" name="window">
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header text-center">聯絡方式</td>
+						<td>
+<input type="text" name="contactInfo">
+						</td>
+						<td class="table-header text-center">機型</td>
+						<td>
+							<input type="text" name="model">
+						</td>
+					</tr>
+	<tr>
+						<td class="table-header text-center">備註</td>
+						<td colspan="3">
+							<input type="text" name="remark">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+	<br>
+	<div style="text-align: center;">
+		<button type="button" id="submitBtn" class="btn btn-success  my-2">送出</button>
+		<button type="button" id="printBtn" class="btn btn-secondary  my-2">列印</button>
+	</div>
+</div>
+<div id="DetailDialog" style="display:none" class="container">
+	<div id="PrintDiv1">
+		<h2 style="text-align: center;">醫材設備檢測紀錄及管理</h2>
+		
+
+			<table class="w-100 safe_form">
+				<tbody>
+
+					<tr>
+						<td class="table-header text-center">廠牌</td>
+						<td class="brands">
+						</td>
+						<td class="table-header text-center">設備名稱</td>
+						<td class="deviceKeys"></td>
+					</tr>
+					<tr>
+						<td class="table-header text-center">購買日期</td>
+						<td class="purchaseDates"></td>
+						<td class="table-header text-center">設置日期</td>
+						<td class="setDates"></td>
+
+					</tr>
+					<tr>
+						<td class="table-header text-center">地點</td>
+						<td class="setLocations">
+						</td>
+						<td class="table-header text-center">位置</td>
+						<td class="positions">
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header text-center">主機序號</td>
+						<td class="hostNumbers"></td>
+						<td class="table-header text-center">保固年限</td>
+						<td class="warrantyPeriods">
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header text-center">電池效期</td>
+						<td class="batteryLifes">
+						</td>
+						<td class="table-header text-center">貼片效期</td>
+						<td class="patchLifes">
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header text-center">最後維護日期</td>
+						<td class="lastDates">
+						</td>
+						<td class="table-header text-center">購買金額</td>
+						<td class="amounts">
+
+						</td>
+
+					</tr>
+<tr>
+						<td class="table-header text-center">購買廠商</td>
+						<td class='manufacturers'>
+						</td>
+						<td class="table-header text-center">窗口</td>
+						<td class='windows'>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header text-center">聯絡方式</td>
+						<td class='contactInfos'>
+						</td>
+						<td class="table-header text-center">機型</td>
+						<td class='models'>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header text-center">備註</td>
+						<td colspan="3" class="remarks">
+						
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		<br>
+		<h2 style="text-align: center;">醫材設備-效期維護紀錄</h2>
+		<div id="Lifes1"></div>
+	</div>
+	<br>
+	<div style="text-align: center;">
+
+		<button type="button" id="printBtn1" class="btn btn-secondary  my-2">列印</button>
+	</div>
+</div>
+<div id="LifesDialog" style="display:none" class="container">
+	<div>
+		<h2 style="text-align: center;">醫材設備檢測紀錄及管理</h2>
+		<br>
+		<form id="inputForm">
+
+			<table class="w-100 safe_form">
+				<tbody>
+<input type="hidden" name="medicalId">
+					<tr>
+						<td class="table-header text-center">廠牌</td>
+						<td class="brands">
+						</td>
+						<td class="table-header text-center">設備名稱</td>
+						<td class="deviceKeys"></td>
+					</tr>
+					
+					<tr>
+						<td class="table-header text-center">電池效期</td>
+						<td>
+							<div class="date_box">
+								<label>
+									<input type="text" name="batteryLifes" id="batteryLifes" readonly placeholder="電池效期" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+						</td>
+						<td class="table-header text-center">貼片效期</td>
+						<td>
+							<div class="date_box">
+								<label>
+									<input type="text" name="patchLifes" id="patchLifes" readonly placeholder="貼片效期" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+						</td>
+
+					</tr>
+
+				</tbody>
+			</table>
+		</form>
+
+	</div>
+	<br>
+	<div style="text-align: center;">
+		<button type="button" id="submitBtn_c" class="btn btn-success  my-2">送出</button>
+	</div>
+</div>
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui"], function (jquery, jquery_validate, jsgrid, jquery_ui) {
+		//頁面讀取後執行
+		$(document).ready(function () {
+			var dateStr = $.datepicker.formatDate("yy/mm/dd", new Date());
+			var currentDate = new Date();
+			var year = currentDate.getFullYear();
+			var month = currentDate.getMonth() + 1;
+			var monthprev = currentDate.getMonth();
+			var day = currentDate.getDate();
+
+			// $("*[name='lastDate']").val(year+'-'+month+'-'+day)
+			$('#shop_date').datepicker({
+				dateFormat: "yy/mm/dd",
+				timeFormat:"hh:mm:ss"
+			});
+			$('#set_date').datepicker({
+				dateFormat: "yy/mm/dd",
+			});
+			$('#clear_date').datepicker({
+				dateFormat: "yy/mm/dd",
+			});
+			$('#teip_date').datepicker({
+				dateFormat: "yy/mm/dd",
+			});
+			$('#edit_date').datepicker({
+				dateFormat: "yy/mm/dd",
+			});
+			$('#batteryLifes').datepicker({
+				dateFormat: "yy/mm/dd",
+			});
+			$('#patchLifes').datepicker({
+				dateFormat: "yy/mm/dd",
+			});
+			$("#printBtn").click(function () {
+				//printByDiv(document.getElementById("printDiv"));
+				printJS({
+					printable: 'PrintDiv',
+					type: 'html',
+					header: '',
+					css: '../resources/css/print.css',
+
+
+
+				})
+			});
+			$("#printBtn1").click(function () {
+				//printByDiv(document.getElementById("printDiv"));
+				printJS({
+					printable: 'PrintDiv1',
+					type: 'html',
+					header: '',
+					css: '../resources/css/print.css',
+
+
+
+				})
+			});
+$('#download_btn').click(function (){
+	download()
+})
+function download(){
+	window.location.href = "/" + CONFIG.SYSTEM_NAME + '/healthMedicalEquipment/api/down?deviceKey='+$('#deviceKey').val();
+}
+			get_list('');
+			get_select();
+			$('#search').click(function () {
+				get_list('search');
+
+			})
+			function get_list(key) {
+				console.log($('#deviceKey').val())
+				if (key != '') {
+					var url = 'healthMedicalEquipment/api/list?deviceKey=' + $('#deviceKey').val()
+				} else {
+					var url = 'healthMedicalEquipment/api/list'
+				}
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/' + url,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							alert("沒有權限");
+						} else {
+							console.log(data)
+							var data = data.data
+
+							$("#jsGrid").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: false, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: true,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+													}
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+														}
+													}
+
+												}
+											}
+											return true;
+										});
+										return result;
+									},
+
+								},
+
+								fields: [
+									{ title: "廠牌", name: "brand", type: "text", validate: "required" },
+									{ title: "購買日期", name: "purchaseDate", type: "text", validate: "required" },
+									{ title: "設置日期", name: "setDate", type: "text", validate: "required" },
+									{ title: "地點", name: "setLocation", type: "text", validate: "required" },
+									{ title: "位置", name: "position", type: "text", validate: "required" },
+									{ title: "主機序號", name: "hostNumber", type: "text", validate: "required" },
+
+									{ title: "保固年限", name: "warrantyPeriod", type: "text", validate: "required" },
+									{ title: "電池效期", name: "batteryLife", type: "text", validate: "required" },
+									{ title: "貼片效期", name: "patchLife", type: "text", validate: "required",itemTemplate: function (value, item) {
+											var $result = jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments);
+											var $customText = $("<span>").text(value)
+											var $customEditButton = $("<button>").attr({ class: "customGridEditbutton jsgrid-button jsgrid-edit-button" })
+												.click(function (e) {
+
+													edit_Lifes(item.id,item.brand,item.deviceName)
+													e.stopPropagation();
+												});
+
+
+											return $("<div>").append($customText).append($customEditButton);
+											//return $result.add($customButton);
+
+										} },
+									{ title: "購買金額", name: "amount", type: "text", },
+									{ title: "最後維護日期", name: "lastDate", type: "text", validate: "required" },
+									{
+										type: "control",
+										name: "id",
+										width: 120,
+										editButton: false,
+										deleteButton: false,
+										modeSwitchButton: false,
+										filtercss: "display:none;",
+
+										itemTemplate: function (value, item) {
+											var $result = jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments);
+											var $customSearchButton = $("<button>").attr({ class: "customGridSearchbutton jsgrid-button jsgrid-search-button" })
+												.click(function (e) {
+
+													look(item.id)
+													e.stopPropagation();
+												});
+											var $customEditButton = $("<button>").attr({ class: "customGridEditbutton jsgrid-button jsgrid-edit-button" })
+												.click(function (e) {
+
+													edit(item.id)
+													e.stopPropagation();
+												});
+
+											var $customDeleteButton = $("<button>").attr({ class: "customGridDeletebutton jsgrid-button jsgrid-delete-button" })
+												.click(function (e) {
+													deletex(item.id);
+													e.stopPropagation();
+												});
+
+											return $("<div>").append($customSearchButton).append($customEditButton).append($customDeleteButton);
+											//return $result.add($customButton);
+
+										}, headerTemplate: function () {
+
+											return $("<button>").attr("type", "button").text("新增").addClass("btn btn-primary")
+												.on("click", function () {
+
+													showAddDialog("新增", {});
+												});
+
+
+										}
+									}
+								],
+
+								rowClick: function (args) {
+
+									// bodyHref("/content/situation/Safetysituationreport_form.html");
+									//showDetailsDialog("修改", args.item);
+								},
+								deleteConfirm: function (item) {
+									return "參數\"" + item.NUM + "\"確認刪除?";
+								},
+							});
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			$("#submitBtn").click(function () {
+				var dateStr = $.datepicker.formatDate("yy/mm/dd", new Date());
+				// $("*[name='lastDate']").val(dateStr);
+				if($('#addOredit').val()=='新增'){
+					var saveItem = {
+					deviceKey: $("*[name='deviceKey']").val(),
+					deviceName: $("*[name='deviceKey']").find('option:selected').text(),
+					brand: $("*[name='brand']").val(),
+					purchaseDate: $("*[name='purchaseDate']").val(),
+					setDate: $("*[name='setDate']").val(),
+					setLocation: $("*[name='setLocation']").val(),
+					position: $("*[name='position']").val(),
+					hostNumber: $("*[name='hostNumber']").val(),
+					warrantyPeriod: $("*[name='warrantyPeriod']").val(),
+					batteryLife: $("*[name='batteryLife']").val(),
+					patchLife: $("*[name='patchLife']").val(),
+					amount: $("*[name='amount']").val(),
+					window: $("*[name='window']").val(),
+					contactInfo: $("*[name='contactInfo']").val(),
+					batteryLife: $("*[name='batteryLife']").val(),
+					remark: $("*[name='remark']").val(),
+					// lastDate: dateStr,
+					lastDate:  $("*[name='lastDate']").val(),
+					model:  $("*[name='model']").val(),
+					manufacturer:  $("*[name='manufacturer']").val(),
+					window:  $("*[name='window']").val(),
+					contactInfo:  $("*[name='contactInfo']").val(),
+					version: "1.0.0"
+				}
+				}
+				if($('#addOredit').val()=='修改'){
+					var saveItem = {
+						id:$('#editid').val(),
+					deviceKey: $("*[name='deviceKey']").val(),
+					deviceName: $("*[name='deviceKey']").find('option:selected').text(),
+					brand: $("*[name='brand']").val(),
+					purchaseDate: $("*[name='purchaseDate']").val(),
+					setDate: $("*[name='setDate']").val(),
+					setLocation: $("*[name='setLocation']").val(),
+					position: $("*[name='position']").val(),
+					hostNumber: $("*[name='hostNumber']").val(),
+					warrantyPeriod: $("*[name='warrantyPeriod']").val(),
+					batteryLife: $("*[name='batteryLife']").val(),
+					patchLife: $("*[name='patchLife']").val(),
+					amount: $("*[name='amount']").val(),
+					window: $("*[name='window']").val(),
+					contactInfo: $("*[name='contactInfo']").val(),
+					batteryLife: $("*[name='batteryLife']").val(),
+					remark: $("*[name='remark']").val(),
+					// lastDate: dateStr,
+					lastDate:  $("*[name='lastDate']").val(),
+					model:  $("*[name='model']").val(),
+					manufacturer:  $("*[name='manufacturer']").val(),
+					window:  $("*[name='window']").val(),
+					contactInfo:  $("*[name='contactInfo']").val(),
+					version: "1.0.0"
+				}
+				}
+				
+				insert(saveItem)
+			})
+			//送出
+			function insert(data) {
+				console.log(JSON.stringify(data))
+				if($('#addOredit').val()=='新增'){
+					var url='healthMedicalEquipment/api/save'
+				}
+				if($('#addOredit').val()=='修改'){
+					var url='healthMedicalEquipment/api/update'
+				}
+				$.ajax({
+					data: JSON.stringify(data),
+					url: "/" + CONFIG.SYSTEM_NAME + '/' + url,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							get_list('');
+							$("#AddDialog").dialog("close");
+							console.log($('#addOredit').val()+',,'+url)
+						
+							console.log(data);
+							
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						//console.log(data);
+					},
+				});
+			};
+			function edit(id) {
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/healthMedicalEquipment/api/get?id=' + id,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							alert("沒有權限");
+						} else {
+							console.log(data)
+							var data = data.data
+							$('#editid').val(id);
+							$("*[name='deviceKey']").val(data.deviceKey);
+							$("*[name='brand']").val(data.brand);
+							$("*[name='purchaseDate']").val(data.purchaseDate);
+							$("*[name='setDate']").val(data.setDate);
+							$("*[name='setLocation']").val(data.setLocation);
+							$("*[name='position']").val(data.position);
+							$("*[name='hostNumber']").val(data.hostNumber);
+							$("*[name='warrantyPeriod']").val(data.warrantyPeriod);
+							$("*[name='batteryLife']").val(data.batteryLife);
+							$("*[name='patchLife']").val(data.patchLife);
+							$("*[name='amount']").val(data.amount);
+							$("*[name='window']").val(data.window);
+							$("*[name='contactInfo']").val(data.contactInfo);
+							$("*[name='batteryLife']").val(data.batteryLife);
+							$("*[name='remark']").val(data.remark);
+							$("*[name='lastDate']").val(data.lastDate);
+							$("*[name='model']").val(data.model);
+							$("*[name='manufacturer']").val(data.manufacturer);
+							$("*[name='window']").val(data.window);
+							$("*[name='contactInfo']").val(data.contactInfo);
+							showAddDialog("修改", id);
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+
+			}
+			function look(id) {
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/healthMedicalEquipment/api/get?id=' + id,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							alert("沒有權限");
+						} else {
+							
+					
+							var data = data.data
+							console.log(data)
+							console.log(data.model+'www'+data.manufacturer)
+							$("#DetailDialog .deviceKeys").html(data.deviceName);
+							$("#DetailDialog .brands").html(data.brand);
+							$("#DetailDialog .purchaseDates").html(data.purchaseDate);
+							$("#DetailDialog .setDates").html(data.setDate);
+							$("#DetailDialog .setLocations").html(data.setLocation);
+							$("#DetailDialog .positions").html(data.position);
+							$("#DetailDialog .hostNumbers").html(data.hostNumber);
+							$("#DetailDialog .warrantyPeriods").html(data.warrantyPeriod);
+							$("#DetailDialog .batteryLifes").html(data.batteryLife);
+							$("#DetailDialog .patchLifes").html(data.patchLife);
+							$("#DetailDialog .amounts").html(data.amount);
+							$("#DetailDialog .windows").html(data.window);
+
+							$("#DetailDialog .models").html(data.model);
+							$("#DetailDialog .manufacturers").html(data.manufacturer);
+							$("#DetailDialog .contactInfos").html(data.contactInfo);
+							$("#DetailDialog .batteryLifes").html(data.batteryLife);
+							$("#DetailDialog .remarks").html(data.remark);
+							$("#DetailDialog .lastDates").html(data.lastDate);
+							
+							showDetailDialog("查看", id);
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+
+			}
+			function edit_Lifes(id,brand,deviceKey){
+				$("*[name='medicalId']").val(id);
+				$("#LifesDialog .deviceKeys").html(deviceKey);
+							$("#LifesDialog .brands").html(brand);
+							showLifesDialog("效期更新", id);
+			}
+			$("#submitBtn_c").click(function () {
+				var saveItem = {
+					medicalId: $("*[name='medicalId']").val(),
+					batteryLife: $("*[name='batteryLifes']").val(),
+					patchLife: $("*[name='patchLifes']").val(),
+				
+				}
+				insertC(saveItem)
+			})
+			//送出
+			function insertC(data) {
+				console.log(JSON.stringify(data))
+				$.ajax({
+					data: JSON.stringify(data),
+					url: "/" + CONFIG.SYSTEM_NAME + '/healthMedicalEquipmentLife/api/save',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							get_list('');
+							$("#LifesDialog").dialog("close");
+							console.log(data);
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						//console.log(data);
+					},
+				});
+			};
+			//刪除
+			function deletex(data) {
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/healthMedicalEquipment/api/delete?id='+data,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							get_list('');
+							showAlert('刪除成功', '當前資料已成功刪除！', '')
+							console.log(data);
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						//console.log(data);
+					},
+				});
+			};
+			function get_select() {
+
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/healthMedicalEquipment/api/getDeviceName',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							alert("沒有權限");
+						} else {
+
+							var data = data.data
+
+							createSelect("deviceKey", data, 'cfgKey', 'cfgValue', '');
+							createSelect("deviceKey1", data, 'cfgKey', 'cfgValue', '');
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			$("#DetailDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				height: 600,
+				width: 760,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+
+			var showDetailDialog = function (dialogType, item) {
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/healthMedicalEquipmentLife/api/list?medicalId=' + item,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							alert("沒有權限");
+						} else {
+							console.log(data)
+							var data = data.data
+							$("#Lifes1").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: false, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: true,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+													}
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+														}
+													}
+
+												}
+											}
+											return true;
+										});
+										return result;
+									},
+
+								},
+
+								fields: [
+
+									{ title: "電池效期", name: "batteryLife", type: "text", validate: "required" },
+									{ title: "貼片效期", name: "patchLife", type: "text", validate: "required"},
+									{ title: "維護日期", name: "addTime", type: "text", validate: "required" },
+								],
+
+								rowClick: function (args) {
+
+									// bodyHref("/content/situation/Safetysituationreport_form.html");
+									//showDetailsDialog("修改", args.item);
+								},
+								deleteConfirm: function (item) {
+									return "參數\"" + item.NUM + "\"確認刪除?";
+								},
+							});
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+				$("#DetailDialog").dialog("option", "title", dialogType + "").dialog("open");
+			};
+			$("#AddDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				height: 600,
+				width: 760,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+					$("#AddDialog input").val('')
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+
+			var showAddDialog = function (dialogType, item) {
+
+				$("#AddDialog").dialog("option", "title", dialogType + "").dialog("open");
+				$('#addOredit').val(dialogType)
+			};
+
+			$("#LifesDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				height: 600,
+				width: 760,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+
+			var showLifesDialog = function (dialogType, item) {
+				$("#LifesDialog").dialog("option", "title", dialogType + "").dialog("open");
+			};
+			//創建select
+			function createSelect(id, data, key, val, eventKey) {
+				$.each(data, function (index, item) {
+					$('#' + id).append($('<option>').val(item[key]).text(eventKey ? item[eventKey] + "_" + item[val] : item[val]));
+					$('#' + id + '1').append($('<a>').html(item[val]).addClass('dropdown-item'));
+				});
+			}
+		});
+
+
+	});
+</script>

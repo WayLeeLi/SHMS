@@ -1,0 +1,98 @@
+﻿<div>
+	<h4>公告事項</h4>
+	<div id="jsGrid" style="max-height:900px;">
+	</div>
+</div>
+
+<style>
+/* 讓表格內容換行 */
+.jsgrid-table{
+		word-wrap:break-word;
+	}
+</style>
+<script>
+
+function hasFile(path){
+	return /^(\\|\/)(SHMS)/.test(path);
+}
+
+//需要用的JS
+require(["jquery", "jsgrid", "toast", "global_setting"], function (jquery, jsgrid, toast) {
+	//頁面讀取後執行
+	$(document).ready(function(){
+	    $.ajax({
+		    url: "/"+CONFIG.SYSTEM_NAME + '/announcement/getAnnouncement',
+		    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    async: false,
+		    cache: false,
+		    type: "GET",
+		    success: function(data, textStatus){    	
+		    	
+		    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    		 alert("沒有權限");
+		    	 }else{
+		    	 
+			    	 buildTable(data);
+			    	
+			    	 //依時間排序
+			    	 $("#jsGrid").jsGrid("sort", "announcementDate","desc");
+		    	 }
+		    	 
+		    },
+		    error: function (data, textStatus, errorThrown) {
+		        console.log(data);
+		    },
+		});
+	    
+	    function buildTable(data){
+	    	$("#jsGrid").jsGrid({
+    	        width: "100%",
+    	        height: "auto",
+    	        heading: true,
+    		    filtering: false,
+    		    inserting: false,
+    		    editing: false,
+    		    selecting: true,
+    		    sorting: true,
+    		    paging: true,
+    		    pageLoading: false,
+    		    pageSize: 15,
+    	 
+    	        data: data,
+    	 
+    	        fields: [
+    	            { title:"發佈時間", name: "announcementDate", type: "text", width: 50, validate: "required"},
+    	            { title:"公告標題", name: "announcementName", width: 150, itemTemplate : function(value, item){ return `<div  title="${value}">${value} </div>`; } },
+    	            { title: "file", type: "text", width: 50, itemTemplate: function(value, item){
+    	            	if(hasFile(item.filePath)){
+    	            		return `<div class='fas fa-paperclip' title='${item.fileName}'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>`;
+    	            	}
+    	            	return "";
+    	            }}
+    	        ],
+    	        rowClick: function(args) {
+    	        	if(!hasFile(args.item.filePath))
+    	        		return;
+    	        	var $target = $(args.event.target);
+    	        	
+    	            if($target.closest(".fa-paperclip").length) {
+    	            	window.open(`/${CONFIG.SYSTEM_NAME}/announcement/getAnnouncementFile/${args.item.id}` , '_blank');
+    	            }
+    	            else{
+    	            	showAlert("公告", 
+    	            	`<div class='row'>
+    	            		<div class='col'>${args.item.announcementName}</div>
+    	            	</div>
+    	            	<br/>
+    	            	<div class='row'>
+    	            		<div class='col'><buton class='fas fa-paperclip' style='cursor:pointer;' onClick="window.open('/${CONFIG.SYSTEM_NAME}/announcement/getAnnouncementFile/${args.item.id}'  , '_blank');">${args.item.fileName}</button></div>
+	            		</div>`);
+    	            }
+	            },
+	            
+    	    });
+	    }
+	    
+	});  
+});
+</script>

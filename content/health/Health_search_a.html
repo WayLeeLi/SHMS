@@ -1,0 +1,501 @@
+﻿<div>
+
+	<div  class="m-t50 m-b30">
+		<h4>員工健康/體格檢查結果查詢</h4>
+		<div class="date_time">
+			<div class="date_box">
+				<label>
+				<select id="startDate" class="custom-select w_200p">
+                    <option disabled>年度</option>
+        
+                </select>
+			</label>
+			</div>
+			<div class="date_box">
+				<label>
+				<select id="type" class="custom-select">
+                    <option disabled>選項</option>
+                    <option value="1">在職員工健康檢查</option>
+                    <option value="2">新進人員體格檢查</option>
+                </select>
+			</label>
+			</div>
+
+			<!-- <div class="date_box">
+				<label>
+					<input id="" name="" type="text" class="w_100p" placeholder="關鍵字" />
+				</label>
+			</div> -->
+			
+			<button class="btn btn-primary  my-2" id="search">搜尋</button>
+			<div class="pull-right">共<span class="length"></span>筆</div>
+		</div>
+	
+		</div>
+        <div id="jsGrid"></div>
+</div>
+<div id="DetailDialog" style="display:none" class="container">
+	<div id="PrintDiv1">
+		<h2 style="text-align: center;">員工健康/體格檢查結果</h2>
+		
+
+			<table class="w-100 safe_form">
+				<tbody id="detail_tbody">
+
+				
+				</tbody>
+			</table>
+	
+	</div>
+	<br>
+	<!-- <div style="text-align: center;">
+
+		<button type="button" id="printBtn1" class="btn btn-secondary  my-2">列印</button>
+	</div> -->
+</div>
+
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui"], function (jquery, jquery_validate, jsgrid, jquery_ui) {
+		//頁面讀取後執行
+		$(document).ready(function () {
+			var myDate = new Date();
+			var startYear = 2016;
+			var endYear = myDate.getFullYear();
+			var obj = document.getElementById('startDate')
+			for (var i = startYear; i <= endYear; i++) {
+				obj.options.add(new Option(i, i));
+			}
+
+			$("#startDate").val(myDate.getFullYear());
+			get_list(myDate.getFullYear());
+			$('#search').click(function () {
+				get_list($('#startDate').val());
+			})
+			function get_list(myDates) {
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/healthCheck/api/listAll?typ=' + $('#type').val() + '&year=' + myDates,
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+				async: false,
+				cache: false,
+				type: "GET",
+				success: function (data, textStatus) {
+					if (data && data == "<script>alert('沒有權限')<\/script>") {
+						alert("沒有權限");
+					} else {
+						var data = data.data;
+						$('.length').html(data.length)
+					console.log(data)
+						$("#jsGrid").jsGrid({
+							width: "100%",
+							height: "auto",
+							heading: true, //是否顯示表頭
+							filtering: true, //啟動查找
+							inserting: false, //啟動新增  關掉使用自定義的
+							editing: true,  //啟動編輯 
+							selecting: true,
+							sorting: true, //啟動排序
+							paging: true, //啟動分頁 
+							pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+							autoload: true,
+							pageSize: 10,
+
+							controller: {
+								loadData: function (filter) {
+									//查詢
+									var result = $.grep(data, function (item, idx) {
+										for (var key in filter) {
+											var value = filter[key];
+											if (value.length > 0) {
+												if (!item[key]) {
+													return false;
+												}
+												if (typeof item[key] === 'number') {
+													if (item[key].toString().indexOf(value) == -1) {
+														return false;
+													}
+												} else if (typeof item[key] === 'string') {
+													if (item[key].indexOf(value) == -1) {
+														return false;
+													}
+												}
+
+											}
+										}
+										return true;
+									});
+									return result;
+								},
+							
+							},
+
+							fields: [
+							{ title: "檢查日期", name: "checkDate", type: "text", validate: "required" },
+							{ title: "單位名稱", name: "unitName", type: "text", validate: "required" },
+							{ title: "姓名", name: "name", type: "text", validate: "required" ,
+									itemTemplate: function (value, item) {
+                        				return $("<span>").text(value.replace(/(^.).+(.$)/, '$1O$2'));
+										}
+									},
+								{ title: "性別", name: "gender", type: "text", validate: "required" },
+								{ title: "出生年月日", name: "birthday", type: "text", validate: "required" },
+
+								// { title: "身高", name: "height", type: "text", validate: "required" },
+								// { title: "體重", name: "weight", type: "text", validate: "required" },
+								// { title: "腰圍", name: "waistline", type: "text", validate: "required" },
+	
+								// { title: "胸部X光", name: "chestRadiograph", type: "text", },
+								{
+										title: "查看",type: "control",
+										width: 80,
+										editButton: false,
+										deleteButton: true,
+										modeSwitchButton: false,
+										filtercss: "display:none;",
+										itemTemplate: function (value, item) {
+											var $customLookButton=$("<button>").attr("type", "button").text("查看").addClass("btn btn-success")
+												.on("click", function () {
+													
+													showDetailDialog('員工健康/體格檢查結果', item.id);
+
+												})
+												var $customDeleteButton=$("<button>").attr("type", "button").text("刪除").addClass("btn btn-danger")
+												.on("click", function () {
+												
+													DeleteItem(item.id);
+
+												})
+												return $("<div>").append($customLookButton).append($customDeleteButton)
+                    
+										}
+									},
+
+							],
+							rowClick: function (args) {
+
+								// bodyHref("/content/situation/Safetysituationreport_form.html");
+								//showDetailsDialog("修改", args.item);
+							},
+							deleteConfirm: function (item) {
+								return "參數\"" + item.NUM + "\"確認刪除?";
+							},
+						});
+					}
+				},
+				error: function (data, textStatus, errorThrown) {
+					console.log(data);
+				},
+			});
+
+}
+			
+$("#DetailDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				height: 600,
+				width: 960,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+var DeleteItem = function (id) {
+	$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/healthCheck/api/delete?id=' + id,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data.code == "5000") {
+							alert("沒有權限");
+						} else {
+							showAlert('刪除成功！', '刪除成功！', '')
+							get_list($('#startDate').val());
+						}
+					}
+				})
+}
+
+			var showDetailDialog = function (dialogType, item) {
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/healthCheck/api/get?id=' + item,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data.code == "5000") {
+							alert("沒有權限");
+						} else {
+							console.log(data)
+							var data = data.data
+							
+							var html = ""; console.log(html)
+							html += "<tr>";
+							html += "<td class='table-header'>健康編號</td>";
+							html += "<td >" + data.health_no + "</td>";
+							html += "<td class='table-header'>檢查原因</td>";
+							html += "<td >" + data.check_reason + "</td>";
+							html += "<td class='table-header'>檢查時期</td>";
+							html += "<td colspan='3'>" + data.check_period + "</td>";
+							html += "</tr>";
+							html += "<td class='table-header'>檢查日期</td>";
+							html += "<td>" + data.checkDate + "</td>";
+							html += "<td class='table-header'>單位名稱</td>";
+							html += "<td>" + data.unitName + "</td>";
+							html += "<td class='table-header'>姓名</td>";
+							html += "<td>" + data.name.replace(/(^.).+(.$)/, '$1O$2') + "</td>";
+							html += "<td class='table-header'>性別</td>";
+							html += "<td>" + data.gender + "</td>";
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td class='table-header'>年度</td>";
+							html += "<td>" + data.checkYear + "</td>";
+							html += "<td class='table-header'>類型</td>";
+							html += "<td>" + (data.checkType === 1 ? '在職員工' : data.checkType === 2 ? '新進人員' : data.checkType) + "</td>";
+							html += "<td class='table-header'>事業單位</td>";
+							html += "<td>" + data.publicInstitutions + "</td>"
+							html += "<td class='table-header'>單位代號</td>";
+							html += "<td>" + data.unitId + "</td>";
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td class='table-header'>商借</td>";
+							html += "<td>" + data.borrow + "</td>";
+							html += "<td class='table-header'>TCB帳號</td>";
+							html += "<td>" + data.tcbAccount + "</td>";
+							html += "<td class='table-header'>身分證字號</td>";
+							html += "<td>" + data.idNumber + "</td>"
+							html += "<td class='table-header'>出生日期</td>";
+							html += "<td>" + data.birthday + "</td>";
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td class='table-header'>受僱日期</td>";
+							html += "<td>" + data.employmentDate + "</td>";
+							html += "<td class='table-header'>曾經從事</td>";
+							html += "<td>" + data.previouslyEngaged + "</td>";
+							html += "<td class='table-header'>曾經從事起訖日期</td>";
+							html += "<td>" + data.previouslyEngagedStart + "</td>"
+							html += "<td class='table-header'>目前從事</td>";
+							html += "<td>" + data.currentlyEngaged + "</td>";
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td class='table-header'>目前從事起訖日期</td>";
+							html += "<td>" + data.currentStart + "</td>";
+							html += "<td class='table-header'>輪班</td>";
+							html += "<td>" + data.shift + "</td>";
+							html += "<td class='table-header'>過去1個月平均週工時</td>";
+							html += "<td>" + data.hoursPastMonth + "</td>"
+							html += "<td class='table-header'>過去6個月平均週工時</td>";
+							html += "<td>" + data.hoursPastMonths6 + "</td>";
+							html += "</tr>";
+							if(data.checkType === 2) {
+								html += "<tr>";
+								html += "<td class='table-header'>吸菸</td>";
+								html += "<td>" + data.smoke + "</td>";
+								html += "<td class='table-header'>吸菸頻率</td>";
+								html += "<td>" + data.smokingFrequency + "</td>";
+								html += "<td class='table-header'>吸菸時間</td>";
+								html += "<td>" + data.smokingTime + "</td>"
+								html += "<td class='table-header'>嚼食檳榔</td>";
+								html += "<td>" + data.betelQuit + "</td>";
+								html += "</tr>";
+								html += "<tr>";
+								html += "<td class='table-header'>嚼食檳榔頻率</td>";
+								html += "<td>" + data.chewingBetelNutFrequency + "</td>";
+								html += "<td class='table-header'>嚼食檳榔時間</td>";
+								html += "<td>" + data.chewingBetelNutTime + "</td>";
+								html += "<td class='table-header'>喝酒</td>";
+								html += "<td>" + data.drink + "</td>"
+								html += "<td class='table-header'>喝酒頻率</td>";
+								html += "<td>" + data.drinkingFrequency + "</td>";
+								html += "</tr>";
+								html += "<tr>";
+								html += "<td class='table-header'>喝酒時間</td>";
+								html += "<td>" + data.drinkingTime + "</td>"
+								html += "<td class='table-header'>每日睡眠時間</td>";
+								html += "<td >" + data.dailySleepTime + "</td>";
+								html += "<td class='table-header'>既往病史</td>";
+								html += "<td>" + data.previousMedicalHistory + "</td>";
+								html += "<td class='table-header'>自覺症狀</td>";
+								html += "<td>" + data.consciousSymptoms + "</td>";
+								html += "</tr>";
+							};
+							html += "<tr>";
+							html += "<td class='table-header'>身高</td>";
+							html += "<td>" + data.height + "</td>"
+							html += "<td class='table-header'>體重</td>";
+							html += "<td colspan='2'>" + data.weight + "</td>";
+							html += "<td class='table-header'>腰圍</td>";
+							html += "<td colspan='2'>" + data.waistline + "</td>"
+							
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td class='table-header'>收縮壓</td>";
+							html += "<td>" + data.systolicPressure + "</td>";
+							html += "<td class='table-header'>舒張壓</td>";
+							html += "<td colspan='2'>" + data.diastolicPressure + "</td>";
+							html += "<td class='table-header'>脈搏</td>";
+							html += "<td colspan='2'>" + data.pulse + "</td>";
+							html += "</tr>";
+							if(data.checkType === 1) {
+							html += "<tr>";
+							html += "<td class='table-header'>10年心血管疾病風險</td>";
+							html += "<td>" + data.cv_risk + "</td>";
+							html += "<td class='table-header' colspan='3'>10年內發生缺血性心臟病機率</td>";
+							html += "<td>" + data.ihd_prob + "</td>"
+							html += "<td class='table-header'>10年內發生缺血性心臟病分數</td>";
+							html += "<td>" + data.ihd_score + "</td>";
+							html += "</tr>";
+							}
+							html += "<tr>";
+							html += "<td class='table-header'>裸視視力-左眼</td>";
+							html += "<td>" + data.nakedVisionLeftEye + "</td>";
+							html += "<td class='table-header'>裸視視力-右眼</td>";
+							html += "<td>" + data.nakedVisionRightEye + "</td>"
+							html += "<td class='table-header'>矯正視力-左眼</td>";
+							html += "<td>" + data.correctedVisionLeftEye + "</td>";
+							html += "<td class='table-header'>矯正視力-右眼</td>";
+							html += "<td>" + data.correctedVisionRightEye + "</td>"
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td class='table-header'>眼壓</td>";
+							html += "<td>" + data.eye_pressure + "</td>";
+							html += "<td class='table-header'>辨色力</td>";
+							html += "<td>" + data.colorDiscriminationAbility + "</td>";
+							html += "<td class='table-header'>左耳聽力</td>";
+							html += "<td>" + data.leftEarHearing + "</td>";
+							html += "<td class='table-header'>右耳聽力</td>";
+							html += "<td>" + data.rightEarHearing + "</td>";
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td class='table-header'>白血球(WBC)</td>";
+							html += "<td>" + data.whiteBloodCellWbc + "</td>"
+							html += "<td class='table-header'>血色素(Hb)</td>";
+							html += "<td>" + data.hemoglobinHb + "</td>";
+							html += "<td class='table-header'>肝功能(ALT/GPT)</td>";
+							html += "<td>" + data.liverFunctionAltGpt + "</td>"
+							html += "<td class='table-header'>肌酸酐(Creatinine)</td>";
+							html += "<td>" + data.creatinine + "</td>";
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td class='table-header'>飯前血糖(Glucose AC)</td>";
+							html += "<td>" + data.bloodGlucoseAc + "</td>";
+							html += "<td class='table-header'>三酸甘油(TG)</td>";
+							html += "<td>" + data.triglycerideTg + "</td>";
+							html += "<td class='table-header'>總膽固醇(TC)</td>";
+							html += "<td>" + data.totalCholesterolTc + "</td>"
+							html += "<td class='table-header'>高密度脂蛋白膽固醇(HDL-C)</td>";
+							html += "<td>" + data.highDensityHdl + "</td>";
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td class='table-header'>低密度脂蛋白膽固醇LDL-C</td>";
+							html += "<td>" + data.ldl + "</td>";
+							html += "<td class='table-header'>尿蛋白</td>";
+							html += "<td>" + data.urineProtein + "</td>"
+							html += "<td class='table-header'>尿潛血</td>";
+							html += "<td>" + data.bld + "</td>";
+							html += "<td class='table-header'>胸部X光(Chest X-ray)</td>";
+							html += "<td>" + data.chestRadiograph + "</td>";
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td class='table-header'>理學-呼吸系統</td>";
+							html += "<td>" + data.respiratorySystem + "</td>";
+							html += "<td class='table-header'>理學-心臟血管系統</td>";
+							html += "<td>" + data.cardiovascularSystem + "</td>"
+							html += "<td class='table-header'>理學-消化系統</td>";
+							html += "<td>" + data.digestiveSystem + "</td>";
+							html += "<td class='table-header'>理學-神經系統</td>";
+							html += "<td>" + data.neurologicalSystem + "</td>"
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td class='table-header'>理學-肌肉骨骼系統</td>";
+							html += "<td>" + data.musculoskeletalSystem + "</td>";
+							html += "<td class='table-header'>理學-皮膚</td>";
+							html += "<td>" + data.skin + "</td>";
+							html += "<td class='table-header'>理學-頭頸部</td>";
+							html += "<td>" + data.head_neck + "</td>";
+							html += "<td class='table-header'>理學-問診</td>";
+							html += "<td>" + data.consultation + "</td>";
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td class='table-header'>是否異常</td>";
+							html += "<td>" + data.abnormal + "</td>"
+							html += "<td class='table-header'>異常數據列表</td>";
+							html += "<td colspan='5'><div class='print-break'>" + data.abnormalArray + "</div></td>";
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td class='table-header'>提交人員ID</td>";
+							html += "<td>" + data.createId + "</td>"
+							html += "<td class='table-header'>提交人員姓名</td>";
+							html += "<td>" + data.createName + "</td>";
+							html += "<td class='table-header'>關懷狀態</td>";
+							html += "<td>" + data.careStatus + "</td>";
+							html += "<td class='table-header'>關懷次數</td>";
+							html += "<td>" + data.careCount + "</td>";
+							html += "</tr>";
+							html += "<tr>";
+							html += "<td class='table-header'>新增時間</td>";
+							html += "<td  colspan='7'>" + data.addTime + "</td>"
+							html += "</tr>";
+						document.getElementById("detail_tbody").innerHTML = html
+						$('td:contains("undefined")').text( "" );
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+				$("#DetailDialog").dialog("option", "title", dialogType + "").dialog("open");
+			};
+
+	
+			var saveItem = function (item, isNew) {
+				$.extend(item, {
+					cfgType: $("#cfgType").val(),
+					cfgKey: $("#cfgKey").val(),
+					cfgName: $("#cfgName").val(),
+					cfgValue: $("#cfgValue").val(),
+					cfgMemo: $("#cfgMemo").val(),
+					cfgInUse: $('input[name*=cfgInUse]:checked').val()
+				});
+
+				$("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", item);
+
+				$("#tableDialog").dialog("close");
+				bodyHref("/content/situation/Safetysituationreport.html");
+			};
+
+			function Processing(id) {
+				bodyHref("/content/situation/Safetysituationreport_form7.html");
+			}
+
+		});
+
+
+	});
+</script>

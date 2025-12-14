@@ -1,0 +1,288 @@
+﻿<div>
+	<h4>寄件群組設定</h4>
+	
+	    <div id="jsGrid"></div>
+</div>
+
+<div id="tableDialog" style="display:none" class="container">
+    <form id="dialogForm">
+        <div class="details-form-field row">
+			<div class="col text-right"><label for="sendGroupType">寄件群組</label></div>
+			<div class="col-8 align-self-center"><input id="sendGroupType" name="sendGroupType" type="text" /></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label for="unitId">單位代號</label></div>
+			<div class="col-8 align-self-center"><input id="unitId" name="unitId" type="text" /></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label for="memo">備註說明</label></div>
+			<div class="col-8 align-self-center"><textarea  id="memo" name="memo" rows="5"  maxlength="80"></textarea></div>
+        </div>
+        <div class="details-form-field row justify-content-center">
+			<div class="col text-right"></div>
+			<div class="col-7"><button type="submit" id="dialogFormSubmit" class="btn btn-primary">送出</button></div>
+            
+        </div>
+    </form>
+</div>
+
+<style>
+/* 讓表格內容換行 */
+.jsgrid-table{
+		word-wrap:break-word;
+	}
+input[type=text]{
+	width: 100%;
+}
+input[type=file]{
+	width: 100%;
+}
+textarea{
+	width:100%;
+}
+</style>
+
+<script>
+//需要用的JS
+require(["jquery", "jquery_validate", "jsgrid", "jquery_ui"], function (jquery, jquery_validate, jsgrid, jquery_ui ) {
+	//頁面讀取後執行
+	$(document).ready(function(){
+			
+		 $.ajax({
+			    url: "/"+CONFIG.SYSTEM_NAME + '/sendGroup/api/getSendGroup',
+			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    async: false,
+			    cache: false,
+			    type: "GET",
+			    success: function(data, textStatus){    
+			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    		 alert("沒有權限");
+			    	 }else{
+			    	 	$("#jsGrid").jsGrid({
+			    	        width: "100%",
+			    	        height: "auto",
+			    	        heading: true, //是否顯示表頭
+			    	        filtering: true, //啟動查找
+			    		    inserting: false, //啟動新增  關掉使用自定義的
+			    		    editing: true,  //啟動編輯 
+			    		    selecting: true,
+			    		    sorting: true, //啟動排序
+			    		    paging: true, //啟動分頁 
+			    		    pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+			    		    autoload: true,
+			    		    pageSize: 10,
+			    		    
+			    		    controller: {
+			    		        loadData: function(filter) {
+				    		        	//查詢
+			    		        	 	var result = $.grep(data, function(item, idx) {
+			    		                    for (var key in filter) {
+			    		                        var value = filter[key];
+			    		                        if (value.length > 0) {
+			    		                        	if (!item[key]){
+			    		                                return false;
+			    		                        	}
+			    		                        	if(typeof item[key] === 'number'){
+			    		                        		if (item[key].toString().indexOf(value) == -1){
+				    		                                return false;
+			    		                        		}
+			    		                        	}else if(typeof item[key] === 'string'){
+			    		                        		if (item[key].indexOf(value) == -1){
+				    		                                return false;
+			    		                        		}
+			    		                        	}
+			    		                        	
+			    		                        }
+			    		                    }
+			    		                    return true;
+			    		                });
+			    		            return result;
+			    		        },
+			    		        insertItem: function(insertingItem) {
+			    		        	$.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/sendGroup/api/addSendGroup',
+			    		 			    data: JSON.stringify(insertingItem),
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 insertingItem.id = data.id;
+			    					    			 alert("新增成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        },
+			    		        updateItem: function(updatingItem) { 
+			    		        	$.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/sendGroup/api/updateSendGroup',
+			    		 			    data: JSON.stringify(updatingItem),
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 alert("更新成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        },
+			    		        deleteItem: function(deletingItem) {
+			    		        	 $.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/sendGroup/api/deleteSendGroup',
+			    		 			    data: '{"ID":' + deletingItem.id + '}',
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 alert("刪除成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        }
+			    		    },
+			    	 
+			    	        fields: [
+			    	            { title:"寄件群組", name: "sendGroupType", type: "text", width: 100, validate: "required" },
+			    	            { title:"單位代號/身份證字號", name: "unitId", type: "text", width: 200, itemTemplate: function(e){
+			    	            	if(e.length == 10){
+			    	            		return maskID(e);
+			    	            	}
+			    	            	return e;
+			    	            } },
+			    	            { title:"單位名稱/姓名", name: "unitName", type: "text", width: 200 },
+			    	            { title:"備註說明", name: "memo", type: "text", width: 130 },
+			    	            { type: "control",
+			                        editButton: false,
+			                        modeSwitchButton: false,
+			                        headerTemplate: function() {
+			                            return $("<button>").attr("type", "button").text("新增").addClass("btn btn-primary")
+			                                .on("click", function () {
+			                                	showDetailsDialog("新增", {});
+			                                });
+			                        }
+			    	            }             
+			    	        ],
+				    	 	rowClick: function(args) {
+				    	 		 showDetailsDialog("修改", args.item);
+				            },
+			    		    deleteConfirm: function(item) {
+			                    return `參數 \n單位代號:${item.unitId}\n備註:${item.memo}\n 確認刪除?`;// "參數-\"代號: " + item.unitId + " - " + item.memo +"\"確認刪除?";
+			                },
+				            
+			    	    });
+			    	 }
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+			    },
+			});
+	
+		 $("#tableDialog").dialog({
+			 title: "參數設定",
+	         autoOpen: false,
+	         width: 550,
+	         modal: true,
+	         close: function() {
+	             $("#dialogForm").validate().resetForm();
+	             $("#dialogForm").find(".error").removeClass("error");
+	             $('.ui-widget-overlay').removeClass('custom-overlay');
+	         },
+             open: function(){
+            	 $('.ui-widget-overlay').addClass('custom-overlay');
+            	 customCloseBtn();
+             },
+             classes: dlgSetting.classes,
+	         show: dlgSetting.show,
+			 hide: dlgSetting.hide
+	     });
+		 
+		 var formSubmitHandler = $.noop;
+		 
+		 var showDetailsDialog = function(dialogType, item) {
+             $("#sendGroupType").val(item.sendGroupType);
+             $("#unitId").val(item.unitId);
+             $("#memo").val(item.memo);
+             
+             formSubmitHandler = function() {
+            	 saveItem(item, dialogType === "新增");
+             };
+
+             $("#tableDialog").dialog("option", "title", dialogType + " 寄件群組").dialog("open");
+         };
+	
+	     $("#dialogForm").validate({
+	    	 //錯誤訊息元素預設為label改成p會換行
+			 errorElement: "p",
+	         rules: {
+	        	 sendGroupType: { required: true, 
+	        		 			  number: true},
+	        	 unitId: { required: true, rangelength: [2, 40] },
+	        	 memo: { rangelength: [02, 80] }
+	         },
+	         messages: {
+	        	 sendGroupType:{
+			          required: "請輸入寄件群組",
+			          number: "只能輸入數字"
+			        },
+			        unitId:{
+			          required: "請輸入單位代號",
+			          rangelength: "單位代號不得小於2個字母大於40個字母"
+			        },
+			        memo:{
+			          rangelength: "備註說明不得大於80個字母"
+			        }
+	         },
+	         submitHandler: function() {
+	             formSubmitHandler();
+	         }
+	     });
+	     
+	     var saveItem = function(item, isNew) {
+             $.extend(item, {
+            	 sendGroupType: $("#sendGroupType").val(),
+            	 unitId: $("#unitId").val(),
+            	 memo: $("#memo").val()
+             });
+             
+             $("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", item);
+
+             $("#tableDialog").dialog("close");
+             bodyHref("/content/setting/sendGroupSetting.html");
+         };
+	
+	    
+	});
+});
+</script>

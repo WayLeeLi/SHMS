@@ -1,0 +1,204 @@
+<div class="no-print">
+    <div>
+        <h2 style="text-align: center;">轉置重大偶發緊急事件通報</h2>
+        <form id="inputForm">
+            <table class="w-100 safe_form">
+                <tbody>
+                    <tr>
+                        <td class="table-header  ">單位名稱</td>
+                        <td>
+                            △△分行
+                        </td>
+                        <td class="table-header  ">通報人員</td>
+                        <td>
+                            副理
+                        </td>
+                        <td>
+                            王五
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-header ">事件發生時間</td>
+                        <td>
+                            111/04/14 08:30:00
+                        </td>
+                        <td class="table-header ">單位電話</td>
+                        <td>
+                            09-99999999
+                        </td>
+                        <td>
+                            分機999
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table><br />
+            <table class="w-100 safe_form">
+                <tbody>
+                    <tr>
+                        <td class="table-header text-center" width="120" rowspan=2>案由<br />
+                            <small class="text-grey">(請重點敘明)<br />
+                            (100中文字內)</small></td>
+                        <td class="table-header  text-center">
+                            類別
+                        </td>
+                        <td>
+                            <select class="custom-select" id="eventName" name="eventName">
+                                
+                                <option value="1">天然災害</option>
+                                <option value="1">安全問題</option>
+                                <option value="1">財務及設施安全維護</option>
+                                <option value="1">陳情抗議</option>
+                                <option value="1">企業形象輿情</option>
+                                <option value="1">公務機密</option>
+                                <option value="1">其他</option>
+
+                            </select>
+                        </td>
+                        <td class="table-header  text-center">
+                            等級
+                        </td>
+                        <td>
+                            <select class="custom-select" id="eventName" name="eventName">
+                                
+                                <option value="1">普通</option>
+                                <option value="1">較重要</option>
+                                <option value="1">極重要</option>
+                                <option value="1">非常重要</option>
+                            </select>
+                        </td>
+                        <td class="table-header  text-center">
+                            來源
+                        </td>
+                        <td>
+                            <select class="custom-select" id="eventName" name="eventName">
+                                
+                                <option value="1">主動發掘</option>
+                                <option value="1">媒體報導</option>
+                                <option value="1">民眾陳情</option>
+                                <option value="1">交辦案件</option>
+                                <option value="1">其他</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td colspan="6">
+                            <textarea></textarea>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td class="table-header  text-center">匯出檔案</td>
+                        <td colspan="3">
+                            <select class="custom-select" id="Export" name="Export">
+                            
+                                <option value="1">董事會稽核部_重大偶發事件通報</option>
+                                <option value="3">業務發展部_經營危機事件通報單</option>
+                                <option value="4">金控_重大事項通報表</option>
+                                <option value="5">金控_重大事項通報說明</option>
+                    
+                            </select>
+                        </td>
+                        <td colspan="3"></td>
+                    </tr>
+                    <tr>
+                        <td class="table-header  text-center">匯出格式
+                            </td>
+                        <td colspan="3">
+                            <select class="custom-select" id="eventName" name="eventName">
+                                <option value="1">PDF</option>
+     
+                            </select>
+                        </td>
+                        <td colspan="3"></td>
+                    </tr>
+                
+                
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <br/>
+    <div>
+        填表說明：
+一、天然災害：如地震、水災、火災、風災等。<br/>
+二、重大偶發事件範圍如下：搶奪強盜、重大竊盜、行舍或設備遭破壞及媒體報導足以影響本行信
+譽等。<br/>
+三、緊急事件：人為或天然災害、安全維護及緊急傷病事故之安全問題等。<br/>
+四、通報方式：如有上述事項，請立即填報本單位，如適逢假日亦請於上班後第一個營業日上午
+09:30前主動填報及聯絡電話(02)2173-8888分機3213、3215、3235、3218。<br/>
+        </div>
+
+</div>
+<br>
+<div style="text-align: center;">
+<button type="button" id="submitBtn"  class="btn btn-primary  my-2">儲存</button>
+<button type="button" id="return" class="btn btn-warning  my-2">上一頁</button>
+</div>
+<div class="container-fluid" id="templateContainer">
+
+</div>
+<script>
+//需要用的JS
+require(["jquery", "jquery_validate", "jsgrid", "jquery_ui"], function (jquery, jquery_validate, jsgrid, jquery_ui ) {
+	//頁面讀取後執行
+$(document).ready(function(){
+    $('#submitBtn').on("click",
+        function (){
+            var val=$('#Export').val();
+            if(val == '1'){
+                bodyHref("/content/situation/SafetysituationreportX_form2.html");
+            }
+            if(val == '2'){
+                bodyHref("/content/situation/SafetysituationreportX_form3.html");
+            }
+            if(val == '3'){
+                bodyHref("/content/situation/SafetysituationreportX_form3.html");
+            }
+            if(val == '4'){
+                bodyHref("/content/situation/SafetysituationreportX_form4.html");
+            }
+            if(val == '5'){
+                bodyHref("/content/situation/SafetysituationreportX_form5.html");
+            }
+            
+        }
+    );
+    $('#sBtn').on("click",
+    function (){
+            var val=$('#Export').val();
+            if(val == '1'){
+                bodyHref("/content/situation/SafetysituationreportX_form2.html");
+            }
+            if(val == '2'){
+                bodyHref("/content/situation/SafetysituationreportX_form3.html");
+            }
+            if(val == '3'){
+                bodyHref("/content/situation/SafetysituationreportX_form3.html");
+            }
+            if(val == '4'){
+                bodyHref("/content/situation/SafetysituationreportX_form4.html");
+            }
+            if(val == '5'){
+                bodyHref("/content/situation/SafetysituationreportX_form5.html");
+            }
+        }
+    );
+    $('#sBtn').on("click",
+    function (){
+                bodyHref("/content/situation/SafetysituationreportX.html");
+          
+        }
+    );
+    $('#return').on("click",
+    function (){
+                bodyHref("/content/situation/SafetysituationreportX.html");
+          
+        }
+    );
+	});
+	
+	
+});
+</script>

@@ -1,0 +1,2907 @@
+﻿<div>
+  <h4>安全狀況反映通報作業</h4>
+
+  <div id="jsGrid"></div>
+</div>
+
+<div id="Tracking_tableDialog" style="display: none" class="container">
+  <div class="Tracking-dialog">
+    <ul id="Tracking"></ul>
+  </div>
+</div>
+<div id="finishTime_tableDialog" style="display: none" class="container">
+  <div id="">
+    <h2 id="" style="text-align: center">完成時間</h2>
+    <input type="hidden" id="finishTime_id" name="finishTime_id" />
+    <table class="w-100 safe_form">
+      <tbody>
+        <tr>
+          <td class="table-header">完成時間</td>
+          <td>
+            <input id="finishTime" name="finishTime" type="text" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+  </div>
+  <div style="text-align: center">
+    <button type="button" id="submit_finishTime" class="btn btn-primary my-2">
+      儲存送出
+    </button>
+  </div>
+</div>
+
+<div id="tableDialog" style="display: none;border: 1px solid #000; width: 95%;" class="container">
+  <div id="printDiv1"><input type="hidden" id="safetyId" name="safetyId" />
+    <h2 id="safetyTitle" class="Title" style="text-align: center">安全狀況反映通報</h2>
+    <form id="dialogForm" enctype="multipart/form-data" class="dialogform">
+      <div class="clear-fix">
+         通報編號:
+        <span id="safetyNo"></span>
+      </div>
+      <br />
+
+      <table class="w-100 safe_form" style="width: 95%;border: 1px solid #000;">
+        <tbody>
+          <tr>
+            <td class="table-header">單位名稱</td>
+            <td id="unitName">△△分行</td>
+            <td class="table-header">通報人員</td>
+            <td id="safetyWorkMan" colspan="2">副理</td>
+            <td id="safetyName" colspan="2">王五</td>
+          </tr>
+          <tr>
+            <td class="table-header">事件發生時間</td>
+            <td>
+              <span id="eventTime_b"></span>
+              <input
+                id="eventTime"
+                name="eventTime"
+                type="text"
+                readonly="readonly"
+              />
+            </td>
+            <td class="table-header">單位電話</td>
+            <td id="" colspan="2"><input type="text" id="unitTel" placeholder="單位電話" /></td>
+            <td colspan="2"><input type="text" id="unitTelOth" placeholder="分機" /></td>
+          </tr>
+          <tr class="pressing_tr">
+            <td class="table-header">通報收件時間</td>
+            <td id="processTime"></td>
+            <td class="table-header">處理人員</td>
+            <td id="processPosition" colspan="2">二等專員</td>
+            <td colspan="2">
+              <span id="processName"></span>
+
+              <span id="pressingName" style="display: none"></span>
+              <span id="pressingTel" style="display: none"></span>
+            </td>
+          </tr>
+   
+          <tr>
+            <td class="table-header text-center" width="120" rowspan="2">
+              案由<br />
+              <small class="text-grey"
+                >(請重點敘明)<br />
+                (200中文字內)</small
+              >
+            </td>
+            <td class="table-header text-center">類別</td>
+            <td>
+              <select
+                class="custom-select"
+                id="safetyType"
+                name="safetyType"
+                autofocus
+              ></select>
+            </td>
+            <td class="table-header text-center">等級</td>
+            <td>
+              <select
+                class="custom-select"
+                id="safetyLevel"
+                name="safetyLevel"
+              ></select>
+            </td>
+            <td class="table-header text-center">來源</td>
+            <td>
+              <select
+                class="custom-select"
+                id="safetySource"
+                name="safetySource"
+              ></select>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <textarea
+                id="eventContent"
+                name="eventContent"
+                maxlength="200"
+              ></textarea>
+            </td>
+          </tr>
+          <tr class="pressing_hide">
+            <td class="table-header text-center">
+              案件發生原因<br />
+              <small class="text-grey">(1000字內)</small>
+            </td>
+            <td colspan="6">
+              <textarea
+                id="eventReason"
+                name="eventReason"
+                maxlength="1000"
+              ></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-header text-center">
+              受損情形及處置措施<br />
+              <small class="text-grey"
+                >(請詳敘明受損處置、處置內容,1000字內)</small
+              >
+            </td>
+            <td colspan="6">
+              <textarea
+                id="lossSolution"
+                name="lossSolution"
+                maxlength="1000"
+              ></textarea>
+            </td>
+          </tr>
+          <tr class="pressing_tr">
+            <td class="table-header text-center">擬辦</td>
+            <td colspan="6">
+              <textarea
+                id="proposed"
+                name="proposed"
+                placeholder="擬辦"
+              ></textarea>
+            </td>
+          </tr>
+          <tr class="pressing_tr">
+            <td class="table-header text-center">補充說明</td>
+            <td colspan="6">
+              <textarea
+                id="remark"
+                name="remark"
+                placeholder="補充說明"
+                maxlength="1000"
+              ></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-header text-center">預估財務損失</td>
+            <td colspan="6">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input
+                  id="isSafe_1"
+                  name="lossSelect"
+                  type="radio"
+                  value="無"
+                  class="custom-control-input"
+                />
+                <label class="custom-control-label" for="isSafe_1">無</label>
+              </div>
+              <div
+                class="custom-control custom-radio custom-control-inline form-box"
+              >
+                <input
+                  id="isSafe_0"
+                  name="lossSelect"
+                  checked
+                  type="radio"
+                  value="有"
+                  class="custom-control-input"
+                />
+                <label
+                  class="custom-control-label"
+                  for="isSafe_0"
+                  style="padding-right: 8px"
+                  >有，新臺幣：$</label
+                >
+                <input
+                  type=" number"
+                  id="lossMoney"
+                  name="lossMoney"
+                  value="0"
+                  maxlength="17"
+                  max="9999999999"
+                />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-header text-center" rowspan="2">
+              營業狀況<br />
+              <small class="text-grey">(說明1000字內)</small>
+            </td>
+            <td>
+              <select
+                class="custom-select"
+                id="businessStatus"
+                name="businessStatus"
+              ></select>
+            </td>
+            <td colspan="5">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <textarea
+                placeholder="說明"
+                id="businessStatusStatement"
+                name="businessStatusStatement"
+                maxlength="1000"
+              ></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-header text-center" rowspan="2">
+              須總行協助<br />
+              <small class="text-grey">(說明1000字內)</small>
+            </td>
+            <td>
+              <select
+                class="custom-select"
+                id="needAssistance"
+                name="needAssistance"
+              ></select>
+            </td>
+            <td colspan="5">&nbsp;</td>
+          </tr>
+          <tr>
+            <td colspan="6">
+              <textarea
+                placeholder="說明"
+                id="needAssistanceStatement"
+                name="needAssistanceStatement"
+                maxlength="1000"
+              ></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td class="table-header text-center">照片上傳</td>
+            <td colspan="6">
+              <div class="upload-content">
+                <div class="content-img">
+                  <div class="sys_imglist">
+                    <ul class="content-img-list"></ul>
+                  </div>
+                  <div class="news_imglist">
+                    <ul class="content-img-list"></ul>
+                  </div>
+                  <div class="file">
+                    <i class="iconfont icon-tupiantianjia"></i>
+                    <input
+                      type="file"
+                      name="file"
+                      accept="image/*"
+                      id="upload"
+                      multiple
+                    />
+                  </div>
+                </div>
+                <div
+                  class="modal fade bs-example-modal-lg"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-labelledby="myLargeModalLabel">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content"></div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr class="pressing_hide">
+            <td class="table-header text-center">退件原因</td>
+            <td colspan="6">
+              <textarea
+                placeholder="退件原因"
+                disabled
+                id="returnReason"
+              ></textarea>
+            </td>
+          </tr>
+          <tr class="pressing_tr">
+            <td class="table-header text-center">會辦單位</td>
+            <td id="" colspan="6">
+              <div id="SunitName"></div>
+              <!-- <select class="custom-select" id="SunitName" name="SunitName" multiple="multiple"></select>  -->
+              <!-- <div class="custom-control custom-radio custom-control-inline">
+								<input id="SunitName1" name="SunitName" type="radio" value="1"
+									class="custom-control-input">
+								<label class="custom-control-label" for="isReview_notNull">是</label>
+							</div> -->
+            </td>
+          </tr>
+          <tr class="chuli_none">
+            <td class="table-header text-center">審核人員</td>
+            <td>
+              <select
+                class="custom-select"
+                id="reviewId"
+                name="reviewId"
+              ></select>
+            </td>
+            <td colspan="2"></td>
+            <td class="table-header text-center">通報時間</td>
+            <td colspan="2" id="safetyTime"></td>
+          </tr>
+          <tr class="d-none">
+            <td class="table-header text-center">是否審核</td>
+            <td colspan="6">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input
+                  id="isReview_notNull"
+                  name="isReview"
+                  type="radio"
+                  value="1"
+                  class="custom-control-input"
+                />
+                <label class="custom-control-label" for="isReview_notNull"
+                  >是</label
+                >
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input
+                  id="isReview_null"
+                  name="isReview"
+                  type="radio"
+                  value="0"
+                  class="custom-control-input"
+                />
+                <label class="custom-control-label" for="isReview_null"
+                  >否</label
+                >
+              </div>
+            </td>
+          </tr>
+          <tr class="d-none">
+            <td class="table-header text-center">建立者(請輸身分證字號)</td>
+            <td colspan="6">
+              <input type="input" id="createId" name="createId" />
+            </td>
+          </tr>
+          <tr class="d-none">
+            <td>隱藏域</td>
+            <td colspan="6">
+              <input type="hidden" id="id" name="id" /><input
+                type="hidden"
+                id="process"
+                name="process"
+              /><input type="hidden" id="status" name="status" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+    </form>
+  </div>
+  <div style="text-align: center">
+    <div class="dialog-alert" id="dialog-alert">
+      <div class="dialog-alert-c">
+        通報單即將<span id="alert-d"></span>,確認資料填寫無誤請按確認。
+      </div>
+      <div class="dialog-alert-button text-center">
+        <button type="button" id="cancel" class="btn btn-danger my-2">
+          取消
+        </button>
+        <button
+          type="button"
+          id="addFormSubmit"
+          class="btn btn-primary my-2 pressing_hide"
+        >
+          確認
+        </button>
+        <button
+          type="button"
+          id="editFormSubmit"
+          class="btn btn-primary my-2 pressing_hide"
+        >
+          確認
+        </button>
+        <button
+          type="button"
+          id="pressingFormSubmit"
+          class="btn btn-primary my-2 pressing_show"
+        >
+          確認
+        </button>
+      </div>
+    </div>
+    <div class="dialog-alert" id="dialog-return">
+      <div class="dialog-return">
+        <textarea
+          placeholder="退件原因"
+          id="returnReason1"
+          maxlength="100"
+        ></textarea>
+      </div>
+      <div class="dialog-alert-button text-center">
+        <button type="button" id="returncancel" class="btn btn-danger my-2">
+          取消
+        </button>
+        <button
+          type="button"
+          id="returnFormSubmit"
+          class="btn btn-primary my-2"
+        >
+          確認
+        </button>
+      </div>
+    </div>
+    <button
+      type="button"
+      id="submit_o"
+      class="btn btn-warning my-2 pressing_hide tempButton"
+    >
+      暫存
+    </button>
+    <button
+      type="button"
+      id="submit_s"
+      class="btn btn-primary my-2 pressing_hide sendButton"
+    >
+      儲存送出
+    </button>
+    <button
+      type="button"
+      id="checkBtn"
+      class="btn btn-success my-2 pressing_hide reviewButton"
+    >
+      審核通過
+    </button>
+    <button
+      type="button"
+      id="return"
+      class="btn btn-danger my-2 pressing_hide returnButton"
+    >
+      退件
+    </button>
+    <button
+      type="button"
+      id="submit_p"
+      class="btn btn-primary my-2 pressing_show sendButton"
+    >
+      儲存送出
+    </button>
+
+    <button
+      type="button"
+      id="printBtn"
+      class="btn btn-secondary my-2 pressing_hide printButton"
+    >
+      列印
+    </button>
+  </div>
+</div>
+<div
+  id="template_checkbox"
+  style="display: none"
+  class="custom-control custom-checkbox"
+>
+  <input
+    type="checkbox"
+    class="custom-control-input"
+    id="@INPUT_ID@"
+    name="@INPUT_NAME@"
+    value="@INPUT_VALUE@"
+    disabled
+  />
+  <label class="custom-control-label" for="@INPUT_ID@">@LABEL@</label>
+</div>
+<div
+  id="template_radiobox"
+  style="display: none"
+  class="custom-control custom-radio custom-control-inline"
+>
+  <input
+    type="radio"
+    class="custom-control-input"
+    id=" @INPUT_ID@"
+    name="@INPUT_NAME@"
+    value="@INPUT_VALUE@"
+    data-error="inline"
+    disabled
+  />
+  <label class="custom-control-label" for="@INPUT_ID@">@LABEL@</label>
+</div>
+<style>
+  /* 讓表格內容換行 */
+  .jsgrid-table {
+    word-wrap: break-word;
+  }
+
+  input[type="text"] {
+    width: 100%;
+  }
+
+  textarea {
+    width: 100%;
+  }
+   .pressing_tr{display: none;}
+</style>
+
+<script>
+  var tempData;
+  var eventId = $("#eventId").val();
+  var returnId = $("#returnId").val();
+  //需要用的JS
+  require([
+    "jquery",
+    "jquery_validate",
+    "jsgrid",
+    "jquery_ui",
+    "print",
+    "timepicker",
+    "multiselect",
+  ], function (
+    jquery,
+    jquery_validate,
+    jsgrid,
+    jquery_ui,
+    print,
+    timepicker,
+    multiselect
+  ) {
+    //頁面讀取後執行
+    $(document).ready(function () {
+      $("#printBtn").click(function () {
+        //printByDiv(document.getElementById("printDiv"));
+        printJS({
+          printable: "printDiv1",
+          type: "html",
+          header: "",
+          css: "../resources/css/print.css",
+        });
+      });
+      $("#finishTime").datetimepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: "yy/mm/dd",
+        timeFormat: "HH:mm:ss",
+      });
+      $("#eventTime").datetimepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: "yy/mm/dd",
+        timeFormat: "HH:mm:ss",
+        disabled: true,
+      });
+
+      $(".my-select").multipleSelect({
+        noneSelectedText: "",
+        checkAllText: "全選",
+        uncheckAllText: "全不選",
+        selectedList: 15,
+      });
+      $("#submit_finishTime").click(function () {
+        var saveItem = {
+          safetyId: $("#finishTime_id").val(),
+          finishTime: $("*[name='finishTime']").val(),
+        };
+
+        console.log(saveItem);
+        inserttime(saveItem);
+      });
+      function inserttime(data) {
+        $.ajax({
+          data: JSON.stringify(data),
+          url: "/" + CONFIG.SYSTEM_NAME + "/safetyNotification/api/finish",
+          contentType: "application/json;charset=utf-8", // 因為上面是JSON
+          async: false,
+          cache: false,
+          type: "POST",
+          success: function (data, textStatus) {
+            if (data && data.code == 5000) {
+              //showAlert('沒有權限','沒有權限','')
+              showAlert("沒有權限", "沒有權限", "");
+            } else {
+              get_menuData();
+              showAlert("更新成功", "更新成功", "");
+              showAlert(
+                "更新成功",
+                "安全狀況反映通報完成時間更新成功",
+                bodyHref("/content/situation/Safetysituationreport.html")
+              );
+            }
+          },
+          error: function (data, textStatus, errorThrown) {
+            //console.log(data);
+          },
+        });
+      }
+      //將數字添加逗號分隔
+      function commaSeparateNumber(val) {
+        while (/(\d+)(\d{3})/.test(val.toString())) {
+          val = val.toString().replace(/(\d+)(\d{3})/, "$1" + "," + "$2");
+        }
+        return val;
+      }
+      $("#lossMoney").keyup(function () {
+        var a = $("#lossMoney").val();
+
+        var b = TripartiteMethod(a);
+        $(this).val(b);
+      });
+
+      function TripartiteMethod(num) {
+        var type = true;
+        var value = "";
+
+        //去除逗號字元
+        num = num.replace(/,/g, "");
+
+        //判斷是否有小數點
+        if (num.indexOf(".") < 0) {
+          var t1 = num.toString().split("");
+        } else {
+          type = false;
+          var arr = num.toString().split(".");
+          var t1 = arr[0].toString().split("");
+          var t2 = arr[1].toString();
+        }
+
+        //添加逗號字元
+        var result = [],
+          counter = 0;
+        for (var i = t1.length - 1; i >= 0; i--) {
+          counter++;
+          result.unshift(t1[i]);
+          if (counter % 3 == 0 && i != 0) {
+            result.unshift(",");
+          }
+        }
+
+        //判斷顯示類型是否有小數
+        if (type === true) {
+          value = result.join("");
+        } else {
+          value = result.join("") + "." + t2;
+        }
+        return value;
+      }
+
+      isLogin(); //登入狀態
+      function isLogin() {
+        $.ajax({
+          url: "/" + CONFIG.SYSTEM_NAME + "/login/api/getLogin",
+          contentType: "application/json;charset=utf-8", // 因為上面是JSON
+          async: false,
+          cache: false,
+          type: "get",
+          success: function (data, textStatus) {
+            if (data.msg != "success") {
+              alert("您登入已逾時或未登入，請重新登入！");
+              location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+            }
+          },
+          error: function (data, textStatus, errorThrown) {
+            console.log(data);
+          },
+        });
+      }
+      function get_list(menuData) {
+        console.log(menuData);
+        $.ajax({
+          url: "/" + CONFIG.SYSTEM_NAME + "/safetyNotification/api/list",
+          contentType: "application/json;charset=utf-8", // 因為上面是JSON
+          async: false,
+          cache: false,
+          type: "GET",
+          success: function (data, textStatus) {
+            if (data && data == "<script>alert('沒有權限')<\/script>") {
+              showAlert("沒有權限", "沒有權限", "");
+            }
+            if (data && data == 4000) {
+              alert("您登入已逾時或未登入，請重新登入！");
+              location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+            } else {
+              var data = data.data;
+
+              console.log(data);
+              //提示
+              $.toast({
+                heading: "",
+                text: "資料載入成功" + textStatus,
+                icon: "success",
+                position: "toast-top-center",
+                hideAfter: 6000,
+              });
+              $("#jsGrid").jsGrid({
+                width: "100%",
+                height: "auto",
+                heading: true, //是否顯示表頭
+                filtering: true, //啟動查找
+                inserting: false, //啟動新增  關掉使用自定義的
+                editing: true, //啟動編輯
+                selecting: true,
+                sorting: true, //啟動排序
+                paging: true, //啟動分頁
+                pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+                autoload: true,
+                pageSize: 10,
+
+                controller: {
+                  loadData: function (filter) {
+                    //查詢
+                    var result = $.grep(data, function (item, idx) {
+                      for (var key in filter) {
+                        var value = filter[key];
+                        if (value.length > 0) {
+                          if (!item[key]) {
+                            return false;
+                            callback(value.length);
+                          }
+
+                          if (typeof item[key] === "number") {
+                            if (item[key].toString().indexOf(value) == -1) {
+                              return false;
+                              callback(item[key].toString().indexOf(value));
+                            }
+                          } else if (typeof item[key] === "string") {
+                            if (item[key].indexOf(value) == -1) {
+                              return false;
+                              callback(item[key].indexOf(value));
+                            }
+                          }
+                        }
+                      }
+                      return true;
+                    });
+                    return result;
+                  },
+                },
+
+                fields: [
+                  {
+                    title: "通報編號",
+                    name: "safetyNo",
+                    type: "text",
+                    width: 120,
+                    validate: "required",
+                  },
+                  {
+                    title: "通報時間",
+                    name: "safetyTime",
+                    type: "text",
+                    width: 150,
+                  },
+                  {
+                    title: "通報單位",
+                    name: "unitName",
+                    type: "text",
+                    width: 130,
+                  },
+                  {
+                    title: "事件內容",
+                    name: "eventContent",
+                    type: "text",
+                    width: 200,
+                    classes: "text-ellipsis",
+                    itemTemplate: function (value, item) {
+                      return $("<span>")
+                        .text(value)
+                        .attr("title", value)
+                        .addClass("text-ellipsis");
+                    },
+                  },
+                  {
+                    title: "完成時間",
+                    name: "finishTime",
+                    type: "text",
+                    width: 150,
+                    classes: "text-ellipsis",
+                    itemTemplate: function (value, item) {
+						if (value == "" || value == undefined) {
+					if(menuData.jobLevel==='11' || menuData.jobLevel===11){
+					return $("<button>")
+					  .attr("type", "button")
+					  .text("完成時間")
+					  .addClass("btn btn-primary")
+					  .on("click", function () {
+						showfinishTimeDialog("完成時間", item.id);
+					  });
+					}
+				  }  else {
+                        return $("<span>")
+                          .text(value)
+                          .attr("title", value)
+                          .addClass("text-ellipsis");
+                      }
+                    },
+                  },
+                  {
+                    title: "狀態",
+                    name: "status",
+                    type: "select",
+                    type: "select",
+                    items: [
+                      { Name: "", Id: "" },
+                      { Name: "暫存", Id: "t" },
+                      { Name: "已送審", Id: "n" },
+                      { Name: "已審核", Id: "c" },
+                      { Name: "已退件", Id: "r" },
+                      { Name: "已處理", Id: "p" },
+                    ],
+                    valueField: "Id",
+                    textField: "Name",
+                    width: 120,
+                    itemTemplate: function (value, item) {
+                      if (value == "t") {
+                        return $("<span>").text("暫存");
+                      }
+                      if (value == "n") {
+                        return $("<span>").text("已送審");
+                      }
+                      if (value == "c") {
+                        return $("<span>").text("已審核");
+                      }
+                      if (value == "r") {
+                        return $("<span class='text-danger'>").text("已退件");
+                      }
+                      if (value == "p") {
+                        return $("<span>").text("已處理");
+                      }
+                    },
+                  },
+
+                  {
+                    type: "control",
+                    name: "id",
+                    width: 200,
+                    editButton: false,
+                    deleteButton: false,
+                    modeSwitchButton: false,
+                    filtercss: "display:none;",
+                    itemTemplate: function (value, item) {
+                      var $result =
+                        jsGrid.fields.control.prototype.itemTemplate.apply(
+                          this,
+                          arguments
+                        );
+                      var $customZhuiButton = $("<button>")
+                        .attr("type", "button")
+                        .text("追蹤")
+                        .addClass("btn btn-danger")
+                        .on("click", function (args) {
+                          showTracksDialog("案件追蹤", value);
+                        });
+                      if (
+                        menuData.functionArray.indexOf("process") > 0 &&
+                        item.status == "c"
+                      ) {
+                        var $customProcessButton = $("<button>")
+                          .attr("type", "button")
+                          .text("處理單")
+                          .addClass("btn btn-warning")
+                          .on("click", function () {
+                            if (menuData.functionArray.indexOf("process") < 0) {
+                              showAlert(
+                                "無處理單權限",
+                                "您沒有當前通報處理單權限",
+                                ""
+                              );
+                            } else {
+                              showDetailsDialog("處理單", item.id, item.status);
+                            }
+                          });
+                      } else {
+                        var $customProcessButton = "";
+                      }
+                      if (
+                        menuData.functionArray.indexOf("edit") < 0 &&
+                        item.status == "t" &&
+                        item.status == "r"
+                      ) {
+                        var $customEditButton = "";
+                      } else {
+                        var $customEditButton = $("<button>")
+                          .attr("type", "button")
+                          .text("編輯")
+                          .addClass("btn btn-primary")
+                          .on("click", function () {
+                            if (menuData.functionArray.indexOf("edit") < 0) {
+                              showAlert(
+                                "無編輯權限",
+                                "您沒有當前通報的編輯權限。",
+                                ""
+                              );
+                            } else {
+                              if (item.status == "t" || item.status == "r") {
+                                $("#safetyId").val(value);
+                                showDetailsDialog("編輯", value, item.status);
+                              } else {
+                                shmsToast(
+                                  (item.reviewId ? "當前狀態" : "當前狀態") +
+                                    "無法編輯！！！"
+                                );
+                              }
+                            }
+                          });
+                      }
+
+                      var $customLookButton = $("<button>")
+                        .attr("type", "button")
+                        .text("查看")
+                        .addClass("btn btn-success")
+                        .on("click", function () {
+                          showDetailsDialog("查看", value, item.status);
+                        });
+
+                      return $("<div>")
+                        .append($customEditButton)
+                        .append($customLookButton)
+                        .append($customZhuiButton)
+                        .append($customProcessButton);
+                    },
+                    headerTemplate: function () {
+                      if (menuData.functionArray.indexOf("add") < 0) {
+                        return "查看";
+                      } else {
+                        return $("<button>")
+                          .attr("type", "button")
+                          .text("新增")
+                          .addClass("btn btn-primary")
+                          .on("click", function () {
+                            showDetailsDialog("新增", {}, {});
+                          });
+                      }
+                    },
+                  },
+                ],
+                rowClick: function (args) {},
+                deleteConfirm: function (item) {
+                  return '公告 "' + item.announcementName + '" 確認刪除?';
+                },
+              });
+
+              //依時間排序
+              $("#jsGrid").jsGrid("sort", "safetyNo", "desc");
+            }
+          },
+          error: function (data, textStatus, errorThrown) {
+            console.log(data);
+          },
+        });
+      }
+      //獲取按鈕權限
+      
+      get_menuData();
+      function get_menuData() {
+        var menuid = 31;
+
+        $.ajax({
+          url:
+            "/" +
+            CONFIG.SYSTEM_NAME +
+            "/buttonRole/api/getByMenuId?menuId=" +
+            menuid,
+          contentType: "application/json;charset=utf-8", // 因為上面是JSON
+          async: false,
+          cache: false,
+          type: "GET",
+          success: function (data, textStatus) {
+            console.log(data);
+            if (data && data == "<script>alert('沒有權限')<\/script>") {
+              //showAlert('沒有權限','沒有權限','')
+              showAlert("沒有權限", "沒有權限", "");
+            } else {
+              var menuData = data.data;
+              get_list(menuData);
+              console.log(menuData.functionArray);
+              console.log(menuData);
+              if (menuData.functionArray.indexOf("review") < 0) {
+                $(".reviewButton").hide();
+              }
+              if (menuData.functionArray.indexOf("temp") < 0) {
+                $(".tempButton").hide();
+              }
+              if (menuData.functionArray.indexOf("reject") < 0) {
+                $(".returnButton").hide();
+              }
+              if (menuData.functionArray.indexOf("temp") < 0) {
+                $(".tempButton").hide();
+              }
+            }
+          },
+          error: function (data, textStatus, errorThrown) {
+            console.log(data);
+          },
+        });
+      }
+      //刪除列
+      function delcol(col) {
+        var l = $("#jsGrid tr").length;
+        for (var i = 0; i < l; i++) {
+          $("#jsGrid tr").eq(i).find("td").eq(col).remove();
+          $("#jsGrid tr").eq(i).find("th").eq(col).remove();
+        }
+      }
+      //追蹤
+      $("#Tracking_tableDialog").dialog({
+        title: "參數設定",
+        autoOpen: false,
+        width: 550,
+        modal: true,
+        close: function () {
+          $("#Tracking").empty();
+          $("#dialogForm").validate().resetForm();
+          $("#dialogForm").find(".error").removeClass("error");
+          $("#announcementDate").datepicker("disable");
+          $(".ui-widget-overlay").removeClass("custom-overlay");
+        },
+        open: function (event, ui) {
+          $("#announcementDate").datepicker("enable");
+          $(".ui-widget-overlay").addClass("custom-overlay");
+          customCloseBtn();
+        },
+        classes: dlgSetting.classes,
+        show: dlgSetting.show,
+        hide: dlgSetting.hide,
+      });
+
+      $("#finishTime_tableDialog").dialog({
+        title: "參數設定",
+        autoOpen: false,
+        width: 550,
+        modal: true,
+        close: function () {
+          $("#dialogForm").validate().resetForm();
+          $("#dialogForm").find(".error").removeClass("error");
+          $("#announcementDate").datepicker("disable");
+          $(".ui-widget-overlay").removeClass("custom-overlay");
+        },
+        open: function (event, ui) {
+          $("#announcementDate").datepicker("enable");
+          $(".ui-widget-overlay").addClass("custom-overlay");
+          customCloseBtn();
+        },
+        classes: dlgSetting.classes,
+        show: dlgSetting.show,
+        hide: dlgSetting.hide,
+      });
+      var formSubmitHandler = $.noop;
+
+      var showTracksDialog = function (dialogType, item) {
+        $("#Tracking_tableDialog")
+          .dialog("option", "title", dialogType + " ")
+          .dialog("open");
+        $.ajax({
+          url:
+            "/" +
+            CONFIG.SYSTEM_NAME +
+            "/safetyNotification/api/listTrack?safetyId=" +
+            item,
+          contentType: "application/json;charset=utf-8", // 因為上面是JSON
+          async: false,
+          cache: false,
+          type: "GET",
+          success: function (data, textStatus) {
+            if (data && data == "<script>alert('沒有權限')<\/script>") {
+              showAlert("沒有權限", "沒有權限", "");
+            } else {
+              console.log(data.data);
+              var data = data.data;
+              $.each(data, function (index, value) {
+                console.log(value);
+                $("#Tracking").append(
+                  "<li>" +
+                    value.addTime +
+                    "<b style='padding:0 8px'>" +
+                    value.trackName +
+                    "</b>" +
+                    value.trackContent +
+                    "</li>"
+                );
+              });
+            }
+          },
+        });
+      };
+      var showfinishTimeDialog = function (dialogType, item) {
+        $("#finishTime_id").val(item);
+        $("#finishTime_tableDialog")
+          .dialog("option", "title", dialogType + " ")
+          .dialog("open");
+      };
+      //表單增、改、看、處理
+      $("#tableDialog").dialog({
+        title: "參數設定",
+        autoOpen: false,
+        width: 960,
+        height: 550,
+
+        modal: true,
+        close: function () {
+          $("#dialogForm").validate().resetForm();
+          $("#dialogForm").find(".error").removeClass("error");
+          $("#eventTime").datepicker("disable");
+          $(".ui-widget-overlay").removeClass("custom-overlay");
+          selectremove();
+          $("#dialogForm").get(0).reset();
+          bodyHref("/content/situation/Safetysituationreport.html");
+        },
+        open: function (event, ui) {
+          $("#eventTime").datepicker("enable");
+          $(".ui-widget-overlay").addClass("custom-overlay");
+          customCloseBtn();
+        },
+        classes: dlgSetting.classes,
+        show: dlgSetting.show,
+        hide: dlgSetting.hide,
+      });
+
+      $("#lookDialog").dialog({
+        title: "參數設定",
+        autoOpen: false,
+        width: 850,
+        height: 550,
+
+        modal: true,
+        close: function () {
+          $("#dialogForm").validate().resetForm();
+          $("#dialogForm").find(".error").removeClass("error");
+          $("#eventTime").datepicker("disable");
+          $(".ui-widget-overlay").removeClass("custom-overlay");
+          selectremove();
+          $("#dialogForm").addClass("dialogform");
+        },
+        open: function (event, ui) {
+          $("#eventTime").datepicker("enable");
+          $(".ui-widget-overlay").addClass("custom-overlay");
+          customCloseBtn();
+        },
+        classes: dlgSetting.classes,
+        show: dlgSetting.show,
+        hide: dlgSetting.hide,
+      });
+
+      var showDetailsDialog = function (dialogType, item, status) {
+        if (dialogType === "新增") {
+          // insert_mr();
+          $('.reviewButton').hide()
+          	$('.returnButton').hide()
+          $("#safetyTitle").html("安全狀況反映通報");
+          $("#dialogForm").removeClass("pressing_form");
+          $("#dialogForm").addClass("dialogform");
+          $("#dialogForm").find("input").removeAttr("disabled");
+          $("#dialogForm ").find("select").removeAttr("disabled");
+          $("#dialogForm ").find("textarea").removeAttr("disabled");
+          // $('#proposed').removeAttr('required')
+          // $('#remark').removeAttr('required')
+          // $('#lossSolution').removeAttr('required');
+          $("#returnReason").attr("disabled", "disabled");
+          $("#submit_p.sendButton").hide();
+          $("#addFormSubmit").show();
+          $("#editFormSubmit").hide();
+          $("#pressingFormSubmit").hide();
+          $(".tempButton").show();
+          $(".upload-content .file").show();
+          let rocId_return = findRocIdByJobLevel(review, 5);
+		if (rocId_return != "" || rocId_return != undefined) {
+          $('*[name="reviewId"]').val(rocId_return);
+        }
+          formSubmitHandler = function () {
+            saveItem(item, dialogType === "新增");
+          };
+        }
+        if (dialogType === "查看" && item != "") {
+          console.log(status);
+          if (status == 'r' || status == 'c' || status == 't') {
+          	$('.reviewButton').hide()
+          	$('.returnButton').hide()
+          }
+          if (status == 'p') {
+          	$('.reviewButton').hide()
+          }
+          look_detail(item, "查看", review);
+          $("#safetyTitle").html("安全狀況反映通報");
+          $("#dialogForm").removeClass("pressing_form");
+          $("#dialogForm").addClass("dialogform");
+          $("#dialogForm").find("input").attr("disabled", "disabled");
+          $("#dialogForm").find("select").attr("disabled", "disabled");
+          $("#dialogForm").find("textarea").attr("disabled", "disabled");
+          $("#dialogForm").find("input").val();
+          $("#dialogForm").find("select").val();
+          $("#dialogForm").find("textarea").val();
+          $("#returnReason").attr("disabled", "disabled");
+          $(".sendButton").hide();
+          $(".tempButton").hide();
+          $(".delete-btn").hide();
+          $(".upload-content .file").hide();
+          formSubmitHandler = function () {
+            saveItem(item, dialogType === "查看");
+          };
+        }
+        if (dialogType === "編輯" && item != "") {
+          look_detail(item, "編輯", review);
+          console.log(status)
+          if (status == 'r' || status == 'c' || status == 't') {
+          	$('.reviewButton').hide()
+          	$('.returnButton').hide()
+          }
+          if (status == 'p') {
+          	$('.reviewButton').hide()
+          }
+          $("#safetyTitle").html("安全狀況反映通報");
+          $("#dialogForm").removeClass("pressing_form");
+          $("#dialogForm").addClass("dialogform");
+          $("#dialogForm").find("input").removeAttr("disabled");
+          $("#dialogForm ").find("select").removeAttr("disabled");
+          $("#dialogForm ").find("textarea").removeAttr("disabled");
+          $("#returnReason").attr("disabled", "disabled");
+          // $('#proposed').removeAttr('required')
+          // $('#remark').removeAttr('required')
+          $(".sendButton").show();
+          $("#submit_p.sendButton").hide();
+          $(".tempButton").show();
+          $("#addFormSubmit").hide();
+          $("#editFormSubmit").show();
+          $("#pressingFormSubmit").hide();
+          $(".upload-content .file").show();
+          $(".delete-btn").show();
+          formSubmitHandler = function () {
+            updatesItem(item, dialogType === "編輯");
+          };
+        }
+        if (dialogType === "處理單" && item != "") {
+          look_detail(item, "處理單", review);
+          pressing_mr();
+          if (status == 'r' || status == 'c' || status == 't') {
+          	$('.reviewButton').hide()
+          	$('.returnButton').hide()
+          }
+          if (status == 'p') {
+          	$('.reviewButton').hide()
+          }
+          $("#safetyTitle").html("安全狀況反映通報_處理單");
+           $(".Title").html("安全狀況反映通報_處理單");
+          $("#dialogForm").addClass("pressing_form");
+          $("#dialogForm").removeClass("dialogform");
+          $("#dialogForm").find("input").attr("disabled", "disabled");
+          $("#dialogForm ").find("select").attr("disabled", "disabled");
+          $("#dialogForm ").find("textarea").attr("disabled", "disabled");
+          $("#pressing_form").find("input").attr("disabled", "disabled");
+          $("#pressing_form ").find("select").attr("disabled", "disabled");
+          $("#pressing_form ").find("textarea").attr("disabled", "disabled");
+          // $('#eventReason').removeAttr('required')
+          $("#proposed").removeAttr("disabled");
+          $("#remark").removeAttr("disabled");
+          $('input[name="unitId"]').removeAttr("disabled");
+          // $('#lossSolution').Attr('required')
+          $(".sendButton").show();
+          $("#submit_s.sendButton").hide();
+          $(".tempButton").hide();
+          $("#addFormSubmit").hide();
+          $("#editFormSubmit").hide();
+          $("#pressingFormSubmit").show();
+          $(".upload-content .file").hide();
+          $(".delete-btn").hide();
+          $(".chuli_none").hide();
+          
+          formSubmitHandler = function () {
+            updatesItem(item, dialogType === "處理單");
+          };
+          // $('#proposed').attr("required", "true");
+          // $('#lossSolution').attr("required", "true");
+        }
+        $("#tableDialog")
+          .dialog("option", "title", " 安全狀況反映通報_" + dialogType)
+          .dialog("open");
+      };
+
+      //新增默認資料
+      var review;
+      var datam;
+      $.ajax({
+        url: "/" + CONFIG.SYSTEM_NAME + "/unitData/api/getUnitChecker",
+        contentType: "application/json;charset=utf-8", // 因為上面是JSON
+        async: false,
+        cache: false,
+        type: "GET",
+        success: function (data, textStatus) {
+          if (data && data == "<script>alert('沒有權限')<\/script>") {
+            //showAlert('沒有權限','沒有權限','')
+            showAlert("沒有權限", "沒有權限", "");
+          } else {
+            review = data;
+            console.log( review);
+          }
+        },
+        error: function (data, textStatus, errorThrown) {
+          console.log(data);
+        },
+      });
+      function removeEntryByRocId(obj, rocIdToRemove) {
+        for (let key in obj) {
+          if (obj.hasOwnProperty(key) && obj[key].rocId === rocIdToRemove) {
+            delete obj[key];
+            break; 
+          }
+        }
+      }
+      var getInitData
+	  insert_mr();
+      function insert_mr() {
+        let id = 0;
+        $("#id").val(id);
+        $.ajax({
+          data: JSON.stringify({ safetyNo: "" }),
+          url: "/" + CONFIG.SYSTEM_NAME + "/safetyNotification/api/getInitData",
+          contentType: "application/json;charset=utf-8", // 因為上面是JSON
+          async: false,
+          cache: false,
+          type: "POST",
+          success: function (data, textStatus) {
+            if (data && data == "<script>alert('沒有權限')<\/script>") {
+              //showAlert('沒有權限','沒有權限','')
+              showAlert("沒有權限", "沒有權限", "");
+            } else {
+              datam = data;
+getInitData=data
+              initPage(datam, review);
+            }
+          },
+          error: function (data, textStatus, errorThrown) {
+            console.log(data);
+          },
+        });
+      }
+      //處理單默認資料
+      function pressing_mr() {
+        let id = 0;
+        $("#id").val(id);
+        $.ajax({
+         
+          url: "/" + CONFIG.SYSTEM_NAME + "/safetyNotification/api/headUnitList",
+          contentType: "application/json;charset=utf-8", // 因為上面是JSON
+          async: false,
+          cache: false,
+          type: "GET",
+          success: function (data, textStatus) {
+            if (data && data.code == "5000") {
+              showAlert("沒有權限", "沒有權限", "");
+            } else {
+              pressinginitPage(data);
+            }
+          },
+          error: function (data, textStatus, errorThrown) {
+            console.log(data);
+          },
+        });
+      }
+      //查看資料帶入
+      var setting_modal
+      function look_detail(safetyId, seting, review) {
+        var safetyId = safetyId;
+        setting_modal=seting
+        console.log(safetyId);
+        $.ajax({
+          url:
+            "/" +
+            CONFIG.SYSTEM_NAME +
+            "/safetyNotification/api/get?safetyId=" + safetyId,
+          contentType: "application/json;charset=utf-8", // 因為上面是JSON
+          async: false,
+          cache: false,
+          type: "get",
+          success: function (data, textStatus) {
+            if (data && data.code == 5000) {
+              showAlert("沒有權限", "沒有權限", "");
+            }
+            if (data && data == 4000) {
+              alert("您登入已逾時或未登入，請重新登入！");
+              location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+            } else {
+              var lookdata = data;
+              console.log(data);
+              $.ajax({
+                data: JSON.stringify({ safetyNo: "" }),
+                url:
+                  "/" +
+                  CONFIG.SYSTEM_NAME +
+                  "/safetyNotification/api/getInitData",
+                contentType: "application/json;charset=utf-8", // 因為上面是JSON
+                async: false,
+                cache: false,
+                type: "POST",
+                success: function (data, textStatus) {
+                  if (data && data.code == 5000) {
+                    showAlert("沒有權限", "沒有權限", "");
+                  } else {
+                    lookPage(lookdata, data, review);
+                    $.toast({
+                      heading: "",
+                      text: "正在載入通報內容請稍候……",
+                      icon: "success",
+                      position: "toast-top-center",
+                      hideAfter: 6000,
+                    });
+                    if (seting == "處理單") {
+                      createPrintTable1(lookdata, data, review);
+                    } else {
+                      createPrintTable(lookdata, data, review);
+                    }
+                  }
+                },
+                error: function (data, textStatus, errorThrown) {
+                  console.log(data);
+                },
+              });
+            }
+          },
+          error: function (data, textStatus, errorThrown) {
+            console.log(data);
+          },
+        });
+      }
+
+      function validateForm(ID, successCallback, exclude = "") {
+  const $elements = $(`${ID} td select, ${ID} td input[type="text"], ${ID} td input[type="checkbox"], ${ID} td textarea`).not(exclude);
+  let allFilled = true;
+
+  // 用於儲存已檢查的複選框組別
+  const checkedGroups = new Set();
+
+  $elements.each(function() {
+    const $el = $(this);
+    if ($el.is(':disabled')) return;
+ if ($el.is(':hidden')) return;
+    // 處理複選框群組驗證
+    // if ($el.is('input[type="checkbox"]')) {
+    //   const groupName = $el.attr('name'); // 假設同組複選框有相同 name
+    //   if (!groupName || checkedGroups.has(groupName)) return;
+
+    //   // 檢查同組是否至少有一個被選中
+    //   const hasChecked = $(`input[name="${groupName}"]:checked`).not(exclude).length > 0;
+    //   if (!hasChecked) {
+    //     allFilled = false;
+    //     return false; // 中止遍歷
+    //   }
+    //   checkedGroups.add(groupName);
+    // } 
+    // 驗證其他類型元素
+    else if ($.trim($el.val()) === '') {
+      allFilled = false;
+      return false;
+    }
+  });
+
+  allFilled ? successCallback() : showAlert('提示', '請完整填寫或選擇所有欄位！', '');
+}
+      //新增送出
+
+      $("#addFormSubmit").click(function () {
+        validateForm('#dialogForm', addFormSubmit, '#upload,#returnReason,#status,#id');
+      });
+      function addFormSubmit() {
+        if ($("#reviewId").val() == "" || $("#reviewId").val() == null) {
+          showAlert("提示", "請選擇審核人員！", "");
+        }
+        var imgBaseFile = [];
+        console.log(oldimgurl);
+        console.log(imgFile);
+        if (oldimgurl.length > 0) {
+          for (var a = 0; a < oldimgurl.length; a++) {
+            imgBaseFile.push(oldimgurl[a]);
+          }
+        }
+        const _newVal = $("#dialogForm *[name='lossSelect']:checked").val();
+        console.log(_newVal);
+        if ($("#eventTime").val() == "") {
+          showAlert("提示", "請填寫事件發生時間！", "");
+        }else if (
+          _newVal === "有" &&
+          $("#dialogForm *[name='lossMoney']").val() <= 0
+        ) {
+          // alert('請輸入損失金額！')
+          showAlert("提示", "請輸入損失金額！", "");
+          return false;
+        } else {
+          function readNextFile(index) {
+            if (index >= imgFile.length) {
+              // 所有檔案讀取完成，執行送出邏輯
+              var updatingItem = {
+                safetyNo: $("#safetyNo").text(),
+               safetyWorkMan:getInitData.workMan,
+                safetyName:getInitData.loginUser.name,
+                eventContent: $("#eventContent").val(),
+                status: $("#status").val(),
+                reviewId: $("#reviewId").val(),
+                eventTime: $("#eventTime").val(),
+                unitTel: $("#unitTel").val(),
+                unitTelOth: $("#unitTelOth").val(),
+                businessStatus: $("#businessStatus").val(),
+                businessStatusStatement: $("#businessStatusStatement").val(),
+                needAssistance: $("#needAssistance").val(),
+                needAssistanceStatement: $("#needAssistanceStatement").val(),
+                eventReason: $("#eventReason").val(),
+                lossSolution: $("#lossSolution").val(),
+                lossSelect: $("input[name='lossSelect']:checked").val(),
+                lossMoney: $("#lossMoney").val().split(",").join(""),
+                safetyType: $("#safetyType").val(),
+                safetyLevel: $("#safetyLevel").val(),
+                safetySource: $("#safetySource").val(),
+                safetyTime: $("#safetyTime").html(),
+                images: imgBaseFile,
+              };
+
+              console.log(JSON.stringify(updatingItem));
+
+              return $.ajax({
+                url:
+                  "/" + CONFIG.SYSTEM_NAME + "/safetyNotification/api/saveData",
+                data: JSON.stringify(updatingItem),
+                contentType: "application/json;charset=utf-8", // 因為上面是JSON
+                type: "POST",
+                dataType: "json",
+                success: function (data, textStatus) {
+                  if (data && data.code == 5000) {
+                    showAlert("沒有權限", "沒有權限", "");
+                  } else {
+                    if (data.msg == "success") {
+                      showAlert(
+                        "新增成功",
+                        "安全狀況反映通報新增成功",
+                        bodyHref(
+                          "/content/situation/Safetysituationreport.html"
+                        )
+                      );
+                    } else if (data.errorMsg) {
+                      showAlert("提示", data.errorMsg, "");
+                    } else if (data.code == 7000) {
+                      console.log(data);
+                      showAlert(
+                        "新增失敗",
+                        "安全狀況反映通報新增失敗，您輸入的內容字數超過限制！",
+                        ""
+                      );
+                    }
+                  }
+                },
+                error: function (data, textStatus, errorThrown) {
+                  console.log(data);
+                  showAlert("新增失敗", "安全狀況反映通報新增失敗", "");
+                },
+              });
+            }
+
+            var file = imgFile[index];
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function (e) {
+              var event = this.result;
+              imgBaseFile.push(event);
+              readNextFile(index + 1); // 讀取下一個檔案
+            };
+          }
+          // 從第一個檔案開始讀取
+          readNextFile(0);
+        }
+      }
+      //修改送出
+      $("#editFormSubmit").click(function () {
+       if ($("#reviewId").val() == "" || $("#reviewId").val() == null) {
+          showAlert("提示", "請選擇審核人員！", "");
+        }else{
+          editFormSubmit();
+        }
+      });
+
+      function editFormSubmit() {
+      
+        var imgBaseFile = [];
+        console.log(oldimgurl);
+        console.log(imgFile);
+        if (oldimgurl.length > 0) {
+          for (var a = 0; a < oldimgurl.length; a++) {
+            imgBaseFile.push(oldimgurl[a]);
+          }
+        }
+        function readNextFile(index) {
+          if (index >= imgFile.length) {
+            // 所有檔案讀取完成，執行送出邏輯
+            var updatingItem = {
+              safetyId: $("#safetyId").val(),
+              safetyNo: $("#safetyNo").text(),
+              eventContent: $("#eventContent").val(),
+              status: $("#status").val(),
+              reviewId: $("#reviewId").val(),
+              eventTime: $("#eventTime").val(),
+              unitTel: $("#unitTel").val(),
+              unitTelOth: $("#unitTelOth").val(),
+              businessStatus: $("#businessStatus").val(),
+              businessStatusStatement: $("#businessStatusStatement").val(),
+              needAssistance: $("#needAssistance").val(),
+              needAssistanceStatement: $("#needAssistanceStatement").val(),
+              eventReason: $("#eventReason").val(),
+              lossSolution: $("#lossSolution").val(),
+              lossSelect: $("input[name='lossSelect']:checked").val(),
+              lossMoney: $("#lossMoney").val().split(",").join(""),
+              safetyType: $("#safetyType").val(),
+              safetyLevel: $("#safetyLevel").val(),
+              safetySource: $("#safetySource").val(),
+              safetyTime: $("#safetyTime").html(),
+              images: imgBaseFile,
+            };
+
+            console.log(JSON.stringify(updatingItem));
+
+            return $.ajax({
+              url:
+                "/" + CONFIG.SYSTEM_NAME + "/safetyNotification/api/saveData",
+              data: JSON.stringify(updatingItem),
+              contentType: "application/json;charset=utf-8",
+              type: "POST",
+              dataType: "json",
+              success: function (data, textStatus) {
+                console.log(data);
+                if (data && data.code == 5000) {
+                  showAlert("沒有權限", "沒有權限", "");
+                } else {
+                  if (data.code == 0) {
+                    updatingItem.id = data.id;
+
+                    showAlert(
+                      "更新成功",
+                      "安全狀況反映通報更新成功",
+                      bodyHref("/content/situation/Safetysituationreport.html")
+                    );
+                  } else if (data.errorMsg) {
+                    showAlert("提示", data.errorMsg, "");
+                  } else if (data.code == 7000) {
+                    showAlert(
+                      "更新失敗",
+                      "安全狀況反映通報更新失敗，您輸入的內容字數超過限制！",
+                      ""
+                    );
+                  }
+                }
+              },
+              error: function (data, textStatus, errorThrown) {
+                console.log(data);
+                showAlert("更新失敗", "安全狀況反映通報更新失敗", "");
+                //alert('更新失敗' + data + ',' + JSON.stringify(updatingItem))
+              },
+            });
+          }
+
+          var file = imgFile[index];
+          var reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onload = function (e) {
+            var event = this.result;
+            imgBaseFile.push(event);
+            readNextFile(index + 1); // 讀取下一個檔案
+          };
+        }
+
+        // 從第一個檔案開始讀取
+        readNextFile(0);
+      }
+
+      //處理單送出
+      $("#pressingFormSubmit").click(function () {
+        pressingFormSubmit();
+      });
+      function pressingFormSubmit() {
+        var selected = [];
+
+        $("input[name=unitId]:checked").each(function (i) {
+          selected[i] = $(this).val();
+        });
+        arrToStr = selected.toString();
+        console.log(arrToStr);
+        var pressingItem = {
+          safetyId: $("#safetyId").val(),
+          safetyNo: $("#safetyNo").text(),
+          safetyTime: $("#receiveTime").html(),
+          unitName: $("#unitName").html(),
+          unitTel: $("#unitTel").val(),
+          unitTelOth: $("#unitTelOth").val(),
+          eventTime: $("#eventTime_b").html(),
+          safetyWorkMan: $("#safetyWorkMan").html(),
+          safetyName: $("#safetyName").html(),
+          processPosition: $("#processPosition").html(),
+          processName: $("#pressingName").html(),
+          safetyReason: $("#safetyReason").val(),
+          safetyType: $("#safetyType").val(),
+          safetyLevel: $("#safetyLevel").val(),
+          safetySource: $("#safetySource").val(),
+          proposed: $("#proposed").val(),
+          remark: $("#remark").val(),
+          unitTogether: arrToStr,
+          reviewId: $("#reviewId").val(),
+        };
+        console.log(JSON.stringify(pressingItem));
+        $.ajax({
+          url: "/" + CONFIG.SYSTEM_NAME + "/safetyNotification/api/saveProcess",
+          data: JSON.stringify(pressingItem),
+          contentType: "application/json;charset=utf-8", // 因為上面是JSON
+          type: "POST",
+          dataType: "json",
+          success: function (data, textStatus) {
+            console.log(data);
+            if (data && data.code == "5000") {
+              showAlert("沒有權限", "沒有權限", "");
+            } else {
+              if (data.msg == "success") {
+                showAlert(
+                  "安全通報處理",
+                  "安全狀況反映通報作業處理成功",
+                  bodyHref("/content/situation/Safetysituationreport.html")
+                );
+                $.toast({
+                  heading: "",
+                  text: "安全通報處理" + textStatus,
+                  icon: "success",
+                  position: "toast-top-center",
+                  hideAfter: 6000,
+                });
+              } else if (data.errorMsg) {
+                showAlert("安全通報處理", data.errorMsg, "");
+              }
+            }
+          },
+          error: function (data, textStatus, errorThrown) {
+            console.log(data);
+          },
+        });
+      }
+      //表單驗證
+      $("#dialogForm").validate({
+        //錯誤訊息元素預設為label改成p會換行
+        errorElement: "p",
+        rules: {
+          eventTime: { required: false },
+          eventContent: { required: false },
+          eventReason: { required: false },
+        },
+        messages: {
+          // eventTime:{
+          // 	  required: "請輸入公告時間"
+          // 	},
+          // 	eventContent:{
+          // 	  required: "請輸入公告名稱",
+          // 	  minlength:"至少2個字元",
+          // 	  maxlength:"最多200個字元"
+          // 	},
+          // 	eventReason:{
+          // 	  required: "請選擇檔案，檔案只能是PDF檔，最大不得超過10MB"
+          // 	}
+        },
+        submitHandler: function () {
+          formSubmitHandler();
+        },
+      });
+      //新增資料（正常）
+      var saveItem = function (item, isNew) {
+        console.log($("#businessStatusStatement").val() + "ddsssdsdsd");
+        $.extend(item, {
+          safetyNo: $("#safetyNo").text(),
+          eventContent: $("#eventContent").val(),
+          status: $("#status").val(),
+          reviewId: $("#reviewId").val(),
+          eventTime: $("#eventTime").val(),
+          businessStatus: $("#businessStatus").val(),
+          businessStatusStatement: $("#businessStatusStatement").val(),
+          needAssistance: $("#needAssistance").val(),
+          needAssistanceStatement: $("#needAssistanceStatement").val(),
+          eventReason: $("#eventReason").val(),
+          lossSolution: $("#lossSolution").val(),
+          lossSelect: $("input[name='lossSelect']:checked").val(),
+          lossMoney: $("#lossMoney").val(),
+          safetyType: $("#safetyType").val(),
+          safetyLevel: $("#safetyLevel").val(),
+          safetySource: $("#safetySource").val(),
+          images: imgSrc,
+        });
+        $("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", item);
+
+        $("#tableDialog").dialog("close");
+        bodyHref("/content/situation/Safetysituationreport.html");
+      };
+      //原修改資料（取值 有問題，寫在了更新裡）
+      var updatesItem = function (item, isNew) {
+        $.extend(item, {
+          safetyId: $("#safetyId").val(),
+          safetyNo: $("#safetyNo").text(),
+          eventContent: $("#eventContent").val(),
+          status: $("#status").val(),
+          reviewId: $("#reviewId").val(),
+          eventTime: $("#eventTime").val(),
+          businessStatus: $("#businessStatus").val(),
+          businessStatusStatement: $("#businessStatusStatement").val(),
+          needAssistance: $("#needAssistance").val(),
+          needAssistanceStatement: $("#needAssistanceStatement").val(),
+          eventReason: $("#eventReason").val(),
+          lossSolution: $("#lossSolution").val(),
+          lossSelect: $("input[name='lossSelect']:checked").val(),
+          lossMoney: $("#lossMoney").val(),
+          safetyType: $("#safetyType").val(),
+          safetyLevel: $("#safetyLevel").val(),
+          safetySource: $("#safetySource").val(),
+          safetyTime: $("#safetyTime").html(),
+        });
+        $("#jsGrid").jsGrid(isNew ? "updateItem" : "insertItem", isNew);
+
+        $("#tableDialog").dialog("close");
+        bodyHref("/content/situation/Safetysituationreport.html");
+      };
+
+      //審核通報
+      $("#checkBtn").click(function () {
+        checkBtnsubmit();
+      });
+      function checkBtnsubmit() {
+        var id = parseFloat($("#safetyId").val());
+        var data = { safetyId: id };
+        console.log(JSON.stringify(data));
+        return $.ajax({
+          url: "/" + CONFIG.SYSTEM_NAME + "/safetyNotification/api/saveReview",
+          data: JSON.stringify(data),
+          contentType: "application/json;charset=utf-8", // 因為上面是JSON
+          type: "POST",
+          dataType: "json",
+          success: function (data, textStatus) {
+            bodyHref("/content/situation/Safetysituationreport.html");
+            if (data && data.code == "5000") {
+              showAlert("沒有權限", "沒有權限", "");
+            } else {
+              if (data.msg == "success") {
+                showAlert(
+                  "審核通報成功",
+                  "安全狀況反映通報作業審核通報成功",
+                  ""
+                );
+                $.toast({
+                  heading: "",
+                  text: "審核通報成功" + textStatus,
+                  icon: "success",
+                  position: "toast-top-center",
+                  hideAfter: 6000,
+                });
+              } else if (data.errorMsg) {
+                alert(data.errorMsg);
+              }
+            }
+          },
+          error: function (data, textStatus, errorThrown) {
+            console.log(data);
+            alert("更新失敗" + data + "," + JSON.stringify(data));
+          },
+        });
+      }
+      //通報退件
+      $("#return").click(function () {
+        $("#dialog-return").addClass("shows");
+        $("#dialog-return").removeClass("hides");
+        $("#returnReason1").removeAttr("disabled");
+      });
+      $("#returnFormSubmit").click(function () {
+        cancleBtnsubmit();
+      });
+      $("#returncancel").click(function () {
+        $("#dialog-return").addClass("hides");
+        $("#dialog-return").removeClass("shows");
+      });
+      function cancleBtnsubmit() {
+        if ($("#returnReason1").val() !== "") {
+          var id = parseFloat($("#safetyId").val());
+          var data = { safetyId: id, returnReason: $("#returnReason1").val() };
+          console.log(JSON.stringify(data));
+          return $.ajax({
+            url:
+              "/" + CONFIG.SYSTEM_NAME + "/safetyNotification/api/rejectReview",
+            data: JSON.stringify(data),
+            contentType: "application/json;charset=utf-8", // 因為上面是JSON
+            type: "POST",
+            dataType: "json",
+            success: function (data, textStatus) {
+              if (data && data.code == "5000") {
+                showAlert("沒有權限", "沒有權限", "");
+              } else {
+                if (data.code == 0) {
+                  showAlert(
+                    "拒絕通報成功",
+                    "安全狀況反映通報作業拒絕通報成功",
+                    bodyHref("/content/situation/Safetysituationreport.html")
+                  );
+                  $.toast({
+                    heading: "",
+                    text: "拒絕通報成功" + textStatus,
+                    icon: "success",
+                    position: "toast-top-center",
+                    hideAfter: 6000,
+                  });
+                } else if (data.errorMsg) {
+                  alert(data.errorMsg);
+                }
+              }
+            },
+            error: function (data, textStatus, errorThrown) {
+              console.log(data);
+              alert("拒絕通報失敗" + data + "," + JSON.stringify(updatingItem));
+            },
+          });
+        } else {
+          showAlert("提示", "請填寫退件原因", "");
+        }
+      }
+      //默認資料帶入
+      function findRocIdByJobLevel(obj, jobLevelToFind) {
+        for (let key in obj) {
+          if (obj.hasOwnProperty(key) && obj[key].jobLevel === jobLevelToFind) {
+            return obj[key].rocId;
+          }
+        }
+        return null; // 如果没有找到匹配的 jobLevel，返回 null
+      }
+
+      function initPage(data, review) {
+        tempData = data;
+        var review_data=review;
+        console.log(data);
+        console.log(review_data);
+        removeEntryByRocId(review_data, data.loginUser.rocId);
+        $("#eventTime").val("");
+        //類別
+        createSelect(
+          "safetyType",
+          data.safetyNotificationTypeList,
+          "cfgKey",
+          "cfgValue"
+        );
+        //等級
+        createSelect(
+          "safetyLevel",
+          data.safetyNotificationLevelList,
+          "cfgKey",
+          "cfgValue"
+        );
+        //來源
+        createSelect(
+          "safetySource",
+          data.safetyNotificationSourceList,
+          "cfgKey",
+          "cfgValue"
+        );
+        //營業狀況
+        createSelect(
+          "businessStatus",
+          data.safetyNotificationBusinessList,
+          "cfgKey",
+          "cfgValue"
+        );
+        //須總行協助
+        createSelect(
+          "needAssistance",
+          data.safetyNotificationAssistanceList,
+          "cfgKey",
+          "cfgValue"
+        );
+        //單位名稱
+        //createSelect("safetyLevel", data.unitList, "unitId", "unitName");
+        //審核人員
+        createSelect("reviewId", review_data, "rocId", "name");
+
+        //長影響類別
+        //createCheckBox("effectTypeDiv", "effectType", data.eventEffectTypeList, "cfgKey", "cfgValue");
+        //createTable(data);
+        //setCreateId(data.loginUser.rocId);
+        //單位名稱
+        $("#unitName").html(data.unit.unitName);
+        //職位
+        $("#safetyWorkMan").html(data.workMan);
+        //姓名
+        $("#safetyName").html(data.loginUser.name);
+        //單位電話
+        $("#unitTel").val(data.unit.tel);
+        //單位電話分機
+        $("#unitTelOth").val(data.unit.unitTelOth);
+        //通報編號
+        $("#safetyNo").html(data.safetyNo);
+        //通報時間
+        $("#safetyTime").html(data.safetyTime);
+        //$("#reviewId option[value='" + data.loginUser.rocId + "']").remove();
+      }
+
+      //處理單資料帶入
+      function pressinginitPage(data) {
+        tempData = data;
+		data=data.data
+        console.log(data);
+        //單位名
+        // createSelect("SunitName", data.unitList, "unitId", "unitName", "")
+        createCheckBox("SunitName", "unitId", data, "unitName", "");
+        //createCheckBox("effectTypeTd", "effectType", data.eventEffectTypeList, "cfgKey", "cfgValue");
+        //職位
+        $("#processPosition").html(datam.loginUser.name);
+        //職位pressingTel
+        $("#pressingName").html(datam.unit.unitName);
+        $("#pressingTel").html(datam.unit.tel);
+        $("#processName").html(datam.unit.unitName);
+        //通報時間
+        $("#receiveTime").html(datam.safetyTime);
+        //單位名
+        createSelect("SunitName_p", data, "unitId", "unitName");
+        //職位
+        $("#processPosition_p").html(datam.workMan);
+        //職位pressingTel
+        $("#pressingName_p").html(datam.unit.unitName);
+        $("#pressingTel_p").html(datam.unit.tel);
+        $("#processName_p").html(datam.unit.unitName);
+        //通報時間
+        $("#receiveTime_p").html(data.safetyTime);
+      }
+      //查看資料帶入
+      function lookPage(data, mrdata, review) {
+        var mrdata = mrdata;
+        var data = data.data;
+        console.log(data);
+        console.log(mrdata);
+        // removeEntryByRocId(review, mrdata.loginUser.rocId);
+        console.log(review);
+		if(data.status==='r'){
+			$('#return').hide()
+		}
+		if(data.status==='c'){
+			$('#checkBtn').hide()
+		}
+        //類別
+        $(" #needAssistance").html("");
+        $(" #businessStatus").html("");
+        $("#safetyType").html("");
+        $(" #safetySource").html("");
+        $(" #safetyLevel").html("");
+        $("#processPosition").html(
+          data.safetyNotificationDetail.processPosition
+        );
+        $("#processName").html(data.safetyNotificationDetail.processName);
+        $("#eventTime").val(data.safetyNotificationDetail.eventTime);
+        $("#eventTime_b").html(data.safetyNotificationDetail.eventTime);
+        $("#safetyType").html(
+          eachSelect(
+            "safetyType",
+            mrdata.safetyNotificationTypeList,
+            "cfgKey",
+            "cfgValue",
+            "",
+            data.safetyNotificationDetail.safetyType
+          )
+        );
+        $(" #safetySource").html(
+          eachSelect(
+            "safetySource",
+            mrdata.safetyNotificationSourceList,
+            "cfgKey",
+            "cfgValue",
+            "",
+            data.safetyNotificationDetail.safetySource
+          )
+        );
+        $(" #safetyLevel").html(
+          eachSelect(
+            "safetyLevel",
+            mrdata.safetyNotificationLevelList,
+            "cfgKey",
+            "cfgValue",
+            "",
+            data.safetyNotificationDetail.safetyLevel
+          )
+        );
+        $(" #eventContent").val(data.eventContent);
+        $(" #eventReason").val(data.safetyNotificationDetail.eventReason);
+        $(" #lossSolution").val(data.safetyNotificationDetail.lossSolution);
+        $(" #returnReason").val(data.safetyNotificationDetail.returnReason);
+        $(" #proposed").val(data.safetyNotificationDetail.proposed);
+        $(" #remark").val(data.safetyNotificationDetail.remark);
+        if (data.safetyNotificationDetail.lossSelect == "有") {
+          $("#isSafe_0").prop("checked", "checked");
+          $("#isSafe_1").removeAttr("checked");
+        } else {
+          $("#isSafe_1").prop("checked", "checked");
+          $("#isSafe_0").removeAttr("checked");
+        }
+
+        $(" #lossMoney").val(
+          commaSeparateNumber(data.safetyNotificationDetail.lossMoney)
+        );
+        $(" #businessStatus").html(
+          eachSelect(
+            "businessStatus",
+            mrdata.safetyNotificationBusinessList,
+            "cfgKey",
+            "cfgValue",
+            "",
+            data.safetyNotificationDetail.businessStatus
+          )
+        );
+        $(" #businessStatusStatement").html(
+          data.safetyNotificationDetail.businessStatusStatement
+        );
+        $(" #needAssistance").html(
+          eachSelect(
+            "needAssistance",
+            mrdata.safetyNotificationAssistanceList,
+            "cfgKey",
+            "cfgValue",
+            "",
+            data.safetyNotificationDetail.needAssistance
+          )
+        );
+        $(" #needAssistanceStatement").html(
+          data.safetyNotificationDetail.needAssistanceStatement
+        );
+        //單位名稱
+        //createSelect("safetyLevel", data.unitList, "unitId", "unitName");
+        //審核人員
+		// $(" #reviewId").parent().html(
+		// 	data.reviewName
+    //     );
+    // $("#reviewId").parent().html('');
+    //     console.log(review);
+    //     createSelect("reviewId", review, "rocId", "name", "", data.reviewName);
+
+if(setting_modal=='查看' || setting_modal=='處理單'){
+  $(" #reviewId").parent().html(
+			data.reviewName
+        );
+}else{
+  if (data.reviewId != "" || data.reviewId != undefined) {
+          $('*[name="reviewId"]').val(data.reviewId);
+        }
+}
+
+        //長影響類別
+        //createCheckBox("effectTypeDiv", "effectType", data.eventEffectTypeList, "cfgKey", "cfgValue");
+        //createTable(data);
+        //setCreateId(data.loginUser.rocId);
+        //單位名稱
+        $(" #unitName").html(data.unitName);
+        console.log(data.safetyNotificationDetail.proposed);
+        // if (
+        //   data.safetyNotificationDetail.proposed != undefined ||
+        //   data.safetyNotificationDetail.rmark != undefined ||
+        //   data.safetyNotificationDetail.unitTogether != undefined
+        // ) {
+        //   $(".pressing_tr").show();
+        //   $(" #SunitName").html(data.safetyNotificationDetail.unitTogether);
+        //   $(" #proposed").html(data.safetyNotificationDetail.proposed);
+        //   $(" #rmark").html(data.safetyNotificationDetail.rmark);
+        // }
+        if (setting_modal=='處理單') {
+          $(".pressing_tr").show();
+          $(" #SunitName").html(data.safetyNotificationDetail.unitTogether);
+          $(" #proposed").html(data.safetyNotificationDetail.proposed);
+          $(" #rmark").html(data.safetyNotificationDetail.rmark);
+        }
+        //$(" #sunitName").html(eachCheckbox("sunitName", data.unitList, "unitId", "unitName", "", data.safetyNotificationDetail.sunitName));
+        //職位
+        $(" #safetyWorkMan").html(data.jobName);
+        //姓名
+        $(" #safetyName").html(data.safetyNotificationDetail.safetyName);
+        //單位電話
+        $("#unitTel").val(data.safetyNotificationDetail.unitTel);
+        //單位電話
+        $(" #unitTelOth").val(data.safetyNotificationDetail.unitTelOth);
+        //通報編號
+        $(" #safetyNo").html(data.safetyNo);
+        $(" #safetyId").val(data.id);
+        $(" #id").val(data.id);
+        //通報時間
+        $(" #safetyTime").html(data.safetyTime);
+        $(" #processTime").html(data.processTime);
+        var imgdata = data.safetyNotificationDetail.imgPath;
+        var imgurl = data.safetyNotificationDetail.images;
+        if (imgdata.length > 0) {
+          var imgArr = imgdata.split(",");
+          console.log(imgArr);
+          //var imgArro = imgdata.split(",").split('.').pop().trim();
+          eachImgContent(".sys_imglist .content-img-list", imgArr, imgurl);
+          for (var a = 0; a < imgArr.length; a++) {
+            oldimgurl.push(imgArr[a]);
+          }
+        }
+      }
+
+      //圖片顯示
+      function eachImgContent(obj, imgdata, imgurl) {
+        $(obj).html("");
+        for (var a = 0; a < imgdata.length; a++) {
+          var oldBox = $(obj).html();
+          $(obj).html(
+            oldBox +
+              '<li class="content-img-list-item"><img data-zoom="' +
+              imgurl[a] +
+              '" src="' +
+              imgurl[a].replace(
+                "." + imgurl[a].split(".").pop().trim(),
+                "_s." + imgurl[a].split(".").pop().trim()
+              ) +
+              '" alt="">' +
+              '<div class="hide"><a index="' +
+              a +
+              '" title="' +
+              imgdata[a] +
+              '" class="delete-btn"><i class="iconfont icon-shanchu"></i></a>' +
+              '<a index="' +
+              a +
+              '" class="big-btn" type="button" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="iconfont icon-iczoomout"></i></a></div></li>'
+          );
+        }
+      }
+      // function eachImgContent(obj, imgdata, imgurl) {
+      // 	$(obj).html("");
+      // 	for (var a = 0; a < imgdata.length; a++) {
+      // 		var oldBox = $(obj).html();
+      // 		$(obj).html(oldBox + '<li class="content-img-list-item"><img data-zoom="' + imgurl[a] + '" src="' + imgurl[a].replace("." + imgurl[a].split('.').pop().trim(), "_s." + imgurl[a].split('.').pop().trim()) + '" alt="">' +
+      // 			'<div class="hide"><a index="' + a + '" title="' + imgdata[a] + '" class="delete-btn"><i class="iconfont icon-shanchu"></i></a>' +
+      // 			'<a index="' + a + '" class="big-btn" type="button" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="iconfont icon-iczoomout"></i></a></div></li>');
+      // 	}
+
+      // }
+      function eachImgContentp(obj, imgdata, imgurl) {
+        $(obj).html("");
+        for (var a = 0; a < imgdata.length; a++) {
+          var oldBox = $(obj).html();
+          $(obj).html(
+            oldBox +
+              '<li class="content-img-list-item" style="wdith:150px;height:150px; display: inline-block; overflow:hidden;"><img  src="' +
+              imgurl[a] +
+              '" alt="" style="wdith:150px;height:150px;"></li>'
+          );
+        }
+      }
+      //select option清理重複
+      function selectremove() {
+        //清理select裡的option類別
+        $(" #needAssistance").html("");
+        $(" #businessStatus").html("");
+        $("#safetyType").html("");
+        $(" #safetySource").html("");
+        $(" #safetyLevel").html("");
+        $(" #SunitName").html("");
+      }
+      //select option
+      function createSelect(id, data, key, val, eventKey) {
+        $.each(data, function (index, item) {
+          $("#" + id).append(
+            $("<option>")
+              .val(item[key])
+              .text(eventKey ? item[eventKey] + "_" + item[val] : item[val])
+          );
+          $("#" + id + "1").append(
+            $("<a>").html(item[val]).addClass("dropdown-item")
+          );
+        });
+      }
+      //select option,有選中值的
+      function eachSelect(id, data, key, val, eventKey, lookval) {
+        $.each(data, function (index, item) {
+          $("#" + id).append(
+            $("<option>")
+              .val(item[key])
+              .text(eventKey ? item[eventKey] + "_" + item[val] : item[val])
+          );
+          $("#" + id + " option[value='" + lookval + "']").attr(
+            "selected",
+            "selected"
+          );
+          $("#" + id + "1").append(
+            $("<a>").html(item[val]).addClass("dropdown-item")
+          );
+        });
+      }
+      //checboxk,有選中值的
+
+      function eachCheckbox(id, data, key, val, eventKey, lookval) {
+        console.log(id, data, key, val, eventKey, lookval);
+        $.each(data, function (index, item) {
+          $("#" + id).append(
+            $("<option>")
+              .val(item[key])
+              .text(eventKey ? item[eventKey] + "_" + item[val] : item[val])
+          );
+          $("#" + id + " option[value='" + lookval + "']").attr(
+            "selected",
+            "selected"
+          );
+          $("#" + id + "1").append(
+            $("<a>").html(item[val]).addClass("dropdown-item")
+          );
+        });
+      }
+      // $(" #SunitName").html(createCheckBox("SunitName", "unitId", mrdata.unitList, "unitName", "cfgValue"));
+      function createCheckBox(appenId, id, data, key, val) {
+        var val = val.split(",");
+        $("#" + appenId).html("");
+        $.each(data, function (index, item) {
+          let template = $("#template_checkbox").clone();
+          template.removeAttr("style");
+          template.removeAttr("id");
+          let template_html = template
+            .html()
+            .replace(/@INPUT_ID@/g, item[id])
+            .replace(/@INPUT_NAME@/g, id)
+            .replace(/@INPUT_VALUE@/g, item[key])
+            .replace(/@LABEL@/g, item[key]);
+          template.html(template_html);
+          $("#" + appenId).append(template);
+        });
+      }
+      function createRadioBox(appenId, id, data, key, val, label) {
+        $.each(data, function (index, item) {
+          let template = $("#template_radiobox").clone();
+          template.removeAttr("style");
+          template.removeAttr("id");
+          let template_html = template
+            .html()
+            .replace(/@INPUT_ID@/g, item[key])
+            .replace(/@INPUT_NAME@/g, id)
+            .replace(/@INPUT_VALUE@/g, item[val])
+            .replace(/@LABEL@/g, item[label]);
+          template.html(template_html);
+          $("#" + appenId).append(template);
+        });
+      }
+      // $("#printBtn").click(function () {
+      // 	printByDiv(document.getElementById("printDiv"));
+      // });
+      // $("#printBtn1").click(function () {
+      // 	printByDiv(document.getElementById("printpress"));
+      // });
+
+      $("#downloadExcelBtn").click(function () {
+        downloadExcel();
+      });
+
+      function printByDiv(printpage) {
+        var iframe = document.createElement("IFRAME");
+        iframe.setAttribute(
+          "style",
+          "position:absolute;width:0px;height:0px;left:-500px;top:-500px;"
+        );
+        document.body.appendChild(iframe);
+        iframe.contentWindow.document.write(printpage.innerHTML);
+        iframe.contentWindow.document.close(); //important!
+        iframe.contentWindow.focus(); //IE fix
+        iframe.contentWindow.print();
+        iframe.parentNode.removeChild(iframe);
+      }
+
+      function downloadExcel() {
+        var newForm = jQuery("<form>", {
+          action: "/" + CONFIG.SYSTEM_NAME + "/announcement/api/downloadExcel",
+          method: "post",
+          target: "_blank",
+        }).append(
+          jQuery("<input>", {
+            name: "_csrf",
+            value: $.cookie("XSRF-TOKEN"),
+            type: "text",
+          })
+        );
+        var iframe = document.createElement("IFRAME");
+        iframe.setAttribute(
+          "style",
+          "position:absolute;width:0px;height:0px;left:-500px;top:-500px;"
+        );
+        $(iframe).append(newForm);
+        document.body.appendChild(iframe);
+        newForm.submit();
+        iframe.parentNode.removeChild(iframe);
+      }
+
+      function createPrintTable(data, mrdata, review) {
+        var mrdata = mrdata;
+        var data = data.data;
+        console.log(data);
+
+        //
+        $(" #needAssistance_l").html("");
+        $(" #businessStatus_l").html("");
+        $("#safetyTypev").html("");
+        $(" #safetySource_l").html("");
+        $(" #safetyLevel_l").html("");
+        $("#eventTime_l").html(data.safetyNotificationDetail.eventTime);
+        $("#eventTime_l").html(data.safetyNotificationDetail.eventTime);
+        $("#safetyType_l").html(
+          eachSelect(
+            "safetyType_l",
+            mrdata.safetyNotificationTypeList,
+            "cfgKey",
+            "cfgValue",
+            "",
+            data.safetyNotificationDetail.safetyType
+          )
+        );
+        $(" #safetySource_l").html(
+          eachSelect(
+            "safetySource_l",
+            mrdata.safetyNotificationSourceList,
+            "cfgKey",
+            "cfgValue",
+            "",
+            data.safetyNotificationDetail.safetySource
+          )
+        );
+        $(" #safetyLevel_l").html(
+          eachSelect(
+            "safetyLevelreviewId_l_l",
+            mrdata.safetyNotificationLevelList,
+            "cfgKey",
+            "cfgValue",
+            "",
+            data.safetyNotificationDetail.safetyLevel
+          )
+        );
+        $(" #eventContent_l").html(data.eventContent);
+        $(" #eventReason_l").html(data.safetyNotificationDetail.eventReason);
+        $(" #lossSolution_l").html(data.safetyNotificationDetail.lossSolution);
+        $(" #returnReason_l").html(data.safetyNotificationDetail.returnReason);
+        if (data.safetyNotificationDetail.lossSelect == "有") {
+          $("#isSafe_l").html(
+            "有，新臺幣：$" +
+              commaSeparateNumber(data.safetyNotificationDetail.lossMoney)
+          );
+        } else {
+          $("#isSafe_l").html("無");
+        }
+        $(" #businessStatus_l").html(
+          eachSelect(
+            "businessStatus_l",
+            mrdata.safetyNotificationBusinessList,
+            "cfgKey",
+            "cfgValue",
+            "",
+            data.safetyNotificationDetail.businessStatus
+          )
+        );
+        $(" #businessStatusStatement_l").html(
+          data.safetyNotificationDetail.businessStatusStatement
+        );
+        $(" #needAssistance_l").html(
+          eachSelect(
+            "needAssistance_l",
+            mrdata.safetyNotificationAssistanceList,
+            "cfgKey",
+            "cfgValue",
+            "",
+            data.safetyNotificationDetail.needAssistance
+          )
+        );
+        $(" #needAssistanceStatement_l").html(
+          data.safetyNotificationDetail.needAssistanceStatement
+        );
+        //單位名稱
+        //createSelect("safetyLevel", data.unitList, "unitId", "unitName");
+        //審核人員
+        createSelect("reviewId_l", review, "rocId", "name", "", data.reviewId);
+
+        if (data.status == "p") {
+          $('*[name="reviewId"]').val(data.reviewId);
+        }
+        //長影響類別
+        //createCheckBox("effectTypeDiv", "effectType", data.eventEffectTypeList, "cfgKey", "cfgValue");
+        //createTable(data);
+        //setCreateId(data.loginUser.rocId);
+        //單位名稱
+        $(" #unitName_l").html(data.unitName);
+        //職位
+        $(" #safetyWorkMan_l").html(
+          data.jobName
+        );
+        //姓名d
+        $(" #safetyName_l").html(data.safetyNotificationDetail.safetyName);
+        //單位電話
+        $(" #unitTel_l").val(data.safetyNotificationDetail.unitTel);
+        //通報編號
+        $(" #safetyNo_l").html(data.safetyNo);
+
+        //通報時間
+        $(" #safetyTime_l").html(data.safetyTime);
+        $(" #safetyTime").html(data.safetyTime);
+      }
+      function createPrintTable1(data, mrdata, review) {
+        var mrdata = mrdata;
+        var data = data.data;
+        console.log(data);
+        //類別
+        $(" #needAssistance_p").html("");
+        $(" #businessStatus_p").html("");
+        $("#safetyTypev").html("");
+        $(" #safetySource_p").html("");
+        $(" #safetyLevel_p").html("");
+        $("#eventTime_p").html(data.safetyNotificationDetail.eventTime);
+        $("#eventTime_p").html(data.safetyNotificationDetail.eventTime);
+        $("#safetyType_p").html(
+          eachSelect(
+            "safetyType_p",
+            mrdata.safetyNotificationTypeList,
+            "cfgKey",
+            "cfgValue",
+            "",
+            data.safetyNotificationDetail.safetyType
+          )
+        );
+        $(" #safetySource_p").html(
+          eachSelect(
+            "safetySource_p",
+            mrdata.safetyNotificationSourceList,
+            "cfgKey",
+            "cfgValue",
+            "",
+            data.safetyNotificationDetail.safetySource
+          )
+        );
+        $(" #safetyLevel_p").html(
+          eachSelect(
+            "safetyLevel_p",
+            mrdata.safetyNotificationLevelList,
+            "cfgKey",
+            "cfgValue",
+            "",
+            data.safetyNotificationDetail.safetyLevel
+          )
+        );
+        $(" #eventContent_p").html(data.eventContent);
+        $(" #eventReason_p").html(data.safetyNotificationDetail.eventReason);
+        $(" #lossSolution_p").html(data.safetyNotificationDetail.lossSolution);
+        $(" #returnReason_p").html(data.safetyNotificationDetail.returnReason);
+        if (data.safetyNotificationDetail.lossSelect == "有") {
+          $("#isSafe_p").html(
+            "有，新臺幣：$" +
+              commaSeparateNumber(data.safetyNotificationDetail.lossMoney)
+          );
+        } else {
+          $("#isSafe_p").html("無");
+        }
+        $(" #businessStatus_p").html(
+          eachSelect(
+            "businessStatus_p",
+            mrdata.safetyNotificationBusinessList,
+            "cfgKey",
+            "cfgValue",
+            "",
+            data.safetyNotificationDetail.businessStatus
+          )
+        );
+        $(" #businessStatusStatement_p").html(
+          data.safetyNotificationDetail.businessStatusStatement
+        );
+        $(" #needAssistance_p").html(
+          eachSelect(
+            "needAssistance_p",
+            mrdata.safetyNotificationAssistanceList,
+            "cfgKey",
+            "cfgValue",
+            "",
+            data.safetyNotificationDetail.needAssistance
+          )
+        );
+        $(" #needAssistanceStatement_p").html(
+          data.safetyNotificationDetail.needAssistanceStatement
+        );
+        //單位名稱
+        //createSelect("safetyLevel", data.unitList, "unitId", "unitName");
+        //審核人員
+        createSelect("reviewId_p", review, "rocId", "name", "", data.reviewId);
+        if (data.status == "p") {
+          $('*[name="reviewId"]').val(data.reviewId);
+        }
+        //長影響類別
+        //createCheckBox("effectTypeDiv", "effectType", data.eventEffectTypeList, "cfgKey", "cfgValue");
+        //createTable(data);
+        //setCreateId(data.loginUser.rocId);
+        //單位名稱
+        $(" #unitName_p").html(data.unitName);
+        //職位
+        $(" #safetyWorkMan_p").html(
+          data.jobName
+        );
+        //姓名
+        $(" #safetyName_p").html(data.safetyNotificationDetail.safetyName);
+        //單位電話
+        $(" #unitTel_p").html(data.safetyNotificationDetail.unitTel);
+        //通報編號
+        $(" #safetyNo_p").html(data.safetyNo);
+
+        //通報時間
+        console.log(data.safetyNotificationDetail.unitTogether);
+        $(" #safetyTime_p").html(data.safetyTime);
+        var str = data.safetyNotificationDetail.unitTogether;
+        console.log(data.safetyNotificationDetail);
+        if (str != "" && str != undefined) {
+          var arr = str.split(",");
+        }
+
+        $('input[name="unitId"]').each(arr, function (index, value) {
+          if ($(this).val() === value) {
+            $(this).prop("checked", true); // 設置該複選框為選中狀態
+          } else {
+            $(this).prop("checked", false); // 如果不符合條件則設置為未選中狀態（可選）
+          }
+          console.log("索引：" + index + "，值：" + value);
+        });
+      }
+
+      function submitalert(status, text) {
+        $("#dialog-alert").addClass("shows");
+        $("#dialog-alert").removeClass("hides");
+        $("#alert-d").html(text);
+        $("#status").val(status);
+      }
+      function submito(){
+submitalert("t", "暫存");
+      }
+      function submits(){
+ submitalert("n", "儲存送出");
+      }
+  
+      $("#submit_o").click(function () {
+        var value = $("#lossMoney").val().split(",").join("").trim();
+  var isNumeric=false;
+  isNumeric = /^[-+]?(\d+\.?\d*|\.\d+)$/.test(value);
+  console.log(isNumeric)
+       if($("#lossMoney").val().split(",").join("").length>13 || isNumeric==false){
+showAlert("提示", "金額請填寫數字且最多13位數！", "");
+        }else{
+        validateForm('#dialogForm', submito, '#upload,#returnReason,#status,#id');
+        }
+      });
+      $("#submit_s").click(function () {
+        var value = $("#lossMoney").val().split(",").join("").trim();
+  var isNumeric=false;
+  isNumeric = /^[-+]?(\d+\.?\d*|\.\d+)$/.test(value);
+  console.log(isNumeric)
+        console.log($("#lossMoney").val().split(",").join("").length)
+        if ($("#reviewId").val() == "" || $("#reviewId").val() == null) {
+          showAlert("提示", "請選擇審核人員！", "");
+        }else{
+          
+          if($("#lossMoney").val().split(",").join("").length>13 || isNumeric==false){
+showAlert("提示", "金額請填寫數字且最多13位數！", "");
+        }else{
+    validateForm('#dialogForm', submits, '#upload,#returnReason,#status,#id');
+        }
+      }
+       
+      });
+      $("#submit_p").click(function () {
+        var value = $("#lossMoney").val().split(",").join("").trim();
+  var isNumeric=false;
+  isNumeric = /^[-+]?(\d+\.?\d*|\.\d+)$/.test(value);
+  console.log(isNumeric)
+       if($("#lossMoney").val().split(",").join("").length>13 || isNumeric==false){
+showAlert("提示", "金額請填寫數字且最多13位數！", "");
+        }else{
+    validateForm('#dialogForm', submits, '#upload,#returnReason,#status,#id');
+        }
+        
+      });
+      $("#cancel").click(function () {
+        $("#dialog-alert").addClass("hides");
+        $("#dialog-alert").removeClass("shows");
+      });
+    });
+    var imgFile = []; //檔案流
+    var imgSrc = []; //圖片路徑
+    var imgName = []; //圖片名字
+    var oldimgurl = []; //已上傳圖片清單
+    $(function () {
+      // 滑鼠經過顯示刪除按鈕
+      $(".content-img-list").on(
+        "mouseover",
+        ".content-img-list-item",
+        function () {
+          $(this).children("div").removeClass("hide");
+        }
+      );
+      // 滑鼠離開隱藏刪除按鈕
+      $(".content-img-list").on(
+        "mouseleave",
+        ".content-img-list-item",
+        function () {
+          $(this).children("div").addClass("hide");
+        }
+      );
+      // 待上傳單個圖片刪除
+      $(".news_imglist .content-img-list").on(
+        "click",
+        " .content-img-list-item a .icon-shanchu",
+        function () {
+          var index = $(this).parent().parent().parent().index();
+          imgSrc.splice(index, 1);
+          imgFile.splice(index, 1);
+          imgName.splice(index, 1);
+          var boxId = ".news_imglist .content-img-list";
+          addNewContent(boxId);
+          if (imgSrc.length < 4) {
+            //顯示上傳按鈕
+            $(".content-img .file").show();
+          }
+        }
+      );
+      // 已上傳單個圖片刪除
+      $(".sys_imglist .content-img-list").on(
+        "click",
+        ".content-img-list-item a .icon-shanchu",
+        function () {
+          //圖片名稱
+          var index = $(this).parent().parent().parent().index();
+          console.log(oldimgurl + "," + index);
+          var deleimgurl = $(this).parent().attr("title");
+          var boxId = ".sys_imglist .content-img-list";
+
+          deleimages(deleimgurl, index);
+        }
+      );
+      function deleimages(deleimgurl, index) {
+        var delimg = { imgPath: "\\" + deleimgurl };
+        console.log(JSON.stringify(delimg));
+        $.ajax({
+          url: "/" + CONFIG.SYSTEM_NAME + "/safetyNotification/api/delFile",
+          data: JSON.stringify(delimg),
+          contentType: "application/json;charset=utf-8", // 因為上面是JSON
+          type: "POST",
+          dataType: "json",
+          success: function (data, textStatus) {
+            if (data && data.code == "5000") {
+              showAlert("沒有權限", "沒有權限", "");
+            } else {
+              var indexeq = oldimgurl.indexOf(deleimgurl);
+              if (data.msg == "success") {
+                // 刪除後刪除期oldimgurl裡的相應資料
+
+                if (indexeq > 0) {
+                  oldimgurl.splice(indexeq, 1);
+                  $(".sys_imglist .content-img-list")
+                    .children("li")
+                    .eq(indexeq)
+                    .remove();
+                }
+
+                // 刪除後刪除期oldimgurl裡的相應資料
+                showAlert("圖片刪除", "圖片刪除成功", "");
+              }
+              if (data.code == 2002) {
+                if (indexeq > 0) {
+                  console.log();
+                  oldimgurl.splice(indexeq, 1);
+                  $(".sys_imglist .content-img-list")
+                    .children("li")
+                    .eq(indexeq)
+                    .remove();
+                }
+              } else if (data.errorMsg) {
+                alert(data.errorMsg);
+              }
+            }
+          },
+          error: function (data, textStatus, errorThrown) {
+            console.log(data);
+          },
+        });
+      }
+
+      $(".news_imglist .content-img-list").on(
+        "click",
+        ".content-img-list-item a .icon-iczoomout",
+        function () {
+          var index = $(this).parent().parent().parent().index();
+          $(".modal-content").html("");
+          //alert(imgSrc[index])
+          var bigimg = $(".modal-content").html();
+          $(".modal-content").html(
+            bigimg +
+              '<div class="show"><img src="' +
+              imgSrc[index] +
+              '" alt=""><div>'
+          );
+          // $(".modal-content").append(
+          //     '<div class="show"><img src="' + imgSrc[a] + '" alt=""><div>'
+          // );
+        }
+      );
+      $(".sys_imglist .content-img-list").on(
+        "click",
+        ".content-img-list-item a .icon-iczoomout",
+        function () {
+          var bigurl = $(this).parent().parent().siblings().attr("data-zoom");
+          console.log("big" + bigurl);
+          $(".modal-content").html("");
+          //alert(imgSrc[index])
+          var bigimg = $(".modal-content").html();
+          $(".modal-content").html(
+            bigimg + '<div class="show"><img src="' + bigurl + '" alt=""><div>'
+          );
+          // $(".modal-content").append(
+          //     '<div class="show"><img src="' + imgSrc[a] + '" alt=""><div>'
+          // );
+        }
+      );
+    });
+    //圖片上傳
+    function readyImg() {
+      console.log(imgFile);
+      addNewContent(imgBox);
+    }
+    // 圖片上傳
+    $("#upload").on("change", function (e) {
+      var imgSize = this.files[0].size;
+      if (imgSize > 1024 * 10000 * 1) {
+        // 10M
+        return alert("上傳圖片大小不可超過10M");
+      }
+      if (
+        this.files[0].type != "image/png" &&
+        this.files[0].type != "image/jpeg" &&
+        this.files[0].type != "image/gif"
+      ) {
+        return alert("圖片格式不正確");
+      }
+
+      var imgBox = ".news_imglist .content-img-list";
+      var fileList = this.files;
+      for (var i = 0; i < fileList.length; i++) {
+        var imgSrcI = getObjectURL(fileList[i]);
+        imgName.push(fileList[i].name);
+        imgSrc.push(imgSrcI);
+        imgFile.push(fileList[i]);
+        console.log(fileList[i]);
+      }
+      console.log(imgFile);
+      addNewContent(imgBox);
+      this.value = null; // 重置上傳框
+    });
+    //刪除
+    function removeImg(obj, index) {
+      imgSrc.splice(index, 1);
+      imgFile.splice(index, 1);
+      imgName.splice(index, 1);
+      var boxId = ".news_imglist .content-img-list";
+      addNewContent(boxId);
+    }
+
+    //圖片展示
+    function addNewContent(obj) {
+      // console.log(imgSrc)
+      $(obj).html("");
+      for (var a = 0; a < imgSrc.length; a++) {
+        var oldBox = $(obj).html();
+        $(obj).html(
+          oldBox +
+            '<li class="content-img-list-item"><img src="' +
+            imgSrc[a] +
+            '" alt="">' +
+            '<div class="hide"><a index="' +
+            a +
+            '" class="delete-btn"><i class="iconfont icon-shanchu"></i></a>' +
+            '<a index="' +
+            a +
+            '" class="big-btn" type="button" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="iconfont icon-iczoomout"></i></a></div></li>'
+        );
+      }
+    }
+
+    //建立可存取到file的url
+    function getObjectURL(file) {
+      var url = null;
+      if (window.createObjectURL != undefined) {
+        // basic
+        url = window.createObjectURL(file);
+      } else if (window.URL != undefined) {
+        // mozilla(firefox)
+        url = window.URL.createObjectURL(file);
+      } else if (window.webkitURL != undefined) {
+        // webkit or chrome
+        url = window.webkitURL.createObjectURL(file);
+      }
+      return url;
+    }
+  });
+</script>

@@ -1,0 +1,1208 @@
+﻿<div>
+	<div class="m-t50 m-b30">
+		<h4>急救藥品與器材檢查</h4>
+		<div class="date_time">
+			<div class="date_box">
+				<label>
+					<input id="startDate" name="startDate" type="text" readonly="readonly" class="w_100p"
+						placeholder="開始日期" />
+					<i class="iconfont icon-riqi1"></i>
+				</label>
+			</div>
+			<div class="date_box">
+				<label>
+					<input id="endDate" name="endDate" type="text" readonly="readonly" class="w_100p"
+						placeholder="結束日期" />
+					<i class="iconfont icon-riqi1"></i>
+				</label>
+			</div>
+			<div class="date_box">
+				<label>
+					<input id="unitId_s" name="" type="text" class="w_100p" placeholder="連線代號" />
+				</label>
+			</div>
+			<div class="date_box">
+				<label>
+					<input id="unitName_s" name="" type="text" class="w_100p" placeholder="銀行名稱" />
+				</label>
+			</div>
+			<button class="btn btn-primary  my-2" id="search">查詢</button>
+		</div>
+
+	</div>
+	<div id="jsGrid"></div>
+
+</div>
+<br>
+
+<div id="AddDialog" style="display:none" class="container">
+	<div id="printDiv0">
+		<h2 style="text-align: center;">急救藥品與器材檢查</h2>
+		<br>
+		<form id="inputForm">
+
+			<table class="w-100 safe_form" id="drugs">
+				<thead>
+					<tr>
+						<td class="table-header" width="50" colspan="2">品項名稱</td>
+						<td class="table-header text-center ">數量</td>
+						<td class="table-header text-center" width="100">檢查結果</td>
+						<td class="table-header " width="300">備註</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="text-center" width="50" rowspan="2">藥品</td>
+						<td>
+							1.生理食鹽水(沖洗用)
+						</td>
+						<td>
+							<input type="text" value="1">
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							2.酒精棉片或酒精液
+						</td>
+						<td>
+							<input type="text" value="1">
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class="text-center" width="50" rowspan="12">器材</td>
+						<td>
+							1.體溫測量器
+						</td>
+						<td>
+							<input type="text" value="1">
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							2.血壓計
+						</td>
+						<td>
+							<input type="text" value="1">
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							3.彈性紗繃或彈性繃帶
+						</td>
+						<td>
+							<input type="text" value="1">
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							4.三角巾
+						</td>
+						<td>
+							<input type="text" value="1">
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							5.安全別針
+						</td>
+						<td>
+							<input type="text" value="1">
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							6.鈍頭剪刀
+						</td>
+						<td>
+							<input type="text" value="1">
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							7.棉棒
+						</td>
+						<td>
+							<input type="text" value="1">
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							8.紗布
+						</td>
+						<td>
+							<input type="text" value="1">
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							9.紙膠
+
+						</td>
+						<td>
+							<input type="text" value="1">
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							10.OK蹦
+						</td>
+						<td>
+							<input type="text" value="1">
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							11.檢診手套
+						</td>
+						<td>
+							<input type="text" value="1">
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							12.外科口罩
+						</td>
+						<td>
+							<input type="text" value="1">
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+
+
+				</tbody>
+
+
+				<tr>
+
+					<td class="table-header" colspan="2">
+						備註
+					</td>
+
+					<td colspan="3">
+						<textarea id="remarks" placeholder="輸入文字(100個中文字內)"></textarea>
+					</td>
+				</tr>
+				<tr>
+
+					<td class="table-header" colspan="2">
+						檢查日期
+					</td>
+
+					<td colspan="3">
+						<div id="checkDate"></div>
+						<!-- <div class="date_box">
+							<label>
+								<input id="checkDate" name="checkDate" type="text" readonly="readonly" class="w_100p"
+									placeholder="檢查日期" />
+								<i class="iconfont icon-riqi1"></i>
+							</label>
+						</div> -->
+					</td>
+				</tr>
+
+				</tbody>
+			</table>
+			<div class="m-t50 m-b30">
+				<p> 1.依據106年11月13日修正之「勞工健康保護規則」第9條第2項：所定急救藥品與器材，
+					應置於適當固定處所，至少每六個月定期檢查並保持清潔。對於被污染或失效之物品，應
+					隨時予以更換及補充。</p>
+				<p>2.如有檢查異常項目，應於「備註」欄內詳做說明及改善。</p>
+				<p>3.請確實執行檢查，本表並自行留存以備勞檢機關查核。</p>
+
+			</div>
+		</form>
+	</div>
+	<br>
+	<div style="text-align: center;">
+
+		<button type="button" id="submitBtn" class="btn btn-success  my-2">送出</button>
+		<button type="button" id="printBtn0" class="btn btn-secondary  my-2">列印</button>
+	</div>
+</div>
+<div id="detailDialog" style="display:none" class="container">
+	<div id="printDiv">
+		<h2 style="text-align: center;">急救藥品與器材檢查</h2>
+		<br>
+		<form id="inputForm">
+
+			<table class="w-100 safe_form" id="look_drugs">
+				<thead>
+					<tr>
+						<td class="table-header" width="50" colspan="2">品項名稱</td>
+						<td class="table-header text-center ">數量</td>
+						<td class="table-header text-center" width="100">檢查結果</td>
+						<td class="table-header " width="300">備註</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="text-center" width="50" rowspan="2">藥品</td>
+						<td>
+							1.生理食鹽水(沖洗用 )
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							2.酒精棉片或酒精液
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50" rowspan="12">器材</td>
+						<td>
+							1.體溫測量器
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							2.血壓計
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							3.彈性紗繃或彈性繃帶
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							4.三角巾
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							5.安全別針
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							6.鈍頭剪刀
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							7.棉棒
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							8.紗布
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							9.紙膠
+
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							10.OK蹦
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							11.檢診手套
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td>
+							12.外科口罩
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<select class="custom-select select_unit w_100p" name="eventName">
+
+								<option value="正常">正常</option>
+								<option value="異常">異常</option>
+
+							</select>
+						</td>
+						<td>
+							<textarea placeholder="輸入文字(100個中文字內)"></textarea>
+						</td>
+
+					</tr>
+					<tr>
+
+						<td class="table-header" colspan="2">
+							備註
+						</td>
+
+						<td class="remarks" colspan="3">
+
+						</td>
+					</tr>
+					<tr>
+
+						<td class="table-header" colspan="2">
+							檢查日期
+						</td>
+
+						<td class="checkDate" colspan="3">
+
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="m-t50 m-b30">
+				<p> 1.依據106年11月13日修正之「勞工健康保護規則」第9條第2項：所定急救藥品與器材，
+					應置於適當固定處所，至少每六個月定期檢查並保持清潔。對於被污染或失效之物品，應
+					隨時予以更換及補充。</p>
+				<p>2.如有檢查異常項目，應於「備註」欄內詳做說明及改善。</p>
+				<p>3.請確實執行檢查，本表並自行留存以備勞檢機關查核。</p>
+
+			</div>
+		</form>
+	</div>
+	<br>
+	<div style="text-align: center;">
+		<!-- <button type="button" id="submitBtn" class="btn btn-warning  my-2">匯出</button> -->
+
+		<button type="button" id="printBtn" class="btn btn-secondary  my-2">列印</button>
+	</div>
+</div>
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui", "print"], function (jquery, jquery_validate, jsgrid, jquery_ui, print) {
+		//頁面讀取後執行
+		$(".select_unit").on("change", function () {
+			if ($(this).val() == '異常') {
+				$(this).parents('tr').find('textarea').show()
+			} else {
+				$(this).parents('tr').find('textarea').hide()
+			}
+		});
+		$(document).ready(function () {
+			$("#printBtn").click(function () {
+				//printByDiv(document.getElementById("printDiv"));
+				printJS({
+					printable: 'printDiv',
+					type: 'html',
+					header: '',
+					css: '../resources/css/print.css',
+
+
+
+				})
+			});
+			$("#printBtn0").click(function () {
+				//printByDiv(document.getElementById("printDiv"));
+				printJS({
+					printable: 'printDiv0',
+					type: 'html',
+					header: '',
+					css: '../resources/css/print.css',
+
+
+
+				})
+			});
+			$(".select_unit").each(
+				function () {
+					if ($(this).val() == '異常') {
+						$(this).parents('tr').find('textarea').show()
+					} else {
+						$(this).parents('tr').find('textarea').hide()
+					}
+				}
+			)
+			$('#startDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				dateFormat: "yy/mm/dd",
+				maxDate: '+0M +0D',
+			}).on('changeDate', function (e) {
+				var startTime = e.date;
+				$('#endDate').datepicker('setStartDate', startTime);
+			});
+
+			$('#endDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				dateFormat: "yy/mm/dd",
+				maxDate: '+0M +0D',
+				minDate: $("#startDate").val(),
+			}).on('changeDate', function (e) {
+				var endTime = e.date;
+				$('#startDate').datepicker('setEndDate', endTime);
+			});
+			// $('#checkDate').datepicker({
+
+			// 	autoclose: true, //選擇後自動關閉
+			// 	dateFormat: "yy/mm/dd",
+			// 	changeYear: true,
+			// 	yearRange: '-100:+0',
+			// 	defaultDate: new Date(),
+
+
+			// })
+			//獲取按鈕權限
+			var menuid = 63;
+			$.ajax({
+				url: "/" + CONFIG.SYSTEM_NAME + '/buttonRole/api/getByMenuId?menuId=' + menuid,
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+				async: false,
+				cache: false,
+				type: "GET",
+				success: function (data, textStatus) {
+					if (data && data == "<script>alert('沒有權限')<\/script>") {
+						//showAlert('沒有權限','沒有權限','')
+						showAlert('沒有權限', '沒有權限', '');
+					} else {
+						var menuData = data.data
+						get_list(menuData);
+						console.log(menuData.functionArray)
+						console.log(menuData)
+						// <button type="button" id='submit_o' class="btn btn-warning  my-2 pressing_hide tempButton">暫存</button>
+						// <button type="button" id='submit_s' class="btn btn-primary  my-2 pressing_hide sendButton">儲存送出</button>
+						// <button type="button" id="checkBtn" class="btn btn-success  my-2 pressing_hide reviewButton">審核通過</button>
+						// <button type="button" id="return" class="btn btn-danger  my-2 pressing_hide returnButton">退件</button>
+						// <button type="button" id='submit_p' class="btn btn-primary  my-2 pressing_show sendButton">儲存送出</button>
+						// <button type="button" id="printBtn1" class="btn btn-secondary  my-2 pressing_show printButton">列印</button>
+						// <button type="button" id="printBtn" class="btn btn-secondary  my-2 pressing_hide printButton">列印</button>
+						if (menuData.functionArray.indexOf('review') < 0) {
+							$('.reviewButton').hide()
+						}
+						if (menuData.functionArray.indexOf('temp') < 0) {
+							$('.tempButton').hide()
+						}
+						if (menuData.functionArray.indexOf('reject') < 0) {
+							$('.returnButton').hide()
+						}
+						if (menuData.functionArray.indexOf('temp') < 0) {
+							$('.tempButton').hide()
+						}
+					}
+				},
+				error: function (data, textStatus, errorThrown) {
+					console.log(data);
+				},
+			});
+			get_list();
+			$('#search').click(function () {
+				get_list();
+
+			})
+			function get_list() {
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/HealthEmergencyMedicine/api/list?startDate=' + $('#startDate').val() + '&endDate=' + $('#endDate').val() + '&unitId=' + $('#unitId_s').val() + '&' + $('#unitName_s').val(),
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							alert("沒有權限");
+						} else {
+							var data = data.data
+							console.log(data)
+							$("#jsGrid").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: false, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: true,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+													}
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+														}
+													}
+
+												}
+											}
+											return true;
+										});
+										return result;
+									},
+
+								},
+
+								fields: [
+									{ title: "單位", name: "unitName", type: "text", validate: "required" },
+									{ title: "檢查日期", name: "checkDate", type: "text", validate: "required" },
+									{ title: "檢查結果", name: "checkResult", type: "text", validate: "required" },
+									{ title: "備註", name: "remark", type: "text", },
+									{
+										type: "control",
+										name: "id",
+										width: 80,
+										editButton: false,
+										deleteButton: false,
+										modeSwitchButton: false,
+										filtercss: "display:none;",
+										itemTemplate: function (value, item) {
+											return $("<button>").attr("type", "button").text("查看").addClass("btn btn-success")
+												.on("click", function () {
+													console.log(value)
+													showDetailsDialog("查看", value);
+
+												})
+
+										}, headerTemplate: function () {
+
+											return $("<button>").attr("type", "button").text("新增").addClass("btn btn-primary")
+												.on("click", function () {
+
+													showAddDialog("新增", {});
+												});
+
+
+										}
+									}
+
+								],
+								rowClick: function (args) {
+
+									// bodyHref("/content/situation/Safetysituationreport_form.html");
+									//showDetailsDialog("修改", args.item);
+								},
+								deleteConfirm: function (item) {
+									return "參數\"" + item.NUM + "\"確認刪除?";
+								},
+							});
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+
+
+			$("#submitBtn").click(function () {
+				var tableData = [];
+				var selectReturn = '正常'
+				var tableData2 = [];
+				$('#drugs tbody tr').each(function (row, tr) {
+					tableData[row] = {
+						"title": $(tr).find('td:eq(-4)').find("input").val(),
+						"Num": $(tr).find('td:eq(-3)').find("input").val(),
+						"selectData": $(tr).find('td:eq(-2)').find("option:selected").val(),
+						"ramark": $(tr).find('td:eq(-1)').find("textarea").val()
+					}
+				});
+				var selectData = new Array();
+				$.each($("#drugs tbody tr").find("option:selected"), function (index, obj) {
+					selectData.push($(obj).text());
+				});
+				var selectData = selectData.join(",");
+				if (selectData.indexOf('異常') >= 0) {
+					selectReturn = '異常'
+				}
+
+				var dateStr = $.datepicker.formatDate("yy/mm/dd", new Date());
+				var saveItem = {
+					checkResult: selectReturn,
+					formContent: JSON.stringify(tableData),
+					checkDate: dateStr,
+					remark: $('#remarks').val(),
+					// checkDate: $('#checkDate').val()
+				}
+				insert(saveItem)
+			})
+			//送出
+			function insert(data) {
+				console.log(JSON.stringify(data))
+				$.ajax({
+					data: JSON.stringify(data),
+					url: "/" + CONFIG.SYSTEM_NAME + '/HealthEmergencyMedicine/api/save',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							get_list();
+							$("#AddDialog").dialog("close");
+							console.log(data);
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						//console.log(data);
+					},
+				});
+			};
+			$("#detailDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				height: 600,
+				width: 960,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+					$("#detailDialog input[type='text']").val('')
+					$("#detailDialog textarea").val('')
+					$("#detailDialog input[type='radio']").removeAttr('checked')
+					$("#detailDialog input[type='checkbox']").removeAttr('checked')
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+			$("#AddDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				height: 600,
+				width: 960,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+					$("#AddDialog input[type='text']").val('')
+					$("#AddDialog textarea").val('')
+					$("#AddDialog input[type='radio']").removeAttr('checked')
+					$("#AddDialog input[type='checkbox']").removeAttr('checked')
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+			var formSubmitHandler = $.noop;
+
+			var showDetailsDialog = function (dialogType, item) {
+
+				$("#detailDialog").dialog("option", "title", dialogType + "").dialog("open");
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/HealthEmergencyMedicine/api/get?id=' + item,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data.code == "5000") {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							//console.log(data.data);
+							var data = data.data;
+							$('#detailDialog .remarks').text(data.remark);
+							$('#detailDialog .checkDate').text(data.checkDate);
+							var jsonStr = data.formContent
+
+							var jsonObj = $.parseJSON(jsonStr);
+
+							var data_g = [];
+							$.each(jsonObj, function (index, item) {
+								data_g[index] = {
+									"title": item.title,
+									"selectData": item.selectData,
+									"ramark": item.ramark,
+									"Num": item.Num,
+								}
+
+							});
+							$('#look_drugs tbody tr').each(function (row, tr) {
+
+								$(tr).find('td:eq(-3)').html(data_g.Num)
+								$(tr).find('td:eq(-2)').html(data_g.selectData)
+								$(tr).find('td:eq(-1)').html(data_g.ramark)
+
+							});
+
+							$.each(data_g, function (index, item) {
+								$('#look_drugs tbody tr').eq(index).find('td:eq(-3)').text(item.Num)
+								$('#look_drugs tbody tr').eq(index).find('td:eq(-2)').text(item.selectData)
+								$('#look_drugs tbody tr').eq(index).find('td:eq(-1)').text(item.ramark)
+
+							});
+
+						}
+					}
+				});
+			};
+
+			var showAddDialog = function (dialogType, item) {
+var dateStr = $.datepicker.formatDate("yy/mm/dd", new Date());
+$('#checkDate').html(dateStr)
+				$("#AddDialog").dialog("option", "title", dialogType + "").dialog("open");
+			};
+			$("#dialogForm").validate({
+				//錯誤訊息元素預設為label改成p會換行
+				errorElement: "p",
+				rules: {
+					cfgType: { required: true, rangelength: [2, 50] },
+					cfgKey: { required: true, rangelength: [3, 80] },
+					cfgName: { required: true, rangelength: [2, 50] },
+					cfgValue: { required: true, rangelength: [0, 80] },
+					cfgInUse: { required: true }
+				},
+				messages: {
+					cfgType: {
+						required: "請輸入參數類型",
+						rangelength: "密碼長度不得小於2個字母大於50個字母"
+					},
+					cfgKey: {
+						required: "請輸入參數key",
+						rangelength: "參數key不得小於4個字母大於80個字母"
+					},
+					cfgName: {
+						required: "請輸入參數名稱",
+						rangelength: "參數名稱不得小於2個字母大於50個字母"
+					},
+					cfgValue: {
+						required: "請輸入參數值",
+						rangelength: "參數值不得小於0個字母大於80個字母"
+					},
+					cfgInUse: {
+						required: "請選擇是否啟用"
+					}
+				},
+				submitHandler: function () {
+					formSubmitHandler();
+				}
+			});
+
+			var saveItem = function (item, isNew) {
+				$.extend(item, {
+					cfgType: $("#cfgType").val(),
+					cfgKey: $("#cfgKey").val(),
+					cfgName: $("#cfgName").val(),
+					cfgValue: $("#cfgValue").val(),
+					cfgMemo: $("#cfgMemo").val(),
+					cfgInUse: $('input[name*=cfgInUse]:checked').val()
+				});
+
+				$("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", item);
+
+				$("#tableDialog").dialog("close");
+				bodyHref("/content/situation/Safetysituationreport.html");
+			};
+
+			function Processing(id) {
+				bodyHref("/content/situation/Safetysituationreport_form7.html");
+			}
+
+		});
+
+
+	});
+</script>

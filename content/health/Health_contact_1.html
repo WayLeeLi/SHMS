@@ -1,0 +1,514 @@
+﻿<div>
+	<h4>臨場健康訪視排程</h4>
+
+	<div id="calendar"></div>
+</div>
+<div id="tableDialog" style="display:none" class="container">
+	<div>
+		<h2 style="text-align: center;">臨場健康訪視排程</h2>
+		<br>
+		<form id="inputForm">
+			<input type="hidden" id="addOredit">
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class=" table-header text-center">選擇分行</td>
+						<td>
+							<select class="custom-select select_unit w_200p" name="eventName" id="eventName"></select>
+						</td>
+					</tr>
+					<tr>
+						<td class=" table-header text-center">排程日期</td>
+						<td>
+							<input type="text" name="start" id="start" placeholder="自動帶入時間">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+	<br>
+	<div style="text-align: center;">
+		<button type="button" id="submitBtn" class="btn btn-warning  my-2">送出</button>
+
+	</div>
+</div>
+<template>
+	<div style="width:100%;height:100%">
+		<FullCalendar ref="FullCalendar" :options="calendarOptions" class="eventDeal-wrap">
+			<template #eventContent="arg">
+				<el-tooltip placement="top" effect="light">
+					<div slot="content">【開始時間】: {{ momentFormat(arg.event.start) }}<br />【結束時間】: {{
+						momentFormat(arg.event.end) }}<br />【備註】: {{arg.event.extendedProps.remark}}</div>
+					<div style="text-align:left;">
+						<el-button type="danger" class='el-buttons'
+							style="background-color:#F56C6C;width:20px;height:20px;padding:2px"
+							@click.stop="deleteEvent(arg.event)" icon="el-icon-delete" size="mini" circle></el-button>
+						{{arg.event.title}}
+					</div>
+				</el-tooltip>
+			</template>
+		</FullCalendar>
+		<el-dialog :visible.sync="dialogShow" :destroy-on-close="true" :close-on-press-escape="false"
+			:close-on-click-modal="false" width="600px" :title="dialogTitle" height="500px" @close="close">
+			<el-form :model="BusinessModel" label-width="140px" ref="ruleForm" size="medium" :rules="rules">
+				<el-row :gutter="20">
+					<el-col :offset="0">
+						<el-form-item label="標題：" prop="title" class="is-required">
+							<el-input v-model="BusinessModel.title"> </el-input>
+						</el-form-item>
+					</el-col>
+				</el-row>
+				<el-row :gutter="20">
+					<el-col :offset="0">
+						<el-form-item label="涉及時段:" prop="task_type" class="is-required">
+							<el-select v-model="BusinessModel.task_type" placeholder="選擇時段" filterable>
+								<el-option v-for="(key, val) in productTaskType" :key="key" :label="val" :value="key">
+								</el-option>
+							</el-select>
+						</el-form-item>
+					</el-col>
+				</el-row>
+				<el-row :gutter="20">
+					<el-col :offset="0">
+						<el-form-item label="時間範圍：" prop="times" class="is-required">
+							<el-date-picker size="medium" v-model="BusinessModel.times" type="datetimerange"
+								align="right" start-placeholder="起始時間" end-placeholder="結束時間"
+								:default-time="['00:00:00', '23:59:59']" @change="dateChange($event, BusinessModel)">
+							</el-date-picker>
+						</el-form-item>
+					</el-col>
+				</el-row>
+				<el-row :gutter="20">
+					<el-col :offset="0">
+						<el-form-item label="備註" prop="remark">
+							<el-input type="textarea" :rows="15" v-model="BusinessModel.remark"> </el-input>
+						</el-form-item>
+					</el-col>
+				</el-row>
+			</el-form>
+			<div slot="footer" class="dialog-footer">
+				<div style="float: left; color: blue">注意:帶*選項表示必填項</div>
+				<el-button v-on:click="dialogShow = false">取 消</el-button>
+				<el-button type="primary" v-on:click="onSave()">確 定</el-button>
+			</div>
+		</el-dialog>
+	</div>
+</template>
+
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui", "moment", "fullcalendar","selectD"], function (jquery, jquery_validate, jsgrid, jquery_ui, moment, fullcalendar,selectD) {
+		//頁面讀取後執行
+		$(document).ready(function () {
+			$('#eventName').select2();
+			function createSelect(id, data, key, val, eventKey) {
+				$.each(data, function (index, item) {
+					$('#' + id).append($('<option>').val(item[key]).text(eventKey ? item[eventKey] + "_" + item[val] : item[val]));
+					$('#' + id + '1').append($('<a>').html(item[val]).addClass('dropdown-item'));
+				});
+			}
+			insert_mr()
+			//取得默認資料
+			function insert_mr() {
+				let id = 0;
+				$("#id").val(id);
+				$.ajax({
+					data: JSON.stringify({ "safetyNo": "" }),
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenance/api/getInitData',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							var data = data.unitList
+							console.log(data);
+							createSelect("eventName", data, 'unitId', 'unitName', '');
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+			$("#submitBtn").click(function () {
+
+				var saveItem = {
+					unitId: $("*[name='eventName']").val(),
+					unitName: $("*[name='eventName']").find('option:selected').text(),
+					scheduleDate: $("*[name='start']").val(),
+					scheduleTimeStart: "00:00:00",
+					scheduleTimeEnd: "23:59:00",
+					version: "1.0.0"
+				}
+				insert(saveItem)
+			})
+			//送出
+			function insert(data) {
+				console.log(JSON.stringify(data))
+				if ($('#addOredit').val() == '新增') {
+					var url = 'healthSchedule/api/save'
+				}
+				if ($('#addOredit').val() == '修改') {
+					var url = 'healthSchedule/api/save'
+				}
+				$.ajax({
+					data: JSON.stringify(data),
+					url: "/" + CONFIG.SYSTEM_NAME + '/' + url,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						console.log(data)
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						}
+						if (data && data.code == 7003) {
+							showAlert('排程重複', '當日已有本單位排程，請勿重複設定臨場健康訪視排程！', '')
+						}
+						if (data.code == 0) {
+							showAlert('提示', '臨場健康訪視排程新增成功！', '')
+							$("#tableDialog").dialog("close");
+							console.log(data);
+							bodyHref("/content/health/Health_contact_1.html");
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						//console.log(data);
+					},
+				});
+			};
+			function Delete(dtitle, id) {
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/healthSchedule/api/delete?id=' + id,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						}
+						if (data.code == 0) {
+							showAlert('提示', '臨場健康訪視排程刪除成功！', '')
+							console.log(data);
+							bodyHref("/content/health/Health_contact_1.html");
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						//console.log(data);
+					},
+				});
+			};
+
+			get_list()
+			function get_list() {
+				var currentDate = new Date();
+				var year = currentDate.getFullYear();
+				var month = currentDate.getMonth() + 1;
+				var monthprev = currentDate.getMonth();
+				var day = currentDate.getDate();
+				var get = year + '/' + month + '/' + day
+
+				var calendar = $('#calendar').fullCalendar({
+					header: {													//設置日曆頭部訊息，false，則不顯示頭部訊息。包括left，center,right左中右三個位置
+						left: 'prev,next, today',								//上一個、下一個、今天
+						center: 'title',										//標題
+						right: 'month,agendaWeek,agendaDay,listMonth'			//月、周、日、日程列表
+					},
+					locale: 'zh-tw',											//?沒用？
+					timeFormat: 'HH:mm',										//日程事件的時間格式
+					//      timeFormat: 'HH:mm{ - H:mm}',{agenda: 『h:mm{ - h:mm}}
+					buttonText: {    											//各按鈕的顯示文字資料
+						today: '今天',
+						month: '月',
+						agendaWeek: '周',
+						agendaDay: '日',
+						listMonth: '日程',
+					},
+
+					monthNames: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],    	//月份全稱
+					monthNamesShort: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"], //月份簡寫
+					dayNames: ["周日", "週一", "週二", "週三", "週四", "週五", "週六"],    	//周全稱
+					dayNamesShort: ["周日", "週一", "週二", "週三", "週四", "週五", "週六"],  //周簡寫
+					noEventsMessage: "當月無資料",   							//listview視圖下，無資料提示
+					allDayText: "全天",											//自定義全天視圖的名稱
+					allDaySlot: false,  										//是否在周日曆上方顯示全天
+					//      allDayDefault: false,										//是否為全天日程事件，顯示這一天中所做的事情
+					slotDuration: "00:30:00",      							//一格時間槽代表多長時間，默認00:30:00（30分鐘）
+					slotLabelFormat: "H(:mm)a",    							//日期視圖左邊那一列顯示的每一格日期時間格式
+					slotLabelInterval: "01:00:00", 							//日期視圖左邊那一列多長間隔顯示一條日期文字(默認跟著slotDuration走的，可自定義)
+					snapDuration: "01:00:00",      							//其實就是動態創建一個日程時，默認創建多長的時間塊
+					firstDay: 1,   												//一周中顯示的第一天是哪天，周日是0，週一是1，類推
+					hiddenDays: [],												//隱藏一周中的某一天或某幾天，數組形式，如隱藏週二和週五：[2,5]，默認不隱藏，除非weekends設置為false。
+					weekends: true,												//是否顯示週六和周日，設為false則不顯示週六和周日。默認值為true
+					weekMode: 'fixed',											//月視圖中顯示周的模式，因每月周數不同月視圖高度不定。fixed：固定顯示6周高，日曆高度保持不變liquid：不固定周數，高度隨周數變化variable：不固定周數，但高度固定
+					weekNumbers: false,											//是否在日曆中顯示周次(一年中的第幾周)，如果設置為true，則會在月視圖的左側、周視圖和日視圖的左上角顯示周數。
+					weekNumberCalculation: 'iso',								//周次的顯示格式。
+					height: 800,												//設置日曆的高度，包括header日曆頭部，默認未設置，高度根據aspectRatio值自適應。
+					//      contentHeight: 600,											//設置日曆主體內容的高度，不包括header部分，默認未設置，高度根據aspectRatio值自適應。
+					handleWindowResize: true,									//是否隨瀏覽器窗口大小變化而自動變化。
+					defaultView: 'month',										//初始化時默認視圖，默認是月month，agendaWeek是周，agendaDay是當天
+					//      slotEventOverlap: false,									//事件是否可以重疊覆蓋
+					defaultDate: get,											//默認顯示那一天的日期視圖getDates(true)2023-11-10
+					nowIndicator: true,            								//周/日視圖中顯示今天當前時間點（以紅線標記），默認false不顯示
+					eventLimit: false,       									//資料條數太多時，限制顯示條數（多餘的以「+2more」格式顯示），默認false不限制,支援輸入數字設定固定的顯示條數
+					eventLimitText: "更多",       								//當一塊區域內容太多以"+2 more"格式顯示時，這個more的名稱自定義（應該與eventLimit: true一並用）
+					dayPopoverFormat: "YYYY年M月d日", 							//點開"+2 more"彈出的小視窗標題，與eventLimitClick可以結合用
+					render: function (view) {										//method,綁定日曆到id上。$('#id').fullCalendar('render');
+						console.log('render', view)
+					},
+
+					events: function (start, end, timezone, callback) {
+						$.ajax({
+							url: "/" + CONFIG.SYSTEM_NAME + '/healthSchedule/api/listAll?startDate=&endDate=',
+							contentType: "application/json;charset=utf-8", // 因為上面是JSON
+							async: false,
+							cache: false,
+							type: "GET",
+							success: function (data) { // 獲取當前月的資料
+								var events = [];
+								console.log(data)
+								$.each(data.data, function (i, value) {
+
+									events.push({
+										title: value.title,
+										start: value.start.replace(/\//g, '-'), // will be parsed
+										end: value.end.replace(/\//g, '-'),
+										id: value.id,
+									});
+
+
+								});
+
+								callback(events);
+							}
+						});
+					},
+					dayClick: function (date, allDay, jsEvent, view) {						//空白的日期區點擊
+						//        	alert($.fullCalendar.formatDate(date, "YYyy/mm/dd"));
+						//      	console.log('Clicked on: ' + date.format());
+
+					},
+					eventClick: function (event, jsEvent) {									//日程事件點擊
+						// alert(event.title + event.start.format() + '______' + event.end.format() + '_______' + " ——詳情");
+						Delete("刪除", event.id);
+						//狀態判斷？？？
+						//權限限制？？？
+					},
+					eventMouseover: function () { },						//滑鼠滑過和離開的事件，用法和參數同上
+					eventMouseout: function () { },
+
+					selectable: true,									//是否允許通過單擊或拖動選擇日曆中的對象，包括天和時間
+					selectHelper: true,   								//當點擊或拖動選擇時間時，是否預先畫出「日程區塊」的樣式顯示默認載入的提示訊息，該屬性只在周/天視圖裡可用
+					selectMirror: true,									//鏡像
+					selectOverlap: true,       						//是否允許選擇被事件佔用的時間段，默認true可佔用時間段
+					selectAllow: function (selectInfo) { 				//精確的控制可以選擇的地方，返回true則表示可選擇，false表示不可選擇
+						console.log("start:" + selectInfo.start.format() + "|end:" + selectInfo.end.format() + "|resourceId:" + selectInfo.resourceId);
+						return true;
+					},
+					select: function (start, end, allDay) {				//點擊空白區域/選擇區域內容觸發
+						//	        window.location.href= 'apply.html?start=' + start.format() + '?end=' + end.format();
+						// var title = prompt(start.format() + '————' + end.format() + '標題標題:');
+						// if (title) {
+						// 	calendar.fullCalendar('renderEvent', {		//一旦日曆重新取得日程源，則原有日程將消失，當指定stick為true時，日程將永久的保存到日曆上
+						// 		title: title,
+						// 		start: start,
+						// 		end: end,
+						// 		allDay: allDay,
+						// 		//					rendering: 'background',
+						// 		block: true,
+						// 	}, true);									//為true時，日程將永久的保存到日曆上，讓事件「持久」
+						// }
+						showDetailsDialog("新增", start.format(), '');
+						//	        calendar.unselect()
+					},
+					//		select: function(startDate, endDate, allDay, jsEvent, view ) {			//被選中
+					////			startDate：被選中區域的開始時間
+					////			endDate：被選中區域的結束時間
+					////			allDay：是否為全天事件
+					////			jsEvent：jascript對象
+					////			view：當前視圖對象
+					//			var selectStart = $.fullCalendar.formatDate(startDate,'YYyy/mm/dd HH:mm');
+					//			var selectEnd =$.fullCalendar.formatDate(endDate,'YYyy/mm/dd HH:mm');
+					//			alert(selectStart + ' 至 ' + selectEnd);
+					//			$("#calendar").fullCalendar('renderEvent',true); 
+					//		},
+					unselect: function (view, jsEvent) {						//選擇取消時觸發
+						console.log("");
+						console.log("view:" + view);
+					},
+					lazyFetching: true,        							//是否啟用懶載入技術--即只取當前條件下的視圖資料，其它資料在切換時觸發，默認true只取當前視圖的，false是取全視圖的
+					defaultTimedEventDuration: "02:00:00",     			//在Event Object中如果沒有end參數時使用，如start=7:00pm，則該日程對象時間範圍就是7:00~9:00
+					defaultAllDayEventDuration: { days: 1 },  				//默認1天是多長，（有的是採用工作時間模式，所以支援自定義）
+					//		loading: function(isLoading, view) {
+					//      	document.getElementById('載入').style.display =
+					//        	isLoading ? 'block' : 'none';
+					//			console.log("");
+					//	        if(isLoading == true){
+					//	            console.log("view:"+view+",開始載入");
+					//	        }else if(isLoading == false){
+					//	            console.log("view:"+view+",載入完成");
+					//	        }else{
+					//	            console.log("view:"+view+",除非天塌下來否則不會進這個分支");
+					//	        }
+					//    	},
+					editable: false,                 						//支持日程拖動修改，默認false
+					//      eventStartEditable : true,      						//日程開始時間可以改變，默認true，如果是false其實就是指日程塊不能隨意拖動，只能上下拉伸改變他的endTime
+					//      eventDurationEditable : false,  						//日程的開始結束時間距離是否可以改變，默認true，如果是false則表示開始結束時間範圍不能拉伸，只能拖拽
+					dragOpacity: 0.2,                						//拖拽時不透明度，0.0~1.0之間，數字越小越透明
+					dragScroll: true,              						//是否在拖拽時自動移動容器，默認true
+					eventOverlap: true,            						//拖拽時是否重疊
+					eventConstraint: {     								//限製拖拽拖放的位置（即限制有些地方拖不進去）t
+						//          start: '10:00',     								//開始時間10點
+						//          end: '18:00',       								//結束時間18點
+						dow: [1, 2, 3, 4, 5, 6, 0] 						//0是周日，1是週一，以此類推
+					},
+					longPressDelay: 1000,  								//移動設備，長按多少毫秒即可拖動,默認1000毫秒（1S）
+					eventDragStart: function (event, jsEvent, ui, view) {    //日程開始拖拽時觸發
+						//          console.log("eventDragStart():"+event.title);
+					},
+					eventDragStop: function (event, jsEvent, ui, view) {     //日程拖拽停止時觸發
+						//          console.log("eventDragStop():"+event.title);
+					},
+					eventDrop: function (event, dayDelta, delta, revertFunc, jsEvent, ui, view) {  //日程拖拽停止，並且時間改變時觸發，ayDelta日程前後移動了多少天
+						//          console.log("eventDrop():"+event.title);
+						console.log('eventDrop被執行，Event的title是：', event.title);
+						if (dayDelta._days != 0) {
+							console.log('eventDrop被執行，Event的start和end時間改變了：', dayDelta._days + '天！');
+						} else if (dayDelta._milliseconds != 0) {
+							console.log('eventDrop被執行，Event的start和end時間改變了：', dayDelta._milliseconds / 1000 + '秒！');
+						} else {
+							console.log('eventDrop被執行，Event的start和end時間沒有改變！');
+						}
+						//revertFunc();
+					},
+					eventResizeStart: function (event, jsEvent, ui, view) { //日程大小調整開始時觸發
+						//          console.log("eventResizeStart():"+event.title);
+					},
+					eventResizeStop: function (event, jsEvent, ui, view) {     //日程大小調整停止時觸發
+						//          console.log("eventResizeStop():"+event.title);
+					},
+					eventResize: function (event, delta, revertFunc, jsEvent, ui, view) {    //日程大小調整完成並已經執行更新時觸發
+						//          console.log("eventResize():"+event.title);
+					},
+
+				});
+			}
+
+
+
+
+			$("#tableDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 750,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+					bodyHref("/content/health/Health_contact_1.html")
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+			var formSubmitHandler = $.noop;
+
+			var showDetailsDialog = function (dialogType, item, title) {
+
+				$("#tableDialog").dialog("option", "title", dialogType + "").dialog("open");
+				var dateParts = item.split("-");
+				if (dateParts[1].length < 2){
+					dateParts[1] = "0" + dateParts[1];
+			}
+			if (dateParts[2].length < 2) {
+				dateParts[2] = "0" + dateParts[2];
+			}
+			var newDateStr = dateParts[0] + "/" + dateParts[1] + "/" + dateParts[2];
+			$("#start").val(newDateStr)
+			$('#addOredit').val(dialogType)
+
+
+			if (title != '') {
+				var option = $('#eventName option:contains("' + title + '")');
+				option.prop('selected', true);
+			}
+
+		};
+
+		$("#dialogForm").validate({
+			//錯誤訊息元素預設為label改成p會換行
+			errorElement: "p",
+			rules: {
+				cfgType: { required: true, rangelength: [2, 50] },
+				cfgKey: { required: true, rangelength: [3, 80] },
+				cfgName: { required: true, rangelength: [2, 50] },
+				cfgValue: { required: true, rangelength: [0, 80] },
+				cfgInUse: { required: true }
+			},
+			messages: {
+				cfgType: {
+					required: "請輸入參數類型",
+					rangelength: "密碼長度不得小於2個字母大於50個字母"
+				},
+				cfgKey: {
+					required: "請輸入參數key",
+					rangelength: "參數key不得小於4個字母大於80個字母"
+				},
+				cfgName: {
+					required: "請輸入參數名稱",
+					rangelength: "參數名稱不得小於2個字母大於50個字母"
+				},
+				cfgValue: {
+					required: "請輸入參數值",
+					rangelength: "參數值不得小於0個字母大於80個字母"
+				},
+				cfgInUse: {
+					required: "請選擇是否啟用"
+				}
+			},
+			submitHandler: function () {
+				formSubmitHandler();
+			}
+		});
+
+	});
+
+	var cellIndex = parseInt($(".tbStyle th").length) - 1;
+	$("#jsGrid tr td").each(function () {
+		alert($(this).text())
+		if (this.cellIndex != cellIndex) {
+			$(this).attr("title", $(this).text());
+			//alert($(this).parent().get(0).rowIndex);輸出所在行
+		}
+	});
+	});
+</script>

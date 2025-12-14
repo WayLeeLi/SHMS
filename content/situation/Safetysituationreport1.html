@@ -1,0 +1,161 @@
+<div>
+	<h2 style="text-align: center;">安全狀況反映通報</h2>
+
+	<div id="jsGrid" >
+	</div>
+</div>
+
+<div class="container-fluid" id="templateContainer">
+	
+</div>
+<div class="row justify-content-end" id="templateRow" style="display:none;">
+		<div class ="col-4 table-dark text-white">@TITLE@</div>
+		<div class ="col-4">@CONTENT@</div>
+	</div>
+
+<div id="tableDialog" class="container-fluid" style="display:none;">
+	<div class="row">
+		<div class="col-4 text-right table-secondary">通報者</div>
+		<div class="col-8 text-left border-bottom" id="dlgEditId"></div>
+	</div>
+	<div class="row">
+		<div class="col-4 text-right table-secondary">通報時間</div>
+		<div class="col-8 text-left border-bottom" id="dlgEditTime"></div>
+	</div>
+	<div class="row">
+		<div class="col-4 text-right table-secondary">是否平安</div>
+		<div class="col-8 text-left border-bottom" id="dlgIsSafe"></div>
+	</div>
+	<div class="row">
+		<div class="col-4 text-right table-secondary">影響類別</div>
+		<div class="col-8 text-left border-bottom" id="dlgEffectType"></div>
+	</div>
+	<div class="row">
+		<div class="col-4 text-right table-secondary">行舍產權</div>
+		<div class="col-8 text-left float-left border-bottom" id="dlgPropertyType"></div>
+	</div>
+	<div class="row">
+		<div class="col-4 text-right table-secondary">營業狀況</div>
+		<div class="col-8 text-left border-bottom" id="dlgStatusType"></div>
+	</div>
+	<div class="row">
+		<div class="col-4 text-right table-secondary">簡要說明重要案情</div>
+		<div class="col-8 text-left overflow-auto border-bottom" style="height:150px;max-height:150px;" id="dlgMemo"></div>
+	</div>
+	<div class="row d-none">
+		<div class="col-4 text-right table-secondary">是否審核</div>
+		<div class="col-8 text-left" id="dlgReviewTime"></div>
+	</div>
+	
+	<div class="row m-1">
+		<div class="col-12 text-center">
+			<button class="btn btn-primary" id="returnAgain">重新通報</button>
+		</div>
+	</div>
+</div>
+
+<script>
+//需要用的JS
+require(["jquery", "jsgrid"], function (jquery, jsgrid) {
+	//頁面讀取後執行
+	$(document).ready(function(){
+
+var db = {
+
+	loadData: function(filter) {
+		return $.grep(this.clients, function(client) {
+			return (!filter.Name || client.Name.indexOf(filter.Name) > -1)
+				&& (!filter.Age || client.Age === filter.Age)
+				&& (!filter.Address || client.Address.indexOf(filter.Address) > -1)
+				&& (!filter.Country || client.Country === filter.Country)
+				&& (filter.Married === undefined || client.Married === filter.Married);
+		});
+	},
+
+	insertItem: function(insertingClient) {
+		this.clients.push(insertingClient);
+	},
+
+	updateItem: function(updatingClient) { },
+
+	deleteItem: function(deletingClient) {
+		var clientIndex = $.inArray(deletingClient, this.clients);
+		this.clients.splice(clientIndex, 1);
+	}
+
+};
+
+window.db = db;
+db.Safetysituationreport = [
+	{
+		"NUM": "OHS000000700",
+		"TIME": "2022/12/01 12:30",
+		"UNIT":"台北分行",
+		"CONTENT":"ATM區櫥窗玻璃碎裂",
+		"STATUS":"新通報"
+
+	},{
+		"NUM": "OHS000000700",
+		"TIME": "2022/12/01 12:30",
+		"UNIT":"大安分行",
+		"CONTENT":"天花板板塊掉落",
+		"STATUS":"處理中"
+
+	},
+	{
+		"NUM": "OHS000000700",
+		"TIME": "2022/12/01 12:30",
+		"UNIT":"台北分行",
+		"CONTENT":"ATM區櫥窗玻璃碎裂",
+		"STATUS":"新通報"
+
+	},{
+		"NUM": "OHS000000700",
+		"TIME": "2022/12/01 12:30",
+		"UNIT":"大安分行",
+		"CONTENT":"天花板板塊掉落",
+		"STATUS":"處理中"
+
+	}
+];
+
+
+}());
+	function buildTable(db){
+		let parentGridFields =[
+            { title:"通報編號", name: "NUM", type: "text", width: 'auto' },
+            { title:"通報時間", name: "TIME", type: "text", width:  'auto' },
+            { title:"通報單位", name: "UNIT", type: "text", width:  'auto' },
+			{ title:"事件內容", name: "CONTENT", type: "text", width:  'auto' },
+			{ title:"狀態", name: "STATUS", type: "text", width:  'auto' }
+        ];
+		
+		$("#jsGrid").jsGrid({
+	        width: "100%",
+	        height: "auto",
+	        heading: true,
+		    filtering: false,
+		    inserting: false,
+		    editing: false,
+		    selecting: true,
+		    sorting: true,
+		    paging: true,
+		    pageLoading: false,
+		    pageSize: 10,
+	 
+	        data: db.Safetysituationreport,
+	 
+	        fields: parentGridFields,
+	       
+           
+                
+              
+	    });
+	}
+	
+
+	
+
+	//end
+});
+</script>

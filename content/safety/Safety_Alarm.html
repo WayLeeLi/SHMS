@@ -1,0 +1,1070 @@
+﻿<div id="editDialog" style="display:none" class="container">
+	<div class="safety_fbox">
+		<h2 style="text-align: center;">警鈴連線測試</h2>
+		<input type="hidden" id="safety_fid">
+		<br>
+		<form id="inputForm">
+
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header " width="200">單位連線代號</td>
+						<td class="unitId" colspan="2">
+							1234
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">單位名稱</td>
+						<td class="unitName" colspan="2">
+							ＯＯ分行
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header" width="" border='0'>檢測年月</td>
+						<td class="" border='0' colspan="2">
+							<span class="itemYear"></span>年<span class="itemMonth"></span>月
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header " width="200">項次</td>
+						<td class="" colspan="2">
+							<select class="custom-select w_100p" id="testNum" name="testNum">
+
+								<option value="1">第一次</option>
+								<option value="2">第二次</option>
+
+
+							</select>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">警鈴連線測試</td>
+						<td class="" colspan="2">
+							<select class="custom-select w_100p" id="testSelect" name="testSelect">
+
+								<option value="是">是</option>
+								<option value="否">否</option>
+
+							</select>
+						</td>
+
+					</tr>
+					<tr class="date_tr">
+						<td class="table-header " width="200">測試日期</td>
+						<td class="" colspan="2">
+							<div class="date_box">
+								<label>
+									<input id="testDate" name="testDate" type="text" readonly="readonly" class="w_100p"
+										placeholder="測試日期" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">按鈕總數</td>
+						<td class="" colspan="2">
+							<input type="number" id="buttonNum" min="0">
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">測試按鈕位置</td>
+						<td class="" colspan="2">
+							<input type="text" id="buttonLocation">
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">未完成原因
+							(敘明無測試月份)</td>
+						<td class="" colspan="2">
+							<textarea placeholder="輸入文字(100個中文字內)" id="noReason" maxlength="200"></textarea>
+						</td>
+
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td class="table-header " width="200">審核人員</td>
+						<td class="  " colspan="2">
+							<select class="custom-select w_100p" id="reviewName" name="reviewName">
+
+
+
+							</select>
+						</td>
+
+					</tr>
+				</tfoot>
+
+
+			</table>
+		</form><br>
+		<div style="text-align: center;">
+			<button type="button" id="submitBtn_x" class="btn btn-warning  my-2">暫存</button>
+			<button type="button" id="submitBtn" class="btn btn-success  my-2">送出</button>
+
+		</div>
+	</div>
+</div>
+<div class="m-t50 m-b30">
+	<h2>警鈴連線測試紀錄</h2>
+	<div class="date_time">
+		<div class="date_box">
+			<label>
+				<input id="startDate" name="startDate" type="text" readonly="readonly" class="w_100p"
+					placeholder="開始日期" />
+				<i class="iconfont icon-riqi1"></i>
+			</label>
+		</div>
+		<div class="date_box">
+			<label>
+				<input id="endDate" name="endDate" type="text" readonly="readonly" class="w_100p" placeholder="結束日期" />
+				<i class="iconfont icon-riqi1"></i>
+			</label>
+		</div>
+		<!-- <div class="date_box">
+			<label>
+				<input id="unitId_s" name="" type="text" class="w_100p" placeholder="連線代號" />
+			</label>
+		</div>
+		<div class="date_box">
+			<label>
+				<input id="unitName_s" name="" type="text" class="w_100p" placeholder="銀行名稱" />
+			</label>
+		</div> -->
+		<button class="btn btn-primary  my-2" id="getlist_search">查詢</button>
+	</div>
+
+	<div id="jsGrid"></div>
+</div>
+
+<div id="detailDialog" style="display:none" class="container">
+	<div id="printDiv">
+		<h2 style="text-align: center;">警鈴連線測試紀錄</h2>
+
+		<br>
+		<form id="inputForm">
+			<input type="hidden" id="safetyId">
+			<table class="w-100 safe_form">
+				<thead>
+					<tr>
+						<td class="table-header " width="200">單位連線代號</td>
+						<td colspan="2" class="unitId">
+							1234
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">單位名稱</td>
+						<td colspan="2" class="unitName">
+							ＯＯ分行
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header" width="" border='0'>檢測年月</td>
+						<td class="" border='0' colspan="2">
+							<span class="itemYear"></span>年<span class="itemMonth"></span>月
+						</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="table-header " width="200">項次</td>
+						<td class="testNum" colspan="2">
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">警鈴連線測試</td>
+						<td class="testSelect" colspan="2">
+
+						</td>
+
+					</tr>
+					<tr class="date_trs">
+						<td class="table-header " width="200">測試日期</td>
+						<td class="testDate" colspan="2">
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">按鈕總數</td>
+						<td class="buttonNum" colspan="2">
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">測試按鈕位置</td>
+						<td class="buttonLocation" colspan="2">
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">未完成原因
+							(敘明無測試月份)</td>
+						<td class="noReason" colspan="2">
+
+						</td>
+
+					</tr>
+
+				</tbody>
+				<tfoot>
+					<tr>
+						<td class="table-header " width="200">審核人員</td>
+						<td class="reviewName" colspan="2">
+							蔡小雯
+						</td>
+					</tr>
+				</tfoot>
+
+			</table>
+		</form>
+	</div>
+	<br>
+	<div class="dialog-alert" id="dialog-return">
+		<div class="dialog-return">
+			<textarea placeholder="退件原因" id="returnReason1" maxlength="100"></textarea>
+		</div>
+		<div class="dialog-alert-button text-center">
+			<button type="button" id="returncancel" class="btn btn-danger  my-2">取消</button>
+			<button type="button" id="returnFormSubmit" class="btn btn-primary  my-2 ">確認</button>
+
+		</div>
+	</div>
+	<div style="text-align: center;">
+		<button type="button" id="submitBtn_s" class="btn btn-success  my-2 pressing_hide reviewButton">審核通過</button>
+		<button type="button" id="return" class="btn btn-danger  my-2 returnButton">退件</button>
+		<button type="button" id="printBtn" class="btn btn-secondary  my-2">列印</button>
+	</div>
+</div>
+
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui", "print"], function (jquery, jquery_validate, jsgrid, jquery_ui, print) {
+		//頁面讀取後執行
+		$("#testSelect").on("change", function () {
+
+			if ($(this).val() == '是') {
+				$(this).parents('tr').siblings().find('.date_box').show()
+			} else {
+				$(this).parents('tr').siblings().find('.date_box').hide()
+				$(this).parents('tr').siblings().find('#testDate').val('');
+			}
+		});
+		$(document).ready(function () {
+			function isDateFormatValid(dateString) {
+				// 使用正則表達式来判斷日期字串是否符合 YYYY-MM-DD 格式    
+				var datePattern = /^\d{4}-\d{2}-\d{2}$/;
+				return datePattern.test(dateString);
+			}
+
+			function formatDate(date) {
+				// 將Date 對象轉換為 YYYY/MM/DD 格式的字串   
+				var year = date.getFullYear();
+				var month = ("0" + (date.getMonth() + 1)).slice(-2); // 將Date 對象轉換為 YYYY/MM/DD 格式的字串   
+				var day = ("0" + date.getDate()).slice(-2); // 獲取日期，並確保是兩位數  
+				return year + "/" + month + "/" + day;
+			}
+
+			function addOneDay(dateString) {
+				// 將字串轉換為 Date 對象，並延後一天  
+				var date = new Date(dateString);
+				date.setDate(date.getDate() + 1); // 延後一天  
+				return date;
+			}
+			function prevOneDay(dateString) {
+				// 將字串轉換為 Date 對象，並提前一天  
+				var date = new Date(dateString);
+				date.setDate(date.getDate() - 1); // 延後一天  
+				return date;
+			}
+			var idv = '';
+			var status_t='';
+			var currentDate = new Date();
+			var year = currentDate.getFullYear();
+			if (currentDate.getMonth() + 1 > 12) {
+				var month = 12;
+			} else {
+				var month = currentDate.getMonth() + 1;
+			}
+			var day = currentDate.getDate();
+			$(".itemYear").html(year);
+			$(".itemMonth").html(month)
+			getByMenuId()
+			function getByMenuId() {
+				var menuid = 48;
+
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/buttonRole/api/getByMenuId?menuId=' + menuid,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							var menuData = data.data
+							get_list(menuData);
+
+							console.log(menuData)
+							// 		<button type="button" id='submit_o' class="btn btn-warning  my-2 pressing_hide tempButton">暫存</button>
+							// <button type="button" id='submit_s' class="btn btn-primary  my-2 pressing_hide sendButton">儲存送出</button>
+							// <button type="button" id="checkBtn" class="btn btn-success  my-2 pressing_hide reviewButton">審核通過</button>
+							// <button type="button" id="return" class="btn btn-danger  my-2 pressing_hide returnButton">退件</button>
+							// <button type="button" id='submit_p' class="btn btn-primary  my-2 pressing_show sendButton">儲存送出</button>
+							// <button type="button" id="printBtn1" class="btn btn-secondary  my-2 pressing_show printButton">列印</button>
+							// <button type="button" id="printBtn" class="btn btn-secondary  my-2 pressing_hide printButton">列印</button>
+
+							if (menuData.functionArray.indexOf('review') < 0) {
+								$('.reviewButton').hide()
+							}
+							if (menuData.functionArray.indexOf('temp') < 0) {
+								$('.tempButton').hide()
+							}
+							if (menuData.functionArray.indexOf('reject') < 0) {
+								$('.returnButton').hide()
+							}
+							if (menuData.functionArray.indexOf('temp') < 0) {
+								$('.tempButton').hide()
+							}
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			$("#printBtn").click(function () {
+				//printByDiv(document.getElementById("printDiv"));
+				printJS({
+					printable: 'printDiv',
+					type: 'html',
+					header: '',
+					css: '../resources/css/print.css',
+
+
+
+				})
+			});
+			var today = new Date();
+			var firstDayOfPrevMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+			var lastDayOfPrevMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+			$("#testDate").datepicker({
+				dateFormat: "yy/mm/dd",
+			
+				minDate: firstDayOfPrevMonth,
+				maxDate: lastDayOfPrevMonth,
+				onClose: function (selectedDate) {
+					var date = $(this).datepicker('getDate');
+					if (date < firstDayOfPrevMonth || date > lastDayOfPrevMonth) {
+						$(this).datepicker('setDate', firstDayOfPrevMonth);
+					}
+				},
+
+			});
+			isLogin();//登入狀態
+			function isLogin() {
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/login/api/getLogin',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "get",
+					success: function (data, textStatus) {
+						if (data.msg != "success") {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+			$('#startDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				dateFormat: 'yy/mm/dd',
+				onClose: function (selectedDate) {
+					$("#endDate").datepicker("option", "minDate", selectedDate);
+				}, maxDate: 0
+
+			})
+
+			$('#endDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				dateFormat: 'yy/mm/dd',
+
+				minDate: $("#startDate").val(),
+				onClose: function (selectedDate) {
+					$("#startDate").datepicker("option", "maxDate", selectedDate);
+				}
+			})
+			getByMenuId()
+			insert_mr()
+			$('#getlist_search').click(function () {
+				getByMenuId()
+			})
+			$("#submitBtn").click(function () {
+				var tableData = [];
+				$('.safe_form tbody tr').each(function (row, tr) {
+					tableData[row] = {
+						"title": $(tr).find('td:eq(0)').text(),
+					}
+				});
+				var saveItem = {
+					safetyId: $('#safety_fid').val(),
+					testNum: $('#testNum').find("option:selected").val(),
+					testNumText: $('#testNum').find("option:selected").text(),
+					testSelect: $('#testSelect').find("option:selected").val(),
+					testDate: $('#testDate').val(),
+					noReason: $('#noReason').val(),
+					buttonNum: $('#buttonNum').val(),
+					buttonLocation: $('#buttonLocation').val(),
+					status: "n",
+					reviewId: $('#reviewName').find("option:selected").val(),
+					reviewName: $('#reviewName').find("option:selected").text(),
+					version: "1.0.1"
+				}
+				console.log(saveItem)
+				if ($('#testSelect').find("option:selected").val() == '是' && $('#testDate').val() == '') {
+					shmsToast(("測試日期不能為空" ? "測試日期為空," : "測試日期不能為空") + "請選擇測試日期！");
+				} else if ($('#testNum').find("option:selected").val() > 1) {
+					$.ajax({
+						url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceAlart/api/check?testNum=0',
+						contentType: "application/json;charset=utf-8", // 因為上面是JSON
+						async: false,
+						cache: false,
+						type: "GET",
+						success: function (data, textStatus) {
+							console.log(data.data.length)
+							var datas = data.data
+							datas.sort(function (a, b) {
+								return a.testNum - b.testNum;
+							});
+							var foundObject = $.grep(datas, function (item) {
+								return item.testNum === Number($('#testNum').find("option:selected").val());
+							});
+
+							if (foundObject.length > 0 && status_t!='r') {
+								shmsToast(('檢查成功' ? "已有第" + $('#testNum').find("option:selected").val() + "項次資料" : "已有第" + $('#testNum').find("option:selected").val() + "項次資料") + "，請不要重複上傳！");
+							} else {
+								if (datas.length > 0) {
+									var dateString = datas[datas.length - 1].testDate;
+
+									var date = new Date(dateString); // 將字串轉換為 Date 對象  
+									var oneDayLater = addOneDay(dateString); // 延後一天  
+									var formattedDateString = formatDate(oneDayLater); // 轉換為 YYYY/MM/DD 格式  
+									$("#testDate").datepicker("option", "minDate", formattedDateString);
+
+								}
+								var date1 = new Date($('#testDate').val());
+								var date2 = new Date(datas[datas.length - 1].testDate);
+
+								if (date1 < date2) {
+									shmsToast((data.data ? "測試日期" : "當前測試日期不能早於上次測試日期") + "，請檢查後新增！");
+								} else {
+
+									shmsToast(('檢查成功' ? "正在上傳" : "資料正在上傳") + "，請稍候！");
+									insert(saveItem)
+
+								}
+
+							}
+
+						}
+					});
+				} else {
+					shmsToast(('檢查成功' ? "正在上傳" : "資料正在上傳") + "，請稍候！");
+					insert(saveItem)
+				}
+			})
+			$("#submitBtn_x").click(function () {
+
+				var tableData = [];
+				$('.safe_form tbody tr').each(function (row, tr) {
+					tableData[row] = {
+						"title": $(tr).find('td:eq(0)').text(),
+					}
+				});
+				var saveItem = {
+					safetyId: $('#safety_fid').val(),
+					testNum: $('#testNum').find("option:selected").val(),
+					testNumText: $('#testNum').find("option:selected").text(),
+					testSelect: $('#testSelect').find("option:selected").val(),
+					testDate: $('#testDate').val(),
+					noReason: $('#noReason').val(),
+					buttonNum: $('#buttonNum').val(),
+					buttonLocation: $('#buttonLocation').val(),
+					status: "t",
+					reviewId: $('#reviewName').find("option:selected").val(),
+					reviewName: $('#reviewName').find("option:selected").text(),
+					version: "1.0.1"
+				}
+				if ($('#testSelect').find("option:selected").val() == '是' && $('#testDate').val() == '') {
+					shmsToast(("測試日期不能為空" ? "測試日期為空," : "測試日期不能為空") + "請選擇測試日期！");
+				} else {
+					insert(saveItem)
+				}
+			})
+			//提交
+			function insert(data) {
+				console.log(JSON.stringify(data))
+				$.ajax({
+					data: JSON.stringify(data),
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceAlart/api/save',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} if (data.code == 7002 || data.code == '7002') {當前狀態
+							showAlert('可上傳資料已達最大數量', '可上傳資料已達最大數量，無法上傳！', '')
+						} if (data.code == 7003 || data.code == '7003') {
+							showAlert('訊息', '本筆資料已經上傳，無需重複送出！', '')
+						} else {
+							getByMenuId()
+							showAlert('上傳成功', '警鈴連線測試上傳成功！', bodyHref("/content/safety/Safety_Alarm.html"))
+							console.log(data);
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+
+			function get_list(menuData) {
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceAlart/api/list?startDate=' + $('#startDate').val() + '&endDate=' + $('#endDate').val(),
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data.code == "5000") {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							var data = data.data;
+							console.log('1')
+							console.log(data)
+							//提示
+							$.toast({ heading: '', text: '資料載入成功' + textStatus, icon: 'success', position: 'toast-top-center', hideAfter: 6000, });
+							$("#jsGrid").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: false, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: false,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+														callback(value.length)
+													}
+
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+															callback(item[key].toString().indexOf(value))
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+															callback(item[key].indexOf(value))
+														}
+													}
+
+												}
+
+											}
+											return true;
+										});
+										return result;
+									},
+
+								},
+								fields: [
+									{ title: "項次", name: "testNumText", type: "text", },
+									{ title: "上傳日期", name: "addTime", type: "text", },
+									{
+										title: "檢測年月", name: "addTime", type: "text", itemTemplate: function (value, item) {
+											return $("<span>").text(item.itemYear + '年' + item.season + '月').attr('title', item.itemYear + '年' + item.season + '月').addClass('text-ellipsis')
+										}
+									},
+									{
+										title: "警鈴連線測試", name: "testSelect", type: "text", width: 80,
+									},
+									{ title: "未完成原因(敘明無測試月份)", name: "noReason", type: "text", validate: "required" },
+
+									{ title: "填表人", name: "checkName", type: "text", validate: "required" },
+									{
+										title: "審核人員", name: "reviewName", type: "text", validate: "required",
+										// itemTemplate: function (value, item) {
+										// 		if(item.status=='c'){
+										// 			return  $("<span>").text(item.reviewName)
+										// 		}
+										// 		if(item.status=='r'){
+										// 			return  $("<span>").text(item.rejectName)
+										// 		}
+
+
+										// 	}
+									},
+									{
+										title: "狀態", name: "status", type: "select", type: "select",
+										items: [{ Name: "", Id: '' },
+										{ Name: "暫存", Id: 't' },
+										{ Name: "新發佈", Id: 'n' },
+										{ Name: "已審核", Id: 'c' },
+										{ Name: "已退件", Id: 'r' },
+										{ Name: "已處理", Id: 'p' }],
+										valueField: "Id",
+										textField: "Name", width: 120, itemTemplate: function (value, item) {
+											if (value == 't') {
+												return $("<span>").text('暫存')
+											} if (value == 'n') {
+												return $("<span>").text('已送審')
+											} if (value == 'c') {
+												return $("<span>").text('已審核')
+											} if (value == 'r') {
+												return $("<span class='text-danger'>").text('已退件')
+											}
+											if (value == 'p') {
+												return $("<span>").text('已處理')
+											}
+										}
+									},
+
+									{
+										title: "操作", name: "safetyId", filtercss: "display:none;", sorting: false, type: "control", width: 180,
+										itemTemplate: function (value, item) {
+											var $result = jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments);
+
+											if (menuData.functionArray.indexOf('edit') < 0) {
+												var $customEditButton = ""
+											} else {
+												var $customEditButton = $("<button>").attr("type", "button").text("編輯").addClass("btn btn-primary")
+													.on("click", function () {
+
+														if (menuData.functionArray.indexOf('edit') < 0) {
+															showAlert('無編輯權限', '您沒有編輯權限', '')
+														} else {
+															if (item.status == 't' || item.status == 'r') {
+																$("#testNum option").prop("disabled", true);
+																$("#testNum option").filter(function () {
+																	return $(this).val() == item.testNumText;;
+																}).prop("disabled", false);
+																$("#testNum").val(item.testNumText)
+																status_t=item.status;
+																get_old(value)
+															} else {
+																shmsToast((item.status ? "當前狀態" : "當前狀態") + "無法編輯");
+															}
+														}
+													})
+											}
+
+
+											var $customLookButton = $("<button>").attr("type", "button").text("查看").addClass("btn btn-success")
+												.on("click", function () {
+													showDetailsDialog("查看", value);
+												});
+											return $("<div>").append($customEditButton).append($customLookButton);
+										}, headerTemplate: function () {
+											if (menuData.functionArray.indexOf('add') < 0) {
+												return "操作";
+											} else {
+												return $("<button>").attr("type", "button").text("新增").addClass("btn btn-primary")
+													.on("click", function () {
+
+														get_old('0');
+
+													});
+											}
+
+										}
+
+									},
+
+
+
+								],
+
+
+							});
+
+
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			//取得默認資料
+			function insert_mr() {
+				let id = 0;
+				$("#id").val(id);
+				$.ajax({
+					data: JSON.stringify({ "safetyNo": "" }),
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenance/api/getInitData',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							initPage(data);
+							console.log(data);
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+			//默認資料帶入
+			function initPage(data) {
+				tempData = data;
+				$(".unitId").html(data.unit.unitId);
+				$(".unitName").html(data.unit.unitName);
+				$(".loginUser").html(data.loginUser.name);
+				createSelect("reviewName", data.userList, "rocId", "name", '');
+				$("#reviewName option[value='" + data.loginUser.rocId + "']").remove();
+			}
+			var formSubmitHandler = $.noop;
+			function get_old(item) {
+				var item = item
+				if (item == '0') {
+					
+					$('.safety_fbox').show();
+					$('#safety_fid').val('0')
+					$("#testNum option").prop("disabled", true);
+					$.ajax({
+						url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceAlart/api/check?testNum=0',
+						contentType: "application/json;charset=utf-8", // 因為上面是JSON
+						async: false,
+						cache: false,
+						type: "GET",
+						success: function (data, textStatus) {
+							console.log(data.data)
+
+							if (data.data.length < 2) {
+								$("#testNum option").filter(function () {
+									return $(this).val() == data.data.length + 1;
+								}).prop("disabled", false);
+								$("#testNum").val(data.data.length + 1)
+								showeditDialog('警鈴連線測試', item)
+							} else {
+								shmsToast((data.data ? "上傳紀錄數量已達上限" : "上傳紀錄數量已達上限") + "，目前無法新增！");
+							}
+						}
+					});
+				} else {
+
+					showeditDialog('警鈴連線測試', item)
+					$('.safety_fbox').show();
+					$.ajax({
+
+						url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceAlart/api/get?safetyId=' + item,
+						contentType: "application/json;charset=utf-8", // 因為上面是JSON
+						async: false,
+						cache: false,
+						type: "GET",
+						success: function (data, textStatus) {
+							if (data && data.code == "5000") {
+								showAlert('沒有權限', '沒有權限', '')
+							} else {
+								console.log(data.data);
+								var data = data.data;
+
+								$('#safety_fid').val(data.safetyId);
+								$('.safe_form #safetyId').val(data.safetyId);
+								$('.safe_form  #unitId').html(data.unitId);
+								$('.safe_form  #unitName').html(data.unitName);
+								if (data.testNum != '' && data.testNum != undefined) {
+									$('.safe_form  #testNum').val(data.testNum);
+								}
+								if (data.testSelect != '' && data.testSelect != undefined) {
+									$('.safe_form  #testSelect').val(data.testSelect);
+								}
+								if (data.status == 'c') {
+									$('.safe_form  #reviewName').val(data.reviewId);
+									$("#submitBtn_s").hide();
+								} if (data.status == 'r') {
+									$('.safe_form  #reviewName').val(data.rejectId);
+									$("#return").hide();
+								} else {
+									$('.safe_form  #reviewName').val(data.reviewId);
+								}
+								
+								$('.safe_form   .itemYear').html(data.itemYear);
+								$('.safe_form   .itemMonth').html(data.season);
+								$('.safe_form  #addTime').val(data.addTime);
+								$('.safe_form  #buttonNum').val(data.buttonNum);
+								$('.safe_form  #buttonLocation').val(data.buttonLocation);
+								if (data.testDate != '1900-01-01') {
+									$('.safe_form  #testDate').val(data.testDate);
+								} else {
+									$('.safe_form  #testDate').val('');
+								}
+
+								$('.safe_form  #noReason').val(data.noReason);
+								if (data.status == 'r') {
+
+									$('#editDialog  tbody').append('<tr><td class="table-header " width="200">退件原因</td><td class="" colspan="2">' + data.rejectReason + '</td></tr>');
+
+								}
+							}
+
+
+						}
+
+					});
+
+
+				}
+			}
+
+			var showeditDialog = function (dialogType, item) {
+
+				$("#editDialog").dialog("option", "title", dialogType + "").dialog("open");
+			}
+			var showDetailsDialog = function (dialogType, item) {
+
+				$("#detailDialog").dialog("option", "title", dialogType + "").dialog("open");
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceAlart/api/get?safetyId=' + item,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data.code == "5000") {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							console.log(data.data);
+							var data = data.data;
+							lookPage(data)
+
+
+						}
+					}
+				});
+			};
+			//查看資料帶入
+			function lookPage(data) {
+				tempData = data;
+				console.log(data.safetyNotificationBusinessList)
+				$('#detailDialog #safetyId').val(data.safetyId);
+				$('#detailDialog  .unitId').html(data.unitId);
+				$('#detailDialog  .unitName').html(data.unitName);
+				$('#detailDialog  .testNum').html(data.testNumText);
+				$('#detailDialog  .addTime').html(data.addTime);
+				$('#detailDialog  .testSelect').html(data.testSelect);
+				if (data.testSelect == '否') {
+					$('.date_trs').hide();
+				}
+				if (data.status == 'c') {
+									$("#submitBtn_s").hide();
+								}
+				$('#detailDialog  .testDate').html(data.testDate);
+				$('#detailDialog  .buttonNum').html(data.buttonNum);
+				$('#detailDialog  .buttonLocation').html(data.buttonLocation);
+				$('#detailDialog  .noReason').html(data.noReason);
+				$('#detailDialog  .reviewName').html(data.reviewName);
+				$('#detailDialog   .itemYear').html(data.itemYear);
+				$('#detailDialog   .itemMonth').html(data.season);
+				if (data.status == 'r') {
+
+					$('#detailDialog #printDiv tbody').append('<tr><td class="table-header " width="200">退件原因</td><td class="" colspan="2">' + data.rejectReason + '</td></tr>');
+
+				}
+			}
+			//查看
+			$("#detailDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 960,
+				height: 550,
+
+				modal: true,
+				close: function () {
+
+					bodyHref("/content/safety/Safety_Alarm.html")
+				},
+				open: function (event, ui) {
+
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+			$("#editDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 960,
+				height: 550,
+
+				modal: true,
+				close: function () {
+					bodyHref("/content/safety/Safety_Alarm.html")
+
+				},
+				open: function (event, ui) {
+
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+			//通報退件
+			$('#return').click(function () {
+				$('#dialog-return').addClass('shows');
+				$('#dialog-return').removeClass('hides');
+				$('#returnReason1').removeAttr('disabled')
+			})
+			$('#returnFormSubmit').click(function () {
+				cancleBtnsubmit()
+			})
+			$('#submitBtn_s').click(function () {
+				AuditBtnsubmit();
+			})
+			$('#returncancel').click(function () {
+				$('#dialog-return').addClass('hides');
+				$('#dialog-return').removeClass('shows');
+			})
+			function cancleBtnsubmit() {
+				var id = parseFloat($("#safetyId").val());
+				var data = { safetyId: id, rejectReason: $("#returnReason1").val() }
+				console.log(JSON.stringify(data))
+				return $.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceAlart/api/reject',
+					data: JSON.stringify(data),
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					type: "POST",
+					dataType: "json",
+					success: function (data, textStatus) {
+						console.log(data)
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							if (data.code == 0) {
+								showAlert('拒絕通報成功', '拒絕警鈴連線測試通報成功', bodyHref("/content/safety/Safety_Alarm.html"))
+								$.toast({ heading: '', text: '拒絕通報成功' + textStatus, icon: 'success', position: 'toast-top-center', hideAfter: 6000, });
+
+							} else if (data.errorMsg) {
+								alert(data.errorMsg);
+							}
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+						alert('拒絕通報失敗' + data + ',' + JSON.stringify(updatingItem))
+					},
+				});
+			}
+			function AuditBtnsubmit() {
+				var id = parseFloat($("#safetyId").val());
+				var data = { safetyId: id }
+				console.log(JSON.stringify(data))
+				return $.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceAlart/api/review',
+					data: JSON.stringify(data),
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					type: "POST",
+					dataType: "json",
+					success: function (data, textStatus) {
+						console.log(data)
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							if (data.code == 0) {
+								showAlert('審核通報成功', '審核警鈴連線測試通報成功', bodyHref("/content/safety/Safety_Alarm.html"))
+								$.toast({ heading: '', text: '審核通報成功' + textStatus, icon: 'success', position: 'toast-top-center', hideAfter: 6000, });
+
+							} else if (data.errorMsg) {
+								alert(data.errorMsg);
+							}
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+						alert('審核通報失敗' + data + ',' + JSON.stringify(updatingItem))
+					},
+				});
+			}
+			//創建select
+			function createSelect(id, data, key, val, eventKey) {
+				$.each(data, function (index, item) {
+					$('#' + id).append($('<option>').val(item[key]).text(eventKey ? item[eventKey] + "_" + item[val] : item[val]));
+					$('#' + id + '1').append($('<a>').html(item[val]).addClass('dropdown-item'));
+				});
+			}
+		});
+
+	});
+</script>

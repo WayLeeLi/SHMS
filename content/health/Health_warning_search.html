@@ -1,0 +1,1014 @@
+﻿<div class="warning_search">
+
+	<div class="m-t50 m-b30">
+		<h4>健康問題異常追蹤管理</h4>
+
+	</div>
+	<div id="warning_search"></div>
+	<!-- <div style="text-align: center;" class="m-t50 m-b30">
+			<button type="button" id="Track_btn" class="btn btn-primary  my-2" >追蹤關懷紀錄</button>
+
+			<button type="button" id="printBtn" class="btn btn-secondary  my-2">返回</button>
+		</div> -->
+</div>
+<div class="warning_history" style="display: none;">
+
+	<div class="m-t50 m-b30">
+		<h4>健康關懷紀錄</h4>
+
+	</div>
+	<div id="warning_history"></div>
+
+</div>
+<input type="hidden" name="addOredit">
+<input type="hidden" name="id" id="id">
+<input type="hidden" name="wid" id="wid">
+<input type="hidden" name="historyid" id="historyid">
+<div id="tableDialog" style="display:none" class="container">
+	<div id="printDiv">
+		<h2 style="text-align: center;">健康關懷紀錄</h2>
+		<br>
+		<form id="inputForm">
+
+			<table class="w-100 safe_form">
+				
+				<tbody><tr>
+						<td class="table-header text-center">單位</td>
+						<!-- <td class="table-header text-center ">職稱</td> -->
+						<td class="table-header text-center">姓名</td>
+						<td class="table-header text-center">性別</td>
+						<td class="table-header text-center">出生年月日</td>
+						<td class="table-header text-center">訪談日期</td>
+
+					</tr>
+					<tr>
+						<td class=" text-center" name="unitName">單位</td>
+						<!-- <td class=" text-center " name="position">職稱</td> -->
+						<td class=" text-center" name="name">姓名</td>
+						<td class=" text-center" name="gender">性別</td>
+						<td class=" text-center" name="birthday">出生年月日</td>
+						<td class=" text-center" ><div class="date_box">
+							<label>
+							<input id="startDate" name="visitDate" type="text" readonly="readonly" class="w_100p" placeholder="" />
+							<i class="iconfont icon-riqi1"></i>
+						</label>
+						</div></td>
+
+					</tr>
+
+					<tr>
+						<td class="table-header  text-center"> 健康問題:</td>
+						<td colspan="4">
+							<label ><input type="radio" name="healthProblem" value="生理疾病">生理疾病<input type="text" class="input_table" style="display: none;"></label>
+							<label ><input type="radio" name="healthProblem" value="心理疾病">心理疾病<input type="text" class="input_table" style="display: none;"></label>
+							<label ><input  type="radio" name="healthProblem" value="職場復工、配工、選工">職場復工、配工、選工</label>
+							<label ><input  type="radio" name="healthProblem" value="健康檢查後處置">健康檢查後處置</label>
+							<label ><input type="radio" name="healthProblem" value="異常工作負荷">異常工作負荷</label>
+							<label ><input  type="radio" name="healthProblem" value="母性健康管理">母性健康管理</label>
+							<label ><input  type="radio" name="healthProblem" value="骨骼肌肉傷害">骨骼肌肉傷害</label>
+							<label ><input  type="radio" name="healthProblem" value="其它">其它<input type="text" class="input_table" style="display: none;"></label>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header  text-center">健康狀況簡述:</td>
+						<td colspan="4">
+							<textarea name="healthSummary" autofocus cols="30" rows="10"></textarea>
+						</td>
+					</tr>
+					<tr>
+
+						<td>
+							訪談方式
+						</td>
+						<td colspan="2">
+							<label ><input type="radio" name="visitMethod" value="現場">現場</label>
+							<label ><input  type="radio" name="visitMethod" value="視訊">視訊</label>
+						</td>
+						<td>
+							訪談地點
+						</td>
+						<td >
+							<input type="text" class="input_table" name="visitLocation" style="width: 200px !important;">
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header  text-center">工作內容概要</td>
+						<td colspan="4">
+							<textarea name="workSummary" id="workSummary" cols="30" rows="10"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header  text-center">訪談概要</td>
+						<td colspan="4">
+							<textarea name="visitSummary" id="visitSummary" cols="30" rows="10"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header  text-center">醫師建議</td>
+						<td colspan="4">
+							<textarea name="doctorAdvice" id="doctorAdvice" cols="30" rows="10"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header  text-center">健康指導</td>
+						<td colspan="4">
+							<h2>醫療或健康指導</h2>
+							<label ><input type="radio" name="healthGuidance" value="須接受治療及休養">1、須接受治療及休養</label>
+							<label ><input  type="radio" name="healthGuidance" value="須追蹤觀察">2、須追蹤觀察</label>
+							<label ><input  type="radio" name="healthGuidance" value="須接受飲食及生活習慣等衛教指導">3、須接受飲食及生活習慣等衛教指導</label>
+							<label ><input  type="radio" name="healthGuidance" value="無須要接受治療">4、無須要接受治療</label>
+							<!-- <label ><input  type="radio" name="healthGuidance" value="下次追蹤日期">5、下次追蹤日期：民國 年 月 日</label> -->
+							<label ><input  type="radio" name="healthGuidance" value="其它">其它<input type="text" class="input_table" style="display:none;"></label>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header  text-center" rowspan="2">健康關懷醫護人員</td>
+						<td colspan="4">
+							臨場健康服務醫師：<input type="text" name="serviceDoctor" class="input_table">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							護理人員：<input type="text" name="nusingStaff" class="input_table"> </td>
+					</tr>
+
+
+				</tbody>
+			</table>
+
+		</form>
+	</div>
+	<br>
+	<div style="text-align: center;">
+		
+		<button type="button" id="submitBtn" class="btn btn-success  my-2">送出</button>
+		<button type="button" id="printBtn" class="btn btn-secondary  my-2">列印</button>
+	</div>
+</div>
+<div id="historyDialog" style="display:none" class="container">
+	<div>
+		<h2 style="text-align: center;">追蹤關懷紀錄</h2>
+		<br>
+		<div id="history"></div>
+	</div>
+	<br>
+	<br>
+	<div style="text-align: center;">
+
+
+		<button type="button" id="addjilu" class="btn btn-warning  my-2">新增追蹤關懐紀錄</button>
+	</div>
+</div>
+<div id="addDialog" style="display:none" class="container">
+	<div id="printDiv1">
+		<h2 style="text-align: center;">追蹤關懷紀錄</h2>
+		<br>
+		<form id="inputForm">
+			<table class="w-100 safe_form">
+				<tbody>
+					<!-- <tr>
+						<td class="table-header  text-center">健康問題:</td>
+						<td colspan="5">
+							<textarea name="healthProblem" id="" cols="30" rows="10"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header  text-center">醫師建議:</td>
+						<td colspan="5">
+							<textarea name="" id="" cols="30" rows="10"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header  text-center">健康指導:</td>
+						<td colspan="5">
+							<textarea name="" id="" cols="30" rows="10"></textarea>
+						</td>
+					</tr>
+					<tr>
+
+						<td class="table-header  text-center">
+							訪談方式
+						</td>
+						<td colspan="2">
+							<select class="custom-select select_unit w_200p" name="eventName">
+
+								<option value="1">視訊訪談</option>
+								<option value="2">現場訪談</option>
+
+							</select>
+						</td>
+						</td>
+						<td class="table-header  text-center">
+							訪談地點
+						</td>
+						<td colspan="2">
+							<input type="text" name="" id="">
+						</td>
+
+					</tr> -->
+					<tr>
+						<td class="table-header  text-center">追蹤日期</td>
+						<td class="table-header  text-center">時間</td>
+						<td class="table-header  text-center" colspan="4">內容</td>
+					</tr>
+					<tr>
+						<td>
+							<div class="date_box">
+								<label>
+									<input id="adddate1" name="trackDate" type="text" readonly="readonly" class="w_100p"
+										placeholder="日期" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+						</td>
+						<td><select class="custom-select select_unit w_200p" name="trackTime">
+
+								<option value="08:00">08:00</option>
+								<option value="09:00">09:00</option>
+								<option value="10:00">10:00</option>
+								<option value="11:00">11:00</option>
+								<option value="12:00">12:00</option>
+								<option value="13:00">13:00</option>
+								<option value="14:00">14:00</option>
+								<option value="15:00">15:00</option>
+								<option value="16:00">16:00</option>
+								<option value="17:00">17:00</option>
+								<option value="18:00">18:00</option>
+
+
+							</select></td>
+						<td colspan="4"><textarea name="trackContent" id="" cols="30" rows="10"></textarea></td>
+					</tr>
+					<!-- <tr>
+						<td>
+							<div class="date_box">
+								<label>
+									<input id="adddate2" name="adddate2" type="text" readonly="readonly" class="w_100p"
+										placeholder="日期" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+						</td>
+						<td><select class="custom-select select_unit w_200p" name="eventName">
+
+								<option value="1">08:00</option>
+								<option value="2">09:00</option>
+
+							</select></td>
+						<td colspan="4"><textarea name="" id="" cols="30" rows="10"></textarea></td>
+					</tr>
+					<tr>
+						<td>
+							<div class="date_box">
+								<label>
+									<input id="adddate3" name="adddate3" type="text" readonly="readonly" class="w_100p"
+										placeholder="日期" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+						</td>
+						<td><select class="custom-select select_unit w_200p" name="eventName">
+
+								<option value="1">08:00</option>
+								<option value="2">09:00</option>
+
+							</select></td>
+						<td colspan="4"><textarea name="" id="" cols="30" rows="10"></textarea></td>
+					</tr>
+					<tr>
+						<td>
+							<div class="date_box">
+								<label>
+									<input id="adddate4" name="adddate4" type="text" readonly="readonly" class="w_100p"
+										placeholder="日期" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+						</td>
+						<td><select class="custom-select select_unit w_200p" name="eventName">
+
+								<option value="1">08:00</option>
+								<option value="2">09:00</option>
+
+							</select></td>
+						<td colspan="4"><textarea name="" id="" cols="30" rows="10"></textarea></td>
+					</tr> -->
+
+
+				</tbody>
+			</table>
+
+		</form>
+	</div>
+	<br>
+	<div style="text-align: center;">
+
+
+		<button type="button" id="submitBtn_s" class="btn btn-success  my-2">送出</button>
+		<button type="button" id="printBtn1" class="btn btn-secondary  my-2">列印</button>
+	</div>
+</div>
+
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui", "print"], function (jquery, jquery_validate, jsgrid, jquery_ui,print) {
+		//頁面讀取後執行
+		$(document).ready(function () {
+			$("#printBtn").click(function () {
+				//printByDiv(document.getElementById("printDiv"));
+				printJS({ 
+					printable: 'printDiv', 
+					type: 'html', 
+					header: '' ,
+					css:'../resources/css/print.css',
+		
+		
+		 
+				})
+			});
+			$("#printBtn1").click(function () {
+				//printByDiv(document.getElementById("printDiv"));
+				printJS({ 
+					printable: 'printDiv1', 
+					type: 'html', 
+					header: '' ,
+					css:'../resources/css/print.css',
+		
+		
+		 
+				})
+			});
+			$('#adddate1').datepicker({
+				dateFormat: "yy/mm/dd",
+				maxDate:0
+			})
+			$('#startDate').datepicker({
+				dateFormat: "yy/mm/dd",
+				maxDate:0
+			})
+			$('#adddate3').datepicker({
+				dateFormat: "yy/mm/dd",maxDate:0
+			})
+			$('#adddate4').datepicker({
+				dateFormat: "yy/mm/dd",maxDate:0
+			})
+
+get_list();
+$('#search').click(function (){
+	get_list();
+})
+function get_list(){
+	$.ajax({
+				url: "/" + CONFIG.SYSTEM_NAME + '/healthCheck/api/listneed?year=0',
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+				async: false,
+				cache: false,
+				type: "GET",
+				success: function (data, textStatus) {
+					if (data && data == "<script>alert('沒有權限')<\/script>") {
+						alert("沒有權限");
+					} else {
+						console.log(data)
+						var data = data.data;
+					
+					$("#warning_search").jsGrid({
+							width: "100%",
+							height: "auto",
+							heading: true, //是否顯示表頭
+							filtering: false, //啟動查找
+							inserting: false, //啟動新增  關掉使用自定義的
+							editing: true,  //啟動編輯 
+							selecting: true,
+							sorting: true, //啟動排序
+							paging: true, //啟動分頁 
+							pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+							autoload: true,
+							pageSize: 10,
+
+							controller: {
+								loadData: function (filter) {
+									//查詢
+									var result = $.grep(data, function (item, idx) {
+										for (var key in filter) {
+											var value = filter[key];
+											if (value.length > 0) {
+												if (!item[key]) {
+													return false;
+												}
+												if (typeof item[key] === 'number') {
+													if (item[key].toString().indexOf(value) == -1) {
+														return false;
+													}
+												} else if (typeof item[key] === 'string') {
+													if (item[key].indexOf(value) == -1) {
+														return false;
+													}
+												}
+
+											}
+										}
+										return true;
+									});
+									return result;
+								},
+							},
+
+							fields: [
+								// { title:"勾選",  name: "MNAME", type: "control", width: 100, filtercss:"display:none;", itemTemplate: function(value, item){
+								//     	return  $("<input>").attr("type", "checkbox").attr('name','check'+value)
+
+								//     }, headerTemplate: function(){
+								//     	return "勾選";
+								//     }, filterTemplate: function(){
+								//     	return "";
+								//     }}, 	
+								{ title: "TCB帳號", name: "tcbAccount", type: "text", validate: "required" },
+								{ title: "身分證字號", name: "idNumber", type: "text", validate: "required" },
+								{ title: "姓名", name: "name", type: "text", validate: "required" },
+								{ title: "性別", name: "gender", type: "text", validate: "required" },
+                                { title: "部室", name: "unitName", type: "text", validate: "required" },
+								{ title: "出生年月日", name: "birthday", type: "text", validate: "required" },
+								{ title: "年齡", name: "waistline", type: "text", validate: "required" },
+								{ title: "身高", name: "height", type: "text", validate: "required" },
+								{ title: "體重", name: "weight", type: "text", validate: "required" },
+								{ title: "腰圍", name: "waistline", type: "text", validate: "required" },
+								{ title: "膽固醇", name: "totalCholesterolTc", type: "text", validate: "required" },
+	
+								{
+									title: "status", name: "status", type: "text", itemTemplate: function (value, item) {
+										if (value == 'y') {
+											return $("<DIV>").text("未追蹤")
+
+										} else {
+											return $("<DIV>").text("追蹤中")
+										}
+									}, headerTemplate: function () {
+										return "狀態";
+									}, filterTemplate: function () {
+										return "";
+									}
+								},
+								{ title: "關懷次數", name: "careCount", type: "text", },
+								{
+									title: "追蹤關懷紀錄", name: "id", type: "control", width: 150, filtercss: "display:none;", itemTemplate: function (value, item) {
+										return $("<button>").attr("type", "button").text("追蹤關懷紀錄").addClass("btn btn-primary")
+											.on("click", function () {
+												$("#safetyId").val(item.id);
+												warning_history(item.id);
+											});
+									}, headerTemplate: function () {
+										return "追蹤關懷紀錄";
+									}, filterTemplate: function () {
+										return "";
+									}
+								},
+							],
+							rowClick: function (args) {
+
+								// bodyHref("/content/situation/Safetysituationreport_form.html");
+								//showDetailsDialog("修改", args.item);
+							},
+							deleteConfirm: function (item) {
+								return "參數\"" + item.NUM + "\"確認刪除?";
+							},
+						});
+					}
+				},
+				error: function (data, textStatus, errorThrown) {
+					console.log(data);
+				},
+			});
+
+}
+			
+			function warning_history(id) {
+				$('.warning_history').show();
+				$('.warning_search').hide();
+				$("#wid").val(id)
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/healthProblemCare/api/list?checkId='+id,
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							alert("沒有權限");
+						} else {
+							console.log(data)
+							var data = data.data
+						
+							$("#warning_history").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: false, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: true,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+													}
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+														}
+													}
+
+												}
+											}
+											return true;
+										});
+										return result;
+									},
+								},
+
+								fields: [
+									// { title:"勾選",  name: "MNAME", type: "control", width: 100, filtercss:"display:none;", itemTemplate: function(value, item){
+									//     	return  $("<input>").attr("type", "checkbox").attr('name','check'+value)
+
+									//     }, headerTemplate: function(){
+									//     	return "勾選";
+									//     }, filterTemplate: function(){
+									//     	return "";
+									//     }}, 	
+									{ title: "職稱", name: "position", type: "text", validate: "required" },
+								{ title: "姓名", name: "name", type: "text", validate: "required" },
+								{ title: "訪談日期", name: "visitDate", type: "text", validate: "required" },
+								{ title: "訪談方式", name: "visitMethod", type: "text", validate: "required" },
+								{ title: "訪談地點", name: "visitLocation", type: "text", validate: "required" },
+								{ title: "健康問題", name: "healthProblem", type: "text", validate: "required" },
+								{ title: "訪談概要", name: "visitSummary", type: "text", validate: "required" },
+								{ title: "服務醫師", name: "serviceDoctor", type: "text", validate: "required" },
+								{ title: "護理人員", name: "nusingStaff", type: "text", validate: "required" },
+								
+									{ title: "創建時間", name: "addTime", type: "text", },
+									{
+										title: "查看", name: "id", type: "control", width: 150, filtercss: "display:none;",
+										itemTemplate: function (value, item) {
+											return $("<button>").attr("type", "button").text("查看").addClass("btn btn-primary")
+												.on("click", function () {
+													showDetailDialog('健康關懷紀錄', item.id, '檢視');
+												});
+										}, headerTemplate: function () {
+											return $("<button>").attr("type", "button").text("新增").addClass("btn btn-primary")
+												.on("click", function () {
+													showDetailDialog('健康關懷紀錄', id, '新增');
+												});
+										}, filterTemplate: function () {
+											return "";
+										}
+									},
+									{
+										title: "追蹤紀錄", name: "id", type: "control", width: 150, filtercss: "display:none;",
+										itemTemplate: function (value, item) {
+											return $("<button>").attr("type", "button").text("追蹤紀錄").addClass("btn btn-primary")
+												.on("click", function () {
+													historyDialog('追蹤紀錄', item.id, '檢視');
+												});
+										}
+									},
+								],
+								rowClick: function (args) {
+
+									// bodyHref("/content/situation/Safetysituationreport_form.html");
+									//showDetailsDialog("修改", args.item);
+								},
+								deleteConfirm: function (item) {
+									return "參數\"" + item.NUM + "\"確認刪除?";
+								},
+							});
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+
+			}
+			function history(id) {
+				$("#historyid").val(id)
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/healthProblemTrack/api/list?careId='+id,
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							alert("沒有權限");
+						} else {
+							console.log(data)
+							var data = data.data
+						
+							$("#history").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: false, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: true,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+													}
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+														}
+													}
+
+												}
+											}
+											return true;
+										});
+										return result;
+									},
+								},
+
+								fields: [
+									// { title:"勾選",  name: "MNAME", type: "control", width: 100, filtercss:"display:none;", itemTemplate: function(value, item){
+									//     	return  $("<input>").attr("type", "checkbox").attr('name','check'+value)
+
+									//     }, headerTemplate: function(){
+									//     	return "勾選";
+									//     }, filterTemplate: function(){
+									//     	return "";
+									//     }}, 	
+									{ title: "追蹤日期", name: "trackDate", type: "text", validate: "required" },
+								{ title: "追蹤時間", name: "trackTime", type: "text", validate: "required" },
+								{ title: "內容", name: "trackContent", type: "text", validate: "required" },
+								
+							
+								
+								],
+								rowClick: function (args) {
+
+									// bodyHref("/content/situation/Safetysituationreport_form.html");
+									//showDetailsDialog("修改", args.item);
+								},
+								deleteConfirm: function (item) {
+									return "參數\"" + item.NUM + "\"確認刪除?";
+								},
+							});
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+
+			}
+			$("#tableDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 760,
+				height: 600,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+					$("#tableDialog input[type='text']").val('')  
+							$("#tableDialog textarea").val('')  
+							$("#tableDialog input[type='radio']").removeAttr('checked')  
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+			$("#historyDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 760,
+				height: 600,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+					$("#historyDialog input[type='text']").val('')  
+							$("#historyDialog textarea").val('')  
+							$("#historyDialog input[type='radio']").removeAttr('checked')  
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+			$('#submitBtn').click(function () {
+				var saveItem = {
+					id: $("[name='id']").val(), 
+					checkId: $("#wid").val(),
+					//position: $("[name='position']").html(),
+					name: $("*[name='name']").html(),
+					gender: $("*[name='gender']").html(),
+					birthday: '2023-09-09',
+					visitDate: $("*[name='visitDate']").val(),
+					visitMethod: $("*[name='visitMethod']:checked").val(),
+					visitLocation: $("*[name='visitLocation']").val(),
+					healthProblem: $("*[name='healthProblem']:checked").val(),
+					healthSummary: $("*[name='healthSummary']").val(),
+					workSummary: $("*[name='workSummary']").val(),
+					visitSummary: $("*[name='visitSummary']").val(),
+					doctorAdvice: $("*[name='doctorAdvice']").val(),
+					healthGuidance: $("*[name='healthGuidance']:checked").val(),
+					serviceDoctor: $("*[name='serviceDoctor']").val(),
+					nusingStaff: $("*[name='nusingStaff']").val(),
+    status: "追蹤中",
+    version: "1.0.0"
+				}
+				var saveItem1 = {
+					checkId: $("#wid").val(),
+					//position: $("*[name='position']").html(),
+					name: $("*[name='name']").html(),
+					gender: $("*[name='gender']").html(),
+					birthday:"2023-09-09",
+					visitDate: $("*[name='visitDate']").val(),
+					visitMethod: $("*[name='visitMethod']:checked").val(),
+					visitLocation: $("*[name='visitLocation']").val(),
+					healthProblem: $("*[name='healthProblem']:checked").val(),
+					healthSummary: $("*[name='healthSummary']").val(),
+					workSummary: $("*[name='workSummary']").val(),
+					visitSummary: $("*[name='visitSummary']").val(),
+					doctorAdvice: $("*[name='doctorAdvice']").val(),
+					healthGuidance: $("*[name='healthGuidance']:checked").val(),
+					serviceDoctor: $("*[name='serviceDoctor']").val(),
+					nusingStaff: $("*[name='nusingStaff']").val(),
+    status: "追蹤中",
+    version: "1.0.0"
+				}
+				console.log(saveItem1)
+				insert($("*[name='addOredit']").val(), saveItem, saveItem1)
+			})
+			//送出
+			function insert(addOredit, data, data1) {
+				
+				if (addOredit == '新增') {
+					var url = 'HealthProblemCare/api/save'
+					var datas= JSON.stringify(data1)
+				}
+				if (addOredit == '檢視') {
+					var url = 'HealthProblemCare/api/update'
+					var datas= JSON.stringify(data)
+				}
+				console.log(datas)
+				$.ajax({
+					data:datas,
+					url: "/" + CONFIG.SYSTEM_NAME + '/' + url,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						console.log(data);
+						if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} if (data && data == 7000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('更新失敗', '更新失敗', '')
+						} else {
+							warning_history($("#wid").val());
+							showAlert('成功', '更新成功', '')
+							$("#tableDialog").dialog("close");
+							
+							console.log(data);
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						//console.log(data);
+					},
+				});
+			};
+
+
+			$('#submitBtn_s').click(function () {
+				var saveItem = {
+					careId: $("#historyid").val(),
+					trackDate: $("*[name='trackDate']").val(),
+					trackTime: $("*[name='trackTime']").val(),
+					trackContent: $("*[name='trackContent']").val(),
+				}
+				var saveItem1 = {
+					careId: $("#historyid").val(),
+					trackDate: $("*[name='trackDate']").val(),
+					trackTime: $("*[name='trackTime']").val(),
+					trackContent: $("*[name='trackContent']").val(),
+				}
+				console.log(saveItem1)
+				historyinsert($("*[name='addOredit']").val(), saveItem, saveItem1)
+			})
+			//送出
+			function historyinsert(addOredit, data, data1) {
+				
+			
+					var url = 'HealthProblemTrack/api/save'
+					var datas= JSON.stringify(data1)
+				
+		
+				console.log(datas)
+				$.ajax({
+					data:datas,
+					url: "/" + CONFIG.SYSTEM_NAME + '/' + url,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} if (data && data == 7000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('更新失敗', '更新失敗', '')
+						} else {
+							history($("#historyid").val());
+							showAlert('成功', '更新成功', '')
+							$("#addDialog").dialog("close");
+							$("#addDialog form").reset()
+							console.log(data);
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						//console.log(data);
+					},
+				});
+			};
+
+			var showDetailDialog = function (dialogType, item, addOredit) {
+				$(" *[name='addOredit']").val(addOredit)
+				$(" *[name='id']").val(item)
+		
+				if (addOredit == '檢視') {
+
+$.ajax({
+	url: "/" + CONFIG.SYSTEM_NAME + '/healthProblemCare/api/get?id=' + item,
+	contentType: "application/json;charset=utf-8", // 因為上面是JSON
+	async: false,
+	cache: false,
+	type: "GET",
+	success: function (data, textStatus) {
+		if (data && data.code == "5000") {
+			showAlert('沒有權限', '沒有權限', '')
+		} else {
+			//console.log(data.data);
+			var data = data.data;
+			console.log(data)
+			$("#id").val(data.id)
+			$("*[name='unitName']").html(data.unitName)
+			$("*[name='position']").html(data.position)
+			$("*[name='name']").html(data.name)
+			$("*[name='gender']").html(data.gender)
+			$("*[name='birthday']").html(data.birthday)
+			$("*[name='visitDate']").val(data.visitDate)
+	
+			$("#tableDialog *[name='visitMethod'][value='" + data.visitMethod + "']").prop('checked', true)
+			$("*[name='visitLocation']").val(data.visitLocation)
+
+			$("#tableDialog *[name='healthProblem'][value='" + data.healthProblem + "']").prop('checked', true)
+			$("*[name='healthSummary']").val(data.healthSummary)
+			$("*[name='workSummary']").val(data.workSummary)
+			$("*[name='visitSummary']").val(data.visitSummary)
+			$("*[name='doctorAdvice']").val(data.doctorAdvice)
+			$("#tableDialog *[name='healthGuidance'][value='" + data.healthGuidance + "']").prop('checked', true)
+			
+			$("*[name='serviceDoctor']").val(data.serviceDoctor)
+			$("*[name='nusingStaff']").val(data.nusingStaff)
+
+		}
+	}
+});
+}
+if (addOredit == '新增') {
+	$.ajax({
+	url: "/" + CONFIG.SYSTEM_NAME + '/healthCheck/api/get?id=' + item,
+	contentType: "application/json;charset=utf-8", // 因為上面是JSON
+	async: false,
+	cache: false,
+	type: "GET",
+	success: function (data, textStatus) {
+		if (data && data.code == "5000") {
+			showAlert('沒有權限', '沒有權限', '')
+		} else {
+			//console.log(data.data);
+			var data = data.data;
+			console.log(data)
+			$("#id").val(data.checkId)
+
+			$("*[name='unitName']").html(data.unitName)
+			$("*[name='position']").html(data.position)
+			$("*[name='name']").html(data.name)
+			$("*[name='gender']").html(data.gender)
+			$("*[name='birthday']").html(data.birthday)
+			$("*[name='visitDate']").val(data.visitDate)
+
+
+		}
+	}
+});
+$(" *[name='addOredit']").val(addOredit)
+}
+				$("#tableDialog").dialog("option", "title", dialogType + "").dialog("open");
+
+
+			};
+		
+			$("#addDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 960,
+				height: 550,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+					$("#addDialog input[type='text']").val('')  
+							$("#addDialog textarea").val('')  
+							$("#addDialog input[type='radio']").removeAttr('checked')  
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			})
+
+			var showAddDialog = function (dialogType, item, addOredit) {
+
+				$("#addDialog").dialog("option", "title", addOredit + "").dialog("open");
+			};
+			var historyDialog = function (dialogType, item, addOredit) {
+history(item)
+$("#historyDialog").dialog("option", "title", dialogType + "").dialog("open");
+};
+
+		$('#addjilu').click(function (){
+			showAddDialog('健康問題追蹤紀錄', '', '新增');
+		})
+
+		});
+
+
+	});
+</script>

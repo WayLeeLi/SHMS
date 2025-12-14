@@ -1,0 +1,230 @@
+﻿
+<div>
+	<div>
+		<h4>待簽核發送SMS</h4>
+		<table style="border-collapse: collapse; width: 100%; height: 108px;" border="1">
+		  <thead>
+		    <tr>
+		    	<td width="90px">建立日期</td>
+		    	<td width="90px">收件者</td>
+		      	<td width="560px">內容</td>
+		      	<td width="55px">建立者</td>
+		      	<td width="75px">執行動作</td>
+		    </tr>
+		  </thead>
+		  <tbody id="tbody">
+		  
+		  </tbody>
+		</table>
+	</div>
+</div>
+
+<style>
+/* 讓表格內容換行 */
+.jsgrid-table{
+		word-wrap:break-word;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require([ "jquery", "jquery_validate", "jsgrid", "jquery_ui" ], function(
+			jquery, jquery_validate, jsgrid, jquery_ui) {
+		
+		var tempData;
+		
+		//頁面讀取後執行
+		$(document).ready(function() {
+			
+			$.ajax({
+ 			    url: "/"+CONFIG.SYSTEM_NAME + '/sendSms/api/getReviewData',
+ 			   	contentType: "application/json;charset=utf-8", // 因為上面是JSON資料
+ 			    async: false,
+ 			    cache: false,
+ 			    type: "GET",
+ 			    success: function(data, textStatus){   
+ 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    		 alert("沒有權限");
+			    	 }else{
+			    		 createTable(data);
+			    	 }
+ 			    },
+ 			    error: function (data, textStatus, errorThrown) {
+ 			        console.log(data);
+ 			    },
+ 			});
+			
+		});
+	});
+	
+	
+	function createTable(data){
+		$.each(data.reviewerList, function( index, item ) {
+			var tr = $('<tr/>');
+			tr.value = item;
+			var td = $('<td/>');		
+			tr.addClass(index % 2 == 0 ? "" : "even");
+			tr.append(td.clone().html(convert2YMD(new Date(item.sendTime))));
+			tr.append(td.clone().html(item.recipient != undefined ? item.recipient.replace(" ", "<br>") : ""));
+			tr.append(td.clone().html(item.content ));
+			tr.append(td.clone().html(item.rocName));		
+			var submitBtn = $('<button/>', {
+		        text: "核准", 
+		        id: 'btn_submit_' + item.id,
+		        class:'btn btn-success',
+		        css: { 'margin': '5px'},
+		        click: function () { 
+		        	if(confirm("核准後將立刻寄送SMS，確認核准?")){
+		        		submitBtnClick(item);
+		        	}	
+		        	
+		        }
+		    });
+			var cancelBtn = $('<button/>', {
+		        text: "退回", //set text 1 to 10
+		        id: 'btn_cancel_' + item.id,
+		        class:'btn btn-danger',
+		        css: { 'margin': '5px'},
+		        click: function () { 
+		        	if(confirm("確認退回?")){
+		        		cancelBtnClick(item.id);
+		        	}	
+		        }
+		    });
+			tr.append(td.clone().append(submitBtn).append(cancelBtn) );
+			$("#tbody").append(tr);
+		});
+	}
+	
+	function getUserName(data, userId){
+	    var	user;
+		$.each(data, function( index, item ) {
+			if(item.rocId == userId){
+				user = item;
+				
+				return false; 
+			}
+		});
+		return user ? user.name : "";
+	}
+	
+	function getEvent(data, eventKey){
+	    var	event;
+		$.each(data, function( index, item ) {
+			if(item.eventKey == eventKey){
+				event = item;
+				return false; 
+			}
+		});
+		return event;
+	}
+	
+	function submitBtnClick(item){
+		let id = item.id;
+		 
+		$.ajax({
+			    url: "/"+CONFIG.SYSTEM_NAME + '/sendSms/api/submitReview',
+			    data: '{"ID":' + id + '}',
+			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    async: true,
+			    cache: false,
+			    type: "POST",
+			    success: function(data, textStatus){   
+			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    		 alert("沒有權限");
+		    	 }else{
+		    		 if(data.result == "success"){
+		    			 alert("審核成功");
+		    			 //loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + "/content/setting/sendSmsReview.html");
+		    			 //刷新MENU 不然審核數不對
+		    			// loadNoCache($("#menuContent"), "/" +CONFIG.SYSTEM_NAME + $("#menuContent").data("src"));
+		    			 
+		    		 }else if(data.errorMsg){
+		    			 alert(data.errorMsg);
+		    		 }
+		    	 }
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+			    },
+			}).done(function (e){
+				if(e.errorMsg){
+					debugger;
+					console.log(e.errorMsg);
+					//bodyHref("/content/setting/sendSmsReview.html");
+	    			 loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + "/content/setting/sendSmsReview.html");
+   			 		//刷新MENU 不然審核數不對
+   					loadNoCache($("#menuContent"), "/" +CONFIG.SYSTEM_NAME + $("#menuContent").data("src"));
+					return;
+				}
+				var sms = {};
+		    	$.extend(sms, {
+		    		phone: validatePhone(item.recipient) ? item.recipient : "",
+		    		content: item.content,
+		    		sendGroupType: validatePhone(item.recipient) ? "" : item.recipient,
+		        });
+		    	
+				$.ajax({
+				    url: "/"+CONFIG.SYSTEM_NAME + '/sendSms/api/sendSms',
+				    data: JSON.stringify({"id":item.id}),
+				    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+				    async: false,
+				    cache: false,
+				    type: "POST",
+				    success: function(data, textStatus){   
+				    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    		 	alert("沒有權限");
+			    	 	}else{
+			    		 	if(data.result == "success"){
+			    		 		if(data.isTest && data.isTest == "Y")
+				    			 	alert("發送測試完成");
+			    		 		else
+			    		 			alert("發送成功");
+				    			 //bodyHref("/content/setting/sendSmsReview.html");
+				    			 loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + "/content/setting/sendSmsReview.html");
+			    			 	//刷新MENU 不然審核數不對
+			    				loadNoCache($("#menuContent"), "/" +CONFIG.SYSTEM_NAME + $("#menuContent").data("src"));
+				    		 }else if(data.errorMsg){
+				    			 alert(data.errorMsg);
+				    		 }
+			    	 	}
+				    },
+				    error: function (data, textStatus, errorThrown) {
+				        console.log("error\n"+data);
+				    },
+				});
+			});
+	}
+
+	
+	function cancelBtnClick(id){
+		$.ajax({
+		    url: "/"+CONFIG.SYSTEM_NAME + '/sendSms/api/rejectReview',
+		    data: '{"ID":' + id + '}',
+		    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    async: false,
+		    cache: false,
+		    type: "POST",
+		    success: function(data, textStatus){   
+		    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+	    		 alert("沒有權限");
+	    	 }else{
+	    		 if(data.result == "success"){
+	    			 alert("退回成功");
+	    			 loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + "/content/setting/sendSmsReview.html");
+	    			 //刷新MENU 不然審核數不對
+	    			 loadNoCache($("#menuContent"), "/" +CONFIG.SYSTEM_NAME + $("#menuContent").data("src"));
+	    		 }else if(data.errorMsg){
+	    			 alert(data.errorMsg);
+	    		 }
+	    	 }
+		    },
+		    error: function (data, textStatus, errorThrown) {
+		        console.log(data);
+		    },
+		});
+	}
+	
+	
+	
+</script>

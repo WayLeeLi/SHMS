@@ -1,0 +1,1598 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+<!-- IE可能不見得有效 -->
+<META HTTP-EQUIV="EXPIRES" CONTENT="0">
+<!-- 設定成馬上就過期 -->
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<!-- 與第一行是同樣的作用 -->
+<meta http-equiv="x-ua-compatible" content="IE=EmulateIE11" >
+<meta name="_csrf" content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+ <meta name="_csrf_header" content="${_csrf.headerName}"/>
+<link rel="icon" href="/SHMS/resources/image/tcb.jpeg" type="image/x-icon" >
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/jsgrid.min.css">
+<link rel="stylesheet" href="resources/css/jsgrid-theme.min.css">
+<link rel="stylesheet" href="resources/css/jquery-ui.min.css">
+<link rel="stylesheet" href="resources/css/jquery-ui.theme.min.css">
+<link rel="stylesheet" href="resources/css/jquery.toast.min.css">
+<link rel="stylesheet" href="resources/css/print.css" media="print">
+<link rel="stylesheet" href="resources/css/theme.css">
+<link rel="stylesheet" href="resources/css/all.min.css">
+<link rel="stylesheet" href="resources/css/uploadImg.css">
+<link rel="stylesheet" href="resources/css/font/iconfont.css">
+<link rel="stylesheet" href="resources/css/multi-select.min.css">
+<link href="resources/css/fullcalendar.min.css" rel="stylesheet" />
+<link href="resources/css/fullcalendar.print.min.css" rel="stylesheet" media="print" />
+<title>職業安全衛生資訊管理系統</title>
+
+</head>
+	<body>
+        <!-- <br>附表三、母性健康保護危害風險分級參考表 -->
+	<div>
+		<h2 style="text-align: center;">附表三、母性健康保護危害風險分級參考表</h2>
+		<table class="w-100 safe_form">
+			<tbody>
+				<tr class="table-header">
+					<td colspan="4">
+						<p>
+							<span>物理性危害</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td>風險等級</td>
+					<td>第一級管理</td>
+					<td>第二級管理</td>
+					<td>第三級管理 </td>
+				</tr>
+				<tr>
+					<td>
+						<p>
+							<span>噪音</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>&nbsp;TWA&lt;80 </span><span>分貝</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>&nbsp;TWA 80-84</span><span>分貝</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>TWA</span><span>≧</span><span>85 </span><span>分貝</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:29px">
+					<td>
+						<p>
+							<span>游離輻射</span>
+						</p>
+					</td>
+					<td colspan="3">
+						<p>
+							<span>雇主對妊娠輻射工作人員，應即檢討其工作條件，使其胚胎或胎兒接受與一般人相同之劑量限度，其限度依「游離輻射防護安全標準」之規定</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:22px">
+					<td>
+						<p>
+							<span>異常氣壓作業</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>-</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>-</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>暴露於高壓室內或潛水作業</span>
+						</p>
+					</td>
+				</tr>
+				<tr class="table-header">
+					<td colspan="4">
+						<p>
+							<span>化學性危害</span><span>&nbsp;</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:17px">
+					<td>
+						<p>
+							<span>危害項目</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>&nbsp;</span><span>第一級管理</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>&nbsp;</span><span>第二級管理</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>&nbsp;</span><span>第三級管理</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:23px">
+					<td>
+						<p>
+							<span>鉛作業</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>血中鉛濃度低</span><span>5μg/dL</span><span>者</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>血中鉛濃度在</span><span>&nbsp;5μg/dL </span><span>以上未達</span><span>10μg/dL</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>血中鉛濃度在</span><span>10μg/dL
+							</span><span>以上者或空氣中鉛及其化合物濃度，超過</span><span>0.025mg/m</span><span>³</span>
+						</p>
+					</td>
+				</tr>
+				<tr class="table-header">
+					<td rowspan="3">
+						<p>
+							<span>危害性化學品</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>-</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>暴露於具生殖毒性、生殖細胞致突變性物質，或其他對哺乳功能有不良影響之化學品</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>暴露於屬生殖毒性物質第一級、生殖細胞致突變性物質第一級之化學品</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>
+							<span>作業場所空氣中暴露濃度低於容許暴露標準十分之一。</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>作業場所空氣中暴露濃度在容許暴露標準十分之一以上未達二分之一。</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>作業場所空氣中暴露濃度在容許暴露標準二分之一以上。</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<p>
+							<span>針對無容許暴露標準之母性健康危害化學品，亦可運用</span><span>CCB</span><span>或其他具同等科學基礎之評估及管理方法，評估暴露危害風險。</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>
+							<span>處理危害性化學品，其工作場所空氣中危害性化學品濃度，超過表定規定值者。</span><span>&nbsp;&nbsp;&nbsp;</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>-</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>-</span>
+						</p>
+					</td>
+					<td>
+						<table class="w-100 safe_form">
+							<tbody>
+								<tr style="height:19px" class="table-header">
+									<td width="73" rowspan="2">
+										<p>
+											<span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>濃度</span><span><br /></span><span>有害物</span>
+										</p>
+									</td>
+									<td width="129" colspan="2">
+										<p>
+											<span>規定值</span>
+										</p>
+									</td>
+								</tr>
+								<tr style="height:19px">
+									<td width="64">
+										<p>
+											<span>ppm </span>
+										</p>
+									</td>
+									<td width="65">
+										<p>
+											<span>mg/</span><span>m³</span>
+										</p>
+									</td>
+								</tr>
+								<tr style="height:19px">
+									<td width="73">
+										<p>
+											<span>二硫化碳</span><span>&nbsp;</span>
+										</p>
+									</td>
+									<td width="64">
+										<p>
+											<span>5</span>
+										</p>
+									</td>
+									<td width="65">
+										<p>
+											<span>15.5</span>
+										</p>
+									</td>
+								</tr>
+								<tr style="height:19px">
+									<td width="73">
+										<p>
+											<span>三氯乙烯</span><span>&nbsp;</span>
+										</p>
+									</td>
+									<td width="64">
+										<p>
+											<span>25</span>
+										</p>
+									</td>
+									<td width="65">
+										<p>
+											<span>134.5</span>
+										</p>
+									</td>
+								</tr>
+								<tr style="height:19px">
+									<td width="73">
+										<p>
+											<span>環氧乙烷</span>
+										</p>
+									</td>
+									<td width="64">
+										<p>
+											<span>0.5</span>
+										</p>
+									</td>
+									<td width="65">
+										<p>
+											<span>0.9</span>
+										</p>
+									</td>
+								</tr>
+								<tr style="height:19px">
+									<td width="73">
+										<p>
+											<span>丙烯醯胺</span>
+										</p>
+									</td>
+									<td width="64"></td>
+									<td width="65">
+										<p>
+											<span>0.015</span>
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							<br />
+						</p>
+					</td>
+				</tr>
+
+				<tr style="height:98px" class="table-header">
+					<td></td>
+					<td width="204"></td>
+					<td></td>
+					<td width="216">
+						<table class="w-100 safe_form">
+							<tbody>
+								<tr class="table-header">
+									<td>
+										<p>
+											<span>次乙亞胺</span><span>&nbsp;</span>
+										</p>
+									</td>
+									<td width="52">
+										<p>
+											<span>0.25</span>
+										</p>
+									</td>
+									<td width="57">
+										<p>
+											<span>0.44</span>
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<p>
+											<span>砷及其無機化合</span><span><br /></span><span>物</span><span>(</span><span>以砷計</span><span>)
+											</span>
+										</p>
+									</td>
+									<td width="52"></td>
+									<td width="57">
+										<p>
+											<span>0.005</span>
+										</p>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<p>
+											<span>汞及其無機化合</span><span><br /></span><span>物</span><span>(</span><span>以汞計</span><span>)
+											</span>
+										</p>
+									</td>
+									<td width="52"></td>
+									<td width="57">
+										<p>
+											<span>0.025</span>
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<p>
+							<span><span>註</span><span>:經採取母性健康保護措施，可改列第</span></span>
+						</p>
+						<p>
+							<span>二級</span>
+						</p>
+					</td>
+				</tr>
+				<tr class="table-header">
+					<td colspan="4">
+						<p>
+							<span>生物性危害</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>
+							<span>危害項目</span>
+						</p>
+					</td>
+					<td width="204">
+						<p>
+							<span>&nbsp;</span><span>第一級管理</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>&nbsp;</span><span>第二級管理</span>
+						</p>
+					</td>
+					<td width="216">
+						<p>
+							<span>&nbsp;</span><span>第三級管理</span>
+						</p>
+					</td>
+				</tr>
+				<tr class="table-header">
+					<td>
+						<p>
+							<span>生物病原體</span>
+						</p>
+					</td>
+					<td width="204"></td>
+					<td>
+						<p>
+							<span>1.</span><span>暴露於德國麻疹、</span><span>B</span><span>型肝炎或水痘感染之作業，但已具免疫力</span><span><br /></span><span>2.</span><span>暴露於於</span><span>B</span><span>型肝炎、</span><span>C</span><span>型肝炎或人類免疫缺乏病毒</span><span>感</span><span>染之作業，但無從事會有血液或體液風險感染之工作。</span><span><br /></span><span>3.</span><span>暴露於肺結核感染之作業，經醫師評估可</span><span><br /></span><span>能影響母體、胎兒或</span><span>嬰</span><span>兒健康者。</span>
+						</p>
+					</td>
+					<td width="216">
+						<p>
+							<span>1.</span><span>暴露於弓形蟲</span><span>感</span><span>染之作業。</span><span><br /></span><span>2.</span><span>暴露於德國麻疹感染之作業，且無免疫力者</span><span><br /></span><span>3.</span><span>暴露於</span><span>B</span><span>型肝炎、</span><span>C</span><span>型肝炎或人類免疫缺乏病毒感染之作業，且從事會有血液或體液風險感染之工作。</span><span>&nbsp;&nbsp;</span><span><br /></span><span>4.</span><span>暴露於</span><span>水痘感</span><span>染之作業</span><span>,</span><span>且無免疫力</span><span>&nbsp;</span><span><br /></span><span>者。</span><span><br /></span><span>5.</span><span><span>暴露於肺結核感染之作業</span><span>·經醫師評估</span></span><span><br /></span><span>有危害母體、胎兒或嬰兒健康者。</span>
+						</p>
+					</td>
+				</tr>
+				<tr class="table-header">
+					<td colspan="4">
+						<p>
+							<span>人因性危害</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>
+							<span>危害項目</span>
+						</p>
+					</td>
+					<td width="204">
+						<p>
+							<span>&nbsp;</span><span>第一級管理</span>
+						</p>
+					</td>
+					<td>
+						<p>
+							<span>&nbsp;</span><span>第二級管理</span>
+						</p>
+					</td>
+					<td width="216">
+						<p>
+							<span>&nbsp;</span><span>第三級管理</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:51px">
+					<td>
+						<p>
+							<span>以人工提</span><span>舉</span><span>、放、推、拉、搬運或移勤重</span>
+						</p>
+					</td>
+					<td width="204"></td>
+					<td>
+						<p>
+							<span>&nbsp;</span><span>以人工提</span><span>舉</span><span>、放、推、拉、搬運或移動重物，運用風險評估工具</span><span>(</span><span>如</span><span>&nbsp;KIM)</span><span>為中等負載，或經醫師評估可能影響母體、胎兒或嬰兒健康者。</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td width="216">
+						<p>
+							<span>以人工提舉、放、推、拉、搬運或移動重物，運用風險評估工具</span><span>(</span><span>如</span><span>&nbsp;KIM)</span><span>為中高負載或高負載，或經醫師評估有危害母體、胎兒或嬰兒健康者。</span><span>&nbsp;&nbsp;&nbsp;</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:41px">
+					<td>
+						<p>
+							<span>一定重量以上重物處理工作</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td width="204"></td>
+					<td></td>
+					<td width="216">
+						&nbsp;妊娠中分娩未滿&nbsp;6個月分娩滿6個月但未滿
+						<p>
+							<br />
+						</p>
+					</td>
+				</tr>
+
+				<tr style="height:117px" class="table-header">
+					<td width="182"></td>
+					<td width="139"></td>
+					<td width="146"></td>
+					<td width="267">
+						<table class="w-100 safe_form">
+							<tbody>
+								<tr style="height:22px" class="table-header">
+									<td></td>
+									<td></td>
+									<td width="45"></td>
+									<td width="62">
+										<p>
+											<span>1</span><span>年者</span>
+										</p>
+									</td>
+								</tr>
+								<tr style="height:23px">
+									<td>
+										<p>
+											<span></span><span>重量</span><span><br /></span><span>作業別</span>
+										</p>
+									</td>
+									<td width="140" colspan="3">
+										<p>
+											<span>規定值</span><span>(</span><span>公斤</span><span>)</span>
+										</p>
+									</td>
+								</tr>
+								<tr style="height:17px">
+									<td>
+										<p>
+											<span>斷續性作業</span>
+										</p>
+									</td>
+									<td>
+										<p>
+											<span>10</span>
+										</p>
+									</td>
+									<td width="45">
+										<p>
+											<span>15</span>
+										</p>
+									</td>
+									<td width="62">
+										<p>
+											<span>30</span>
+										</p>
+									</td>
+								</tr>
+								<tr style="height:17px">
+									<td>
+										<p>
+											<span>持續性作案</span>
+										</p>
+									</td>
+									<td>
+										<p>
+											<span>6</span>
+										</p>
+									</td>
+									<td width="45">
+										<p>
+											<span>10</span>
+										</p>
+									</td>
+									<td width="62">
+										<p>
+											<span>20</span>
+										</p>
+									</td>
+								</tr>
+								<tr style="height:22px">
+									<td width="220" colspan="4">
+										<p>
+											<span>註</span><span>:</span><span><span>經採取母性健康保護措施</span><span>·可改</span></span><span><br /></span><span>列第二級</span><span>&nbsp;</span>
+										</p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				<tr class="table-header">
+					<td colspan="4">
+						<p>
+							<span>其他</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td width="182">
+						<p>
+							<span>危害項目</span>
+						</p>
+					</td>
+					<td width="139">
+						<p>
+							<span>&nbsp;</span><span>第一級管理</span>
+						</p>
+					</td>
+					<td width="146">
+						<p>
+							<span>&nbsp;</span><span>第二級管理</span>
+						</p>
+					</td>
+					<td width="267">
+						<p>
+							<span>&nbsp;</span><span>第三級管理</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:77px">
+					<td width="182">
+						<p>
+							<span>職業安全衛生法第</span><span>30</span><span>條第</span><span>1</span><span>項第</span><span>5</span><span>款至第</span><span>14</span><span>款或第</span><span>2</span><span>項第</span><span>3</span><span>款至第</span><span>5</span><span>款之危險性或有害性工作</span>
+						</p>
+					</td>
+					<td width="139"></td>
+					<td width="146"></td>
+					<td width="267">
+						<p>
+							<span><span>從事「妊娠與分娩後女性及未滿十八歲勞工禁止從事危險性或有害性工作認定標準」之附表二或附表三所列項目</span><span>:經採取母性健康保護措施者，可改列第二級。</span></span>
+						</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<p class="text-danger">※僅列舉部分危害項目提供區分風險等級建議參考,實務上仍應依個案之實際評估結果為主。</p>
+		<h2>附錄三、具生殖毒性、生殖細胞致突變性物質參考名單</h2>
+		<p>
+			<br />
+		</p>
+		<table class="w-100 safe_form">
+			<tbody>
+				<tr class="table-header">
+					<td width="38">
+						<p>
+							<span>項次</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>CAS.NO </span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>中文名稱</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>英文名稱</span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>建議</span><span>&nbsp;GHS </span><span>分類</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>1</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>109-86-4 </span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>乙二醇甲醚</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>2-methoxyethanol </span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>2</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>110-80-5 </span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>乙二醇乙醚</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>2-ethoxyethanol </span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>&nbsp;1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>3</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>68-12-2</span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>二甲基甲醯胺</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>&nbsp;N,N-dimethylformamide </span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>4</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>111-15-9 </span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>乙二醇乙醚醋酸酯</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>&nbsp;2-ethoxyethyl acetate </span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>&nbsp;1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td width="38">
+						<p>
+							<span>5</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>7718-54-9 </span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>氯化鎳</span><span>(</span><span>Ⅱ</span><span>) </span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>nickel dichloride </span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>1</span><span>級、生殖細胞致</span><span><br /></span><span>突變性物質第</span><span>2</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>6</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>110-71-4 </span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>乙二醇二甲醚</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>1,2-dimethoxyethane </span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td width="38">
+						<p>
+							<span>7</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>2451-62-9 </span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>三三聚異氰酸三縮水甘油酯</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>1,3,5-tris(oxiranylmethyl)-1,3,5-triazine-</span><span><br /></span><span>2,4,6(1H.3H.5H)-trione
+							</span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖細胞致突變性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>8</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>75-26-3 </span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>2-</span><span>溴丙烷</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>2-bromopropane </span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>9</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>123-39-7 </span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>N-</span><span>甲基甲醯胺</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>&nbsp;N-methylformamide </span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>&nbsp;1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>10</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>96-45-7 </span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>伸乙硫脲</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>2-Imidazolidinethione </span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>11</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>96-24-2 </span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>3-</span><span>氯</span><span>-1,2-</span><span>丙二醇</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>3-chloropropane-1,2-diol </span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td width="38">
+						<p>
+							<span>12</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>77-58-7 </span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>二月桂酸二丁錫</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>dibutyltin dilaurate </span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>1</span><span>級、生殖細胞致</span><span><br /></span><span>突變性物質第</span><span>2</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td width="38">
+						<p>
+							<span>13</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>756-79-6 </span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>甲基膦酸二甲酯</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>dimethyl methylphosphonate </span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖細胞致突變性物質第</span><span>1</span><span>級、生</span><span><br /></span><span>殖毒性物質第</span><span>&nbsp;2</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td width="38">
+						<p>
+							<span>14</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>924-42-5</span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>N-(</span><span>羥甲基</span><span>)</span><span>丙烯醯胺</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>N-(hydroxymethyl)acrylamide</span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖細胞致突變性物質第</span><span>1</span><span>級、生</span><span><br /></span><span>殖毒性物質第</span><span>2</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>15</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>&nbsp;106-99-0 &nbsp;&nbsp;</span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>1,3-</span><span>丁二烯</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>1,3-Butadiene</span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖細胞致突變性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>16</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>10043-35-3 &nbsp;&nbsp;</span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>硼酸</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>boric acid</span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>&nbsp;1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>17</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>85-68-7 &nbsp;&nbsp;</span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>鄰苯二甲酸丁芐酯</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>benzyl butyl phthalate</span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>&nbsp;1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td width="38">
+						<p>
+							<span>18</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>115-96-8 &nbsp;</span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>磷酸三</span><span>(2-</span><span>氯乙基</span><span>)</span><span>酯</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>tris(2-chloroethyl) phosphate</span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖細胞致突變性物質第</span><span>1</span><span>級、生</span><span><br /></span><span>殖毒性物質第</span><span>2</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>19</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>625-45-6 &nbsp;&nbsp;</span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>甲氧基乙酸</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>methoxyacetic acid</span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>20</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>64-67-5 &nbsp;</span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>硫酸乙酯</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>&nbsp;diethyl sulfate</span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖細胞致突變性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>21</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>75-56-9 &nbsp;</span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>1,2-</span><span>環氧丙烷</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>&nbsp;methyloxirane</span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖細胞致突變性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>22</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>106-94-5</span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>1-</span><span>溴丙烷</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>1-bromopropane </span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>23</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>872-50-4 </span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>&nbsp;N-</span><span>甲基吡咯啶酮</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>&nbsp;1-methyl-2-pyrrolidone</span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>24</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>&nbsp;127-19-5 </span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>二甲基乙醯胺</span><span>&nbsp;</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>&nbsp;N,N-dimethylacetamide</span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td width="38">
+						<p>
+							<span>25</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>75-21-8 &nbsp;</span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>環氧乙烷</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>&nbsp;ethylene oxide</span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖細胞致突變性物質第</span><span>1</span><span>級、</span><span><br /></span><span>生殖毒性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:13px">
+					<td width="38">
+						<p>
+							<span>26</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>117-81-7 &nbsp;&nbsp;</span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>鄰苯二甲酸二</span><span>(2-</span><span>乙基己基</span><span>)</span><span>酯</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>Di(2-ethylhexyl)phthalate</span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td width="38">
+						<p>
+							<span>27</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>1333-82-0 &nbsp;</span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>三氧化鉻</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>chromium trioxide </span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖細胞致突燮性性質第</span><span>1</span><span>級、</span><span><br /></span><span>生殖毒性物質第</span><span>&nbsp;2</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr style="height:11px">
+					<td width="38">
+						<p>
+							<span>28</span>
+						</p>
+					</td>
+					<td width="111">
+						<p>
+							<span>1330-43-4 &nbsp;</span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>四硼酸鈉</span>
+						</p>
+					</td>
+					<td width="238">
+						<p>
+							<span>disodium tetraborate, anhydrous</span>
+						</p>
+					</td>
+					<td width="196">
+						<p>
+							<span>生殖毒性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+				<tr class="table-header">
+					<td width="38">
+						<p>
+							<span>29</span>
+						</p>
+					</td>
+					<td width="110">
+						<p>
+							<span>1303-86-2 &nbsp;</span>
+						</p>
+					</td>
+					<td width="150">
+						<p>
+							<span>&nbsp;</span><span>三氧化二硼</span>
+						</p>
+					</td>
+					<td width="240">
+						<p>
+							<span>diboron trioxide</span>
+						</p>
+					</td>
+					<td width="195">
+						<p>
+							<span>生殖毒性物質第</span><span>1</span><span>級</span>
+						</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+
+			<p>註:本表列舉之物質與其危害分類，僅就職安署現有資訊篩選供事常單位參考，其尚未涵蓋全部具有生殖毒性生殖細胞致突變性之物質，事業單位於評估危害時，得參考供應商或製造商所提供安全資料表(SDS)之分類結果，或下列網站之資訊:
+			</p>
+			<p>職安署的 GHS 網站:https://ghs.osha.gov.tw/CHT/masterpage/index_CHT.aspx</p>
+			<p>環保署的毒性及關注化學物質查詢網站:https://toxicdms.epa.gov.tw/Chm</p>
+			<p>日本的GHS 綱站:https://www.nite.go.jp/chem/english/ghs/ghs_index.html</p>
+			<p>德國的GESTIS:https://www.dguv.de/ifa/gestis/gestis-stoffdatenbank/index-2.jsp</p>
+		</div>
+	</div>
+    </body>	
+</html>
+
+<!-- <script src="resources/js/require.js"></script>
+<script src="resources/js/requireConfig.js"></script>
+
+
+<script type="text/javascript">
+    var showAlert;
+    var closeAlert;
+	var bodyHref;
+	var crsfToken = "";
+	var crsfHeader = "";
+	//需要用的JS
+	require(["jquery","popper", "bootstrap", "global_setting", "jquery_validate","jsgrid", "jquery_ui", "jquery_blockUI", "toast", "jquery_cookie","print",], function (jquery, popper, bootstrap, jquery_validate, jsgrid, jquery_ui, jquery_blockUI, toast,print) {		
+		//loadNoCache($("#menuContent"), "/" +CONFIG.SYSTEM_NAME + $("#menuContent").data("src"));
+		loadNoCache($("#headerContent"), "/" +CONFIG.SYSTEM_NAME + $("#headerContent").data("src"));
+		loadNoCache($("#menuContent"), "/" +CONFIG.SYSTEM_NAME + $("#menuContent").data("src"));
+		loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + $("#bodyContent").data("src"));
+		//jquery_validate_addition
+		bodyHref = function(page){
+			//dialong換頁前移除 不然會重複生長
+			$('.ui-dialog').empty().remove();
+			loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + page);
+		}
+		
+		$(document).ajaxStart(function(){
+			$.blockUI({message: null});
+		});
+		$(document).ajaxComplete(function(){
+			 $.unblockUI();
+		});
+		  
+		showAlert = function(title, content, callback){
+			//resetting
+			$("#alertDialog").dialog({
+					title: title,
+			        autoOpen: false,
+			        width: 550,
+			        modal: true,
+			        position: { my: "center", at: "center" },
+			        close: function() {
+			            $('.ui-widget-overlay').removeClass('custom-overlay');
+			        },
+			        open: function(){
+			       	 	$('.ui-widget-overlay').addClass('custom-overlay');
+			       	   customCloseBtn();
+			        },
+			        classes: dlgSetting.classes,
+			         show: dlgSetting.show,
+					 hide: dlgSetting.hide
+			});
+			$("#alertContent").html(content);
+			$("#alertOk").off().on("click", callback ? callback : function(){$("#alertDialog").dialog("close")});
+			$("#alertDialog").dialog("open");
+		}
+		closeAlert = function(){
+			$("#alertDialog").dialog("close");
+		}
+
+		//loadToken();
+		
+		// $.ajaxSetup({
+		//     beforeSend: function(xhr) {
+		// 		//var token = $("meta[name='_csrf']").attr("content");
+		// 		//var header = $("meta[name='_csrf_header']").attr("content");
+		// 		if(crsfHeader && crsfToken) {
+		// 			xhr.setRequestHeader(crsfHeader, crsfToken);
+		// 			xhr.setRequestHeader("XSRF-TOKEN", crsfToken);
+		// 			xhr.setRequestHeader("_csrf", crsfToken);
+		// 		}
+		// 	}
+		// });
+		isLogin();//登入狀態
+	function isLogin() {
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/login/api/getLogin',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "get",
+					success: function (data, textStatus) {
+						if (data.msg != "success") {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/"+ CONFIG.SYSTEM_NAME + "/page/login.html";
+			 
+						} 
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+	});
+	
+	//JQUERY 原生 LOAD ie會存CACHE 改用這個, ./..,  ../.
+	function loadNoCache($body, url){
+		$.ajax({
+		    url: url,
+		    cache: false,
+		    async: true,
+		    dataType: "html",
+		    success: function(data) {
+		    	$body.html(data);
+		    },
+		    error: function(data){
+		    	console.log(data);
+		    }
+		});
+	}
+
+
+	// function loadToken(){
+	// 	let _csrf = $.cookie("XSRF-TOKEN");
+	// 	console.log(_csrf);
+	// 	if(_csrf != undefined){
+	// 		crsfToken = _csrf;
+	// 		//crsfHeader = "X-CSRF-TOKEN";
+	// 		//crsfHeader = "_csrf";
+	// 		//crsfHeader = "XSRF-TOKEN";
+	// 		crsfHeader = "X-XSRF-TOKEN";
+			
+	// 	}else{
+	// 		 console.log('登入逾時')
+	// 		 //showAlert('登入逾時', '您登入已逾時，請重新登入！', )
+	// 		 //location.href = "/"+ CONFIG.SYSTEM_NAME + "/page/login.html"
+	// 	}
+		
+	// 	$.ajax({
+	// 		url: "/"+ CONFIG.SYSTEM_NAME + "/login/api/getToken",
+	// 	    cache: false,
+	// 	    async: false,
+	// 	    type: "GET",
+	// 	    success: function(res, status, xhr) { 
+	// 	    	crsfToken = xhr.getResponseHeader("X-CSRF-TOKEN");
+	// 	    	crsfHeader = xhr.getResponseHeader("X-CSRF-HEADER");
+	// 	    },
+	// 	    error: function (data, textStatus, errorThrown) {
+	// 	    	crsfToken = data.getResponseHeader("X-CSRF-TOKEN");
+	// 	    	crsfHeader = data.getResponseHeader("X-CSRF-HEADER");
+	// 	    }
+	// 	});
+		
+	// }
+
+</script> -->

@@ -1,0 +1,693 @@
+﻿<div>
+	<h2 style="text-align: center;">勞動部危害預防計畫紀錄</h2>
+	<div class="jsgrid" style="position: relative; height: auto; width: 100%;">
+		<div class="jsgrid-grid-header jsgrid-header-scrollbar">
+			<table class="jsgrid-table">
+				<tr class="jsgrid-header-row">
+					<th class="jsgrid-header-cell jsgrid-header-sortable">計畫名稱</th>
+
+					<th class="jsgrid-header-cell jsgrid-header-sortable">匯出</th>
+
+				</tr>
+
+			</table>
+		</div>
+		<div class="jsgrid-grid-body">
+			<table class="jsgrid-table">
+				<tbody>
+					<tr class="jsgrid-row">
+						<td class="jsgrid-cell">人因性危害預防計畫</td>
+						<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+							<select class="custom-select w_100p" id="eventName1" name="eventName">
+
+
+
+							</select>
+							<a href="javascript:" onclick="downloadX('eventName1')"><svg class="icon"
+									aria-hidden="true">
+									<use xlink:href="#icon-Microsoft-Excel"></use>
+								</svg></a>
+
+						</td>
+
+					</tr>
+					<tr class="jsgrid-alt-row">
+						<td class="jsgrid-cell" style="width: 100px;">異常工作負荷預防計畫</td>
+						<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+							<select class="custom-select w_100p" id="eventName2" name="eventName">
+
+
+							</select>
+							<a href="javascript:" onclick="downloadX('eventName2')"><svg class="icon"
+									aria-hidden="true">
+									<use xlink:href="#icon-Microsoft-Excel"></use>
+								</svg></a>
+
+						</td>
+					</tr>
+					<tr class="jsgrid-row">
+						<td class="jsgrid-cell">母性保護預防計畫</td>
+						<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+							<select class="custom-select w_100p" id="eventName3" name="eventName">
+
+
+
+							</select>
+							<a href="javascript:" onclick="downloadX('eventName3')"><svg class="icon"
+									aria-hidden="true">
+									<use xlink:href="#icon-Microsoft-Excel"></use>
+								</svg></a>
+
+						</td>
+
+					</tr>
+					<!-- <tr class="jsgrid-row">
+						<td class="jsgrid-cell">母性保護預防計畫</td>
+                        <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+                            <button type="button" id="handleMom1" class="btn btn-success  my-2">檢視訪談</button>
+                            <button type="button" id="handleMom2" class="btn btn-secondary  my-2">執行訪談</button>
+                        </td>
+
+					</tr> -->
+					<tr class="jsgrid-alt-row">
+						<td class="jsgrid-cell">不法侵害預防計畫</td>
+						<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+							<select class="custom-select w_100p" id="eventName4" name="eventName">
+
+
+							</select>
+							<a href="javascript:void()" onclick="downloadX('eventName4')"><svg class="icon"
+									aria-hidden="true">
+									<use xlink:href="#icon-Microsoft-Excel"></use>
+								</svg></a>
+
+						</td>
+
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+
+</div>
+<!--母性保護預防計畫 表格 -->
+<div id="handleMom1Table" style="display:none" class="container Dialog">
+	<div id="jsGridMom1Table"></div>
+</div>
+<div id="handleMom2Table" style="display:none" class="container Dialog">
+	<div id="jsGridMom2Table"></div>
+</div>
+
+
+
+<div id="tableDialog" style="display:none" class="container">
+	<form id="dialogForm">
+		<div class="te">
+			<textarea placeholder="退件原因" class="w-100" style="height: 120px;"></textarea>
+		</div>
+
+		<div style="text-align: center;">
+
+			<button type="button" id="submitBtnx" class="btn btn-primary  my-2">儲存送出</button>
+
+		</div>
+	</form>
+</div>
+
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+
+	.icon {
+		width: 1em;
+		height: 1em;
+		vertical-align: -0.15em;
+		fill: currentColor;
+		overflow: hidden;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui", "iconfont"], function (jquery, jquery_validate, jsgrid, jquery_ui, iconfont) {
+		//頁面讀取後執行
+		$(document).ready(function () {
+			var currentYear = new Date().getFullYear();
+			var years = [];
+			for (var i = 1; i <= 3; i++) {
+				years.push(currentYear - i);
+			}
+			function createSelect(id, data) {
+				$.each(data, function (index, item) {
+					$('#' + id).append($('<option>').val(item).text(item));
+				});
+
+
+			}
+			createSelect("eventName1", years);
+			createSelect("eventName2", years);
+			createSelect("eventName3", years);
+			createSelect("eventName4", years);
+
+
+
+			//取得日期
+			$("#fordate").datepicker({
+				dateFormat: "yy/mm/dd",
+				maxDate: new Date()
+			});
+			$('#startDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				format: 'yy/mm/dd',
+				maxDate: new Date(),
+			}).on('changeDate', function (e) {
+				var startTime = e.date;
+				$('#endDate').datepicker('setStartDate', startTime);
+			});
+
+			$('#endDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				format: 'yy/mm/dd',
+				maxDate: new Date(),
+				minDate: $("#startDate").val(),
+			}).on('changeDate', function (e) {
+				var endTime = e.date;
+				$('#startDate').datepicker('setEndDate', endTime);
+			});
+
+			$.ajax({
+				url: "/" + CONFIG.SYSTEM_NAME + '/config/api/getConfig',
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+				async: false,
+				cache: false,
+				type: "GET",
+				success: function (data, textStatus) {
+					if (data.code == 4000) {
+						alert('您登入已逾時或未登入，請重新登入！')
+						location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+					} if (data && data.code == 5000) {
+						//showAlert('沒有權限','沒有權限','')
+						showAlert('沒有權限', '沒有權限', '')
+					} else {
+						var data = new Array(
+							{
+								"NUMS": "第一次",
+								"UNAME": "蔡小雯",
+								"GNAME": "蔡小雯",
+								"REMARKS": "2021/12/12",
+								"TIME": "2021/12/12",
+								"UNIT": "是",
+
+							}, {
+							"NUMS": "第二次",
+							"UNAME": "蔡小雯",
+							"GNAME": "蔡小雯",
+							"REMARKS": "2021/12/12",
+							"TIME": "2021/12/12",
+							"UNIT": "是",
+
+						}, {
+							"NUMS": "第三次",
+							"UNAME": "蔡小雯",
+							"GNAME": "蔡小雯",
+							"REMARKS": "2021/12/12",
+							"TIME": "2021/12/12",
+							"UNIT": "是",
+
+						}, {
+							"NUMS": "第四次",
+							"UNAME": "蔡小雯",
+							"GNAME": "蔡小雯",
+							"REMARKS": "2021/12/12",
+							"TIME": "2021/12/12",
+							"UNIT": "是",
+
+						}, {
+							"NUMS": "第五次",
+							"UNAME": "蔡小雯",
+							"GNAME": "蔡小雯",
+							"REMARKS": "2021/12/12",
+							"TIME": "2021/12/12",
+							"UNIT": "是",
+						}, {
+							"NUMS": "第六次",
+							"UNAME": "蔡小雯",
+							"GNAME": "蔡小雯",
+							"REMARKS": "2021/12/12",
+							"TIME": "2021/12/12",
+							"UNIT": "是",
+
+						});
+
+						$("#jsGrid").jsGrid({
+							width: "100%",
+							height: "auto",
+							heading: true, //是否顯示表頭
+							filtering: false, //啟動查找
+							inserting: false, //啟動新增  關掉使用自定義的
+							editing: true,  //啟動編輯
+							selecting: true,
+							sorting: true, //啟動排序
+							paging: true, //啟動分頁
+							pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+							autoload: true,
+							pageSize: 10,
+
+							controller: {
+								loadData: function (filter) {
+									//查詢
+									var result = $.grep(data, function (item, idx) {
+										for (var key in filter) {
+											var value = filter[key];
+											if (value.length > 0) {
+												if (!item[key]) {
+													return false;
+												}
+												if (typeof item[key] === 'number') {
+													if (item[key].toString().indexOf(value) == -1) {
+														return false;
+													}
+												} else if (typeof item[key] === 'string') {
+													if (item[key].indexOf(value) == -1) {
+														return false;
+													}
+												}
+
+											}
+										}
+										return true;
+									});
+									return result;
+								},
+								insertItem: function (insertingItem) {
+									$.ajax({
+										url: "/" + CONFIG.SYSTEM_NAME + '/config/api/addConfig',
+										data: JSON.stringify(insertingItem),
+										contentType: "application/json;charset=utf-8", // 因為上面是JSON
+										async: false,
+										cache: false,
+										type: "POST",
+										success: function (data, textStatus) {
+											if (data && data == "<script>alert('沒有權限')<\/script>") {
+												//alert("沒有權限");
+											} else {
+												if (data.result == "success") {
+													insertingItem.id = data.id;
+													alert("新增成功");
+												} else if (data.errorMsg) {
+													alert(data.errorMsg);
+												}
+											}
+										},
+										error: function (data, textStatus, errorThrown) {
+											console.log(data);
+										},
+									});
+								},
+								updateItem: function (updatingItem) {
+									$.ajax({
+										url: "/" + CONFIG.SYSTEM_NAME + '/config/api/updateConfig',
+										data: JSON.stringify(updatingItem),
+										contentType: "application/json;charset=utf-8", // 因為上面是JSON
+										async: false,
+										cache: false,
+										type: "POST",
+										success: function (data, textStatus) {
+											if (data && data == "<script>alert('沒有權限')<\/script>") {
+												//alert("沒有權限");
+											} else {
+												if (data.result == "success") {
+													alert("更新成功");
+												} else if (data.errorMsg) {
+													alert(data.errorMsg);
+												}
+											}
+										},
+										error: function (data, textStatus, errorThrown) {
+											console.log(data);
+										},
+									});
+								},
+								deleteItem: function (deletingItem) {
+									$.ajax({
+										url: "/" + CONFIG.SYSTEM_NAME + '/config/api/deleteConfig',
+										data: '{"ID":' + deletingItem.id + '}',
+										contentType: "application/json;charset=utf-8", // 因為上面是JSON
+										async: false,
+										cache: false,
+										type: "POST",
+										success: function (data, textStatus) {
+											if (data && data == "<script>alert('沒有權限')<\/script>") {
+												//alert("沒有權限");
+											} else {
+												if (data.result == "success") {
+													alert("刪除成功");
+												} else if (data.errorMsg) {
+													alert(data.errorMsg);
+												}
+											}
+										},
+										error: function (data, textStatus, errorThrown) {
+											console.log(data);
+										},
+									});
+								}
+							},
+
+							fields: [
+								{ title: "項次", name: "NUMS", type: "text", },
+								{ title: "上傳日期", name: "TIME", type: "text", },
+								{ title: "警鈴連線測試", name: "UNIT", type: "text", },
+								{ title: "未完成原因(敘明無測試月份)", name: "REMARKS", type: "text", validate: "required" },
+
+								{ title: "填表人", name: "UNAME", type: "text", validate: "required" },
+								{ title: "審核人員", name: "GNAME", type: "text", validate: "required" },
+
+							],
+							rowClick: function (args) {
+
+								// bodyHref("/content/situation/Safetysituationreport_form.html");
+								//showDetailsDialog("修改", args.item);
+							},
+							deleteConfirm: function (item) {
+								return "參數\"" + item.NUM + "\"確認刪除?";
+							},
+						});
+					}
+				},
+				error: function (data, textStatus, errorThrown) {
+					console.log(data);
+				},
+			});
+
+			$("#tableDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 550,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+			var formSubmitHandler = $.noop;
+
+			var showDetailsDialog = function (dialogType, item) {
+
+				$("#tableDialog").dialog("option", "title", dialogType + "").dialog("open");
+			};
+
+			$("#dialogForm").validate({
+				//錯誤訊息元素預設為label改成p會換行
+				errorElement: "p",
+				rules: {
+					cfgType: { required: true, rangelength: [2, 50] },
+					cfgKey: { required: true, rangelength: [3, 80] },
+					cfgName: { required: true, rangelength: [2, 50] },
+					cfgValue: { required: true, rangelength: [0, 80] },
+					cfgInUse: { required: true }
+				},
+				messages: {
+					cfgType: {
+						required: "請輸入參數類型",
+						rangelength: "密碼長度不得小於2個字母大於50個字母"
+					},
+					cfgKey: {
+						required: "請輸入參數key",
+						rangelength: "參數key不得小於4個字母大於80個字母"
+					},
+					cfgName: {
+						required: "請輸入參數名稱",
+						rangelength: "參數名稱不得小於2個字母大於50個字母"
+					},
+					cfgValue: {
+						required: "請輸入參數值",
+						rangelength: "參數值不得小於0個字母大於80個字母"
+					},
+					cfgInUse: {
+						required: "請選擇是否啟用"
+					}
+				},
+				submitHandler: function () {
+					formSubmitHandler();
+				}
+			});
+
+			var saveItem = function (item, isNew) {
+				$.extend(item, {
+					cfgType: $("#cfgType").val(),
+					cfgKey: $("#cfgKey").val(),
+					cfgName: $("#cfgName").val(),
+					cfgValue: $("#cfgValue").val(),
+					cfgMemo: $("#cfgMemo").val(),
+					cfgInUse: $('input[name*=cfgInUse]:checked').val()
+				});
+
+				$("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", item);
+
+				$("#tableDialog").dialog("close");
+				bodyHref("/content/situation/Safetysituationreport.html");
+			};
+
+			function Processing(id) {
+				bodyHref("/content/situation/Safetysituationreport_form7.html");
+			}
+
+		});
+
+		$('#downloadExcelBtn').on("click", function () {
+			showDetailsDialog("退件原因", {});
+		});
+		$("#tableDialog").dialog({
+			title: "退件原因",
+			autoOpen: false,
+			width: 550,
+			modal: true,
+			open: function () {
+				$('.ui-widget-overlay').addClass('custom-overlay');
+				customCloseBtn();
+			},
+			close: function () {
+
+				$("#dialogForm").find(".error").removeClass("error");
+				$('.ui-widget-overlay').removeClass('custom-overlay');
+			},
+			classes: dlgSetting.classes,
+			show: dlgSetting.show,
+			hide: dlgSetting.hide
+		});
+
+		var formSubmitHandler = $.noop;
+
+		var showDetailsDialog = function (dialogType, item) {
+
+			$("#tableDialog").dialog("option", "title", dialogType + "").dialog("open");
+		};
+
+		$(".Dialog").dialog({
+			title: "參數設定",
+			autoOpen: false,
+			width: 960,
+			height: 600,
+			modal: true,
+			open: function () {
+				$('.ui-widget-overlay').addClass('custom-overlay');
+				customCloseBtn();
+			},
+			close: function () {
+				$('.ui-widget-overlay').removeClass('custom-overlay');
+			},
+			classes: dlgSetting.classes,
+			show: dlgSetting.show,
+			hide: dlgSetting.hide
+		});
+		//      母嬰
+		$('#handleMom1').click(() => {
+			$("#handleMom1Table").dialog("option", "title", "建議表").dialog("open");
+			get_listExecute1()
+		})
+		function get_listExecute1() {
+			$.ajax({
+				url: "/" + CONFIG.SYSTEM_NAME + '/healthLaborMaternalArrange/api/listAll',
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+				async: false,
+				cache: false,
+				type: "GET",
+				success: function (data, textStatus) {
+					if (data && data == "<script>alert('沒有權限')<\/script>") {
+						// alert("沒有權限");
+					} else {
+						var data = data.data;
+
+						console.log(data)
+						$("#jsGridMom1Table").jsGrid({
+							width: "100%",
+							height: "auto",
+							heading: true, //是否顯示表頭
+							filtering: true,//啟動查找
+							inserting: false, //啟動新增  關掉使用自定義的
+							editing: true,  //啟動編輯
+							selecting: true,
+							sorting: true, //啟動排序
+							paging: true, //啟動分頁
+							pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+							autoload: true,
+							pageSize: 10,
+							controller: {
+								loadData: function (filter) {
+									//查詢
+									var result = $.grep(data, function (item, idx) {
+										for (var key in filter) {
+											var value = filter[key];
+											if (value.length > 0) {
+												if (!item[key]) {
+													return false;
+												}
+												if (typeof item[key] === 'number') {
+													if (item[key].toString().indexOf(value) == -1) {
+														return false;
+													}
+												} else if (typeof item[key] === 'string') {
+													if (item[key].indexOf(value) == -1) {
+														return false;
+													}
+												}
+											}
+										}
+										return true;
+									});
+									return result;
+								},
+							},
+
+							fields: [
+								{ title: "年份", name: "year", type: "text", },
+								{ title: "分行", name: "todo", type: "text", },
+								{ title: "姓名", name: "name", type: "text", },
+							],
+
+						});
+					}
+				},
+				error: function (data, textStatus, errorThrown) {
+					console.log(data);
+				},
+			});
+
+		}
+		$('#handleMom2').click(() => {
+			$("#handleMom2Table").dialog("option", "title", "面談表").dialog("open");
+			get_listExecute2()
+		})
+		function get_listExecute2() {
+			$.ajax({
+				url: "/" + CONFIG.SYSTEM_NAME + '/healthLaborMaternalInterview/api/listAll',
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+				async: false,
+				cache: false,
+				type: "GET",
+				success: function (data, textStatus) {
+					if (data && data == "<script>alert('沒有權限')<\/script>") {
+						//alert("沒有權限");
+					} else {
+						var data = data.data;
+
+						console.log(data)
+						$("#jsGridMom2Table").jsGrid({
+							width: "100%",
+							height: "auto",
+							heading: true, //是否顯示表頭
+							filtering: true,//啟動查找
+							inserting: false, //啟動新增  關掉使用自定義的
+							editing: true,  //啟動編輯
+							selecting: true,
+							sorting: true, //啟動排序
+							paging: true, //啟動分頁
+							pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+							autoload: true,
+							pageSize: 10,
+							controller: {
+								loadData: function (filter) {
+									//查詢
+									var result = $.grep(data, function (item, idx) {
+										for (var key in filter) {
+											var value = filter[key];
+											if (value.length > 0) {
+												if (!item[key]) {
+													return false;
+												}
+												if (typeof item[key] === 'number') {
+													if (item[key].toString().indexOf(value) == -1) {
+														return false;
+													}
+												} else if (typeof item[key] === 'string') {
+													if (item[key].indexOf(value) == -1) {
+														return false;
+													}
+												}
+											}
+										}
+										return true;
+									});
+									return result;
+								},
+							},
+
+							fields: [
+								{ title: "年份", name: "year", type: "text", },
+								{ title: "分行", name: "todo", type: "text", },
+							],
+
+						});
+					}
+				},
+				error: function (data, textStatus, errorThrown) {
+					console.log(data);
+				},
+			});
+
+		}
+	});
+	// 下載
+	function downloadX(id) {
+		const val = $('#' + id).val();
+		if (id == 'eventName1') {
+			window.location.href = "/" + CONFIG.SYSTEM_NAME + '/healthLaborMaternalProtection/api/exportAll?year=' + val;
+		}
+		if (id == 'eventName2') {
+			window.location.href = "/" + CONFIG.SYSTEM_NAME + '/healthLaborAbnormalWork/api/exportAl?year=' + val;
+		}
+		if (id == 'eventName3') {
+			window.location.href = "/" + CONFIG.SYSTEM_NAME + '/healthLaborMaternalProtection/api/exportAll?year=' + val;
+		}
+		if (id == 'eventName4') {
+			window.location.href = "/" + CONFIG.SYSTEM_NAME + '/healthLaborHumanTrack/api/export?year=' + val;
+		}
+
+	}
+
+</script>

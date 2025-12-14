@@ -1,0 +1,115 @@
+<div class="no-print">
+
+    <div>
+        <h2 style="text-align: center;">合庫金控及子公司重大事項通報表</h2>
+        <form id="inputForm">
+            <div><span class="pull-left">公司(單位)名稱：合作金庫銀行OOO分行</span> <span class="pull-right">填報日期：&nbsp;&nbsp;&nbsp;&nbsp;年&nbsp;&nbsp;&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;日</span></div>
+        
+            <table class="w-100 safe_form">
+                <tbody>
+                    <tr>
+                        <td class="table-header text-center" width="35%">事項名稱</td>
+                        <td class="table-header  text-center">通報件數</td>
+                        <td class="table-header  text-center" width="40%">事件名稱</td>
+                    
+                    </tr>
+            
+                    <tr>
+                        <td>風險控管重大缺失</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>法令遵循(含洗錢防制)
+                            重大缺失</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>內部控制重大缺失</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>內部稽核制度重大缺失</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>評等調降之虞情事</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>受國內外主管機關裁罰之虞
+                            情事(如陳報陳述書等者)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>其他重大事項(對公司經營
+                            或公股權益有不利影響者)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>重大偶發事件(事件範圍請依
+                            各業別主管機關之規定)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>主管機關規定應通報之
+                            其他重大事項</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+    
+                
+                </tbody>
+            </table>
+            <div>
+                <p>1.如有發生表列情事，請由統一窗口(專責部門)即時彙整陳核後報送本公司。</p>
+                <p>2.通報表請簡要陳述，並於次頁「重大事項通報說明」中詳述。</p>
+                <table style="border: 0; width: 100%;">
+                    <tr>
+                        <td width="50%" style="border: 0;"><p>承辦人：</p><p>連絡電話：</p></td>
+                        <td width="50%" style="border: 0;" align="center">
+                            <div style="height: 160px; width: 240px; border:2px dotted #ccc; padding-top: 100px;">
+                                (請加蓋統一窗口章戳)
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div style="text-align: center;">
+        <button type="button" id="printBtn" class="btn btn-secondary  my-2">列印</button>
+        <button type="button" id="sBtn" class="btn btn-success  my-2">匯出</button>
+        <button type="button" id="return" class="btn btn-warning  my-2">返回列表</button>
+        </div>
+    <div class="container-fluid" id="templateContainer">
+    
+    </div>
+    <script>
+    //需要用的JS
+    require(["jquery", "jquery_validate", "jsgrid", "jquery_ui"], function (jquery, jquery_validate, jsgrid, jquery_ui ) {
+        //頁面讀取後執行
+    $(document).ready(function(){
+        $('#submitBtn').on("click",
+            function (){
+                bodyHref("/content/situation/SafetysituationreportX.html");
+            }
+        );
+        $('#return').on("click",
+            function (){
+                bodyHref("/content/situation/SafetysituationreportX.html");
+            }
+        );
+        });
+        
+        
+    });
+    </script>

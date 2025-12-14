@@ -1,0 +1,1955 @@
+﻿<div>
+	<input id="upDate" name="upDate" type="hidden" />
+	<input id="unitId" name="unitId" type="hidden" />
+	<input id="unitName" name="unitName" type="hidden" />
+	<input id="rocId" name="rocId" type="hidden" />
+	<input id="userName" name="userName" type="hidden" />
+	<h4>安全維護業務執行專區_分行</h4>
+	<div class="date_time">
+		<div class="date_box">
+			<label>
+				<input id="startDate" name="startDate" type="text" readonly="readonly" class="w_100p"
+					placeholder="開始日期" />
+				<i class="iconfont icon-riqi1"></i>
+			</label>
+		</div>
+		<div class="date_box">
+			<label>
+				<input id="endDate" name="endDate" type="text" readonly="readonly" class="w_100p" placeholder="結束日期" />
+				<i class="iconfont icon-riqi1"></i>
+			</label>
+		</div>
+		<button class="btn btn-primary  my-2" id="getlist_search">查詢</button>
+	</div>
+	<div id="jsGrid"></div>
+</div>
+<div class="m-t50 m-b30">
+	<h4>單位安全維護設施及設備</h4>
+
+	<div class="jsgrid-grid-body">
+		<table class="jsgrid-table" id="divce">
+			<thead>
+				<tr class="jsgrid-header-row">
+					<th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 200px;">設備名稱</th>
+					<th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable">目前情形</th>
+					<th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable">廠商名稱
+					</th>
+					<th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable">契約簽訂情形</th>
+					<th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable">更新日期</th>
+					<th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable">儲存</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="jsgrid-row">
+					<td class="jsgrid-cell" style="width: 200px;">行舍使用</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<select class="custom-select w_100p" name="devicveList" id="devicveList1">
+							<option value="自有">自有</option>
+							<option value="租賃">租賃</option>
+						</select>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						&nbsp;
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						&nbsp;
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<span class="upDates"></span>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<button type="button" id="submitBtn_divce1" class="btn btn-warning  my-2">儲存</button>
+					</td>
+				</tr>
+				<tr class="jsgrid-alt-row">
+					<td class="jsgrid-cell" style="width: 200px;">報警系統</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<select class="custom-select w_100p" name="devicveList" id="devicveList2">
+							<option value="自有">自有</option>
+							<option value="租賃">租賃</option>
+						</select>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<select class="custom-select" id="supplierList1" placeholder="廠商名稱" name="supplierList">
+							<option disabled selected value="">廠商名稱</option>
+						</select>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<select class="custom-select w_100p" name="signStatus">
+							<option value="是">是</option>
+							<option value="否">否</option>
+						</select>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<span class="upDates"></span>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<button type="button" id="submitBtn_divce2" class="btn btn-warning  my-2">儲存</button>
+					</td>
+				</tr>
+				<tr class="jsgrid-row">
+					<td class="jsgrid-cell" style="width: 200px;">保全系統</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<select class="custom-select w_100p" name="devicveList" id="devicveList3">
+							<option value="自有">自有</option>
+							<option value="租賃">租賃</option>
+						</select>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<select class="custom-select" id="supplierList2" placeholder="廠商名稱" name="supplierList">
+							<option disabled selected value="">廠商名稱</option>
+						</select>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<select class="custom-select w_100p" name="signStatus">
+							<option value="是">是</option>
+							<option value="否">否</option>
+						</select>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<span class="upDates"></span>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<button type="button" id="submitBtn_divce3" class="btn btn-warning  my-2">儲存</button>
+					</td>
+				</tr>
+				<tr class="jsgrid-alt-row">
+					<td class="jsgrid-cell" style="width: 200px;">監視設備系統</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<select class="custom-select w_100p" name="devicveList" id="devicveList4">
+							<option value="自有">自有</option>
+							<option value="租賃">租賃</option>
+						</select>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<select class="custom-select" id="supplierList3" placeholder="廠商名稱" name="supplierList">
+							<option disabled selected value="">廠商名稱</option>
+						</select>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<select class="custom-select w_100p" name="signStatus">
+							<option value="是">是</option>
+							<option value="否">否</option>
+						</select>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<span class="upDates"></span>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<button type="button" id="submitBtn_divce4" class="btn btn-warning  my-2">儲存</button>
+					</td>
+				</tr>
+				<tr class="jsgrid-row">
+					<td class="jsgrid-cell" style="width: 200px;">保全/駐警</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<select class="custom-select w_100p" name="devicveList" id="devicveList5">
+							<option value="保全">保全</option>
+							<option value="駐警">駐警</option>
+						</select>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<select class="custom-select" id="supplierList4" placeholder="廠商名稱" name="supplierList">
+							<option disabled selected value="">廠商名稱</option>
+						</select>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<select class="custom-select w_100p" name="signStatus">
+							<option value="是">是</option>
+							<option value="否">否</option>
+						</select>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<span class="upDates"></span>
+					</td>
+					<td class="jsgrid-cell jsgrid-align-center">
+						<button type="button" id="submitBtn_divce5" class="btn btn-warning  my-2">儲存</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br>
+	<!-- <div style="text-align: center;">
+		<button type="button" id="submitBtn_divce" class="btn btn-warning  my-2">儲存</button>
+
+
+	</div> -->
+</div>
+</div>
+
+<div id="detailDialog1" style="display:none" class="container detailDialog">
+	<div id="printDiv1">
+		<h2 style="text-align: center;">駐衛警每月執勤督導檢核紀錄通報表</h2>
+
+		<br>
+		<form id="inputForm">
+
+			<table class="w-100 safe_form" id="">
+				<tbody>
+					<tr>
+						<td class="table-header" width="200">單位連線代號</td>
+						<td class="unitId">
+							1234
+						</td>
+
+
+						<td class="table-header" width="200">單位名稱</td>
+						<td class="unitName">
+							ＯＯ分行
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+			<br>
+
+			<table class="w-100 safe_form" id="look_detail1">
+				<thead>
+					<tr>
+						<td class="table-header" width="50">項次</td>
+						<td class="table-header text-center ">檢查事項</td>
+						<td class="table-header text-center" width="100">檢查結果</td>
+						<td class="table-header " width="300">備註</td>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="text-center" width="50">一</td>
+						<td name="formContent1"></td>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">二</td>
+						<td name="formContent2"></td>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">三</td>
+						<td name="formContent3"></td>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">四</td>
+						<td name="formContent4"></td>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">五</td>
+						<td name="formContent5"></td>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">六</td>
+						<td name="formContent6"></td>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">七</td>
+						<td name="formContent7"></td>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">八</td>
+						<td name="formContent8"></td>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">九</td>
+						<td name="formContent9"></td>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十</td>
+						<td name="formContent10"></td>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十一</td>
+						<td name="formContent11"></td>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十二</td>
+						<td name="formContent12"></td>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十三</td>
+						<td name="formContent13"></td>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十四</td>
+						<td name="formContent14"></td>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十五</td>
+						<td name="formContent15"></td>
+						<td>
+
+						</td>
+						<td>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十六</td>
+						<td name="formContent16"></td>
+						<td>
+
+						</td>
+						<td>
+
+						</td>
+
+					</tr>
+
+				</tbody>
+			</table>
+			<br>
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header " width="200">檢核人</td>
+						<td class="loginUser">
+							蔡小雯
+						</td>
+
+					</tr>
+
+
+				</tbody>
+			</table>
+			<div class="m-t50 m-b30">
+				<p>註：</p>
+				<p>一、依據本行「駐衛員警勤務管理要點」辦理。</p>
+				<p>二、本表須每週逐項確實辦理檢核乙次，並彙整後於次月五日前並陳單位主管(簽章)後，以網路檔案傳輸
+					作業系統上傳行政管理部彙辦。</p>
+				<p>三、對於缺失事項應具體填載，並檢核駐警人員是否確實改善。</p>
+				<p>四、完成自行檢核後，請自行留底備查。</p>
+			</div>
+		</form>
+	</div>
+	<br>
+	<div style="text-align: center;">
+
+		<button type="button" id="printBtn1" class="btn btn-secondary  my-2">列印</button>
+	</div>
+</div>
+<div id="detailDialog2" style="display:none" class="container detailDialog">
+	<div id="printDiv2">
+		<h2 style="text-align: center;">保全人員執勤督導檢核紀錄通報表</h2>
+
+		<br>
+		<form id="inputForm">
+
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header" width="200">單位連線代號</td>
+						<td class="unitId">
+							1234
+						</td>
+
+
+						<td class="table-header" width="200">單位名稱</td>
+						<td class="unitName">
+							ＯＯ分行
+						</td>
+
+					</tr>
+				</tbody>
+			</table>
+			<br>
+
+			<table class="w-100 safe_form" id="look_save">
+				<thead>
+					<tr>
+						<td class="table-header" width="50">項次</td>
+						<td class="table-header text-center ">檢查事項</td>
+						<td class="table-header text-center" width="100">檢查結果</td>
+						<td class="table-header " width="300">備註</td>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="text-center" width="50">一</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">二</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">三</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">四</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">五</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">六</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">七</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">八</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">九</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十一</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十二</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十三</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十四</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十五</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十六</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十七</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十八</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+					<tr>
+						<td class="text-center" width="50">十九</td>
+						<td></td>
+						<td></td>
+						<td></td>
+
+					</tr>
+
+				</tbody>
+			</table>
+			<br>
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header " width="200">檢核人</td>
+						<td class="loginUser">
+							蔡小雯
+						</td>
+					</tr>
+
+
+				</tbody>
+			</table>
+
+		</form>
+	</div>
+	<br>
+	<div style="text-align: center;">
+
+		<button type="button" id="printBtn2" class="btn btn-secondary  my-2">列印</button>
+	</div>
+</div>
+<div id="detailDialog3" style="display:none" class="container detailDialog">
+	<div id="printDiv3">
+		<h2 style="text-align: center;">在職員工教育訓練紀錄</h2>
+		<input type="hidden" id="safetyId">
+		<br>
+
+		<form id="inputForm">
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header " width="200">單位連線代號</td>
+						<td class="unitId" colspan="2">
+							1234
+						</td>
+						<td class="table-header " width="200">單位名稱</td>
+						<td class="unitName" colspan="2">
+							ＯＯ分行
+						</td>
+
+					</tr>
+
+
+				</tbody>
+			</table>
+			<br>
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header " width="200">&nbsp;</td>
+						<td class="table-header ">日期 </td>
+						<td class="table-header ">時數 </td>
+						<td class="table-header ">實施紀錄上傳 </td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">在職員工教育訓練紀錄上傳</td>
+						<td class="trainDate"></td>
+						<td class="trainHour"></td>
+						<td width="160">
+							<div class="planFile">
+
+							</div>
+
+							<div class="courseFile">
+
+							</div>
+							<div class="signFile">
+
+							</div>
+							<div class="trainFile">
+
+							</div>
+						</td>
+
+					</tr>
+
+					<tr>
+						<td class="table-header " width="150">已完成數位學習課程</td>
+						<td class="studyDate"></td>
+						<td class="studyHour"></td>
+						<td>&nbsp;</td>
+
+					</tr>
+
+
+				</tbody>
+			</table><br />
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header " width="200">填表人</td>
+						<td class="loginUser">
+							蔡小雯
+						</td>
+						<td class="table-header " width="200">審核人員(職安主管)</td>
+						<td class="reviewName">
+
+						</td>
+
+
+					</tr>
+
+
+
+
+				</tbody>
+			</table>
+		</form>
+	</div>
+	<br>
+
+	<div style="text-align: center;">
+
+		<button type="button" id="printBtn3" class="btn btn-secondary  my-2">列印</button>
+	</div>
+
+</div>
+
+<div id="detailDialog4" style="display:none" class="container detailDialog">
+	<div id="printDiv4">
+		<h2 style="text-align: center;">公務機密維護總檢查</h2>
+		<input type="hidden" id="safetyId">
+		<br>
+		<form id="inputForm">
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header " width="200">填報季別：</td>
+						<td class="season" colspan="2">
+
+						</td>
+
+					</tr>
+
+
+
+
+				</tbody>
+			</table>
+			<br />
+			<table class="w-100 safe_form" id='secret_look'>
+				<tbody>
+					<tr>
+						<td class="table-header text-center" width="90" rowspan="5">業<br />務<br />發<br />展<br />部</td>
+						<td width="60" class="text-center">
+							1
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="60" class="text-center">
+							2-1
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="60" class="text-center">
+							2-2
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="60" class="text-center">
+							2-3
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="60" class="text-center">
+							3
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="table-header text-center" width="90" rowspan="2">
+							<dl>
+								<dd>債<br />權<br />管<br />理<br />部</dd>
+								<dd>授<br />信<br />審<br />查<br />部</dd>
+								<dd>調<br />查<br />研<br />究<br />部</dd>
+							</dl>
+
+						</td>
+						<td width="60" class="text-center">
+							4
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="60" class="text-center">
+							4-1
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td class="table-header text-center" width="90" rowspan="8">行<br />政<br />管<br />理<br />部</td>
+						<td width="60" class="text-center">
+							5-1
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="60" class="text-center">
+							5-2
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="60" class="text-center">
+							6
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="60" class="text-center">
+							7
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="60" class="text-center">
+							8-1
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="60" class="text-center">
+							8-2
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="60" class="text-center">
+							9-1
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="60" class="text-center">
+							9-2
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td class="table-header text-center" width="90" rowspan="2">
+							<dl>
+								<dd>依<br />個<br />資<br />資<br />料<br />或<br />重</dd>
+								<dd>要<br />業<br />務<br />資<br />訊<br />性<br />質</dd>
+								<dd>之<br />相<br />關<br />業<br />管<br />部<br />門</dd>
+							</dl>
+						</td>
+						<td width="60" class="text-center">
+							10-1
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="60" class="text-center">
+							10-2
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+
+					<tr>
+						<td class="table-header text-center" width="90" rowspan="4">其<br />他</td>
+						<td width="60" class="text-center">
+							11
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="60" class="text-center">
+							12
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="60" class="text-center">
+							13
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td width="60" class="text-center">
+							14
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+
+
+
+
+				</tbody>
+			</table>
+			<br />
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header " width="200">檢查人員 (人事管理員)</td>
+						<td class="loginUser">
+							蔡小雯
+						</td>
+						<td class="table-header " width="200">審核人員</td>
+						<td class="reviewName">
+
+						</td>
+						<td class="table-header " width="200">時間</td>
+						<td class="upDate">
+							111/04/15
+						</td>
+
+					</tr>
+
+
+
+
+				</tbody>
+			</table>
+		</form>
+	</div>
+	<br>
+
+	<div style="text-align: center;">
+
+		<button type="button" id="printBtn4" class="btn btn-secondary  my-2">列印</button>
+	</div>
+</div>
+<div id="detailDialog6" style="display:none" class="container detailDialog">
+	<div id="printDiv6">
+		<h2 style="text-align: center;">自衛任務編組及防護演練</h2>
+
+		<br>
+		<form id="inputForm">
+			<input type="hidden" id="safetyId">
+			<table class="w-100 safe_form">
+				<thead>
+					<tr>
+						<td class="table-header " width="200">單位連線代號</td>
+						<td colspan="2" class="unitId">
+							1234
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">單位名稱</td>
+						<td colspan="2" class="unitName">
+							ＯＯ分行
+						</td>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="table-header " width="200">安全防護演練(第一次)
+							1月至4月</td>
+						<td class="checkSelect1" colspan="2">
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">安全防護演練(第二次)
+							5月至8月</td>
+						<td class="checkSelect2" colspan="2">
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">安全防護演練(第三次)
+							9月至12月</td>
+						<td class="checkSelect3" colspan="2"></td>
+
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<td class="table-header " width="200">檢核人</td>
+						<td class="loginUser" colspan="2">
+							蔡小雯
+						</td>
+					</tr>
+				</tfoot>
+
+			</table>
+		</form>
+	</div>
+
+	<br>
+	<div style="text-align: center;">
+
+		<button type="button" id="printBtn6" class="btn btn-secondary  my-2">列印</button>
+	</div>
+</div>
+<div id="detailDialog5" style="display:none" class="container detailDialog">
+	<div id="printDiv5">
+		<h2 style="text-align: center;">警鈴連線測試</h2>
+
+		<br>
+		<form id="inputForm">
+			<input type="hidden" id="safetyId">
+			<table class="w-100 safe_form">
+				<thead>
+					<tr>
+						<td class="table-header " width="200">單位連線代號</td>
+						<td colspan="2" class="unitId">
+							1234
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">單位名稱</td>
+						<td colspan="2" class="unitName">
+							ＯＯ分行
+						</td>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="table-header " width="200">項次</td>
+						<td class="testNum" colspan="2">
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">警鈴連線測試</td>
+						<td class="testSelect" colspan="2">
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">測試日期</td>
+						<td class="testDate" colspan="2">
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">未完成原因
+							(敘明無測試月份)</td>
+						<td class="noReason" colspan="2">
+
+						</td>
+
+					</tr>
+
+				</tbody>
+				<tfoot>
+					<tr>
+						<td class="table-header " width="200">審核人員</td>
+						<td class="reviewName" colspan="2">
+							蔡小雯
+						</td>
+					</tr>
+				</tfoot>
+
+			</table>
+		</form>
+	</div>
+	<br>
+	<div style="text-align: center;">
+
+		<button type="button" id="printBtn5" class="btn btn-secondary  my-2">列印</button>
+	</div>
+
+</div>
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui", "print"], function (jquery, jquery_validate, jsgrid, jquery_ui, print) {
+		//頁面讀取後執行
+		$(document).ready(function () {
+			$("#devicveList5").on("change", function () {
+				if ($(this).val() == '保全') {
+					$(this).parent().siblings().find('select').show()
+
+
+				} else {
+					$(this).parent().siblings().find('select').hide()
+
+				}
+			});
+			var currentDate = new Date();
+            var year = currentDate.getFullYear();
+            var month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
+            var day = String(currentDate.getDate()).padStart(2, '0'); 
+            var formattedDate = year + '/' + month + '/' + day;
+            console.log(formattedDate);
+			$('#upDate').val(formattedDate)
+			getByMenuId()
+			function getByMenuId() {
+				var menuid = 48;
+
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/buttonRole/api/getByMenuId?menuId=' + menuid,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							var menuData = data.data
+							get_list(menuData);
+
+							console.log(menuData)
+
+							if (menuData.functionArray.indexOf('review') < 0) {
+								$('.reviewButton').hide()
+							}
+							if (menuData.functionArray.indexOf('temp') < 0) {
+								$('.tempButton').hide()
+							}
+							if (menuData.functionArray.indexOf('reject') < 0) {
+								$('.returnButton').hide()
+							}
+							if (menuData.functionArray.indexOf('temp') < 0) {
+								$('.tempButton').hide()
+							}
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			$("#printBtn1").click(function () {
+				printJS({
+					printable: 'printDiv1',
+					type: 'html',
+					header: '',
+					css: '../resources/css/print.css',
+				})
+			});
+			$("#printBtn2").click(function () {
+				printJS({
+					printable: 'printDiv2',
+					type: 'html',
+					header: '',
+					css: '../resources/css/print.css',
+				})
+			});
+			$("#printBtn3").click(function () {
+				printJS({
+					printable: 'printDiv3',
+					type: 'html',
+					header: '',
+					css: '../resources/css/print.css',
+				})
+			});
+			$("#printBtn4").click(function () {
+				printJS({
+					printable: 'printDiv4',
+					type: 'html',
+					header: '',
+					css: '../resources/css/print.css',
+				})
+			});
+			$("#printBtn5").click(function () {
+				printJS({
+					printable: 'printDiv5',
+					type: 'html',
+					header: '',
+					css: '../resources/css/print.css',
+				})
+			});
+			$("#printBtn6").click(function () {
+				printJS({
+					printable: 'printDiv6',
+					type: 'html',
+					header: '',
+					css: '../resources/css/print.css',
+				})
+			});
+
+			isLogin();//登入狀態
+			function isLogin() {
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/login/api/getLogin',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "get",
+					success: function (data, textStatus) {
+						if (data.msg != "success") {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/user/api/getInitData',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "get",
+					success: function (data, textStatus) {
+						$('#unitId').val(data.loginUser.unitId)
+						$('#unitName').val(data.loginUser.unitName)
+						$('#rocId').val(data.loginUser.rocId)
+						$('#userName').val(data.loginUser.name)
+					
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+			$('#startDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				dateFormat: 'yy/mm/dd',
+				onClose: function (selectedDate) {
+					$("#endDate").datepicker("option", "minDate", selectedDate);
+				}, maxDate: 0
+
+			})
+
+			$('#endDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				dateFormat: 'yy/mm/dd',
+
+				minDate: $("#startDate").val(),
+				onClose: function (selectedDate) {
+					$("#startDate").datepicker("option", "maxDate", selectedDate);
+				}
+			})
+
+			$('#getlist_search').click(function () {
+				getByMenuId()
+			})
+			function get_list(menuData) {
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenance/api/listUnit?startDate=' + $('#startDate').val() + '&endDate=' + $('#endDate').val(),
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data.code == "5000") {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							var data = data.data;
+							console.log('1')
+							console.log(data)
+							//提示
+							$.toast({ heading: '', text: '資料載入成功' + textStatus, icon: 'success', position: 'toast-top-center', hideAfter: 6000, });
+							$("#jsGrid").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: false, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: false,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+														callback(value.length)
+													}
+
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+															callback(item[key].toString().indexOf(value))
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+															callback(item[key].indexOf(value))
+														}
+													}
+
+												}
+
+											}
+											return true;
+										});
+										return result;
+									},
+
+								},
+
+								fields: [
+									// { title: "分行名稱", name: "unitName", type: "text", },
+									{ title: "維護項目", name: "item", type: "text", validate: "required" },
+									{ title: "筆數", name: "itemCount", type: "text", },
+
+									// {
+									// 	title: "查看", name: "HREF", type: "control", width: 100, filtercss: "display:none;", itemTemplate: function (value, item) {
+									// 		return $("<button>").attr("type", "button").text("查看").addClass("btn btn-primary")
+									// 			.on("click", function () {
+									// 				look_details(item.item, item.id);
+									// 			});
+									// 	}, headerTemplate: function () {
+									// 		return "查看";
+									// 	}, filterTemplate: function () {
+									// 		return "";
+									// 	}
+									// },
+
+								],
+
+
+							});
+
+							//依時間排序
+							$("#jsGrid").jsGrid("sort", "safetyTime", "desc");
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			function get_last() {
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenancePolice/api/getLast',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data.code == "5000") {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							var data = data.data;
+							console.log('1')
+							console.log(data)
+							//提示
+
+
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			var currentDate = new Date();
+			var year = currentDate.getFullYear();
+			var month = currentDate.getMonth() + 1;
+			var day = currentDate.getDate();
+			$('.upDates').html(year + '/' + month + '/' + day)
+			$("#submitBtn_divce1").click(function () {
+				insertdata('1','0')
+				
+			})
+			$("#submitBtn_divce2").click(function () {
+				insertdata('2','1')
+				
+			})
+			$("#submitBtn_divce3").click(function () {
+				insertdata('3','2')
+				
+			})
+			$("#submitBtn_divce4").click(function () {
+				insertdata('4','3')
+				
+			})
+			$("#submitBtn_divce5").click(function () {
+				insertdata('5','4')
+				
+			})
+
+	
+			function insertdata(number,eq){
+				var tableData = [];
+				$('#divce tbody tr').each(function (row, tr) {
+					tableData = {
+						
+						"upDate": $('#upDate').val(),
+						"unitId": $('#unitId').val(),
+						"unitName":  $('#unitName').val(),
+						"rocId":  $('#rocId').val(),
+						"userName":  $('#userName').val(),
+						"dvName": $('#divce tbody tr:eq('+eq+')').find('td:eq(0)').text(),
+						"dvType": $('#divce tbody tr:eq('+eq+')').find('td:eq(0)').text(),
+						"comKey": $('#divce tbody tr:eq('+eq+')').find('td:eq(2)').find("option:selected").val(),
+						"comName": $('#divce tbody tr:eq('+eq+')').find('td:eq(2)').find("option:selected").text(),
+						"signStatus": $('#divce tbody tr:eq('+eq+')').find('td:eq(3)').find("option:selected").val(),
+						"selfLease": $('#divce tbody tr:eq('+eq+')').find('td:eq(1)').find("option:selected").val(),
+						"version": "1.0.0",
+						"id": number,
+						"sort": 0,
+					}
+				});
+
+				insert(tableData)
+			}
+			//提交
+			function insert(data) {
+				console.log(JSON.stringify(data))
+				$.ajax({
+					data: JSON.stringify(data),
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceDevice/api/saveSingle',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							showAlert('儲存成功', '維護設備資料儲存成功！', bodyHref("/content/safety/Safety_maintenance.html"))
+							get_list();
+
+							console.log(data);
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+			//創建select
+			function createSelect(id, data, key, val, eventKey) {
+				$.each(data, function (index, item) {
+					$('#' + id).append($('<option>').val(item[key]).text(eventKey ? item[eventKey] + "_" + item[val] : item[val]));
+					$('#' + id + '1').append($('<a>').html(item[val]).addClass('dropdown-item'));
+				});
+				$('#' + id).val(eventKey)
+			}
+			//取得默認資料
+			insert_mr()
+			function insert_mr() {
+
+				$.ajax({
+					data: JSON.stringify({ "safetyNo": "" }),
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenance/api/getInitData',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+						if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							console.log(data);
+							initPage(data);
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+			//默認資料帶入
+			function initPage(data) {
+				createSelect('supplierList1', data.supplierList, "cfgKey", "cfgName", '');
+				createSelect('supplierList2', data.supplierList, "cfgKey", "cfgName", '');
+				createSelect('supplierList3', data.supplierList, "cfgKey", "cfgName", '');
+				createSelect('supplierList4', data.supplierList, "cfgKey", "cfgName", '');
+
+
+			}
+			get_listDevice()
+			function get_listDevice() {
+
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceDevice/api/list',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data.code == "5000") {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							var data = data.data;
+							console.log(data)
+							$.each(data, function (infoIndex, info) {
+								$("td:contains(" + info['dvName'] + ")").parent().find('select[name="devicveList"]').val(info['selfLease'])
+								if (info['comKey'] != '') {
+									$("td:contains(" + info['dvName'] + ")").parent().find('select[name="supplierList"]').val(info['comKey'])
+								}
+								$("td:contains(" + info['dvName'] + ")").parent().find('select[name="signStatus"]').val(info['signStatus'])
+								$("td:contains(" + info['dvName'] + ")").parent().find('.upDates').text(year + '/' + month + '/' + day)
+
+								if (info['selfLease'] == '駐警') {
+									$("td:contains(" + info['dvName'] + ")").parent().find('select[name="supplierList"]').hide()
+									$("td:contains(" + info['dvName'] + ")").parent().find('select[name="signStatus"]').hide()
+								}
+							})
+							//提示
+							$.toast({ heading: '', text: '資料載入成功' + textStatus, icon: 'success', position: 'toast-top-center', hideAfter: 6000, });
+
+
+
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			function look_details(item, safetyId) {
+				if (item == '保全人員執勤督導檢核紀錄通報') {
+					showDetailsDialog2("查看", safetyId);
+				}
+				if (item == '駐衛警每月執勤督導檢核紀錄通報') {
+					showDetailsDialog1("查看", safetyId);
+				}
+				if (item == '在職員工教育訓練紀錄') {
+					showDetailsDialog3("查看", safetyId);
+				}
+				if (item == '公務機密維護總檢查') {
+					showDetailsDialog4("查看", safetyId);
+				}
+				if (item == '警鈴連線測試') {
+					showDetailsDialog5("查看", safetyId);
+				}
+				if (item == '自衛任務編組及防護演練') {
+					showDetailsDialog6("查看", safetyId);
+				}
+
+			}
+			var showDetailsDialog1 = function (dialogType, item) {
+				var item = item
+				$("#detailDialog1").dialog("option", "title", dialogType + "").dialog("open");
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenancePolice/api/get?safetyId=' + item,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+						if (data && data.code == "5000") {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							console.log(data.data);
+							var data = data.data;
+							$('#detailDialog1 #safetyId').val(data.safetyId);
+							$('#detailDialog1  .unitId').html(data.unitId);
+							$('#detailDialog1  .unitName').html(data.unitName);
+							$('#detailDialog1  .loginUser').html(data.checkName);
+							var jsonStr = data.formContent
+
+							var jsonObj = $.parseJSON(jsonStr);
+
+							var data_g = [];
+							$.each(jsonObj, function (index, item) {
+								data_g[index] = {
+									"title": item.title,
+									"selectData": item.selectData,
+									"ramark": item.ramark,
+								}
+
+							});
+							$('#look_detail1 tbody tr').each(function (row, tr) {
+
+								$(tr).find('td:eq(-3)').text(data_g.title)
+								$(tr).find('td:eq(-2)').text(data_g.selectData)
+								$(tr).find('td:eq(-1)').text(data_g.ramark)
+
+							});
+
+							$.each(data_g, function (index, item) {
+								$('#look_detail1 tbody tr').eq(index).find('td:eq(-3)').text(item.title)
+								$('#look_detail1 tbody tr').eq(index).find('td:eq(-2)').text(item.selectData)
+								$('#look_detail1 tbody tr').eq(index).find('td:eq(-1)').text(item.ramark)
+
+							});
+
+						}
+					}
+				});
+			};
+
+			var showDetailsDialog2 = function (dialogType, item) {
+				var item = item
+				$("#detailDialog2").dialog("option", "title", dialogType + "").dialog("open");
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceSecurity/api/get?safetyId=' + item,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+						if (data && data.code == "5000") {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							console.log(data.data);
+							var data = data.data;
+							$('#detailDialog2 #safetyId').val(data.safetyId);
+							$('#detailDialog2  .unitId').html(data.unitId);
+							$('#detailDialog2  .unitName').html(data.unitName);
+							$('#detailDialog2  .loginUser').html(data.checkName);
+							var jsonStr = data.formContent
+
+							var jsonObj = $.parseJSON(jsonStr);
+
+							var data_g = [];
+							$.each(jsonObj, function (index, item) {
+								data_g[index] = {
+									"title": item.title,
+									"selectData": item.selectData,
+									"ramark": item.ramark,
+								}
+
+							});
+							$('#look_save tbody tr').each(function (row, tr) {
+
+								$(tr).find('td:eq(-3)').text(data_g.title)
+								$(tr).find('td:eq(-2)').text(data_g.selectData)
+								$(tr).find('td:eq(-1)').text(data_g.ramark)
+
+							});
+
+							$.each(data_g, function (index, item) {
+								$('#look_save tbody tr').eq(index).find('td:eq(-3)').text(item.title)
+								$('#look_save tbody tr').eq(index).find('td:eq(-2)').text(item.selectData)
+								$('#look_save tbody tr').eq(index).find('td:eq(-1)').text(item.ramark)
+
+							});
+
+						}
+					}
+				});
+			};
+			var showDetailsDialog3 = function (dialogType, item) {
+				var item = item;
+				$("#detailDialog3").dialog("option", "title", dialogType + "").dialog("open");
+				$('#safetyId').val(item)
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceEmployee/api/get?safetyId=' + item,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+						if (data && data.code == "5000") {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							console.log(data.data);
+							var data = data.data;
+							$('#detailDialog3 #safetyId').val(data.safetyId);
+							$('#detailDialog3  .unitId').html(data.unitId);
+							$('#detailDialog3  .unitName').html(data.unitName);
+							$('#detailDialog3  .loginUser').html(data.checkName);
+							$('#detailDialog3  .trainDate').html(data.trainDate);
+							$('#detailDialog3  .trainHour').html(data.trainHour);
+							$('#detailDialog3  .studyDate').html(data.studyDate);
+							$('#detailDialog3  .studyHour').html(data.studyHour);
+							if (data.status == 'c') {
+								$('#detailDialog3  .reviewName').html(data.reviewName);
+							}
+							if (data.status == 'r') {
+								$('#detailDialog3  .reviewName').html(data.rejectName);
+							}
+
+							$('#detailDialog3  .planFile').html('<a class="btn btn-primary  my-2" href="' + data.planFile + '" target="_blank" type="button">實施計畫書</a>');
+							$('#detailDialog3  .courseFile').html('<a class="btn btn-primary  my-2" href="' + data.courseFile + '" target="_blank" type="button">課程表</a>');
+							$('#detailDialog3  .signFile').html('<a class="btn btn-primary  my-2" href="' + data.signFile + '" target="_blank" type="button">受訓人員名冊與簽到表</a>');
+							$('#detailDialog3  .trainFile').html('<a class="btn btn-primary  my-2" href="' + data.trainFile + '" target="_blank" type="button">受訓紀錄</a>');
+
+
+						}
+					}
+				});
+			};
+
+			var showDetailsDialog4 = function (dialogType, item) {
+				var item = item;
+				$("#detailDialog4").dialog("option", "title", dialogType + "").dialog("open");
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceOffice/api/get?safetyId=' + item,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+						if (data && data.code == "5000") {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							console.log(data.data);
+							var data = data.data;
+							console.log(data.formContent)
+							$('#detailDialog4 #safetyId').val(data.safetyId);
+							var jsonStr = data.formContent
+
+							var jsonObj = $.parseJSON(jsonStr);
+
+							var data_g = [];
+
+							$.each(jsonObj, function (index, item) {
+								data_g[index] = {
+									"title": item.title,
+									"selectData": item.selectData,
+								}
+
+							});
+
+
+							$('#secret_look tr').each(function (row, tr) {
+
+								$(tr).find('td:eq(-2)').text(data_g.title)
+								$(tr).find('td:eq(-1)').text(data_g.selectData)
+
+							});
+
+							$.each(data_g, function (index, item) {
+								$('#secret_look tr').eq(index).find('td:eq(-2)').text(item.title)
+								$('#secret_look tr').eq(index).find('td:eq(-1)').text(item.selectData.replace('undefined', ''))
+							});
+
+							$('#detailDialog4  .season').html(data.season);
+
+							$("#detailDialog4  .loginUser").html(data.checkName);
+
+							$('#detailDialog4  .upDate').html(data.checkTime)
+							if (data.status == 'c') {
+								$('#detailDialog4  .reviewName').html(data.reviewName);
+							}
+							if (data.status == 'r') {
+								$('#detailDialog4  .reviewName').html(data.rejectName);
+							}
+
+						}
+					}
+				});
+			};
+			var showDetailsDialog5 = function (dialogType, item) {
+				var item = item
+				$("#detailDialog5").dialog("option", "title", dialogType + "").dialog("open");
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceAlart/api/get?safetyId=' + item,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+						if (data && data.code == "5000") {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							console.log(data.data);
+							var data = data.data;
+							$('#detailDialog5 #safetyId').val(data.safetyId);
+							$('#detailDialog5  .unitId').html(data.unitId);
+							$('#detailDialog5  .unitName').html(data.unitName);
+							$('#detailDialog5  .testNum').html(data.testNumText);
+							$('#detailDialog5  .addTime').html(data.addTime);
+							$('#detailDialog5  .testSelect').html(data.testSelect);
+							$('#detailDialog5  .testDate').html(data.addTime);
+							$('#detailDialog5  .noReason').html(data.noReason);
+							if (data.status == 'c') {
+								$('#detailDialog5  .reviewName').html(data.reviewName);
+							}
+							if (data.status == 'r') {
+								$('#detailDialog5  .reviewName').html(data.rejectName);
+							}
+							if (data.status != 'r' && data.status != 'c') {
+								$('#detailDialog5  .reviewName').html('未審核');
+							}
+
+						}
+					}
+				});
+			};
+			var showDetailsDialog6 = function (dialogType, item) {
+				var item = item
+				$("#detailDialog6").dialog("option", "title", dialogType + "").dialog("open");
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceSelf/api/get?safetyId=' + item,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+						if (data && data.code == "5000") {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							console.log(data.data);
+							var data = data.data;
+							$('#detailDialog6 #safetyId').val(data.safetyId);
+							$('#detailDialog6  .unitId').html(data.unitId);
+							$('#detailDialog6  .unitName').html(data.unitName);
+							$('#detailDialog6  .loginUser').html(data.checkName);
+							if (data.checkSelect1 == '是') {
+								$('#detailDialog6  .checkSelect1').html('演練日期：' + data.checkDate1 + '&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary  my-2" href="' + data.checkFile1 + '" target="_blank" type="button">編組名單</a>');
+							}
+							if (data.checkSelect2 == '是') {
+								$('#detailDialog6  .checkSelect2').html('演練日期：' + data.checkDate1 + '&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary  my-2" href="' + data.checkFile2 + '" target="_blank" type="button">編組名單</a>');
+							}
+							if (data.checkSelect3 == '是') {
+								$('#detailDialog6  .checkSelect3').html('演練日期：' + data.checkDate1 + '&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn btn-primary  my-2" href="' + data.checkFile3 + '" target="_blank" type="button">編組名單</a>');
+							}
+
+						}
+					}
+				});
+			};
+			//查看
+			//查看資料帶入
+			function lookPage(data) {
+				tempData = data;
+				console.log(data.safetyNotificationBusinessList)
+				$('#detailDialog5 #safetyId').val(data.safetyId);
+				$('#detailDialog5  .unitId').html(data.unitId);
+				$('#detailDialog5  .unitName').html(data.unitName);
+				$('#detailDialog5  .testNum').html(data.testNumText);
+				$('#detailDialog5  .addTime').html(data.addTime);
+				$('#detailDialog5  .testSelect').html(data.testSelect);
+				$('#detailDialog5  .testDate').html(data.addTime);
+				$('#detailDialog5  .noReason').html(data.noReason);
+				if (data.status == 'c') {
+					$('#detailDialog5  .reviewName').html(data.reviewName);
+				}
+				if (data.status == 'r') {
+					$('#detailDialog5  .reviewName').html(data.rejectName);
+				}
+			}
+			//查看
+
+			$(".detailDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 960,
+				height: 550,
+
+				modal: true,
+				close: function () {
+
+
+				},
+				open: function (event, ui) {
+
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+			var formSubmitHandler = $.noop;
+
+			var showDetailsDialog = function (dialogType, item) {
+
+				$("#tableDialog").dialog("option", "title", dialogType + "").dialog("open");
+			};
+
+
+		});
+
+
+	});
+</script>

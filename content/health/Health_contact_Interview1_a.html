@@ -1,0 +1,638 @@
+﻿<div>
+	<div class="m-t50 m-b30">
+		<h4>勞工健康服務執行紀錄表</h4>
+	
+
+	</div>
+	<div id="jsGrid"></div>
+
+</div>
+<input type="hidden" name="addOredit">
+<input type="hidden" name="id" id="id">
+<div id="AddDialog" style="display:none" class="container">
+	<div id="printDiv0">
+    <form id="inputForm">
+        <h2>附表八：勞工健康服務執行紀錄表</h2>
+	
+        <br/>
+        <table class="w-100 safe_form">
+            <tbody>
+
+				<tr>
+                  
+                    <td class="" colspan="2">
+                        作業場所基本資料
+                    </td>
+				
+                </tr>
+				<tr>
+					<td class="table-header " width="200">部門名稱：</td>
+                    <td class="" >
+                      <input type="text" name="unitName" disabled>
+                    </td>
+				
+                </tr>
+				<tr>
+                    <td class="table-header " width="200">作業人員</td>
+                    <td class="">
+                       <p> <input type="checkbox" value="是" name="isAdministrative">行政人員：男 <input type="text" name="administrativeManNumber" class="w_100p"> 人；女 <input type="text" name="administrativeWomenNumber"class="w_100p"> 人；</p>
+					   <p> <input type="checkbox" value="是" name="isOperators">現場操作人員：男 <input type="text" name="operatorsManNumber"class="w_100p"> 人；女 <input type="text" name="operatorsWomanNumber"class="w_100p"> 人；</p>
+                    </td>
+				
+                </tr>
+				<tr>
+                    <td class="table-header " width="200">作業類別與人數</td>
+                    <td class="">
+						<p> <input type="checkbox" value="是" name="isGeneral">一般作業：人數 <input type="text" name="generalOperatorsNumber" class="w_100p"> 人；</p>
+					
+					 </td>
+				
+                </tr>
+				<tr>
+ 
+                    <td class="" colspan="2">
+						<p>二、作業場所與勞動條件概況:工作流程（製程）、工作型態與時間、人員及危害概述</p>
+						<textarea placeholder="工作流程（製程）、工作型態與時間、人員及危害概述" name="overviewOfWorkplace"></textarea>
+                    </td>
+				
+                </tr>
+				<tr>
+ 
+                    <td class="" colspan="2">
+						<p>三、臨場健康服務執行情形（本規則第九條至第十三條事項）:</p>
+						<p>（一）辦理事項</p>
+						<textarea placeholder=""name="handlingMatters"></textarea>
+						<p>（二）發現問題</p>
+						<textarea placeholder="" name="discoverProblems"></textarea>
+                    </td>
+				
+                </tr>
+				<tr>
+ 
+                    <td class="" colspan="2">
+						<p>四、建議執行措施：（針對發現問題所執行之措施）</p>
+						<textarea placeholder="" name="suggestedImplementation"></textarea>
+                    </td>
+				
+                </tr>
+				<tr>
+ 
+                    <td class="" colspan="2">
+						<p>五、對於前次建議改善事項之追蹤辦理情形:</p>
+						<textarea placeholder="" name="previousTracking"></textarea>
+                    </td>
+				
+                </tr>
+				<tr>
+ 
+                    <td class="" colspan="2">
+						<p>六、執行人員及日期（僅就當次實際執行者簽章）</p>
+						<p><input type="checkbox" value="是" name="isServicePhysician">1.勞工健康服務醫師，簽章<input type="text" name="servicePhysicianName" class="w_100p"></p>
+						<p><input type="checkbox" value="是" name="isNursingStaff">2.勞工健康服務護理人員，簽章<input type="text" name="nursingStaffName" class="w_100p"></p>
+						<p><input type="checkbox" value="是" name="isServiceRelated">3.勞工健康服務相關人員，簽章<input type="text" name="serviceRelatedName" class="w_100p"></p>
+						<p><input type="checkbox" value="是" name="isOccupationalSafety">4.職業安全衛生人員，簽章<input type="text" name="occupationalSafetyName" class="w_100p"></p>
+						<p><input type="checkbox" value="是" name="isManagementPersonnel">5.人力資源部管理人員，簽章<input type="text" name="managementPersonnelName" class="w_100p"></p>
+						<p>6.單位主管<input type="text" name="unitSupervisorTitle" class="w_100p">
+							<!-- ，簽章<input type="text" name="" class="w_100p"> -->
+						</p>
+						<!-- <p>部門名稱<input type="text" name="unitSupervisorTitle" class="w_100p">，主管職稱<input type="text" name="" class="w_100p">，簽章<input type="text" name="" class="w_100p"></p> -->
+					
+                    </td>
+					<tr>
+						<td class="table-header " width="200">執行日期：</td>
+						<td class="">
+							<div class="date_box">
+								<label>
+								<input id="startDate" name="executionDate" type="text" readonly="readonly" class="w_100p" placeholder="" />
+								<i class="iconfont icon-riqi1"></i>
+							</label>
+							</div>
+						 </td>
+					
+					</tr>
+					<tr>
+						<td class="table-header " width="200">執行時間：</td>
+						<td class="">
+							<input type="text" name="executionStartHours" class="w_100p"> 時<input type="text" name="executionStartMinutes" class="w_100p"> 分 迄 
+							<input type="text" name="executionEndHours" class="w_100p"> 時<input type="text" name="executionEndMinutes" class="w_100p"> 分
+						
+						 </td>
+					
+					</tr>
+                </tr>
+				
+            </tbody>
+        </table>
+    </form>
+<br>
+<div style="text-align: center;" class="no-print">
+ 
+    <button type="button" id="submitBtn"   class="btn btn-success  my-2">送出</button>
+	
+    <button type="button" id="printBtn" class="btn btn-secondary  my-2">列印</button>
+    </div>
+
+</div>
+</div>
+
+
+
+
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+		
+@media print
+{
+	.no-print{
+		display:none !important;
+	}
+	.do-print{
+		display:block !important;
+	}
+}
+</style>
+
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui", "print"], function (jquery, jquery_validate, jsgrid, jquery_ui,print) {
+		//頁面讀取後執行
+		$(".select_unit").on("change", function () {
+			if ($(this).val() == '異常') {
+				$(this).parents('tr').find('textarea').show()
+			} else {
+				$(this).parents('tr').find('textarea').hide()
+			}
+		});
+		$(document).ready(function () {
+		
+		   $('#fordate').datepicker({
+
+autoclose: true, //選擇後自動關閉
+dateFormat: "yy/mm/dd",
+
+}) 
+$('#startDate').datepicker({
+
+autoclose: true, //選擇後自動關閉
+dateFormat: "yy/mm/dd",
+
+})
+			
+		
+			$("#printBtn").click(function () {
+				//printByDiv(document.getElementById("printDiv"));
+				printJS({ 
+					printable: 'printDiv0', 
+					type: 'html', 
+					header: '' ,
+					css:'../resources/css/print.css',
+		
+		
+		 
+				})
+			});
+			$(".select_unit").each(
+				function () {
+					if ($(this).val() == '異常') {
+						$(this).parents('tr').find('textarea').show()
+					} else {
+						$(this).parents('tr').find('textarea').hide()
+					}
+				}
+			)
+			$('#startDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				dateFormat: "yy/mm/dd",
+				maxDate: '+0M +0D',
+			}).on('changeDate', function (e) {
+				var startTime = e.date;
+				$('#endDate').datepicker('setStartDate', startTime);
+			});
+
+			$('#endDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				dateFormat: "yy/mm/dd",
+				maxDate: '+0M +0D',
+				minDate: $("#startDate").val(),
+			}).on('changeDate', function (e) {
+				var endTime = e.date;
+				$('#startDate').datepicker('setEndDate', endTime);
+			});
+			//獲取按鈕權限
+			var menuid = 95;
+			$.ajax({
+				url: "/" + CONFIG.SYSTEM_NAME + '/buttonRole/api/getByMenuId?menuId=' + menuid,
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+				async: false,
+				cache: false,
+				type: "GET",
+				success: function (data, textStatus) {
+					if (data && data == "<script>alert('沒有權限')<\/script>") {
+						//showAlert('沒有權限','沒有權限','')
+						showAlert('沒有權限', '沒有權限', '');
+					} else {
+						var menuData = data.data
+						get_list(menuData);
+						console.log(menuData.functionArray)
+						console.log(menuData)
+						// <button type="button" id='submit_o' class="btn btn-warning  my-2 pressing_hide tempButton">暫存</button>
+						// <button type="button" id='submit_s' class="btn btn-primary  my-2 pressing_hide sendButton">儲存送出</button>
+						// <button type="button" id="checkBtn" class="btn btn-success  my-2 pressing_hide reviewButton">審核通過</button>
+						// <button type="button" id="return" class="btn btn-danger  my-2 pressing_hide returnButton">退件</button>
+						// <button type="button" id='submit_p' class="btn btn-primary  my-2 pressing_show sendButton">儲存送出</button>
+						// <button type="button" id="printBtn1" class="btn btn-secondary  my-2 pressing_show printButton">列印</button>
+						// <button type="button" id="printBtn" class="btn btn-secondary  my-2 pressing_hide printButton">列印</button>
+						if (menuData.functionArray.indexOf('review') < 0) {
+							$('.reviewButton').hide()
+						}
+						if (menuData.functionArray.indexOf('temp') < 0) {
+							$('.tempButton').hide()
+						}
+						if (menuData.functionArray.indexOf('reject') < 0) {
+							$('.returnButton').hide()
+						}
+						if (menuData.functionArray.indexOf('temp') < 0) {
+							$('.tempButton').hide()
+						}
+					}
+				},
+				error: function (data, textStatus, errorThrown) {
+					console.log(data);
+				},
+			});
+			get_list();
+			$('#search').click(function () {
+				get_list();
+
+			})
+			function get_list() {
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/healthAppointmentServiceExecute/api/listAll',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							alert("沒有權限");
+						} else {
+							var data = data.data
+							console.log(data)
+							$("#jsGrid").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: false, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: true,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+													}
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+														}
+													}
+
+												}
+											}
+											return true;
+										});
+										return result;
+									},
+
+								},
+
+								fields: [
+									{ title: "日期", name: "addTime", type: "text", validate: "required" },
+									{ title: "單位", name: "unitName", type: "text", validate: "required" },
+									{ title: "建立者", name: "createName", type: "text", },
+									{
+										type: "control",
+										name: "id",
+										width: 80,
+										editButton: false,
+										deleteButton: false,
+										modeSwitchButton: false,
+										filtercss: "display:none;",
+										itemTemplate: function (value, item) {
+											return $("<button>").attr("type", "button").text("查看").addClass("btn btn-success")
+												.on("click", function () {
+													console.log(value)
+													showAddDialog('勞工健康服務執行紀錄表', item.id, '檢視');
+
+												})
+
+										}, headerTemplate: function () {
+
+											return $("<button>").attr("type", "button").text("新增").addClass("btn btn-primary")
+												.on("click", function () {
+
+													showAddDialog('', '', '新增');
+												});
+
+
+										}
+									}
+
+								],
+								rowClick: function (args) {
+
+									// bodyHref("/content/situation/Safetysituationreport_form.html");
+									//showDetailsDialog("修改", args.item);
+								},
+								deleteConfirm: function (item) {
+									return "參數\"" + item.NUM + "\"確認刪除?";
+								},
+							});
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+
+
+			$('#submitBtn').click(function () {
+				var saveItem = {
+					id: $("#id").val(),
+					administrativeManNumber: $("*[name='administrativeManNumber']").val(),
+					administrativeWomenNumber: $("*[name='administrativeWomenNumber']").val(),
+    operatorsManNumber: $("*[name='operatorsManNumber']").val(),
+    operatorsWomanNumber: $("*[name='operatorsWomanNumber']").val(),
+    generalOperatorsNumber: $("*[name='generalOperatorsNumber']").val(),
+    overviewOfWorkplace: $("*[name='overviewOfWorkplace']").val(),
+    handlingMatters: $("*[name='handlingMatters']").val(),
+    discoverProblems: $("*[name='discoverProblems']").val(),
+    suggestedImplementation: $("*[name='suggestedImplementation']").val(),
+    previousTracking: $("*[name='previousTracking']").val(),
+    isServicePhysician: $("*[name='isServicePhysician']").val(),
+    nursingStaffName: $("*[name='nursingStaffName']").val(),
+    serviceRelatedName: $("*[name='serviceRelatedName']").val(),
+    occupationalSafetyName: $("*[name='occupationalSafetyName']").val(),
+    managementPersonnelName: $("*[name='managementPersonnelName']").val(),
+    unitSupervisorTitle: $("*[name='unitSupervisorTitle']").val(),
+    executionDate: $("*[name='executionDate']").val(),
+    executionStartHours: $("*[name='executionStartHours']").val(),
+    executionStartMinutes: $("*[name='executionStartMinutes']").val(),
+    executionEndHours: $("*[name='executionEndHours']").val(),
+    executionEndMinutes: $("*[name='executionEndMinutes']").val(),
+	servicePhysicianName: $("*[name='servicePhysicianName']").val(),
+	isAdministrative: $("*[name='isAdministrative']:checked").val(),
+	isOperators: $("*[name='isOperators']:checked").val(),
+	isGeneral: $("*[name='isGeneral']:checked").val(),
+	isServicePhysician: $("*[name='isServicePhysician']:checked").val(),
+	isNursingStaff: $("*[name='isNursingStaff']:checked").val(),
+	isServiceRelated: $("*[name='isServiceRelated']:checked").val(),
+	isOccupationalSafety: $("*[name='isOccupationalSafety']:checked").val(),
+	isManagementPersonnel: $("*[name='isManagementPersonnel']:checked").val(),
+
+
+    status: "n",
+    version: "1.0.0"
+				}
+				var saveItem1 = {
+				
+					administrativeManNumber: $("*[name='administrativeManNumber']").val(),
+					administrativeWomenNumber: $("*[name='administrativeWomenNumber']").val(),
+    operatorsManNumber: $("*[name='operatorsManNumber']").val(),
+    operatorsWomanNumber: $("*[name='operatorsWomanNumber']").val(),
+    generalOperatorsNumber: $("*[name='generalOperatorsNumber']").val(),
+    overviewOfWorkplace: $("*[name='overviewOfWorkplace']").val(),
+    handlingMatters: $("*[name='handlingMatters']").val(),
+    discoverProblems: $("*[name='discoverProblems']").val(),
+    suggestedImplementation: $("*[name='suggestedImplementation']").val(),
+    previousTracking: $("*[name='previousTracking']").val(),
+    isServicePhysician: $("*[name='isServicePhysician']").val(),
+    nursingStaffName: $("*[name='nursingStaffName']").val(),
+    serviceRelatedName: $("*[name='serviceRelatedName']").val(),
+    occupationalSafetyName: $("*[name='occupationalSafetyName']").val(),
+    managementPersonnelName: $("*[name='managementPersonnelName']").val(),
+    unitSupervisorTitle: $("*[name='unitSupervisorTitle']").val(),
+    executionDate: $("*[name='executionDate']").val(),
+    executionStartHours: $("*[name='executionStartHours']").val(),
+    executionStartMinutes: $("*[name='executionStartMinutes']").val(),
+    executionEndHours: $("*[name='executionEndHours']").val(),
+    executionEndMinutes: $("*[name='executionEndMinutes']").val(),
+	servicePhysicianName: $("*[name='servicePhysicianName']").val(),
+	isAdministrative: $("*[name='isAdministrative']:checked").val(),
+	isOperators: $("*[name='isOperators']:checked").val(),
+	isGeneral: $("*[name='isGeneral']:checked").val(),
+	isServicePhysician: $("*[name='isServicePhysician']:checked").val(),
+	isNursingStaff: $("*[name='isNursingStaff']:checked").val(),
+	isServiceRelated: $("*[name='isServiceRelated']:checked").val(),
+	isOccupationalSafety: $("*[name='isOccupationalSafety']:checked").val(),
+	isManagementPersonnel: $("*[name='isManagementPersonnel']:checked").val(),
+
+
+    status: "n",
+    version: "1.0.0"
+				}
+
+				insert($("*[name='addOredit']").val(), saveItem, saveItem1)
+			})
+			//送出
+			function insert(addOredit, data, data1) {
+				
+				if (addOredit == '新增') {
+					var url = 'healthAppointmentServiceExecute/api/save'
+					var data= JSON.stringify(data1)
+				}
+				if (addOredit == '檢視') {
+					var url = 'healthAppointmentServiceExecute/api/update'
+					var data= JSON.stringify(data)
+				}
+				$.ajax({
+					data:data,
+					url: "/" + CONFIG.SYSTEM_NAME + '/' + url,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} if (data && data.code == 7000) {
+							showAlert('失敗', '更新失敗，請完整填寫相關訊息！', '');
+							console.log(data);
+						} else {
+							get_list();
+							showAlert('成功', '勞工健康服務執行紀錄表更新成功', '')
+							$("#AddDialog").dialog("close");
+							console.log(data);
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						//console.log(data);
+					},
+				});
+			};
+
+			$("#AddDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				height: 600,
+				width:960,
+				modal: true,
+				open: function () {
+					insert_mr()
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+					$("#AddDialog input[type='text']").val('')  
+							$("#AddDialog textarea").val('')  
+							$("#AddDialog input[type='radio']").removeAttr('checked')  
+							$("#AddDialog input[type='checkbox']").removeAttr('checked')  
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+			var formSubmitHandler = $.noop;
+
+			var showAddDialog = function (dialogType, item, addOredit) {
+				$(" *[name='addOredit']").val(addOredit)
+				$(" *[name='id']").val(item)
+				if (addOredit == '檢視') {
+
+					$.ajax({
+						url: "/" + CONFIG.SYSTEM_NAME + '/healthAppointmentServiceExecute/api/get?id=' + item,
+						contentType: "application/json;charset=utf-8", // 因為上面是JSON
+						async: false,
+						cache: false,
+						type: "GET",
+						success: function (data, textStatus) {
+							if (data && data.code == "5000") {
+								showAlert('沒有權限', '沒有權限', '')
+							} else {
+								//console.log(data.data);
+								var data = data.data;
+								console.log(data)
+								
+								$("*[name='id']").val(data.id)
+								$("*[name='unitName']").val(data.unitName)
+								$("*[name='administrativeManNumber']").val(data.administrativeManNumber)
+								$("*[name='administrativeWomenNumber']").val(data.administrativeWomenNumber)
+								$("*[name='operatorsManNumber']").val(data.operatorsManNumber)
+								$("*[name='operatorsWomanNumber']").val(data.operatorsWomanNumber)
+								$("*[name='generalOperatorsNumber']").val(data.generalOperatorsNumber)
+								$("*[name='executionStartHours']").val(data.executionStartHours)
+								$("*[name='executionStartMinutes']").val(data.executionStartMinutes)
+			
+								$("*[name='executionEndHours']").val(data.executionEndHours)
+								$("*[name='executionEndMinutes']").val(data.executionEndMinutes)
+
+
+								$("*[name='overviewOfWorkplace']").val(data.overviewOfWorkplace)
+								$("*[name='handlingMatters']").val(data.handlingMatters)
+								$("*[name='discoverProblems']").val(data.discoverProblems)
+								$("*[name='suggestedImplementation']").val(data.suggestedImplementation)
+								$("*[name='previousTracking']").val(data.previousTracking)
+								$("*[name='isServicePhysician']").val(data.isServicePhysician)
+								$("*[name='nursingStaffName']").val(data.nursingStaffName)
+								$("*[name='serviceRelatedName']").val(data.serviceRelatedName)
+								$("*[name='occupationalSafetyName']").val(data.occupationalSafetyName)
+								$("*[name='managementPersonnelName']").val(data.managementPersonnelName)
+								$("*[name='unitSupervisorTitle']").val(data.unitSupervisorTitle)
+								$("*[name='executionDate']").val(data.executionDate)
+								$("*[name='servicePhysicianName']").val(data.servicePhysicianName)
+			
+
+								$("*[name='isAdministrative'][value='" + data.isAdministrative + "']").attr('checked', true)
+								$("*[name='isOperators'][value='" + data.isOperators + "']").attr('checked', true)
+								$("*[name='isGeneral'][value='" + data.isGeneral + "']").attr('checked', true)
+								$("*[name='isServicePhysician'][value='" + data.isServicePhysician + "']").attr('checked', true)
+								$("*[name='isNursingStaff'][value='" + data.isNursingStaff + "']").attr('checked', true)
+								$("*[name='isServiceRelated'][value='" + data.isServiceRelated + "']").attr('checked', true)
+								$("*[name='isOccupationalSafety'][value='" + data.isOccupationalSafety + "']").attr('checked', true)
+								$("*[name='isManagementPersonnel'][value='" + data.isManagementPersonnel + "']").attr('checked', true)
+
+							}
+						}
+					});
+				}
+				if (addOredit == '新增') {
+					$(" *[name='addOredit']").val(addOredit)
+				}
+				$("#AddDialog").dialog("option", "title", dialogType + "").dialog("open");
+
+
+			};
+
+			//取得默認資料
+			 insert_mr()
+			function insert_mr() {
+			
+				$.ajax({
+					data: JSON.stringify({ "safetyNo": "" }),
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenance/api/getInitData',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							initPage(data);
+							console.log(data);
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+			//默認資料帶入
+			function initPage(data) {
+				tempData = data;
+			console.log(data.unit.unitName)
+				$("*[name='unitName']").val(data.unit.unitName);
+				
+			}
+
+		});
+
+
+	});
+</script>

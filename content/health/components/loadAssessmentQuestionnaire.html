@@ -1,0 +1,1283 @@
+
+<body>
+   <!-- 過負荷評估問卷 -->
+<div id="AddDialog21" style="display:none" class="container Dialog">
+	<div class="warning_1">
+		<h2>過負荷評估問卷</h2>
+		<br>
+		<form id="inputFormAddDialog21">
+
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header text-center" colspan="4">一、基本資料 </td>
+					</tr>
+					<tr>
+						<td class="table-header text-center">姓名</td>
+						<td><input type="text" name="name" class="input_table"> </td>
+						<td class="table-header text-center">性別</td>
+						<td>
+							<label><input type="radio" name="gender" value="true">男</label>
+							<label><input type="radio" name="gender" value="false">女</label>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header text-center">出生日期</td>
+						<td>
+							<div class="date_box">
+								<label>
+									<input id="birthday" name="birthDate" type="date" class="w_100p"
+										placeholder="出生日期" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+						</td>
+						<td class="table-header text-center">婚姻狀態</td>
+						<td>
+							<label for="maritalStatus"><input type="radio" name="maritalStatus" value="未婚">未婚</label>
+							<label for="maritalStatus"><input type="radio" name="maritalStatus" value="已婚">已婚</label>
+							<label for="maritalStatus"><input type="radio" name="maritalStatus" value="離婚">離婚</label>
+							<label for="maritalStatus"><input type="radio" name="maritalStatus" value="鰥寡">鰥寡</label>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header text-center">工作部門</td>
+						<td><input type="text" name="company" class="input_table"> </td>
+						<td class="table-header text-center">年資</td>
+						<td>
+							<input type="text" name="yearOfService" class="input_table"> 年
+							<input type="text" name="monthOfService" class="input_table"> 月
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header text-center">職稱</td>
+						<td><input type="text" name="jobTitle" class="input_table"> </td>
+						<td class="table-header text-center">&nbsp;</td>
+						<td class="text-center">&nbsp;</td>
+					</tr>
+
+					<tr>
+						<td class="table-header text-center" colspan="4">二、個人過去病史(經醫師確定診斷,可複選)</td>
+
+					</tr>
+					<tr>
+						<td colspan="4">
+							<div>
+								<p>
+									<label for=""><input name="heartDisease" type="checkbox"
+											value="true">心臟循環系統疾病</label>
+								</p>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<div>
+								<p>
+
+									<label for=""><input type="checkbox" name="heartDiseaseDetails" value="心絞痛">心絞痛</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails" value="冠心病">冠心病</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails" value="心肌梗塞">心肌梗塞</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails" value="接受心導管支架手術">接受心導管支架手術</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails" value="曾接受冠狀動脈繞道手術">曾接受冠狀動脈繞道手術</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails" value="冠狀動脈疾病接受藥物治療">冠狀動脈疾病接受藥物治療</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails" value="高血壓">高血壓</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails" value="心律不整">心律不整</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails" value="其他">其他<input
+											name="heartDiseaseDetailsOther" type="text" class="input_table"> </label>
+								</p>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<div>
+								<p>
+									<label for="" class="w_200p inline-block"><input type="checkbox" name="heartDiseaseDetails2"
+											value="stroke">腦中風</label>
+									<label for="" class="w_200p inline-block"><input type="checkbox"
+											name="heartDiseaseDetails2" value="bloodLipidAbnormality">血脂肪異常</label>
+									<label for="" class="w_300p inline-block"><input type="checkbox"
+											name="heartDiseaseDetails2" value="sleepDisorder">睡眠相關呼吸疾病(如睡眠呼吸中止症) </label>
+									<label for="" class="w_300p inline-block"><input type="checkbox"
+											name="heartDiseaseDetails2" value="nervousSystemDisease">中樞神經系統疾病(如癲癇、脊椎疾病) </label>
+									<label for="" class="w_300p inline-block"><input type="checkbox"
+											name="heartDiseaseDetails2" value="peripheralNeuropathy">周邊神經系統疾病(如腕隧道症侯群)</label>
+									<label for="" class="w_200p inline-block"><input type="checkbox"
+											name="heartDiseaseDetails2" value="mentalIllness">情感或心理疾病 </label>
+									<label for="" class="w_300p inline-block"><input type="checkbox" name="heartDiseaseDetails2"
+											value="eyeDisease">眼睛疾病(不含可以矯正之近視或遠視) </label>
+									<label for="" class="w_200p inline-block"><input type="checkbox" name="heartDiseaseDetails2"
+											value="hearingLoss">聽力損失</label>
+									<label for="" class="w_300p inline-block"><input type="checkbox" name="heartDiseaseDetails2"
+											value="limbDisease">上肢或下肢疾病(如會導致關節僵硬、無力等症狀之疾病)</label>
+									<label for="" class="w_100p inline-block"><input type="checkbox" name="heartDiseaseDetails2"
+											value="diabetes">糖尿病</label>
+									<label for="" class="w_100p inline-block"><input type="checkbox" name="heartDiseaseDetails2"
+											value="asthma">氣喘</label>
+									<label for="" class="w_200p inline-block">
+										<input type="checkbox" name="heartDiseaseDetails2" value="longTermMedication">長期服藥，藥物名稱: <input type="text"
+											class="input_table"></label>
+									<label for="" class="w_200p inline-block"><input type="checkbox" name="heartDiseaseDetails2"
+											value="otherDisease">其他 <input type="text" name="otherDisease" class="input_table"></label>
+									<label for="" class="w_200p inline-block"><input type="checkbox" name="heartDiseaseDetails2"
+											value="noDisease">以上均無</label>
+								</p>
+							</div>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header text-center" colspan="4">三、家族史</td>
+
+					</tr>
+					<tr>
+						<td colspan="4">
+
+							<div>
+								<p>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails3"
+											value="familyHistoryHeartDiseaseNone">無</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails3"
+											value="familyHistoryHeartDisease">一等親內的家屬(父母、祖父母、子女) 男性於55 歲、女性於65 歲前發生狹心症或心絞痛</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails3" value="familyHistoryStroke">家族中有中風病史</label>
+
+									<label for=""><input type="checkbox" name="heartDiseaseDetails3" value="familyHistoryOther">其他<input type="text"
+											name="familyHistoryOther1" class="input_table"> </label>
+								</p>
+							</div>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header text-center" colspan="4">四、生活習慣史</td>
+
+					</tr>
+					<tr>
+						<td colspan="4">
+							<p>心臟循環系統疾病</p>
+							<div>
+								<p>1.抽菸
+									<label for=""><input type="radio" name="smoking" value="無">無</label>
+									<label for=""><input type="radio" name="smoking" value="有">有(每天<input type="text"
+											name="smokingAmount" class="input_table">包、共<input name="smokingYears"
+											type="text" class="input_table">年)</label>
+									<label for=""><input type="radio" name="smoking" value="已戒">已戒<input type="text"
+											name="smokingQuit" class="input_table">年</label>
+								</p>
+								<p>2.檳榔
+									<label for=""><input type="radio" name="betelNut" value="無">無</label>
+									<label for=""><input type="radio" name="betelNut" value="有">有(每天<input type="text"
+											class="input_table">顆、共<input type="text" class="input_table">年)</label>
+									<label for=""><input type="radio" name="betelNut" value="已戒">已戒<input type="text"
+											class="input_table">年</label>
+								</p>
+								<p>3.喝酒
+									<label for=""><input type="radio" name="drinking" value="false">無</label>
+									<label for=""><input type="radio" name="drinking" value="true">有(總類:<input
+											name="drinkingType" type="text" class="input_table">、頻率:<input
+											name="drinkingFrequency" type="text" class="input_table">、每次大約<input
+											type="text" name="drinkingAmount" class="input_table">m1)</label>
+								</p>
+								<p>4.用餐時間不正常
+									<label for=""><input type="radio" name="irregularMeals" value="false">否</label>
+									<label for=""><input type="radio" name="irregularMeals" value="true">是</label>
+									<p class="shi_yes">
+										<p>外食頻率:</p>
+										<label for=""><input type="radio" name="eatOutFrequency" value="無">無</label>
+										<label for=""><input type="radio" name="eatOutFrequency" value="一餐">一餐</label>
+										<label for=""><input type="radio" name="eatOutFrequency" value="兩餐">兩餐</label>
+										<label for=""><input type="radio" name="eatOutFrequency" value="三餐">三餐</label>
+									</p>
+								</p>
+								<p>5.自覺睡眠不足
+									<label for=""><input type="radio" name="lackOfSleep" value="false">否</label>
+									<label for=""><input type="radio" name="lackOfSleep" value="true">是(工作日睡眠平均<input
+											type="text" name="workDaySleep" class="input_table">小時/日;假日睡眠平均<input
+											type="text" name="holidaySleep" class="input_table">小時/日)</label>
+								</p>
+								<p>6.運動習慣
+									<label for=""><input type="radio" name="exercise" value="false">無</label>
+									<label for=""><input type="radio" name="exercise" value="true">有(每週<input
+											type="text" name="exerciseFrequency" class="input_table">次、每次<input
+											type="text" name="exerciseDuration" class="input_table">分)</label>
+								</p>
+								<p>7.其他 <input type="text" name="otherLifestyle" class="input_table"></label>
+								</p>
+
+							</div>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header text-center" colspan="4">五、健康檢查項目（無此項目者或事業單位已掌握有勞工之健檢資料者免填）</td>
+
+					</tr>
+					<tr>
+						<td colspan="4">
+							<div>
+								<p>1.身體質量指數<input type="text" name="bmi" class="input_table">公斤/米²(18.5 <= BMI<
+										24)(身高<input type="text" name="" class="input_table">公分;體重<input type="text"
+											name="" class="input_table">公斤)</p>
+								<p>2.腰圍<input type="text" name="waistCircumference" class="input_table">(男性< 90公分;女性<
+										80公分)</p> <p>3.脈搏<input type="text" name="pulse" class="input_table"></p>
+								<p>4.血壓<input type="text" name="bloodPressureSystolic" class="input_table">/<input
+										type="text" name="bloodPressureDiastolic" class="input_table">mmHg(收縮壓 < 120、舒張壓
+										< 80 mmHg)</p> <p>5.總膽固醇<input type="text" name="totalCholesterol"
+											class="input_table">(< 200 mg/dL) </p> <p>6.低密度膽固醇<input type="text"
+												name="ldlCholesterol" class="input_table">(< 100 mg/dL) </p> <p>
+												7.高密度膽固醇<input type="text" name="hdlCholesterol"
+													class="input_table">(男性≧40mg/dL;女性≧50mg/dL)</p>
+								<p>8.三酸甘油脂<input type="text" name="triglyceride" class="input_table">(< 150mg/dL) </p>
+										<p>9.空腹血糖<input type="text" name="fastingGlucose" class="input_table">(< 100
+											mg/dL) </p> <p>10.尿蛋白<input type="text" name="urineProtein"
+												class="input_table">（陰性）</p>
+								<p>11.尿潛血<input type="text" name="urineOccultBlood" class="input_table">（陰性）</p>
+
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header text-center" colspan="4">六、工作相關因素（工昨時數及輪班等資料可由人資部門提供）</td>
+
+					</tr>
+					<tr>
+						<td colspan="4">
+							<div>
+								<p>1.工作時數: 平均每天<input type="text" name="averageDailyWorkHours"
+										class="input_table">小時;平均每週<input name="averageWeeklyWorkHours" type="text"
+										class="input_table">小時;平均每月加班<input name="averageMonthlyOvertimeHours"
+										type="text" class="input_table">小時</p>
+								<p>2.工作班別:
+									<label for=""><input type="radio" name="workShift" value="白班">白班 </label>
+									<label for=""><input type="radio" name="workShift" value="夜班">夜班</label>
+									<label for=""><input type="radio" name="workShift" value="輪班">輪班</label>
+									<p class="shi_yes">
+										<label for=""><input type="radio" name="workShiftType" value="定期">定期</label>
+										<label for=""><input type="radio" name="workShiftType" value="不定期">不定期</label>
+										<label for=""><input type="radio" name="workShiftType" value="輪班方式">輪班方式:<input
+												name="workShiftDetail" type="text" class="input_table"></label>
+
+									</p>
+								</p>
+								<p>3.工作環境(可複選):</p>
+								<p>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails4" value="噪音">噪音(<input type="text"
+											name="noiseEnvironment" class="input_table">分貝) </label>
+								</p>
+								<p>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails4" value="異常溫度">異常溫度(高溫約<input
+											type="text" name="highTemperature" class="input_table">度;低溫約<input
+											type="text" name="lowTemperature" class="input_table">度)</label>
+								</p>
+								<p>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails4"
+											value="poorVentilation">通風不良</label>
+								</p>
+								<p>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails4"
+											value="ergonomicIssues">人因工程設計不良(如:座椅、震動、搬運等)</label>
+								</p>
+								<p>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails4" value="以上皆無">以上皆無</label>
+								</p>
+								<p>4.日常伴隨緊張之工作負荷(可複選)</p>
+								<p>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails5"
+											value="highRiskWork">經常負責會威脅自己或他人生命、財產的危險性工作</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails5"
+											value="avoidResponsibility">有迴避危險責任的工作</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails5"
+											value="lifeCriticalWork">關乎人命、或可能左右他人一生重大判決的工作</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails5"
+											value="hazardousMaterial">處理高危險物質的工作</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails5"
+											value="highLossWork">可能造成社會龐大損失責任的工作</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails5"
+											value="tightDeadline">有過多或過分嚴苛的限時工作</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails5"
+											value="difficultWork">需在一定的期間內(如交期等)完成的困難工作</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails5"
+											value="customerConflict">負責處理客戶重大衝突或複雜的勞資紛爭</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails5"
+											value="isolatedWork">無法獲得周遭理解或孤立無援狀況下的困難工作</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails5"
+											value="complexWork">負責複雜困難的開發業務、或公司重建等工作</label>
+									<label for=""><input type="checkbox" name="heartDiseaseDetails5" value="noHighRiskWork">以上皆無</label>
+								</p>
+								<p>5.有無工作相關突發異常事件(如近期發生車禍、車子於行駛中發生重大故障等)?</p>
+								<p>
+									<label for=""><input type="radio" name="workIncident" value="false">無</label>
+									<label for=""><input type="radio" name="workIncident" value="true">有(說明:<input
+											name="workIncidentDetails" type="text" class="input_table">)</label>
+
+								</p>
+								<p> 6.工作環境中有無組織文化、職場正義問題(如職場人際衝突、部門內部溝通管道不足等?)</p>
+								<p>
+									<label for=""><input type="radio" name="workplaceConflict" value="false">無</label>
+									<label for=""><input type="radio" name="workplaceConflict"
+											value="true" />有(說明:<input name="workplaceConflictDetails" type="text"
+											class="input_table" />)</label>
+
+								</p>
+								<p>7.對預定之工作排程或工作內容經常性變更或無法預估、常屬於事前的通知狀況等?</p>
+								<p>
+									<label for=""><input type="radio" name="unstableWorkSchedule"
+											value="false">無</label>
+									<label for=""><input type="radio" name="unstableWorkSchedule"
+											value="true">有(說明:<input name="unstableWorkScheduleDetails" type="text"
+											class="input_table">)</label>
+
+								</p>
+								<p> 8.經常性出差，其具有時差、無法休憩、休息或適當住宿、長距離自行開車或往返兩地而無法恢復疲勞狀況等?</p>
+								<p>
+									<label for=""><input type="radio" name="frequentBusinessTravel"
+											value="false">無</label>
+									<label for=""><input type="radio" name="frequentBusinessTravel"
+											value="true">有(說明:<input name="frequentBusinessTravelDetails" type="text"
+											class="input_table">)</label>
+
+								</p>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header text-center" colspan="4">七、非工作相關因素</td>
+
+					</tr>
+					<tr>
+						<td colspan="4">
+							<div>
+
+								<p>1.家庭因素問題</p>
+								<p>
+									<label for=""><input type="radio" name="familyIssues" :value="false">無</label>
+									<label for=""><input type="radio" name="familyIssues" :value="true">有(說明:<input
+											name="familyIssuesDetails" type="text" class="input_table">)</label>
+
+								</p>
+								<p> 2.經濟因素問題</p>
+								<p>
+									<label for=""><input type="radio" name="financialIssues" value="false">無</label>
+									<label for=""><input type="radio" name="financialIssues" value="true">有(說明:<input
+											name="financialIssuesDetails" type="text" class="input_table">)</label>
+
+								</p>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header text-center" colspan="4">八、過負荷評估</td>
+
+					</tr>
+					<tr>
+						<td colspan="4">
+							<div>
+								<p>1.心血管疾病風險：</p>
+								<p>
+									<label for=""><input type="radio" name="cardiovascularRisk"
+											value="低度風險">低度風險</label>
+									<label for=""><input type="radio" name="cardiovascularRisk"
+											value="中度風險">中度風險</label>
+									<label for=""><input type="radio" name="cardiovascularRisk"
+											value="高度風險">高度風險</label>
+									<label for=""><input type="radio" name="cardiovascularRisk"
+											value="極高風險">極高風險</label>
+									<label for=""><input type="radio" name="cardiovascularRisk" value="其他">其他：<input
+											type="text" name="cardiovascularRiskOther" class="input_table"></label>
+
+								</p>
+								<p> 2.工作負荷風險：</p>
+								<p>
+									<label for=""><input type="radio" name="workloadRisk" value="低負荷">低負荷</label>
+									<label for=""><input type="radio" name="workloadRisk" value="中負荷">中負荷</label>
+									<label for=""><input type="radio" name="workloadRisk" value="高負荷">高負荷</label>
+									<label for=""><input type="radio" name="workloadRisk" value="其他">其他：<input
+											name="workloadRiskOther" type="text" class="input_table"></label>
+
+								</p>
+								<p> 3.過負荷綜合評估：</p>
+								<p>
+									<label for=""><input type="radio" name="overallRisk" value="低度風險">低度風險</label>
+									<label for=""><input type="radio" name="overallRisk" value="中度風險">中度風險</label>
+									<label for=""><input type="radio" name="overallRisk" value="高度風險">高度風險</label>
+									<label for=""><input type="radio" name="overallRisk" value="其他">其他：<input
+											name="overallRiskOther" type="text" class="input_table"></label>
+
+								</p>
+								<p>評估醫事人員簽名：<input type="text" name="assessor" class="input_table"></p>
+								<p>
+									評估日期：<input type="date" name="assessmentDate" class="input_table">
+
+								</p>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+			<div style="text-align: center;">
+				<button type="button" id="checkedBtnAddDialog21" class="btn btn-success  my-2">下一步</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+<!-- 過勞量表 -->
+<div id="AddDialog22" style="display:none" class="container Dialog">
+	<div class="warning_2">
+			<h2 style="text-align: center;">過勞量表</h2>
+			<p class="text-left"> (請您回想在「最近一星期中」，這些問題使您感到困擾或苦惱的程度，然後圈選一個您認為最能代表您感覺的答案。)</p>
+		<br>
+		<form id="inputFormAddDialog22">
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header text-center">一、個人相關過勞分量表 (分數： <input type="text" class="input_table" name="personalFatigueScore"> )</td>
+					</tr>
+					<tr>
+	
+						<td >
+							<p>1.你常覺得疲勞嗎?</p>
+							<div class="tt_radio">
+								<label for="ger"><input type="radio" name="fatigueAlways" value="總是">(1)總是</label>
+								<label for="ger"><input type="radio" name="fatigueAlways" value="常常">(2)常常</label>
+								<label for="ger"><input type="radio" name="fatigueAlways" value="有時候">(3)有時候</label>
+								<label for="ger"><input type="radio" name="fatigueAlways" value="不常">(4)不常</label>
+								<label for="ger"><input type="radio" name="fatigueAlways" value="從未或幾乎從未">(5)從未或幾乎從未</label>
+	
+							</div>
+							<p>2.你常覺得身體上體力透支嗎?</p>
+							<div class="tt_radio">
+								<label for="ger"><input type="radio" name="physicalExhaustionAlways" value="總是">(1)總是</label>
+								<label for="ger"><input type="radio" name="physicalExhaustionAlways" value="常常">(2)常常</label>
+								<label for="ger"><input type="radio" name="physicalExhaustionAlways" value="有時候">(3)有時候</label>
+								<label for="ger"><input type="radio" name="physicalExhaustionAlways" value="不常">(4)不常</label>
+								<label for="ger"><input type="radio" name="physicalExhaustionAlways" value="從未或幾乎從未">(5)從未或幾乎從未</label>
+	
+							</div>
+							<p>3.你常覺得情緒上心力交瘁嗎?</p>
+							<div class="tt_radio">
+								<label for="ger"><input type="radio" name="emotionalExhaustionAlways" value="總是">(1)總是</label>
+								<label for="ger"><input type="radio" name="emotionalExhaustionAlways" value="常常">(2)常常</label>
+								<label for="ger"><input type="radio" name="emotionalExhaustionAlways" value="有時候">(3)有時候</label>
+								<label for="ger"><input type="radio" name="emotionalExhaustionAlways" value="不常">(4)不常</label>
+								<label for="ger"><input type="radio" name="emotionalExhaustionAlways" value="從未或幾乎從未">(5)從未或幾乎從未</label>
+	
+							</div>
+							<p>4.你常會覺得，「我快要撐不下去了」嗎?</p>
+							<div class="tt_radio">
+								<label for="ger"><input type="radio" name="feelCantGoOnAlways" value="總是">(1)總是</label>
+								<label for="ger"><input type="radio" name="feelCantGoOnAlways" value="常常">(2)常常</label>
+								<label for="ger"><input type="radio" name="feelCantGoOnAlways" value="有時候">(3)有時候</label>
+								<label for="ger"><input type="radio" name="feelCantGoOnAlways" value="不常">(4)不常</label>
+								<label for="ger"><input type="radio" name="feelCantGoOnAlways" value="從未或幾乎從未">(5)從未或幾乎從未</label>
+	
+							</div>
+							<p>5.你常覺得精疲力竭嗎?</p>
+							<div class="tt_radio">
+								<label for="ger"><input type="radio" name="feelDrainedAlways" value="總是">(1)總是</label>
+								<label for="ger"><input type="radio" name="feelDrainedAlways" value="常常">(2)常常</label>
+								<label for="ger"><input type="radio" name="feelDrainedAlways" value="有時候">(3)有時候</label>
+								<label for="ger"><input type="radio" name="feelDrainedAlways" value="不常">(4)不常</label>
+								<label for="ger"><input type="radio" name="feelDrainedAlways" value="從未或幾乎從未">(5)從未或幾乎從未</label>
+	
+							</div>
+							<p>6.你常常覺得虛弱，好像快要生病了嗎?</p>
+							<div class="tt_radio">
+								<label for="ger"><input type="radio" name="feelWeakAlways" value="總是">(1)總是</label>
+								<label for="ger"><input type="radio" name="feelWeakAlways" value="常常">(2)常常</label>
+								<label for="ger"><input type="radio" name="feelWeakAlways" value="有時候">(3)有時候</label>
+								<label for="ger"><input type="radio" name="feelWeakAlways" value="不常">(4)不常</label>
+								<label for="ger"><input type="radio" name="feelWeakAlways" value="從未或幾乎從未">(5)從未或幾乎從未</label>
+	
+							</div>
+	
+	
+						</td>
+	
+					</tr>
+
+					<tr>
+						<td class="table-header">二、工作相關過勞分量表  (分數：<input type="text" class="input_table" name="workFatigueScore">)</td>
+					</tr>
+					<tr>
+	
+						<td>
+							<p>1.你的工作會令人情緒上心力交瘁嗎?</p>
+							<div class="tt_radio">
+								<label for="gong"><input type="radio" name="workEmotionallyExhausting" value="很嚴重">(1)很嚴重</label>
+								<label for="gong"><input type="radio" name="workEmotionallyExhausting" value="嚴重">(2)嚴重</label>
+								<label for="gong"><input type="radio" name="workEmotionallyExhausting" value="有一些">(3)有一些</label>
+								<label for="gong"><input type="radio" name="workEmotionallyExhausting" value="輕微">(4)輕微</label>
+								<label for="gong"><input type="radio" name="workEmotionallyExhausting" value="非常輕微">(5)非常輕微</label>
+	
+							</div>
+							<p> 2.你的工作會讓你覺得快要累垮了嗎?</p>
+							<div class="tt_radio">
+								<label for="gong"><input type="radio" name="workCloseToCollapse" value="很嚴重">(1)很嚴重</label>
+								<label for="gong"><input type="radio" name="workCloseToCollapse" value="嚴重">(2)嚴重</label>
+								<label for="gong"><input type="radio" name="workCloseToCollapse" value="有一些">(3)有一些</label>
+								<label for="gong"><input type="radio" name="workCloseToCollapse" value="輕微">(4)輕微</label>
+								<label for="gong"><input type="radio" name="workCloseToCollapse" value="非常輕微">(5)非常輕微</label>
+	
+							</div>
+							<p>3.你的工作會讓你覺得挫折嗎?</p>
+							<div class="tt_radio">
+								<label for="gong"><input type="radio" name="workFrustrating" value="很嚴重">(1)很嚴重</label>
+								<label for="gong"><input type="radio" name="workFrustrating" value="嚴重">(2)嚴重</label>
+								<label for="gong"><input type="radio" name="workFrustrating" value="有一些">(3)有一些</label>
+								<label for="gong"><input type="radio" name="workFrustrating" value="輕微">(4)輕微</label>
+								<label for="gong"><input type="radio" name="workFrustrating" value="非常輕微">(5)非常輕微</label>
+	
+							</div>
+							<p>4.工作一整天之後，你覺得精疲力竭嗎？</p>
+							<div class="tt_radio">
+								<label for="gong"><input type="radio" name="exhaustedAfterWork" value="很嚴重">(1)很嚴重</label>
+								<label for="gong"><input type="radio" name="exhaustedAfterWork" value="嚴重">(2)嚴重</label>
+								<label for="gong"><input type="radio" name="exhaustedAfterWork" value="有一些">(3)有一些</label>
+								<label for="gong"><input type="radio" name="exhaustedAfterWork" value="輕微">(4)輕微</label>
+								<label for="gong"><input type="radio" name="exhaustedAfterWork" value="非常輕微">(5)非常輕微</label>
+	
+							</div>
+							<p>5.上班之前只要想到又要工作一整天，你就覺得沒力嗎？ </p>
+							<div class="tt_radio">
+								<label for="gong"><input type="radio" name="noEnergyBeforeWork" value="很嚴重">(1)很嚴重</label>
+								<label for="gong"><input type="radio" name="noEnergyBeforeWork" value="嚴重">(2)嚴重</label>
+								<label for="gong"><input type="radio" name="noEnergyBeforeWork" value="有一些">(3)有一些</label>
+								<label for="gong"><input type="radio" name="noEnergyBeforeWork" value="輕微">(4)輕微</label>
+								<label for="gong"><input type="radio" name="noEnergyBeforeWork" value="非常輕微">(5)非常輕微</label>l>
+	
+							</div>
+							<p>6.上班時你會覺得每一刻都很難熬嗎？</p>
+							<div class="tt_radio">
+								<label for="ger"><input type="radio" name="everyMomentHardToBear" value="總是">(1)總是</label>
+								<label for="ger"><input type="radio" name="everyMomentHardToBear" value="常常">(2)常常</label>
+								<label for="ger"><input type="radio" name="everyMomentHardToBear" value="有時候">(3)有時候</label>
+								<label for="ger"><input type="radio" name="everyMomentHardToBear" value="不常">(4)不常</label>
+								<label for="ger"><input type="radio" name="everyMomentHardToBear" value="從未或幾乎從未">(5)從未或幾乎從未</label>
+	
+	
+							</div>
+							<p>7.不工作的時候，你有足夠的精力陪朋友或家人嗎？</p>
+							<div class="tt_radio">
+								<label for="ger"><input type="radio" name="enoughEnergyOffWork" value="總是">(1)總是</label>
+								<label for="ger"><input type="radio" name="enoughEnergyOffWork" value="常常">(2)常常</label>
+								<label for="ger"><input type="radio" name="enoughEnergyOffWork" value="有時候">(3)有時候</label>
+								<label for="ger"><input type="radio" name="enoughEnergyOffWork" value="不常">(4)不常</label>
+								<label for="ger"><input type="radio" name="enoughEnergyOffWork" value="從未或幾乎從未">(5)從未或幾乎從未</label>
+	
+	
+							</div>
+	
+	
+						</td>
+					</tr>
+				   
+				</tbody>
+			</table>
+
+			<div style="text-align: center;">
+				<button type="button" id="checkedBtnAddDialog22" class="btn btn-success  my-2">下一步</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+<!-- 心理健康量表 -->
+<div id="AddDialog23" style="display:none" class="container Dialog">
+	<div class="warning_3">
+			<h2>心理健康量表</h2>
+			<p class="text-left">(資料來源： 國科會/李昱醫師研發之憂鬱症量表)</p>
+		<br>
+		<form id="inputFormAddDialog23">
+	
+			<table class="w-100 safe_form">
+				<tbody>
+					<thead>
+						<tr>
+						<td class="table-header text-center">&nbsp;</td>
+						<td>沒有或極少<br><small>(每週一天以下)</small></td>
+						<td>有時<br><small>(1~2天/週)</small></td>
+						<td>時常<br><small>(3~4天/週)</small></td>
+						<td>常常/總是<br><small>(5~7天/週)</small></td>
+					  
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+						<td class="table-header">1. 我常常覺得想哭</td>
+						<td>
+							<label for="ger2"><input type="radio" name="feelLikeCrying" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="feelLikeCrying" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="feelLikeCrying" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="feelLikeCrying" value="常常/總是(5~7天/週)"></label>
+						</td>
+
+					   
+					</tr>
+					<tr>
+						<td class="table-header">2. 我覺得心情不好</td>
+							<td>
+							<label for="ger2"><input type="radio" name="badMood" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="badMood" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="badMood" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="badMood" value="常常/總是(5~7天/週)"></label>
+						</td>
+					   
+					</tr>
+					<tr>
+						<td class="table-header">3. 我覺得比以前容易發脾氣</td>
+							<td>
+							<label for="ger2"><input type="radio" name="easilyIrritable" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="easilyIrritable" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="easilyIrritable" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="easilyIrritable" value="常常/總是(5~7天/週)"></label>
+						</td>
+					   
+					</tr>
+					<tr>
+						<td class="table-header">4. 我睡不好</td>
+							<td>
+							<label for="ger2"><input type="radio" name="poorSleep" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="poorSleep" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="poorSleep" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="poorSleep" value="常常/總是(5~7天/週)"></label>
+						</td>
+					   
+					</tr>
+					<tr>
+						<td class="table-header">5. 我覺得不想吃東西</td>
+							<td>
+							<label for="ger2"><input type="radio" name="lossOfAppetite" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="lossOfAppetite" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="lossOfAppetite" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="lossOfAppetite" value="常常/總是(5~7天/週)"></label>
+						</td>
+					   
+					</tr>
+					<tr>
+						<td class="table-header">6. 我覺得胸口悶悶的</td>
+							<td>
+							<label for="ger2"><input type="radio" name="chestTightness" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="chestTightness" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="chestTightness" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="chestTightness" value="常常/總是(5~7天/週)"></label>
+						</td>
+					   
+					</tr>
+				   
+					<tr>
+						<td class="table-header">7. 我覺得不輕鬆、不舒服</td>
+							<td>
+							<label for="ger2"><input type="radio" name="uncomfortable" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="uncomfortable" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="uncomfortable" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="uncomfortable" value="常常/總是(5~7天/週)"></label>
+						</td>
+					   
+					</tr>
+					<tr>
+						<td class="table-header">8. 我覺得身體疲勞虛弱無力</td>
+							<td>
+							<label for="ger2"><input type="radio" name="fatigueWeakness" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="fatigueWeakness" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="fatigueWeakness" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="fatigueWeakness" value="常常/總是(5~7天/週)"></label>
+						</td>
+					   
+					</tr>
+					<tr>
+						<td class="table-header">9. 我覺得很煩</td>
+							<td>
+							<label for="ger2"><input type="radio" name="feelIrritated" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="feelIrritated" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="feelIrritated" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="feelIrritated" value="常常/總是(5~7天/週)"></label>
+						</td>
+					   
+					</tr>
+					<tr>
+						<td class="table-header"> 10. 我覺得記憶力不好</td>
+							<td>
+							<label for="ger2"><input type="radio" name="poorMemory" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="poorMemory" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="poorMemory" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="poorMemory" value="常常/總是(5~7天/週)"></label>
+						</td>
+					   
+					</tr>
+					<tr>
+						<td class="table-header">11. 我覺得做事時無法專心</td>
+							<td>
+							<label for="ger2"><input type="radio" name="unableToConcentrate" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="unableToConcentrate" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="unableToConcentrate" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="unableToConcentrate" value="常常/總是(5~7天/週)"></label>
+						</td>
+					   
+					</tr>
+					<tr>
+						<td class="table-header">12. 我覺得想事情或做事時比
+							平常要緩慢</td>
+							<td>
+							<label for="ger2"><input type="radio" name="slowerThinking" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="slowerThinking" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="slowerThinking" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="slowerThinking" value="常常/總是(5~7天/週)"></label>
+						</td>
+					   
+					</tr>
+					<tr>
+						<td class="table-header">13. 我覺得比以前沒信心</td>
+							<td>
+							<label for="ger2"><input type="radio" name="lessConfidence" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="lessConfidence" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="lessConfidence" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="lessConfidence" value="常常/總是(5~7天/週)"></label>
+						</td>
+					   
+					</tr>
+					<tr>
+						<td class="table-header">14. 我覺得比較會往壞處想</td>
+							<td>
+							<label for="ger2"><input type="radio" name="pessimistic" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="pessimistic" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="pessimistic" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="pessimistic" value="常常/總是(5~7天/週)"></label>
+						</td>
+					   
+					</tr>
+					<tr>
+						<td class="table-header">15. 我覺得想不開，甚至想死</td>
+							<td>
+							<label for="ger2"><input type="radio" name="suicidalThoughts" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="suicidalThoughts" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="suicidalThoughts" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="suicidalThoughts" value="常常/總是(5~7天/週)"></label>
+						</td>					</tr>
+					<tr>
+						<td class="table-header">16. 我覺得對什麼事都失去興趣</td>
+							<td>
+							<label for="ger2"><input type="radio" name="lossOfInterest" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="lossOfInterest" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="lossOfInterest" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="lossOfInterest" value="常常/總是(5~7天/週)"></label>
+						</td>
+					   
+					</tr>
+					<tr>
+						<td class="table-header">17. 我覺得身體不舒服</td>
+							<td>
+							<label for="ger2"><input type="radio" name="physicalDiscomfort" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="physicalDiscomfort" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="physicalDiscomfort" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="physicalDiscomfort" value="常常/總是(5~7天/週)"></label>
+						</td>					</tr>
+					<tr>
+						<td class="table-header">18. 我覺得自己很沒用</td>
+							<td>
+							<label for="ger2"><input type="radio" name="feelUseless" value="沒有或極少(每週一天以下)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="feelUseless" value="有時(1~2天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="feelUseless" value="時常(3~4天/週)"></label>
+						</td>
+						<td>
+							<label for="ger2"><input type="radio" name="feelUseless" value="常常/總是(5~7天/週)"></label>
+						</td>
+					   
+					</tr>
+
+					</tbody>
+					
+				  
+				</tbody>
+			</table>
+ 
+		<div style="text-align: center;">
+			<button type="button" id="checkedBtnAddDialog23" class="btn btn-success  my-2">完成</button>
+		</div>
+	</form>
+</div>
+</div>
+
+
+
+
+<script>
+
+require(["jquery", "jquery_validate", "jsgrid", "jquery_ui", "print", "toast"], function (jquery, jquery_validate,
+jsgrid, jquery_ui, print, toast) {
+    //頁面讀取後執行
+    $(document).ready(function () {
+		
+
+        console.log('醫師',$("#AddDialog21").attr('style'));
+            $.ajax({
+                url: "/" + CONFIG.SYSTEM_NAME +
+                    '/healthLaborAbnormalWorkload/api/getLast',
+                contentType: "application/json;charset=utf-8", // 因為上面是JSON數據
+                async: false,
+                cache: false,
+                type: "GET",
+                success: function (data, textStatus) {
+                    if (data && data.code == "5000") {
+                        $.toast({
+                            heading: '',
+                            text: '沒有權限' + textStatus,
+                            icon: 'error',
+                            position: 'toast-top-center',
+                            hideAfter: 6000,
+                        });
+    
+                    } else {
+                        const _data = data.data;
+                        $("#id").val(_data.id)
+    
+                        $("#AddDialog21 *[name='checkDate']").html(_data.checkDate)
+                        // 獲取最後一筆賦值
+                        getDetail21(_data)
+                    }
+                }
+            });
+        
+
+			function getDetail21(data ={}) {
+				$("#AddDialog21").dialog("option", "title", "檢視過負評估問卷").dialog("open");
+			// 输入框
+					const inputArr=[
+						"name",
+						
+						"birthDate",
+						
+						"yearOfService",
+						"monthOfService",
+						"jobTitle",
+						"noiseEnvironment",
+						"highTemperature",
+						"lowTemperature",
+					
+						"bmi",
+						"waistCircumference",
+						"pulse",
+						"bloodPressureSystolic",
+						"bloodPressureDiastolic",
+						"totalCholesterol",
+						"ldlCholesterol",
+						"hdlCholesterol",
+						"triglyceride",
+						"fastingGlucose",
+						"urineProtein",
+						"urineOccultBlood",
+
+						"averageDailyWorkHours",
+						"averageWeeklyWorkHours",
+						"averageMonthlyOvertimeHours",
+
+						
+						"assessmentDate",
+						"assessor",
+						"workIncidentDetails",
+						"workplaceConflictDetails",
+						"unstableWorkScheduleDetails",
+						"frequentBusinessTravelDetails",
+						'familyIssuesDetails',
+						"financialIssuesDetails",
+						'cardiovascularRiskOther',
+						'workloadRiskOther',
+						'overallRiskOther',
+						"otherLifestyle",
+						"exerciseFrequency",
+						"exerciseDuration",
+						"workDaySleep",
+						"holidaySleep",
+						"drinkingType",
+						"drinkingFrequency",
+						"drinkingAmount",
+						"betelNutAmount",
+						"betelNutYears",
+						"betelNutQuit",
+						"smokingAmount",
+						"smokingYears",
+						"smokingQuit",
+						]
+
+					// 选择框
+					const selectArr =[
+					"workShift",
+					"workShiftType",
+					"workShiftDetail",
+					
+					"poorVentilation",
+					"ergonomicIssues",
+					"highRiskWork",
+					"avoidResponsibility",
+					"lifeCriticalWork",
+					"hazardousMaterial",
+					"highLossWork",
+					"tightDeadline",
+					"difficultWork",
+					"customerConflict",
+					"isolatedWork",
+					"complexWork",
+					"noHighRiskWork",
+					"workIncident",
+					
+					"workplaceConflict",
+					
+					"unstableWorkSchedule",
+					
+					"frequentBusinessTravel",
+					
+					"familyIssues",
+				
+					"financialIssues",
+					
+					"cardiovascularRisk",
+					"workloadRisk",
+					"overallRisk",
+					"heartDisease",
+					
+
+					"familyHistoryHeartDisease",
+					"familyHistoryStroke",
+					"familyHistoryOther",
+
+					"smoking",
+					
+					"betelNut",
+					
+					"drinking",
+				
+
+					"irregularMeals",
+					"eatOutFrequency"
+					,
+					"lackOfSleep",
+					
+
+					"exercise",
+					
+					
+					'heartDiseaseDetails',
+
+					'heartDiseaseDetails3',
+					'heartDiseaseDetails4',
+					'heartDiseaseDetails5',
+
+
+
+					"stroke",
+					"bloodLipidAbnormality",
+					"sleepDisorder",
+					"nervousSystemDisease",
+					"peripheralNeuropathy",
+					"mentalIllness",
+					"eyeDisease",
+					"hearingLoss",
+					"limbDisease",
+					"diabetes",
+					"asthma",
+					"longTermMedication",
+					"otherDisease",
+					"noDisease",
+					"familyHistoryHeartDisease",
+  					"familyHistoryStroke",
+					"noiseEnvironment",
+					"highTemperature",
+					"lowTemperature",
+					"poorVentilation",
+					"ergonomicIssues",
+					"highRiskWork",
+					"avoidResponsibility",
+					"lifeCriticalWork",
+					"hazardousMaterial",
+					"highLossWork",
+					"tightDeadline",
+					"difficultWork",
+					"customerConflict",
+					"isolatedWork",
+					"complexWork",
+					"noHighRiskWork",
+
+				]
+					let _data ={}
+
+					inputArr.forEach(r=>{
+						$('#inputFormAddDialog21 *[name= "'+ r +'"]').val(data[r])
+					})
+					$('#inputFormAddDialog21 *[name= "company"]').val(localStorage.getItem('USERACCOUNT'))
+					selectArr.forEach(r=>{
+						if(data[r] || data[r] === 'true'){
+							console.log(data[r],r);
+							$("#inputFormAddDialog21 input[name='"+r+"'][value='" + data[r] + "']").prop('checked', true)
+							$("#inputFormAddDialog21 input:checkbox[value="+ r +" ]").attr('checked',true);
+						}else{
+							$('#inputFormAddDialog21 *[name= "'+ r +'"]:checked').prop('checked',true)
+						}
+					})
+
+					$("#inputFormAddDialog21 input[name='maritalStatus'][value='" + data.maritalStatus + "']").prop('checked', true)
+					$("#inputFormAddDialog21 input[name='gender'][value='" + data.gender + "']").prop('checked', true)
+
+					const heartDiseaseDetailsStr = data.heartDiseaseDetails ? data.heartDiseaseDetails.split(',') : [];
+					heartDiseaseDetailsStr.forEach(a=>{
+						$("#inputFormAddDialog21 input[name='heartDiseaseDetails'][value='" + a + "']").prop('checked', true)
+					})
+
+					if(!data.familyHistoryHeartDisease){
+						$("#inputFormAddDialog21 input[name='heartDiseaseDetails3'][value='" + 'familyHistoryHeartDiseaseNone' + "']").prop('checked', true)
+					}
+
+
+				}
+
+                
+            $(".Dialog").dialog({
+                title: "參數設定",
+                autoOpen: false,
+                width: 960,
+                height: 600,
+                modal: true,
+                open: function () {
+                    $('.ui-widget-overlay').addClass('custom-overlay');
+                    customCloseBtn();
+                },
+                close: function () {
+                    // 重置表单
+                    $("#inputForm1").validate().resetForm();
+                    $("#inputForm1").find(".error").removeClass("error");
+					$("#inputForm3A1").validate().resetForm();
+                    $("#inputForm3A1").find(".error").removeClass("error");
+					$("#inputFormExecute").validate().resetForm();
+                    $("#inputFormExecute").find(".error").removeClass("error");
+					$("#inputFormAddDialog3Face").validate().resetForm();
+                    $("#inputFormAddDialog3Face").find(".error").removeClass("error");
+                    $("#dialogForm").find(".error").removeClass("error");
+                    // $('.ui-widget-overlay').removeClass('custom-overlay');
+                },
+                classes: dlgSetting.classes,
+                show: dlgSetting.show,
+                hide: dlgSetting.hide
+            });
+
+			// 下一步 查看过劳表
+			$('#checkedBtnAddDialog21').click(function(){
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME +
+						'/healthLaborAbnormalExcessive/api/getLast',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON數據
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data.code == "5000") {
+							$.toast({
+								heading: '',
+								text: '沒有權限' + textStatus,
+								icon: 'error',
+								position: 'toast-top-center',
+								hideAfter: 6000,
+							});
+
+						} else {
+							const _data = data.data;
+							$("#id").val(_data.id)
+
+							$("#AddDialog22 *[name='checkDate']").html(_data.checkDate)
+							getDetail22(_data)
+						}
+					}
+				});
+
+				$("#AddDialog22").dialog("option", "title",  "檢視過勞量表").dialog("open");
+			})
+			// 過勞量表
+			function getDetail22(data){
+				const _arr = [
+				'emotionalExhaustionAlways',
+					'enoughEnergyOffWork',
+					'everyMomentHardToBear',
+					'exhaustedAfterWork',
+					'fatigueAlways',
+					'feelCantGoOnAlways',
+					'feelDrainedAlways',
+					'feelWeakAlways',
+					'noEnergyBeforeWork',
+					'physicalExhaustionAlways',
+					'workCloseToCollapse',
+					'workEmotionallyExhausting',
+					'workFrustrating',
+				]
+				_arr.forEach(s=>{
+					$("#inputFormAddDialog22 input[name='"+s+"'][value='" + data[s] + "']").prop('checked', true)
+				})
+				$('#inputFormAddDialog22 *[name="workFatigueScore"]').val(data['workFatigueScore'])
+				$('#inputFormAddDialog22 *[name="personalFatigueScore"]').val(data['personalFatigueScore'])
+
+			}
+
+			// 下一步 查看心裡健康表
+			$('#checkedBtnAddDialog22').click(function(){
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME +
+						'/healthLaborAbnormalMental/api/getLast',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON數據
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data.code == "5000") {
+							$.toast({
+								heading: '',
+								text: '沒有權限' + textStatus,
+								icon: 'error',
+								position: 'toast-top-center',
+								hideAfter: 6000,
+							});
+
+						} else {
+							const _data = data.data;
+							$("#id").val(_data.id)
+
+							$("#AddDialog23 *[name='checkDate']").html(_data.checkDate)
+							getDetail23(_data)
+						}
+					}
+				});
+
+				$("#AddDialog23").dialog("option", "title", "檢視心理健康量表").dialog("open");
+
+
+			})
+
+			function getDetail23(data){
+				const _arr =['feelLikeCrying','badMood','poorSleep','easilyIrritable','lossOfAppetite','chestTightness','uncomfortable','fatigueWeakness','feelIrritated','poorMemory','unableToConcentrate','slowerThinking','lessConfidence','pessimistic','suicidalThoughts','lossOfInterest','physicalDiscomfort','feelUseless']
+				_arr.forEach(s=>{
+					$("#inputFormAddDialog23 input[name='"+s+"'][value='" + data[s] + "']").prop('checked', true)
+				})
+			}
+
+			$('#checkedBtnAddDialog23').click(function(){
+
+				$("#AddDialog23").dialog('close')
+				$("#AddDialog22").dialog('close')
+				$("#AddDialog21").dialog('close')
+
+			})
+			
+    })
+})
+</script>
+
+
+
+</body>

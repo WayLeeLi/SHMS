@@ -1,0 +1,567 @@
+﻿<div>
+	<h2 style="text-align: center;">異常工作負荷預防計畫</h2>
+	<div class="jsgrid" style="position: relative; height: auto; width: 100%;">
+		<div class="jsgrid-grid-header jsgrid-header-scrollbar">
+			<table class="jsgrid-table">
+				<tr class="jsgrid-header-row">
+					<th class="jsgrid-header-cell jsgrid-header-sortable">計畫名稱</th>
+
+					<th class="jsgrid-header-cell jsgrid-header-sortable">狀態</th>
+
+				</tr>
+
+			</table>
+		</div>
+		<div class="jsgrid-grid-body">
+			<table class="jsgrid-table">
+				<tbody>
+					<tr class="jsgrid-row">
+						<td class="jsgrid-cell" style="width: 100px;">人因性危害預防計畫</td>
+						<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 100px;"><button
+								type="button" class="btn btn-primary">檢視內容</button>
+								<button type="button" class="btn btn-success">參與問卷</button>
+								<button type="button" class="btn btn-warning">匯出</button>
+							</td>
+					</tr>
+					<tr class="jsgrid-alt-row">
+						<td class="jsgrid-cell" style="width: 100px;">異常工作負荷預防計畫</td>
+
+						<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 100px;">
+							<button type="button" class="btn btn-primary">檢視內容</button>
+							<button type="button" class="btn btn-success">參與問卷</button>
+								<button type="button" class="btn btn-warning">匯出</button></td>
+					</tr>
+					<tr class="jsgrid-row">
+						<td class="jsgrid-cell" style="width: 100px;">母性保護預防計畫</td>
+						<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 100px;">
+							<button type="button" class="btn btn-primary">檢視內容</button>
+							<button type="button" class="btn btn-success">參與問卷</button>
+								<button type="button" class="btn btn-warning">匯出</button></td>
+					</tr>
+					<tr class="jsgrid-alt-row">
+						<td class="jsgrid-cell" style="width: 100px;">不法侵害預防計畫</td>
+
+						<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 100px;">
+							<button type="button" class="btn btn-primary">檢視內容</button>
+							<button type="button" class="btn btn-success">參與問卷</button>
+								<button type="button" class="btn btn-warning">匯出</button></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+	<br>
+
+	<form id="inputForm">
+		<h2 style="text-align: center;">異常工作負荷預防計畫</h2>
+		<br />
+		<table class="w-100 safe_form">
+			<tbody>
+
+				<tr>
+					<td class="table-header " width="200">單位名稱</td>
+					<td class="" colspan="2">
+						<label>
+							<input type="radio" checked name="z" /> 資訊部
+						</label>
+						<label>
+							<input type="radio" name="z" /> 信用卡部
+						</label>
+						<label>
+							<input type="radio" name="z" /> 行政管理部
+						</label>
+						<label>
+							<input type="radio" name="z" /> 客戶服務中心
+						</label>
+
+					</td>
+
+				</tr>
+				<tr>
+					<td class="table-header " width="200">姓名</td>
+					<td class="" colspan="2">
+						<input type="text" class="w_200p" />
+					</td>
+
+				</tr>
+
+				<tr>
+					<td class="table-header " width="200">年資</td>
+					<td class="" colspan="2">
+						<select class="custom-select w_100p" id="eventName" name="eventName">
+
+							<option value="1"> 10年以上未滿20年</option>
+
+
+						</select>
+					</td>
+
+				</tr>
+				<tr>
+					<td class="table-header " width="200">TCB帳號</td>
+					<td class="" colspan="2">
+						<input type="text" class="w_200p" />
+					</td>
+
+				</tr>
+				<tr>
+					<td class="table-header " width="200">1.您常覺得疲勞嗎？</td>
+					<td class="" colspan="2">
+						<label>
+							<input type="radio" checked name="1" /> 總是
+						</label>
+						<label>
+							<input type="radio" name="1" /> 常常
+						</label>
+						<label>
+							<input type="radio" name="1" /> 有時候
+						</label>
+						<label>
+							<input type="radio" name="1" /> 不常
+						</label>
+						<label>
+							<input type="radio" name="1" /> 從未或幾乎從未
+						</label>
+					</td>
+
+				</tr>
+				<tr>
+					<td class="table-header " width="200">2.您常覺得身體上體力透支嗎？</td>
+					<td class="" colspan="2">
+						<label>
+							<input type="radio" checked name="2" /> 總是
+						</label>
+						<label>
+							<input type="radio" name="2" /> 常常
+						</label>
+						<label>
+							<input type="radio" name="2" /> 有時候
+						</label>
+						<label>
+							<input type="radio" name="2" /> 不常
+						</label>
+						<label>
+							<input type="radio" name="2" /> 從未或幾乎從未
+						</label>
+					</td>
+
+				</tr>
+				<tr>
+					<td class="table-header " width="200">1.您常覺得情緒上心力交瘁嗎？</td>
+					<td class="" colspan="2">
+						<label>
+							<input type="radio" checked name="3" /> 總是
+						</label>
+						<label>
+							<input type="radio" name="3" /> 常常
+						</label>
+						<label>
+							<input type="radio" name="3" /> 有時候
+						</label>
+						<label>
+							<input type="radio" name="3" /> 不常
+						</label>
+						<label>
+							<input type="radio" name="3" /> 從未或幾乎從未
+						</label>
+					</td>
+
+				</tr>
+
+
+			</tbody>
+		</table>
+	</form>
+	
+</div>
+<br>
+<div style="text-align: center;">
+
+	<button type="button" id="submitBtn" class="btn btn-success  my-2">送出</button>
+
+	<button type="button" id="printBtn" class="btn btn-secondary  my-2">返回</button>
+</div>
+
+
+<div id="tableDialog" style="display:none" class="container">
+	<form id="dialogForm">
+		<div class="te">
+			<textarea placeholder="退件原因" class="w-100" style="height: 120px;"></textarea>
+		</div>
+
+		<div style="text-align: center;">
+
+			<button type="button" id="submitBtnx" class="btn btn-primary  my-2">儲存送出</button>
+
+		</div>
+	</form>
+</div>
+
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui"], function (jquery, jquery_validate, jsgrid, jquery_ui) {
+		//頁面讀取後執行
+		$(document).ready(function () {
+			//取得日期
+			$("#fordate").datepicker({
+				dateFormat: "yy/mm/dd",
+				maxDate: new Date()
+			});
+			$('#startDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				format: 'yy/mm/dd',
+				maxDate: new Date(),
+			}).on('changeDate', function (e) {
+				var startTime = e.date;
+				$('#endDate').datepicker('setStartDate', startTime);
+			});
+
+			$('#endDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				format: 'yy/mm/dd',
+				maxDate: new Date(),
+				minDate: $("#startDate").val(),
+			}).on('changeDate', function (e) {
+				var endTime = e.date;
+				$('#startDate').datepicker('setEndDate', endTime);
+			});
+
+			$.ajax({
+				url: "/" + CONFIG.SYSTEM_NAME + '/config/api/getConfig',
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON資料
+				async: false,
+				cache: false,
+				type: "GET",
+				success: function (data, textStatus) {
+					if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+						var data = new Array(
+							{
+								"NUMS": "第一次",
+								"UNAME": "蔡小雯",
+								"GNAME": "蔡小雯",
+								"REMARKS": "2021/12/12",
+								"TIME": "2021/12/12",
+								"UNIT": "是",
+
+							}, {
+							"NUMS": "第二次",
+							"UNAME": "蔡小雯",
+							"GNAME": "蔡小雯",
+							"REMARKS": "2021/12/12",
+							"TIME": "2021/12/12",
+							"UNIT": "是",
+
+						}, {
+							"NUMS": "第三次",
+							"UNAME": "蔡小雯",
+							"GNAME": "蔡小雯",
+							"REMARKS": "2021/12/12",
+							"TIME": "2021/12/12",
+							"UNIT": "是",
+
+						}, {
+							"NUMS": "第四次",
+							"UNAME": "蔡小雯",
+							"GNAME": "蔡小雯",
+							"REMARKS": "2021/12/12",
+							"TIME": "2021/12/12",
+							"UNIT": "是",
+
+						}, {
+							"NUMS": "第五次",
+							"UNAME": "蔡小雯",
+							"GNAME": "蔡小雯",
+							"REMARKS": "2021/12/12",
+							"TIME": "2021/12/12",
+							"UNIT": "是",
+						}, {
+							"NUMS": "第六次",
+							"UNAME": "蔡小雯",
+							"GNAME": "蔡小雯",
+							"REMARKS": "2021/12/12",
+							"TIME": "2021/12/12",
+							"UNIT": "是",
+
+						});
+
+						$("#jsGrid").jsGrid({
+							width: "100%",
+							height: "auto",
+							heading: true, //是否顯示表頭
+							filtering: false, //啟動查找
+							inserting: false, //啟動新增  關掉使用自定義的
+							editing: true,  //啟動編輯 
+							selecting: true,
+							sorting: true, //啟動排序
+							paging: true, //啟動分頁 
+							pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本地進行分頁，無關伺服器）
+							autoload: true,
+							pageSize: 10,
+
+							controller: {
+								loadData: function (filter) {
+									//查詢
+									var result = $.grep(data, function (item, idx) {
+										for (var key in filter) {
+											var value = filter[key];
+											if (value.length > 0) {
+												if (!item[key]) {
+													return false;
+												}
+												if (typeof item[key] === 'number') {
+													if (item[key].toString().indexOf(value) == -1) {
+														return false;
+													}
+												} else if (typeof item[key] === 'string') {
+													if (item[key].indexOf(value) == -1) {
+														return false;
+													}
+												}
+
+											}
+										}
+										return true;
+									});
+									return result;
+								},
+								insertItem: function (insertingItem) {
+									$.ajax({
+										url: "/" + CONFIG.SYSTEM_NAME + '/config/api/addConfig',
+										data: JSON.stringify(insertingItem),
+										contentType: "application/json;charset=utf-8", // 因為上面是JSON資料
+										async: false,
+										cache: false,
+										type: "POST",
+										success: function (data, textStatus) {
+											if (data && data == "<script>alert('沒有權限')<\/script>") {
+												alert("沒有權限");
+											} else {
+												if (data.result == "success") {
+													insertingItem.id = data.id;
+													alert("新增成功");
+												} else if (data.errorMsg) {
+													alert(data.errorMsg);
+												}
+											}
+										},
+										error: function (data, textStatus, errorThrown) {
+											console.log(data);
+										},
+									});
+								},
+								updateItem: function (updatingItem) {
+									$.ajax({
+										url: "/" + CONFIG.SYSTEM_NAME + '/config/api/updateConfig',
+										data: JSON.stringify(updatingItem),
+										contentType: "application/json;charset=utf-8", // 因為上面是JSON資料
+										async: false,
+										cache: false,
+										type: "POST",
+										success: function (data, textStatus) {
+											if (data && data == "<script>alert('沒有權限')<\/script>") {
+												alert("沒有權限");
+											} else {
+												if (data.result == "success") {
+													alert("更新成功");
+												} else if (data.errorMsg) {
+													alert(data.errorMsg);
+												}
+											}
+										},
+										error: function (data, textStatus, errorThrown) {
+											console.log(data);
+										},
+									});
+								},
+								deleteItem: function (deletingItem) {
+									$.ajax({
+										url: "/" + CONFIG.SYSTEM_NAME + '/config/api/deleteConfig',
+										data: '{"ID":' + deletingItem.id + '}',
+										contentType: "application/json;charset=utf-8", // 因為上面是JSON資料
+										async: false,
+										cache: false,
+										type: "POST",
+										success: function (data, textStatus) {
+											if (data && data == "<script>alert('沒有權限')<\/script>") {
+												alert("沒有權限");
+											} else {
+												if (data.result == "success") {
+													alert("刪除成功");
+												} else if (data.errorMsg) {
+													alert(data.errorMsg);
+												}
+											}
+										},
+										error: function (data, textStatus, errorThrown) {
+											console.log(data);
+										},
+									});
+								}
+							},
+
+							fields: [
+								{ title: "項次", name: "NUMS", type: "text", },
+								{ title: "上傳日期", name: "TIME", type: "text", },
+								{ title: "警鈴連線測試", name: "UNIT", type: "text", },
+								{ title: "未完成原因(敘明無測試月份)", name: "REMARKS", type: "text", validate: "required" },
+
+								{ title: "填表人", name: "UNAME", type: "text", validate: "required" },
+								{ title: "審核人員", name: "GNAME", type: "text", validate: "required" },
+
+							],
+							rowClick: function (args) {
+
+								// bodyHref("/content/situation/Safetysituationreport_form.html");
+								//showDetailsDialog("修改", args.item);
+							},
+							deleteConfirm: function (item) {
+								return "參數\"" + item.NUM + "\"確認刪除?";
+							},
+						});
+					}
+				},
+				error: function (data, textStatus, errorThrown) {
+					console.log(data);
+				},
+			});
+
+			$("#tableDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 550,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+			var formSubmitHandler = $.noop;
+
+			var showDetailsDialog = function (dialogType, item) {
+
+				$("#tableDialog").dialog("option", "title", dialogType + "").dialog("open");
+			};
+
+			$("#dialogForm").validate({
+				//錯誤訊息元素預設為label改成p會換行
+				errorElement: "p",
+				rules: {
+					cfgType: { required: true, rangelength: [2, 50] },
+					cfgKey: { required: true, rangelength: [3, 80] },
+					cfgName: { required: true, rangelength: [2, 50] },
+					cfgValue: { required: true, rangelength: [0, 80] },
+					cfgInUse: { required: true }
+				},
+				messages: {
+					cfgType: {
+						required: "請輸入參數類型",
+						rangelength: "密碼長度不得小於2個字母大於50個字母"
+					},
+					cfgKey: {
+						required: "請輸入參數key",
+						rangelength: "參數key不得小於4個字母大於80個字母"
+					},
+					cfgName: {
+						required: "請輸入參數名稱",
+						rangelength: "參數名稱不得小於2個字母大於50個字母"
+					},
+					cfgValue: {
+						required: "請輸入參數值",
+						rangelength: "參數值不得小於0個字母大於80個字母"
+					},
+					cfgInUse: {
+						required: "請選擇是否啟用"
+					}
+				},
+				submitHandler: function () {
+					formSubmitHandler();
+				}
+			});
+
+			var saveItem = function (item, isNew) {
+				$.extend(item, {
+					cfgType: $("#cfgType").val(),
+					cfgKey: $("#cfgKey").val(),
+					cfgName: $("#cfgName").val(),
+					cfgValue: $("#cfgValue").val(),
+					cfgMemo: $("#cfgMemo").val(),
+					cfgInUse: $('input[name*=cfgInUse]:checked').val()
+				});
+
+				$("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", item);
+
+				$("#tableDialog").dialog("close");
+				bodyHref("/content/situation/Safetysituationreport.html");
+			};
+
+			function Processing(id) {
+				bodyHref("/content/situation/Safetysituationreport_form7.html");
+			}
+
+		});
+
+		$('#downloadExcelBtn').on("click", function () {
+			showDetailsDialog("退件原因", {});
+		});
+		$("#tableDialog").dialog({
+			title: "退件原因",
+			autoOpen: false,
+			width: 550,
+			modal: true,
+			open: function () {
+				$('.ui-widget-overlay').addClass('custom-overlay');
+				customCloseBtn();
+			},
+			close: function () {
+
+				$("#dialogForm").find(".error").removeClass("error");
+				$('.ui-widget-overlay').removeClass('custom-overlay');
+			},
+			classes: dlgSetting.classes,
+			show: dlgSetting.show,
+			hide: dlgSetting.hide
+		});
+
+		var formSubmitHandler = $.noop;
+
+		var showDetailsDialog = function (dialogType, item) {
+
+			$("#tableDialog").dialog("option", "title", dialogType + "").dialog("open");
+		};
+	});
+</script>

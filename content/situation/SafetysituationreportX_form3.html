@@ -1,0 +1,142 @@
+<div class="no-print">
+
+    <div>
+        <h2 style="text-align: center;">經營危機事件通報單</h2>
+        <form id="inputForm">
+         <div class="text-right">日期：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <table class="w-100 safe_form">
+                <tbody>
+                    <tr>
+                        <td class="table-header text-center" width="120">總行業管單位</td>
+                        <td class="table-header  text-center">
+                            △△△△△部
+                        </td>
+                        <td class="table-header  text-center">
+                            聯絡人
+                        </td>
+                        <td class="table-header  text-center">
+                            副理
+                        </td>
+                    </tr>
+            
+                    <tr>
+                        <td class="table-header  text-center">事件發生原因</td>
+                        <td colspan="3">
+                            <textarea></textarea>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="table-header  text-center">受影響狀況
+                            </td>
+                            <td colspan="3">
+                                <textarea></textarea>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td class="table-header  text-center" rowspan="2">是否肇致<br/>經營危機</td>
+                        <td colspan="3">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input id="isSafe_1" name="isSafe" type="radio" value="1"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="isSafe_1">是</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input id="isSafe_0" name="isSafe" type="radio" value="0"
+                                    class="custom-control-input">
+                                <label class="custom-control-label"
+                                    for="isSafe_0">否</label>
+                
+                            </div>
+    
+                        </td>
+                    </tr>
+                    <tr>
+                
+                        <td colspan="3">
+                            請備妥財務與營運狀況資料
+    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-header  text-center">待支援之<br/>
+                            緊急需求
+                            </td>
+                            <td colspan="3">
+                                <textarea></textarea>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td class="table-header  text-center" >是否肇致<br/>經營危機</td>
+                        <td colspan="3">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input id="isSafe_1q" name="isSafeq" type="radio" value="1"
+                                    class="custom-control-input">
+                                <label class="custom-control-label" for="isSafe_1q">營運中斷</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input id="isSafe_0q" name="isSafeq" type="radio" value="0"
+                                    class="custom-control-input">
+                                <label class="custom-control-label"
+                                    for="isSafe_0q">資本不足</label>
+                
+                            </div>
+    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-header  text-center">通報單位
+                            </td>
+                            <td colspan="3">
+                                <textarea>經辦 副科長 科長 副理 協理</textarea>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td class="table-header  text-center">會核單位
+                            </td>
+                            <td colspan="3">
+                                <textarea></textarea>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td class="table-header  text-center">經營危機<br/>處理小組
+                            </td>
+                            <td colspan="3">
+                                <textarea></textarea>
+                            </td>
+                    </tr>
+                
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <br>
+    <div style="text-align: center;">
+      
+        <button type="button" id="printBtn" class="btn btn-secondary  my-2">列印</button>
+        <button type="button" id="sBtn" class="btn btn-success  my-2">匯出</button>
+        <button type="button" id="return" class="btn btn-warning  my-2">返回列表</button>
+        </div>
+    <div class="container-fluid" id="templateContainer">
+    
+    </div>
+    <script>
+    //需要用的JS
+    require(["jquery", "jquery_validate", "jsgrid", "jquery_ui"], function (jquery, jquery_validate, jsgrid, jquery_ui ) {
+        //頁面讀取後執行
+    $(document).ready(function(){
+        $('#submitBtn').on("click",
+            function (){
+                bodyHref("/content/situation/SafetysituationreportX.html");
+            }
+        );
+        $('#return').on("click",
+            function (){
+                bodyHref("/content/situation/SafetysituationreportX.html");
+            }
+        );
+        });
+        
+        
+    });
+    </script>

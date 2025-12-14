@@ -1,0 +1,230 @@
+﻿<div>
+
+	<div class="m-t50 m-b30">
+		<h4>員工健康/體格檢查</h4>
+		<div class="date_time">
+			<div class="date_box">
+				<label>
+					<select class="custom-select" id="type">
+						<option disabled>匯入選項</option>
+						<option value="1">在職員工健康檢查</option>
+						<option value="2">新進人員體格檢查</option>
+					</select>
+				</label>
+			</div>
+
+			<DIV class="pull-right">
+				<div class="date_box w_200p">
+					<div class="input_file" style="padding: 0;">
+						<div class="showFileName"></div>
+						<input type="file" id="file1" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+						<input type="hidden" id="file1_base64" accept=".xls,.xlsx">
+						<label for="file1" class="btn btn-primary  my-2" style="margin: 0 !important;">選擇檔案
+						</label>
+					</div>
+				</div>
+				<button class="btn btn-primary  my-2" id="submitBtn_x">匯入</button>
+				<button class="btn btn-primary  my-2" id="download_btn">範本下載</button>
+			</DIV>
+		</div>
+		<!-- <h4 class="text-center m-t50">在職員工健康檢查</h4>
+		<div class="text-center">
+			<img src="/SHMS/resources/image/gs1.png"/>
+		</div>
+		<h4 class="text-center m-t50">新進人員體格檢查</h4>
+		<div class="text-center">
+			<img src="/SHMS/resources/image/gs2.png"/>
+		</div> -->
+	</div>
+</div>
+
+<div id="tableDialog" style="display:none" class="container">
+	<form id="dialogForm">
+		<div class="Tracking-dialog">
+			<ul>
+				<li>2022/12/01 14:30 <b>總行-李四</b>審核批准通報單</li>
+				<li>2022/12/01 14:30 <b>總行-李四</b>審核批准通報單</li>
+				<li>2022/12/01 12:30 <b>臺北分行-王五</b>建立通報單</li>
+			</ul>
+		</div>
+	</form>
+</div>
+
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+
+	.input_file input[type='file'] {
+		display: none;
+	}
+
+	.input_file .showFileName {
+		display: inline;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui"], function (jquery, jquery_validate, jsgrid, jquery_ui) {
+		//頁面讀取後執行
+		$(document).ready(function () {
+			$(".input_file").on("change", "input[type='file']", function () {
+				var filePath = $(this).val();
+				// if (filePath.indexOf("xls") != -1 || filePath.indexOf("xlsx") != -1) {
+				$(".fileerrorTip").html("").hide();
+				var arr = filePath.split('\\');
+				var fileName = arr[arr.length - 1];
+				$(this).parent().find(".showFileName").html(fileName);
+				// } else {
+
+				// 	return false
+				// }
+			});
+			$("#file1").change(function () {
+				var v = $(this).val();
+				var reader = new FileReader();
+				reader.readAsDataURL(this.files[0]);
+				reader.onload = function (e) {
+					$('#file1_base64').val(e.target.result);
+				};
+			});
+			$('#startDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				format: 'yy/mm/dd',
+				maxDate: new Date(),
+			}).on('changeDate', function (e) {
+				var startTime = e.date;
+				$('#endDate').datepicker('setStartDate', startTime);
+			});
+
+			$('#endDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				format: 'yy/mm/dd',
+				maxDate: new Date(),
+				minDate: $("#startDate").val(),
+			}).on('changeDate', function (e) {
+				var endTime = e.date;
+				$('#startDate').datepicker('setEndDate', endTime);
+			});
+			$('#download_btn').click(function () {
+				download()
+			})
+			function download() {
+				window.location.href = "/" + CONFIG.SYSTEM_NAME + '/healthCheck/api/downExcle?type=' + $('#type').val()
+			}
+			//提交
+			$("#submitBtn_x").click(function () {
+				var saveItem = {
+					type: $('#type').val(),
+					file: $('#file1_base64').val(),
+				}
+				insert(saveItem)
+			})
+			function insert(data) {
+				console.log(JSON.stringify(data))
+				$.ajax({
+					data: JSON.stringify(data),
+					url: "/" + CONFIG.SYSTEM_NAME + '/healthCheck/api/importExcle',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						console.log(data.code)
+						if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						} 
+						if (data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} 
+						if (data.code == 1000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('提示', '檢查日期、TCB帳號、身分證字號不能爲空', '')
+						}
+						if (data.code == 2003) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('提示', '您上傳的檔案格式不正確或者不是員工健康/體格檢查表！', '')
+						} 
+						if (data.code == 200){
+							showAlert('匯入成功', '匯入成功', '')
+							console.log(data);
+						}
+						if (data.code == 0){
+							showAlert('匯入成功', '匯入成功', '')
+							console.log(data);
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+
+			$("#tableDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 550,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+			var formSubmitHandler = $.noop;
+
+			var showDetailsDialog = function (dialogType, item) {
+
+				$("#tableDialog").dialog("option", "title", dialogType + "").dialog("open");
+			};
+
+
+
+			var saveItem = function (item, isNew) {
+				$.extend(item, {
+					cfgType: $("#cfgType").val(),
+					cfgKey: $("#cfgKey").val(),
+					cfgName: $("#cfgName").val(),
+					cfgValue: $("#cfgValue").val(),
+					cfgMemo: $("#cfgMemo").val(),
+					cfgInUse: $('input[name*=cfgInUse]:checked').val()
+				});
+
+				$("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", item);
+
+				$("#tableDialog").dialog("close");
+				bodyHref("/content/situation/Safetysituationreport.html");
+			};
+
+			function Processing(id) {
+				bodyHref("/content/situation/Safetysituationreport_form7.html");
+			}
+
+		});
+
+
+	});
+</script>

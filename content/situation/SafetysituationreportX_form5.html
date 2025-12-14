@@ -1,0 +1,87 @@
+<div class="no-print">
+    <div>
+        <h2 style="text-align: center;">合庫金控及子公司重大事項通報說明</h2>
+        <form id="inputForm">
+        
+            <table class="w-100 safe_form">
+                <tbody>
+                    <tr>
+                        <td class="table-header" colspan="2">事件名稱： (每單一事件填載一份通報說明)</td>
+                    
+                    
+                    </tr>
+            
+                    <tr>
+                        <td width="120" align="center">事件經過</td>
+                        <td>
+                            <textarea></textarea>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td align="center">處置情形</td>
+                        <td>
+                            <textarea></textarea>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td align="center">可能影響</td>
+                        <td>
+                            <textarea></textarea>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td align="center">預計(業已)<br>
+                            提報董事會<br>
+                            日期</td>
+                        <td>
+                            <textarea></textarea>
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td align="center">其他</td>
+                        <td>
+                            <textarea></textarea>
+                        </td>
+                        
+                    </tr>
+
+                
+                </tbody>
+            </table>
+
+        </form>
+    </div>
+    <br>
+    <div style="text-align: center;">
+       
+        <button type="button" id="printBtn" class="btn btn-secondary  my-2">列印</button>
+        <button type="button" id="sBtn" class="btn btn-success  my-2">匯出</button>
+        <button type="button" id="return" class="btn btn-warning  my-2">返回列表</button>
+        </div>
+    <div class="container-fluid" id="templateContainer">
+    
+    </div>
+    <script>
+    //需要用的JS
+    require(["jquery", "jquery_validate", "jsgrid", "jquery_ui"], function (jquery, jquery_validate, jsgrid, jquery_ui ) {
+        //頁面讀取後執行
+    $(document).ready(function(){
+        $('#submitBtn').on("click",
+            function (){
+                bodyHref("/content/situation/SafetysituationreportX.html");
+            }
+        );
+        $('#return').on("click",
+            function (){
+                bodyHref("/content/situation/SafetysituationreportX.html");
+            }
+        );
+        });
+        
+        
+    });
+    </script>

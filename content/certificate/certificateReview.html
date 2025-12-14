@@ -1,0 +1,390 @@
+﻿
+<div>
+	<div>
+		<h4>待簽核證照</h4>
+		<table style="border-collapse: collapse; width: 100%; height: 108px;" border="1">
+		  <thead>
+		    <tr>
+		    	<td >姓名</td>
+		      	<td >職稱</td>
+		      	<td >證書種類</td>
+		      	<td >證書字號</td>
+		      	<td >核發單位</td>
+		      	<td >取得日期</td>
+		      	<td >報名費用</td>
+		      	<td >派訓單位</td>
+		      	<td >審核人員</td>
+		      	<td >申請狀態</td>
+		      	<td >負責單位<br>本項業務</td>
+		      	<td >MEMO</td>
+		      	<td >執行動作</td>
+		    </tr>
+		  </thead>
+		  <tbody id="tbody">
+		  
+		  </tbody>
+		</table>
+	</div>
+</div>
+
+<style>
+/* 讓表格內容換行 */
+.jsgrid-table{
+		word-wrap:break-word;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require([ "jquery", "jquery_validate", "jsgrid", "jquery_ui" ], function(
+			jquery, jquery_validate, jsgrid, jquery_ui) {
+		
+		var tempData;
+		
+		//頁面讀取後執行
+		$(document).ready(function() {
+			
+			$.ajax({
+ 			    url: "/"+CONFIG.SYSTEM_NAME + '/certificateReview/api/getReviewData',
+ 			   	contentType: "application/json;charset=utf-8", // 因為上面是JSON
+ 			    async: false,
+ 			    cache: false,
+ 			    type: "GET",
+ 			    success: function(data, textStatus){   
+ 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    		 alert("沒有權限");
+			    	 }else{
+			    		 createTable(data);
+			    	 }
+ 			    },
+ 			    error: function (data, textStatus, errorThrown) {
+ 			        console.log(data);
+ 			    },
+ 			});
+			
+		});
+	});
+	
+	
+	function createTable(data){
+		$.each(data.certificateCreateIdList, function( index, item ) {
+			var tr = $('<tr/>');
+			tr.value = item;
+			var td = $('<td/>');			
+			tr.addClass(index % 2 == 0 ? "" : "even");
+			tr.append(td.clone().html( getUserName(data.userList, item.rocId)) );
+			tr.append(td.clone().html( getUserJobName(data.userList, item.rocId)) );
+			tr.append(td.clone().html( item.certificateType) );
+			tr.append(td.clone().html( item.certificateName) );
+			tr.append(td.clone().html( item.certificateUnit) );
+			tr.append(td.clone().html( item.gotDate) );
+			tr.append(td.clone().html( item.gotFee) );
+			tr.append(td.clone().html( item.gotTrainUnit) );
+			tr.append(td.clone().html( item.reviewName) );
+			if(item.reviewTime){
+				tr.append(td.clone().html("已審核") );	
+			}else{
+				tr.append(td.clone().html("未審核") );
+			}			
+			if(item.isResponsible){
+				tr.append(td.clone().html("是") );	
+			}else{
+				tr.append(td.clone().html("否") );
+			}
+			tr.append(td.clone().html(item.memo) );
+			var cancelBtn = $('<button/>', {
+			        text: "取消", 
+			        id: 'btn_cancel_' + item.id,
+			        class: "btn btn-danger",
+			        click: function () { 
+			        	if(confirm("確認取消?")){
+			        		cancelBtnClick(item.id);
+			        	}			        	
+			        }
+			    });
+			var rejectBtn = $('<button/>', {
+		        text: "退回", //set text 1 to 10
+		        id: 'btn_reject_' + item.id,
+		        class:"btn btn-orange-400",
+		        click: function () { 
+		        	if(confirm("確認退回?")){
+		        		rejectBtnClick(item.id);
+		        	}	
+		        }
+		    });
+			tr.append(td.clone().append(cancelBtn).append(rejectBtn) );
+			$("#tbody").append(tr);
+		});
+		$.each(data.certificateReviewerList, function( index, item ) {
+			var tr = $('<tr/>');
+			tr.value = item;
+			var td = $('<td/>');			
+			tr.append(td.clone().html( getUserName(data.userList, item.rocId)) );
+			tr.append(td.clone().html( getUserJobName(data.userList, item.rocId)) );
+			tr.append(td.clone().html( item.certificateType) );
+			tr.append(td.clone().html( item.certificateName) );
+			tr.append(td.clone().html( item.certificateUnit) );
+			tr.append(td.clone().html( item.gotDate) );
+			tr.append(td.clone().html( item.gotFee) );
+			tr.append(td.clone().html( item.gotTrainUnit) );
+			tr.append(td.clone().html( item.reviewName) );
+			if(item.reviewTime){
+				tr.append(td.clone().html("已審核") );	
+			}else{
+				tr.append(td.clone().html("未審核") );
+			}			
+			if(item.isResponsible){
+				tr.append(td.clone().html("是") );	
+			}else{
+				tr.append(td.clone().html("否") );
+			}
+			tr.append(td.clone().html(item.memo) );
+			var submitBtn = $('<button/>', {
+		        text: "核准", 
+		        id: 'btn_submit_' + item.id,
+		        class: "btn btn-success",
+		        click: function () { 
+		        	if(confirm("確認核准?")){
+		        		submitBtnClick(item.id);
+		        	}	
+		        	
+		        }
+		    });
+			var cancelBtn = $('<button/>', {
+		        text: "取消", //set text 1 to 10
+		        id: 'btn_cancel_' + item.id,
+		        class:"btn btn-danger",
+		        click: function () { 
+		        	if(confirm("確認取消?")){
+		        		cancelBtnClick(item.id);
+		        	}	
+		        }
+		    });
+			var rejectBtn = $('<button/>', {
+		        text: "退回", //set text 1 to 10
+		        id: 'btn_reject_' + item.id,
+		        class:"btn btn-orange-400",
+		        click: function () { 
+		        	if(confirm("確認退回?")){
+		        		rejectBtnClick(item.id);
+		        	}	
+		        }
+		    });
+			tr.append(td.clone().append(submitBtn).append(cancelBtn).append(rejectBtn) );
+			$("#tbody").append(tr);
+		});
+		
+		$.each(data.certificateDeleteList, function( index, item ) {
+			var tr = $('<tr/>');
+			tr.value = item;
+			var td = $('<td/>');			
+			tr.append(td.clone().html( getUserName(data.userList, item.rocId)) );
+			tr.append(td.clone().html( getUserJobName(data.userList, item.rocId)) );
+			tr.append(td.clone().html( item.certificateType) );
+			tr.append(td.clone().html( item.certificateName) );
+			tr.append(td.clone().html( item.certificateUnit) );
+			tr.append(td.clone().html( item.gotDate) );
+			tr.append(td.clone().html( item.gotFee) );
+			tr.append(td.clone().html( item.gotTrainUnit) );
+			tr.append(td.clone().html( item.reviewName) );
+			if(item.reviewTime){
+				tr.append(td.clone().html("已審核") );	
+			}else{
+				tr.append(td.clone().html("未審核") );
+			}			
+			if(item.isResponsible){
+				tr.append(td.clone().html("是") );	
+			}else{
+				tr.append(td.clone().html("否") );
+			}
+			tr.append(td.clone().html(item.memo) );
+			var submitBtn = $('<button/>', {
+		        text: "核准", 
+		        id: 'btn_submit_' + item.id,
+		        class: "btn btn-success",
+		        click: function () { 
+		        	if(confirm("核准後將刪除本筆紀錄，確認核准?")){
+		        		submitDelBtnClick(item.id);
+		        	}	
+		        	
+		        }
+		    });
+			var rejectBtn = $('<button/>', {
+		        text: "退回", //set text 1 to 10
+		        id: 'btn_reject_' + item.id,
+		        class:"btn btn-orange-400",
+		        click: function () { 
+		        	if(confirm("確認退回?")){
+		        		rejectDelBtnClick(item.id);
+		        	}	
+		        }
+		    });
+			tr.append(td.clone().append(submitBtn).append(rejectBtn) );
+			$("#tbody").append(tr);
+		});
+	}
+	
+	function getUserName(data, userId){
+	    var	user;
+		$.each(data, function( index, item ) {
+			if(item.rocId == userId){
+				user = item;
+				return false; 
+			}
+		});
+		return user ? user.name : "";
+	}
+	
+	function getUserJobName(data, userId){
+	    var	user;
+		$.each(data, function( index, item ) {
+			if(item.rocId == userId){
+				user = item;
+				return false; 
+			}
+		});
+		return user ? user.jobName: "";
+	}
+	
+	function submitBtnClick(id){
+		$.ajax({
+			    url: "/"+CONFIG.SYSTEM_NAME + '/certificateReview/api/submitReview',
+			    data: '{"ID":' + id + '}',
+			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    async: false,
+			    cache: false,
+			    type: "POST",
+			    success: function(data, textStatus){   
+			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    		 alert("沒有權限");
+		    	 }else{
+		    		 if(data.result == "success"){
+		    			 alert("審核成功");
+		    			 loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + "/content/certificate/certificateReview.html");
+		    			 //刷新MENU 不然審核數不對
+		    			 loadNoCache($("#menuContent"), "/" +CONFIG.SYSTEM_NAME + $("#menuContent").data("src"));
+		    		 }else if(data.errorMsg){
+		    			 alert(data.errorMsg);
+		    		 }
+		    	 }
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+			    },
+			});
+	}
+	
+	function cancelBtnClick(id){
+		$.ajax({
+		    url: "/"+CONFIG.SYSTEM_NAME + '/certificateReview/api/cancelReview',
+		    data: '{"ID":' + id + '}',
+		    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    async: false,
+		    cache: false,
+		    type: "POST",
+		    success: function(data, textStatus){   
+		    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+	    		 alert("沒有權限");
+	    	 }else{
+	    		 if(data.result == "success"){
+	    			 alert("刪除成功");
+	    			 loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + "/content/certificate/certificateReview.html");
+	    			 //刷新MENU 不然審核數不對
+	    			 loadNoCache($("#menuContent"), "/" +CONFIG.SYSTEM_NAME + $("#menuContent").data("src"));
+	    		 }else if(data.errorMsg){
+	    			 alert(data.errorMsg);
+	    		 }
+	    	 }
+		    },
+		    error: function (data, textStatus, errorThrown) {
+		        console.log(data);
+		    },
+		});
+	}
+	
+	function rejectBtnClick(id){
+		$.ajax({
+		    url: "/"+CONFIG.SYSTEM_NAME + '/certificate/api/rejectCertificate',
+		    data: '{"ID":' + id + '}',
+		    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    async: false,
+		    cache: false,
+		    type: "POST",
+		    success: function(data, textStatus){   
+		    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+	    		 alert("沒有權限");
+	    	 }else{
+	    		 if(data.result == "success"){
+	    			 alert("退回成功");
+	    			 loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + "/content/certificate/certificateReview.html");
+	    			 //刷新MENU 不然審核數不對
+	    			 loadNoCache($("#menuContent"), "/" +CONFIG.SYSTEM_NAME + $("#menuContent").data("src"));
+	    		 }else if(data.errorMsg){
+	    			 alert(data.errorMsg);
+	    		 }
+	    	 }
+		    },
+		    error: function (data, textStatus, errorThrown) {
+		        console.log(data);
+		    },
+		});
+	}
+	
+	//退回刪除
+	function rejectDelBtnClick(id){
+		$.ajax({
+		    url: "/"+CONFIG.SYSTEM_NAME + '/certificate/api/rejectDeleteCertificate',
+		    data: '{"ID":' + id + '}',
+		    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    async: false,
+		    cache: false,
+		    type: "POST",
+		    success: function(data, textStatus){   
+		    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+	    		 alert("沒有權限");
+	    	 }else{
+	    		 if(data.result == "success"){
+	    			 alert("退回成功");
+	    			 loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + "/content/certificate/certificateReview.html");
+	    			 //刷新MENU 不然審核數不對
+	    			 loadNoCache($("#menuContent"), "/" +CONFIG.SYSTEM_NAME + $("#menuContent").data("src"));
+	    		 }else if(data.errorMsg){
+	    			 alert(data.errorMsg);
+	    		 }
+	    	 }
+		    },
+		    error: function (data, textStatus, errorThrown) {
+		        console.log(data);
+		    },
+		});
+	}
+	//刪除紀錄
+	function submitDelBtnClick(id){
+		$.ajax({
+			    url: "/"+CONFIG.SYSTEM_NAME + '/certificateReview/api/submitDeleteReview',
+			    data: '{"ID":' + id + '}',
+			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    async: false,
+			    cache: false,
+			    type: "POST",
+			    success: function(data, textStatus){   
+			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    		 alert("沒有權限");
+		    	 }else{
+		    		 if(data.result == "success"){
+		    			 alert("審核成功");
+		    			 loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + "/content/certificate/certificateReview.html");
+		    			 //刷新MENU 不然審核數不對
+		    			 loadNoCache($("#menuContent"), "/" +CONFIG.SYSTEM_NAME + $("#menuContent").data("src"));
+		    		 }else if(data.errorMsg){
+		    			 alert(data.errorMsg);
+		    		 }
+		    	 }
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+			    },
+			});
+	}
+	
+</script>

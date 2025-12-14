@@ -1,0 +1,792 @@
+﻿<div>
+	<h4>證照設定</h4>
+	<div style="text-align: left;">
+		<button type="button" id="printBtn" class="btn btn-secondary">列印</button>
+		<button class="dropdown-toggle btn btn-warning" id="navDownloadBtn"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  aria-controls="dropdownExcel">下載EXCEL</button>
+			<div class="dropdown-menu" id="dropdownExcel" aria-labelledby="navDownloadBtn" >
+				<a class="dropdown-item" href="#" data-excel="full">完整證照資料</a>
+				<a class="dropdown-item" href="#" data-excel="unitDuration">個別單位證照歷程</a>
+				<a class="dropdown-item" href="#" data-excel="fullUnitDuration">全部單位元證照歷程</a>
+			</div>
+		<button type="button" id="showImportExcelBtn" class="btn btn-indigo-400">匯入</button>
+		
+	</div>
+	
+	    <div id="jsGrid"></div>
+</div>
+
+
+
+
+<div id="tableDialog" style="display:none;" class="container">
+    <form id="dialogForm">
+        <div class="details-form-field row">
+        	<div class="col text-right"><label for="rocId">身分證字號</label></div>
+        	<div class="col-6 align-self-center"><input id="rocId" name="rocId" type="text" /></div>
+        </div>
+        <div class="details-form-field row">
+        	<div class="col text-right"><label for="name">姓名</label></div>
+			<div class="col-6 align-self-center"><input id="name" name="name" type="text" /></div>
+        </div>
+        <div class="details-form-field row">
+        	<div class="col text-right"><label>職稱</label></div>
+			<div class="col-6 align-self-center"><span id="jobName"/></div>
+        </div>
+        <div class="details-form-field row">
+        	<div class="col text-right"><label for="unit">單位</label></div>
+			<div class="col-6 align-self-center"><input  id="unit" name="unit"  type="text"/></div>
+        </div>
+        <div class="details-form-field row">
+        	<div class="col text-right"><label for="certificateType">證書種類</label></div>
+			<div class="col-6 align-self-center"><input id="certificateType" name="certificateType" type="text" /></div>
+        </div>
+        <div class="details-form-field row">
+            <div class="col text-right"><label for="certificateName">證書字號</label></div>
+			<div class="col-6 align-self-center"><input  id="certificateName" name="certificateName"  type="text"/></div>
+        </div>
+        <div class="details-form-field row">
+            <div class="col text-right"><label for="certificateUnit">核發單位</label></div>
+			<div class="col-6 align-self-center"><input  id="certificateUnit" name="certificateUnit"  type="text"/></div>
+        </div>
+        <div class="details-form-field row">
+            <div class="col text-right"><label for="gotDate">取得日期</label></div>
+			<div class="col-6 align-self-center"><input  id="gotDate" name="gotDate"  type="text"/></div>
+        </div>
+        <div class="details-form-field row">
+            <div class="col text-right"><label for="retrainingDate">複訓日期</label></div>
+			<div class="col-6 align-self-center"><input  id="retrainingDate" name="retrainingDate"  type="text"/></div>
+        </div>
+        <div class="details-form-field row">
+        	<div class="col text-right"><label for="gotFee">考照費</label></div>
+			<div class="col-6 align-self-center"><input  id="gotFee" name="gotFee"  type="text"/></div>
+        </div>
+        <div class="details-form-field row">
+        	<div class="col text-right"><label for="gotTrainUnit">取得時單位(單位代號)</label></div>
+			<div class="col-6 align-self-center"><input  id="gotTrainUnit" name="gotTrainUnit"  type="text"/></div>
+        </div>
+        <div class="details-form-field row">
+        	<div class="col text-right"><label for="reviewId">審核人(身分證字號)</label></div>
+			<div class="col-6 align-self-center"><input  id="reviewId" name="reviewId"  type="text"/></div>
+        </div>
+        <div class="details-form-field row">
+        	<div class="col text-right"><label for="reviewTime">審核時間</label></div>
+			<div class="col-6 align-self-center"><input  id="reviewTime" name="reviewTime"  type="text"/></div>
+        </div>
+        <div class="details-form-field row">
+        	<div class="col text-right"><label for="isResponsible">是否為單位負責人(0or1)</label></div>
+			<div class="col-6 align-self-center"><input  id="isResponsible" name="isResponsible"  type="text"/></div>
+        </div>
+        <div class="details-form-field row">
+        	<div class="col text-right"><label for="isSend">是否送審(0or1)</label></div>
+			<div class="col-6 align-self-center"><input  id="isSend" name="isSend"  type="text" readonly/></div>
+        </div>
+        <div class="details-form-field row justify-content-center">
+        	<div class="col"></button></div>
+			<div class="col-7"><button type="submit" id="dialogFormSubmit" class="btn btn-primary">送出</button></div>
+        </div>
+    </form>
+</div>
+
+<div id="printDiv" style="display:none">
+	<table style="border-collapse: collapse; width: 100%; height: 108px;" border="1">
+	  <thead>
+	    <tr>
+	    	<td >身分證字號</td>
+	      	<td >姓名</td>
+	      	<td >單位</td>
+	      	<td >證書種類</td>
+	      	<td >證書字號</td>
+	      	<td >核發單位</td>
+	      	<td >取得日期</td>
+	      	<td >考照費</td>
+	      	<td >取得時單位</td>
+	      	<td >審核人</td>
+	      	<td >審核時間</td>
+	      	<td >是否為單位負責人</td>
+	    </tr>
+	  </thead>
+	  <tbody id="tbody">
+	  
+	  </tbody>
+	</table>
+</div>
+
+
+<div id="importDialog" style="display:none" class="container">
+		<form id="importForm"  enctype="multipart/form-data">
+		<div class="row">
+			<div class ="col">
+				<select class="custom-select" id="importType" name="importType">
+					<option value="1" selected>匯入複訓日期</option>
+					<option value="2">匯入AED+CPR新/複訓</option>
+				</select>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class ="col">
+					<div class="custom-file">
+				    	<input type="file" class="custom-file-input" id="selectExcelFile" name="selectExcelFile" accept=".xls, .xlsx">
+				    	<label class="custom-file-label" for="customFile">選擇檔案</label>
+				  	</div>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col d-flex justify-content-between">
+				<button type="submit" class="btn btn-primary" id="importExcelBtn">匯入</button>
+				<button class="dropdown-toggle btn btn-warning" id="navSampleBtn"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  aria-controls="dropdownSample">下載範本</button>
+				<div class="dropdown-menu" id="dropdownSample" aria-labelledby="navSampleBtn" >
+					<a class="dropdown-item" href="#" data-filename="AED_CPR批次匯入.xlsx">AED+CPR新/複訓</a><br>
+					<a class="dropdown-item" href="#" data-filename="複訓.xlsx">一般複訓</a>
+				</div>
+			</div>
+		</div>
+		</form>
+</div>
+
+<div id="unitDurationDialog" style="display:none" class="container">
+		<form id="durationForm"  enctype="multipart/form-data">
+		<div class="row">
+			<div class="col">
+			請選擇單位(輸入單位名稱)
+			</div>
+		</div>
+		<div class="row d-none">
+			<div class ="col">
+				<input type="text" id="durationDlgUnit" name="durationDlgUnit">
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<input type="text" id="durationDlgUnit_1" name="durationDlgUnit_1"/>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class ="col d-flex justify-content-center">
+					<button class="btn btn-primary" type="submit">確定</button>
+			</div>
+		</div>
+		</form>
+</div>
+
+<style>
+/* 讓表格內容換行 */
+.jsgrid-table{
+		word-wrap:break-word;
+	}
+input[type=text]{
+	width: 100%;
+}
+
+</style>
+
+<script>
+//需要用的JS
+require(["jquery", "global_setting", "jquery_validate", "jsgrid", "jquery_ui", "jquery_validate_addition", "jquery_cookie"], function (jquery, jquery_validate, jsgrid, jquery_ui) {
+		
+	var certData;
+	//頁面讀取後執行
+	$(document).ready(function(){
+		 $.ajax({
+			    url: "/"+CONFIG.SYSTEM_NAME + '/certificateSetting/api/getCertificate',
+			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    async: false,
+			    cache: false,
+			    type: "GET",
+			    success: function(data, textStatus){   
+			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    		 alert("沒有權限");
+			    	 }else{
+			    		 certData = data;
+			    		 //產生列印用的表格
+			    		//createPrintTable(data);
+			    		 //產生TABLE
+			    	 	$("#jsGrid").jsGrid({
+			    	        width: "100%",
+			    	 		height: "auto",
+			    	        heading: true, //是否顯示表頭
+			    	        filtering: true, //啟動查找
+			    		    inserting: false, //啟動新增  關掉使用自定義的
+			    		    editing: true,  //啟動編輯 
+			    		    selecting: true,
+			    		    sorting: true, //啟動排序
+			    		    paging: true, //啟動分頁 
+			    		    pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+			    		    autoload: true,
+			    		    pageSize: 10,
+			    		    controller: {
+			    		        loadData: function(filter) {
+			    		        	//查詢
+		    		        	 	var result = $.grep(data, function(item, idx) {
+		    		                    for (var key in filter) {
+		    		                        var value = filter[key];
+		    		                        if (value.length > 0) {
+		    		                        	if (!item[key]){
+		    		                                return false;
+		    		                        	}
+		    		                        	if(typeof item[key] === 'number'){
+		    		                        		if (item[key].toString().indexOf(value) == -1){
+			    		                                return false;
+		    		                        		}
+		    		                        	}else if(typeof item[key] === 'string'){
+		    		                        		if (!item[key].startsWith(value)){
+			    		                                return false;
+		    		                        		}
+		    		                        	}
+		    		                        	
+		    		                        }
+		    		                    }
+		    		                    return true;
+		    		                });
+		    		            return result;
+			    		        },
+			    		        insertItem: function(insertingItem) {
+			    		        	$.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/certificateSetting/api/addCertificate',
+			    		 			    data: JSON.stringify(insertingItem),
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 insertingItem.id = data.id;
+			    					    			 alert("新增成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        },
+			    		        updateItem: function(updatingItem) { 
+			    		        	$.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/certificateSetting/api/updateCertificate',
+			    		 			    data: JSON.stringify(updatingItem),
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 alert("更新成功");
+			    					    			 var dm = certData.find(o=>o.id == updatingItem.id);
+			    					    			 if(dm){
+			    					    				 dm.CERTIFICATE_NAME = updatingItem.certificateName;
+			    					    				 dm.CERTIFICATE_TYPE = updatingItem.certificateType;
+			    					    				 dm.CERTIFICATE_UNIT = updatingItem.certificateUnit;
+			    					    				 dm.GET_DATE = updatingItem.gotDate;
+			    					    				 dm.GET_FEE = updatingItem.gotFee;
+			    					    				 dm.GET_TRAIN_UNIT = updatingItem.gotTrainUnit;
+			    					    				 dm.IS_RESPONSIBLE = updatingItem.isResponsible;
+			    					    				 dm.REVIEW_ID = updatingItem.reviewId;
+			    					    				 dm.REVIEW_TIME = updatingItem.reviewTime;
+			    					    			 }
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        },
+			    		        deleteItem: function(deletingItem) {
+			    		        	 $.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/certificateSetting/api/deleteCertificate',
+			    		 			    data: '{"ID":' + deletingItem.ID + '}',
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 alert("刪除成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        }
+			    		    },
+			    	 
+			    	        fields: [
+			    	            { title:"身分證字號", name: "ROC_ID", type: "text", width: 110, itemTemplate: function(value, item){ return `<div>${maskID(value)}</div>`;}},
+			    	            { title:"姓名", name: "NAME", type: "text", width: 70},
+			    	            { title:"職稱", name: "JOB_NAME", type: "text", width: 60},
+			    	            { title:"生日", name: "BIRTHDAY", type: "text", width: 90 },
+			    	            { title:"E-MAIL", name: "EMAIL", type: "text", width: 90 },
+			    	            { title:"單位", name: "UNIT_NAME", type: "text", width: 100},
+			    	            { title:"證書種類", name: "CERTIFICATE_TYPE", type: "text", width: 100 },
+			    	            { title:"證書字號", name: "CERTIFICATE_NAME", type: "text", width: 100 },
+			    	            { title:"核發單位", name: "CERTIFICATE_UNIT", type: "text", width: 100 },
+			    	            { title:"取得日期", name: "GET_DATE", type: "text", width: 90 },
+			    	            { title:"考照費", name: "GET_FEE", type: "text", width: 70 },
+			    	            { title:"取得時單位", name: "TRAIN_UNIT_NAME", type: "text", width: 80 },
+			    	            { title:"審核人", name: "REVIEW_NAME", type: "text", width: 80 },
+			    	            { title:"審核時間", name: "REVIEW_TIME", type: "text", width: 90 },
+			    	            { title:"複訓時間", name: "RETRAINING_DATE", type: "text", width: 90 },
+			    	            { title:"是否為單位負責人", name: "IS_RESPONSIBLE", type: "text", width: 80 },
+			    	            { title:"是否送審", name: "IS_SEND", type: "text", visible: false},
+			    	            { type: "control", width: 60,
+			                        editButton: false,
+			                        modeSwitchButton: false,
+			                        headerTemplate: function(){
+			                        	return `<div></div>`;
+			                        }
+			    	            }             
+			    	        ],
+				    	 	rowClick: function(args) {
+				    	 		 showDetailsDialog("修改", args.item);
+				            },
+			    		    deleteConfirm: function(item) {
+			                    return "人員 \"" + item.NAME + "\" 確認刪除?";
+			                },
+			                onDataLoaded: function(args){
+		    		        	createPrintTable(args.data);
+		    		        },
+			                
+			    	    });
+			    	 }
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+			    },
+			});
+	
+		 
+		 $("#tableDialog").dialog({
+			 title: "參數設定",
+	         autoOpen: false,
+	         width: 600,
+	         modal: true,
+	         close: function() {
+	             $("#dialogForm").validate().resetForm();
+	             $("#dialogForm").find(".error").removeClass("error");
+	             $('.ui-widget-overlay').removeClass('custom-overlay');
+	         },
+             open: function(){
+            	 $('.ui-widget-overlay').addClass('custom-overlay');
+            	 customCloseBtn();
+             },
+             classes: dlgSetting.classes,
+	         show: dlgSetting.show,
+			 hide: dlgSetting.hide
+	     });
+		 
+		 
+		 
+		 var formSubmitHandler = $.noop;
+		 
+		 var showDetailsDialog = function(dialogType, item) {
+			 /*clear*/
+			 $("#jobName").text('');
+			 /**/
+             $("#rocId").val(item.ROC_ID);
+             $("#name").val(item.NAME);
+             $("#jobName").text(item.JOB_NAME);
+             $("#unit").val(item.UNIT_NAME);
+             $("#certificateType").val(item.CERTIFICATE_TYPE);
+             $("#certificateName").val(item.CERTIFICATE_NAME);
+             $("#certificateUnit").val(item.CERTIFICATE_UNIT);
+             $("#gotDate").val(item.GET_DATE);
+             $("#retrainingDate").val(item.RETRAINING_DATE);
+             $("#gotFee").val(item.GET_FEE);
+             $("#gotTrainUnit").val(item.GET_TRAIN_UNIT);
+             $("#reviewId").val(item.REVIEW_ID);
+             $("#reviewTime").val(item.REVIEW_TIME);
+             $("#isResponsible").val(item.IS_RESPONSIBLE);
+             $("#isSend").val(item.IS_SEND);
+             if(dialogType === "修改"){
+            	 $("#rocId").attr("disabled", true);
+            	 $("#name").attr("disabled", true);
+            	 $("#unit").attr("disabled", true);
+             }
+             formSubmitHandler = function() {
+            	 saveItem(item, dialogType === "新增");
+             };
+
+             $("#tableDialog").dialog("option", "title", dialogType + " 證照").dialog("open");
+         };
+	
+	     $("#dialogForm").validate({
+	    	 //錯誤訊息元素預設為label改成p會換行
+			 errorElement: "p",
+	         rules: {
+	        	 rocId: { required: true, rangelength: [2, 30] },
+	        	 certificateType: { required: true, rangelength: [2, 30] },
+	        	 certificateName: { required: true, rangelength: [2, 30] },
+	        	 certificateUnit: { required: true, rangelength: [2, 30] },
+	        	 gotDate: { required: true },
+	        	 gotFee: { required: true, range: [0, 9999999] },
+	        	 gotTrainUnit: { required: true, rangelength: [2, 30] },
+	        	 reviewId: { required: true, rangelength: [2, 30] },
+	        	 reviewTime: { required: true},
+	        	 isResponsible: { required: true, range: [0, 1] }
+	         },
+	         messages: {
+	        	 	rocId:{
+			          required: "請輸入身分證字號",
+			          rangelength: "長度不得小於2個字母大於30個字母"
+			        },
+			        certificateType:{
+			          required: "請輸入證書種類",
+			          rangelength: "長度不得小於2個字母大於30個字母"
+			        },
+			        certificateName:{
+			          required: "請輸入證書字號",
+			          rangelength: "長度不得小於2個字母大於30個字母"
+			        },
+			        certificateUnit:{
+			          required: "請輸入核發單位",
+			          rangelength: "長度不得小於2個字母大於20個字母"
+			        },
+			        gotDate:{
+			          required: "請輸入取得日期"
+			        },
+			        gotFee:{
+			          required: "請輸入取得費用",
+			          range: "0~9999999"
+			        },
+			        gotTrainUnit:{
+			          required: "請輸入取得時單位",
+			          rangelength: "長度不得小於2個字母大於30個字母"
+			        },
+			        reviewId:{
+			          required: "請輸入審核人",
+			          rangelength: "長度不得小於2個字母大於30個字母"
+			        },
+			        reviewTime:{
+			          required: "請輸入審核時間"
+			        },
+			        isResponsible:{
+			          required: "請輸入是否為單位負責人",
+			          range: "0或1"
+			        }
+	         },
+	         submitHandler: function() {
+	             formSubmitHandler();
+	         }
+	     });
+	     
+	     var saveItem = function(item, isNew) {
+             $.extend(item, {
+            	 id: item.ID,
+            	 rocId: $("#rocId").val(),
+            	 certificateType: $("#certificateType").val(),
+            	 certificateName: $("#certificateName").val(),
+            	 certificateUnit: $("#certificateUnit").val(),
+            	 gotDate: $("#gotDate").val(),
+            	 gotFee: $("#gotFee").val(),
+            	 gotTrainUnit: $("#gotTrainUnit").val(),
+            	 reviewId: $("#reviewId").val(),
+            	 reviewTime: $("#reviewTime").val(),
+            	 isResponsible: $("#isResponsible").val()
+             });
+
+             $("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", item);
+
+             $("#tableDialog").dialog("close");
+         };
+         /*download unit certificate duration--start*/
+         var units;
+         $.ajax({
+			    url: "/"+CONFIG.SYSTEM_NAME + '/certificateSetting/api/getUnits',
+			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    async: false,
+			    cache: false,
+			    type: "GET",
+			    success: function(data, textStatus){
+			    	units = $.map(data.unitList, function(item, idx){
+			    		return {label: item.unitName, id: item.unitId};
+			    	});
+			    	//createSelect("durationDlgUnit", data.unitList, "unitId", "unitName");
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+			    }
+		 });
+
+         
+        $("#durationForm").validate({
+        	//錯誤訊息元素預設為label改成p會換行
+			 errorElement: "p",
+	         rules: {
+	        	 durationDlgUnit: { required: true },
+	        	 durationDlgUnit_1: { required: true, hasValue: units },
+	         },
+	         messages: {
+	        	 durationDlgUnit:{
+			          required: "請選擇單位",
+			        },
+			     durationDlgUnit:{
+				      required: "請選擇有效的單位",
+				    }
+	         },
+	         submitHandler: function() {
+	        	 downloadUnitDuration(false);
+	         }
+        });
+         
+        $(".dropdown-item").on("click", function(){
+          	 if($(this).data("excel") == "full"){
+          		 downloadExcel();
+          	 }
+          	 else if($(this).data("excel") == "unitDuration"){
+          		$("#unitDurationDialog").dialog("open");
+          	 }
+          	 else if($(this).data("excel") == "fullUnitDuration"){
+          		downloadUnitDuration(true);
+         	 }
+          	 else if($(this).data("filename") != undefined){
+          		let filename = $(this).data("filename");
+          		downloadSample(filename);
+          	 }
+          	 return true;
+           });
+        
+        function downloadUnitDuration(fullUnit){
+			  var newForm = jQuery('<form>', {
+				  	'action': "/"+CONFIG.SYSTEM_NAME + (fullUnit == true ? '/certificateSetting/api/downloadFullUnitDuration' : '/certificateSetting/api/downloadUnitDuration'),
+				  	'method': 'post',
+			        'target': '_blank'
+			    }).append(jQuery('<input>',{
+			    	'name' : 'unitId',
+			    	'value': $("#durationDlgUnit").val(),
+			    	'type': 'text'
+			    })).append(jQuery('<input>',{
+			    	'name' : '_csrf',
+			    	'value': $.cookie("XSRF-TOKEN"),
+			    	'type': 'text'
+			    }));
+			  	var iframe = document.createElement('IFRAME');
+				iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+				$(iframe).append(newForm);
+				document.body.appendChild(iframe);
+			    newForm.submit();
+			    iframe.parentNode.removeChild(iframe);
+		}
+
+        $("#unitDurationDialog").dialog({
+			 title: "下載單位歷程",
+	         autoOpen: false,
+	         width: 550,
+	         modal: true,
+	         close: function() {
+	        	 $("#durationForm").validate().resetForm();
+	             $("#durationForm").find(".error").removeClass("error");
+	             $('.ui-widget-overlay').removeClass('custom-overlay');
+	         },
+           open: function(){
+          	 $('.ui-widget-overlay').addClass('custom-overlay');
+          	customCloseBtn();
+          	$("#durationDlgUnit").val("");
+          	$("#durationDlgUnit_1").val("");
+            $("#durationDlgUnit_1").autocomplete({
+            	source: units,
+            	select:function(event, ui){
+            		$("#durationDlgUnit").val(ui.item.id);
+            	}
+            });
+           },
+           classes: dlgSetting.classes,
+	        show: dlgSetting.show,
+			hide: dlgSetting.hide
+	     });
+        jQuery.validator.addMethod("hasValue", function(value, element, param) {
+      	let exists = false;
+      	for(var i = 0; i< param.length; i++){
+      		if(param[i].label == value){
+      			exists = true;
+      			break;
+      		}
+      	}
+      	
+      	  let res = this.optional( element ) || exists; 
+      	  if(!res) $.validator.messages["hasValue"] =  '無效的輸入';
+      	  return res;
+      	}, '無效的輸入');
+        
+        /*download unit certificate duration--end*/
+        
+        $("#printBtn").click(function(){
+			printByDiv(document.getElementById("printDiv"));
+		});
+		
+
+		function printByDiv(printpage){ 
+			var iframe = document.createElement('IFRAME');			
+			iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+			document.body.appendChild(iframe);
+			iframe.contentWindow.document.write(printpage.innerHTML);
+			iframe.contentWindow.document.close(); //important!
+			iframe.contentWindow.focus(); //IE fix
+			iframe.contentWindow.print();
+			iframe.parentNode.removeChild(iframe);
+		}	
+		
+		function downloadExcel(){				
+			  var newForm = jQuery('<form>', {
+				  	'action': "/"+CONFIG.SYSTEM_NAME + '/certificateSetting/api/downloadExcel',
+				  	'method': 'post',
+			        'target': '_blank'
+			    }).append(jQuery('<input>',{
+			    	'name' : '_csrf',
+			    	'value': $.cookie("XSRF-TOKEN"),
+			    	'type': 'text'
+			    }));
+			  	var iframe = document.createElement('IFRAME');
+				iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+				$(iframe).append(newForm);
+				document.body.appendChild(iframe);
+			    newForm.submit();
+			    iframe.parentNode.removeChild(iframe);
+		}
+		
+		function downloadSample(filename){
+			 var newForm = jQuery('<form>', {
+				  	'action': "/"+CONFIG.SYSTEM_NAME + '/common/api/downloadXlsx/' + filename+'/',
+				  	'method': 'post',
+			        'target': '_blank'
+			    }).append(jQuery('<input>',{
+			    	'name' : '_csrf',
+			    	'value': $.cookie("XSRF-TOKEN"),
+			    	'type': 'text'
+			    }));
+			  	var iframe = document.createElement('IFRAME');
+				iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+				$(iframe).append(newForm);
+				document.body.appendChild(iframe);
+			    newForm.submit();
+			    iframe.parentNode.removeChild(iframe);
+		}
+		
+		function createPrintTable(data){
+			$("#tbody").empty();
+			$.each(data, function( index, item ) {
+				var tr = $('<tr/>');
+				var td = $('<td/>');			
+				tr.append(td.clone().html( item.ROC_ID) );
+				tr.append(td.clone().html( item.NAME) );
+				tr.append(td.clone().html( item.UNIT_NAME) );
+				tr.append(td.clone().html( item.CERTIFICATE_TYPE) );
+				tr.append(td.clone().html( item.CERTIFICATE_NAME) );
+				tr.append(td.clone().html( item.CERTIFICATE_UNIT) );
+				tr.append(td.clone().html( item.GET_DATE) );
+				tr.append(td.clone().html( item.GET_FEE) );
+				tr.append(td.clone().html( item.TRAIN_UNIT_NAME) );
+				tr.append(td.clone().html( item.REVIEW_NAME) );
+				tr.append(td.clone().html( item.REVIEW_TIME) );			
+				tr.append(td.clone().html( item.RESP) );	
+				$("#tbody").append(tr);
+			});
+		}
+		
+
+		/*IMPORT file start*/
+		//
+
+		 $("#importDialog").dialog({
+			 title: "更新複訓日期",
+	         autoOpen: false,
+	         width: 550,
+	         modal: true,
+	         close: function() {
+	             $("#dialogForm").find(".error").removeClass("error");
+	             $('.ui-widget-overlay').removeClass('custom-overlay');
+	         },
+            open: function(){
+           	 $('.ui-widget-overlay').addClass('custom-overlay');
+           	customCloseBtn();
+            },
+            classes: dlgSetting.classes,
+	        show: dlgSetting.show,
+			hide: dlgSetting.hide
+	     });
+		 
+		 $("#showImportExcelBtn").on("click", function(){
+			 $("#importDialog").dialog("open");
+		 });
+		 
+		 $("#selectExcelFile").on("change", function() {
+			  var fileName = $(this).val().split("\\").pop();
+			  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		  });
+		 
+		 $("#importForm").validate({
+	    	 //錯誤訊息元素預設為label改成p會換行
+			 errorElement: "p",
+	         rules: {
+	        	 selectExcelFile:  { required: true, filesize: 10485760 },
+	        	
+	         },
+	         messages: {
+	        	 selectExcelFile:{
+			          required: "請選擇檔案，檔案只能是Excel",
+			          filesize: "最大不得超過10MB"
+			        }
+	         },
+	         submitHandler: function() {
+	        	 updateRetrainingDate();
+	         }
+	     });
+
+		 
+		 function updateRetrainingDate(){
+			 var fileName = $("#selectExcelFile").val().split("\\").pop();
+			 var reg = /^.*\.(?:xls|xlsx)$/i; 
+		     if (!reg.test(fileName)) {//校驗是否是excel格式的檔案
+		      	alert("請上傳excel格式的檔案!");
+		     	return;
+		     }
+		     var formData = new FormData();
+		     formData.append("file", $("#selectExcelFile").prop("files")[0]);
+		     formData.append("type", $("#importType").val());
+		     
+			 $.ajax({
+				 url: "/"+CONFIG.SYSTEM_NAME + '/certificateSetting/api/importData',
+			    contentType: false,
+			    type: "POST",
+			    async: false,
+			    cache: false,
+			    data: formData,
+			    processData: false,
+			    success: function(data, textStatus){
+			    	if(data != null && data.result == 'success'){
+			    		alert('匯入成功');
+			    	}
+			    	else{
+			    		alert('匯入失敗' + (data.msg ? data.msg : ""));
+			    	}
+			    	$("#importDialog").dialog("close");
+			    	//bodyHref('/content/setting/certificate.html');
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+			    }
+			  });
+		 }
+		 //END IMPORT
+	});
+});
+</script>

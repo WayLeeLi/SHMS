@@ -1,0 +1,69 @@
+﻿<div>
+	<h4>錯誤LOG</h4>
+	
+	<div id="jsGrid" >
+	</div>
+</div>
+
+<style>
+/* 讓表格內容換行 */
+.jsgrid-table{
+		word-wrap:break-word;
+	}
+</style>
+
+
+<script>
+//需要用的JS
+require(["jquery", "jsgrid"], function (jquery, jsgrid) {
+	//頁面讀取後執行
+	$(document).ready(function(){
+	    $.ajax({
+		    url: "/"+CONFIG.SYSTEM_NAME + '/errorLog/api/getErrorLog',
+		    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    async: false,
+		    cache: false,
+		    type: "GET",
+		    success: function(data, textStatus){    	
+		    	
+		    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    		 alert("沒有權限");
+		    	 }else{
+		    	 
+			    	 $("#jsGrid").jsGrid({
+		    	        width: "100%",
+		    	        height: "auto",
+		    	        heading: true, //是否顯示表頭
+		    		    filtering: false, //啟動查找
+		    		    inserting: false, //啟動新增  關掉使用自定義的
+		    		    editing: false,  //啟動編輯 
+		    		    selecting: true,
+		    		    sorting: true, //啟動排序
+		    		    paging: true, //啟動分頁 
+		    		    pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+		    		    autoload: true,
+		    		    pageSize: 10,
+		    	 
+		    	        data: data,
+		    	 
+		    	        fields: [
+		    	        	{ title:"錯誤class", name: "errorClass", type: "text", width: 50 },
+		    	            { title:"錯誤訊息", name: "errorMsg", type: "text", width: 250 },
+		    	            { title:"發生時間", name: "errorTime", type: "text	", width: 50 }
+		    	        ],
+			            
+		    	    });
+		    	 }
+		    	 
+		    },
+		    error: function (data, textStatus, errorThrown) {
+		        console.log(data);
+		    },
+		});
+	    
+	  	//依時間排序
+	    $("#jsGrid").jsGrid("sort", "errorTime","desc");
+    
+	});  
+});
+</script>

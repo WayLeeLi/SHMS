@@ -1,0 +1,684 @@
+﻿<div>
+	<div class="m-t50 m-b30">
+		<h4>訪談及診查紀錄</h4>
+		<div class="date_time">
+
+			<div class="date_box">
+				<label>
+					<input id="unitId_s" name="" type="text" class="w_100p" placeholder="連線代號" />
+				</label>
+			</div>
+			<div class="date_box">
+				<label>
+					<input id="unitName_s" name="" type="text" class="w_100p" placeholder="銀行名稱" />
+				</label>
+			</div>
+			<button class="btn btn-primary  my-2" id="getlist_search">查詢</button>
+			<DIV class="pull-right">
+
+				<button id="exportButton" class="btn btn-success  my-2 exportButton">匯出</button>
+			</DIV>
+		</div>
+
+	</div>
+	<div id="jsGrid"></div>
+</div>
+<div id="tableDialog" style="display:none" class="container">
+	<div>
+		<h2 style="text-align: center;">訪談及診查紀錄</h2>
+
+
+		<form id="inputForm">
+
+			<table class="w-100 safe_form">
+				<tbody>
+					
+					<tr>
+						<td class="table-header " width="200">單位名稱</td>
+						<td class="">
+							<select class="custom-select w_200p" id="unitName" name="unitName">
+
+							
+
+							</select>
+						</td>
+						<td class="table-header " width="200">員工姓名</td>
+						<td class="">
+							<select class="custom-select w_200p" id="name" name="name">
+
+						
+
+							</select>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">諮詢類別</td>
+						<td class="">
+							<select class="custom-select w_200p" id="consultationCategory" name="consultationCategory">
+
+							
+
+							</select>
+						</td>
+						<td class="table-header " width="200">諮詢方式</td>
+						<td class="">
+							<select class="custom-select w_200p" id="serviceMode" name="serviceMode">
+
+							
+
+							</select>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">諮詢日期</td>
+						<td class="" colspan="3">
+							<div class="date_box">
+								<label>
+									<input id="serviceDate" name="serviceDate" type="text" readonly="readonly"
+										class="w_100p" placeholder="" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">諮詢項目</td>
+						<td class="" colspan="3">
+							<select class="custom-select w_200p" id="serviceItem" name="serviceItem">
+
+						
+
+							</select>
+						</td>
+
+					</tr>
+
+					<tr>
+						<td class="table-header " width="200">諮詢內容</td>
+						<td class="" colspan="3">
+							<input type="text" class="w_200p" id="consultationContent" name="consultationContent" />
+						</td>
+
+					</tr>
+
+					<tr>
+						<td class="table-header " width="200">下次追蹤日期</td>
+						<td class="" colspan="3">
+							<div class="date_box">
+								<label>
+									<input id="nextTrackDate" name="nextTrackDate" type="text" readonly="readonly" class="w_100p"
+										placeholder="" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+						</td>
+
+					</tr>
+
+				</tbody>
+			</table>
+		</form>
+
+	</div>
+	<br>
+	<div style="text-align: center;">
+		<button type="button" id="submitBtn" class="btn btn-primary  my-2">儲存</button>
+		<button type="button" id="submitBtn" class="btn btn-success  my-2">送出</button>
+	</div>
+</div>
+<div id="detailDialog" style="display:none" class="container">
+	<div>
+		<h2 style="text-align: center;">訪談及診查紀錄</h2>
+
+
+		<form id="inputForm">
+
+			<table class="w-100 safe_form">
+				<tbody>
+					
+					
+					<tr>
+						<td class="table-header " width="200">單位名稱</td>
+						<td class="unitName">
+
+						</td>
+						<td class="table-header " width="200">員工姓名</td>
+						<td class="name">
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">諮詢類別</td>
+						<td>
+							<select class="custom-select w_200p" id="consultationCategory_show"  class="consultationCategory">
+
+							
+
+							</select>
+						</td>
+						<td class="table-header " width="200">諮詢方式</td>
+						<td class="">
+							<select class="custom-select w_200p" id="serviceMode_show"  class="serviceMode">
+
+							
+
+							</select>
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">諮詢日期</td>
+						<td class="serviceDate" colspan="3">
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">諮詢項目</td>
+						<td class="serviceItem" colspan="3">
+							<select class="custom-select w_200p" id="serviceItem_show"  class="serviceItem">
+
+							
+
+							</select>
+						</td>
+
+					</tr>
+
+					<tr>
+						<td class="table-header " width="200">諮詢內容</td>
+						<td class="consultationContent" colspan="3">
+
+						</td>
+
+					</tr>
+
+					<tr>
+						<td class="table-header " width="200">下次追蹤日期</td>
+						<td class="nextTrackDate" colspan="3">
+
+						</td>
+
+					</tr>
+
+				</tbody>
+			</table>
+		</form>
+
+	</div>
+	<br>
+	<div style="text-align: center;">
+		<button type="button" id="submitBtn" class="btn btn-primary  my-2">儲存</button>
+		<button type="button" id="submitBtn" class="btn btn-success  my-2">送出</button>
+	</div>
+</div>
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui"], function (jquery, jquery_validate, jsgrid, jquery_ui) {
+		//頁面讀取後執行
+		$(document).ready(function () {
+			getByMenuId()
+			function getByMenuId() {
+				$.ajax({
+					data: JSON.stringify({ "safetyNo": "" }),
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenance/api/getInitData',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+
+							console.log(data.data);
+							var jobLevel = data.data
+							var menuid = 48;
+
+							$.ajax({
+
+								url: "/" + CONFIG.SYSTEM_NAME + '/buttonRole/api/getByMenuId?menuId=' + menuid,
+								contentType: "application/json;charset=utf-8", // 因為上面是JSON
+								async: false,
+								cache: false,
+								type: "GET",
+								success: function (data, textStatus) {
+									if (data && data == "<script>alert('沒有權限')<\/script>") {
+										//showAlert('沒有權限','沒有權限','')
+										showAlert('沒有權限', '沒有權限', '')
+									} else {
+										var menuData = data.data
+										get_list(menuData, jobLevel);
+
+										console.log(menuData)
+										// 		<button type="button" id='submit_o' class="btn btn-warning  my-2 pressing_hide tempButton">暫存</button>
+										// <button type="button" id='submit_s' class="btn btn-primary  my-2 pressing_hide sendButton">儲存送出</button>
+										// <button type="button" id="checkBtn" class="btn btn-success  my-2 pressing_hide reviewButton">審核通過</button>
+										// <button type="button" id="return" class="btn btn-danger  my-2 pressing_hide returnButton">退件</button>
+										// <button type="button" id='submit_p' class="btn btn-primary  my-2 pressing_show sendButton">儲存送出</button>
+										// <button type="button" id="printBtn1" class="btn btn-secondary  my-2 pressing_show printButton">列印</button>
+										// <button type="button" id="printBtn" class="btn btn-secondary  my-2 pressing_hide printButton">列印</button>
+
+										if (menuData.functionArray.indexOf('review') < 0) {
+											$('.reviewButton').hide()
+										}
+										if (menuData.functionArray.indexOf('temp') < 0) {
+											$('.tempButton').hide()
+										}
+										if (menuData.functionArray.indexOf('reject') < 0) {
+											$('.returnButton').hide()
+										}
+										if (menuData.functionArray.indexOf('temp') < 0) {
+											$('.tempButton').hide()
+										}
+										if (menuData.functionArray.indexOf('export') < 0) {
+											$('.exportButton').hide()
+										}
+									
+									}
+								},
+								error: function (data, textStatus, errorThrown) {
+									console.log(data);
+								},
+							});
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+
+			}
+			$('#startDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				dateFormat: 'yy/mm/dd',
+				onClose: function (selectedDate) {
+					$("#endDate").datepicker("option", "minDate", selectedDate);
+				}, maxDate: 0
+
+			})
+
+			$('#endDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				dateFormat: 'yy/mm/dd',
+
+				minDate: $("#startDate").val(),
+				onClose: function (selectedDate) {
+					$("#startDate").datepicker("option", "maxDate", selectedDate);
+				},maxDate: 0
+			})
+			$('#nextTrackDate').datepicker({
+
+autoclose: true, //選擇後自動關閉
+dateFormat: 'yy/mm/dd',
+maxDate: 0
+
+})
+		
+$('#serviceDate').datepicker({
+
+autoclose: true, //選擇後自動關閉
+dateFormat: 'yy/mm/dd',
+maxDate: 0
+
+})
+		
+			//取得默認資料
+			function insert_mr() {
+
+				$.ajax({
+					data: JSON.stringify({ "safetyNo": "" }),
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenance/api/getInitData',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							// initPage(data);
+							console.log(data);
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+			getByMenuId()
+			insert_mr()
+			$('#getlist_search').click(function () {
+				getByMenuId()
+			})
+			function get_list(menuData, jobLevel) {
+				if (jobLevel == '10' || jobLevel == '7') {
+					var url = 'healthAppointmentInterview/api/listAll?appointId=1&unitId='+$("#unitId_s").val()+'&'+$("#unitName_s").val()
+				}
+				if (jobLevel == '9') {
+					var url = 'healthAppointmentInterview/api/listSelf?appointId=1'
+				} else {
+					var url = 'healthAppointmentInterview/api/list?appointId=1'
+				}
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/' + url,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							alert("沒有權限");
+						} else {
+							var data = data.data
+							console.log(data)
+							$("#jsGrid").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: false, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: true,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+													}
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+														}
+													}
+
+												}
+											}
+											return true;
+										});
+										return result;
+									},
+
+								},
+
+								fields: [
+
+									{ title: "訪談日期", name: "serviceDate", type: "text", width: 150 },
+									{ title: "單位名稱", name: "unitName", type: "text", width: 150, validate: "required" },
+									{ title: "姓名", name: "name", type: "text", width: 130 },
+									{ title: "ID", name: "appointId", type: "text", width: 130 },
+									{ title: "諮詢類別", name: "consultationCategory", type: "text", width: 130 },
+									{ title: "諮詢方式", name: "serviceMode", type: "text", width: 130 },
+									{ title: "諮詢項目", name: "serviceItem", type: "text", width: 200, },
+
+									{ title: "狀態", name: "status", type: "text", width: 80 },
+									{
+										type: "control",
+										name: "id",
+										width: 80,
+										editButton: false,
+										deleteButton: false,
+										modeSwitchButton: false,
+										filtercss: "display:none;",
+										itemTemplate: function (value, item) {
+											return $("<button>").attr("type", "button").text("查看").addClass("btn btn-success")
+												.on("click", function () {
+													console.log(value)
+													showDetailsDialog("查看", value);
+
+
+												})
+
+										},
+										headerTemplate: function () {
+
+											return $("<button>").attr("type", "button").text("新增").addClass("btn btn-primary")
+												.on("click", function () {
+													if (menuData.functionArray.indexOf('add') < 0) {
+														showAlert('無新增權限', '您沒有新增權限,只有醫師可新增訪談紀錄！', '')
+													} else {
+														get_old('0')
+													}
+
+												});
+
+
+										}
+									}
+								],
+								rowClick: function (args) {
+
+									// bodyHref("/content/situation/Safetysituationreport_form.html");
+									//showDetailsDialog("修改", args.item);
+								},
+								deleteConfirm: function (item) {
+									return "參數\"" + item.NUM + "\"確認刪除?";
+								}, loadComplete: function () {
+									alert("jqGrid資料載入完之後調用");
+								}
+							});
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			$("#tableDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				height: 600,
+				width: 750,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+			$("#detailDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				height: 600,
+				width: 750,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+			var formSubmitHandler = $.noop;
+
+			var showDetailsDialog = function (dialogType, item) {
+
+				$("#detailDialog").dialog("option", "title", dialogType + "").dialog("open");
+				$.ajax({
+										url: "/" + CONFIG.SYSTEM_NAME + '/healthAppointmentInterview/api/get?id=' + item,
+										contentType: "application/json;charset=utf-8", // 因為上面是JSON
+										async: false,
+										cache: false,
+										type: "GET",
+										success: function (data, textStatus) {
+											if (data && data.code == "5000") {
+												showAlert('沒有權限', '沒有權限', '')
+											} else {
+
+												var data = data.data;
+												console.log(data)
+
+												$('.unitName').html(data.unitName);
+												$('.name').html(data.name);
+												$('.consultationCategory').val(data.consultationCategory);
+												$('.serviceMode').val(data.serviceMode);
+												$('.serviceDate').html(data.serviceDate);
+												$(".serviceItem").val(data.serviceItem);
+												$(".consultationContent").html(data.consultationContent);
+												$('.nextTrackDate').html(data.consultationCategory)
+												
+									
+
+
+											}
+										}
+									});
+			};
+
+			var showDialog = function (dialogType, item) {
+
+				$("#tableDialog").dialog("option", "title", dialogType + "").dialog("open");
+			};
+
+
+			function get_old(item) {
+				var item = item
+				if (item == '0') {
+					showDialog('新增', item)
+		
+					$('#safety_fid').val('0')
+				} else {
+
+					var menuid = 68;
+					$.ajax({
+						url: "/" + CONFIG.SYSTEM_NAME + '/healthAppointmentInterview/api/get?id=' + menuid,
+						contentType: "application/json;charset=utf-8", // 因為上面是JSON
+						async: false,
+						cache: false,
+						type: "GET",
+						success: function (data, textStatus) {
+							if (data && data == "<script>alert('沒有權限')<\/script>") {
+								//showAlert('沒有權限','沒有權限','')
+								showAlert('沒有權限', '沒有權限', '');
+							} else {
+								var menuData = data.data
+
+
+								console.log(menuData)
+
+								if (menuData.functionArray.indexOf('edit') < 0) {
+									showAlert('提示', '您沒有編輯當前資料的權限！', '')
+								} else {
+									showDialog('編輯', item)
+								
+									$.ajax({
+										url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceOffice/api/get?safetyId=' + item,
+										contentType: "application/json;charset=utf-8", // 因為上面是JSON
+										async: false,
+										cache: false,
+										type: "GET",
+										success: function (data, textStatus) {
+											if (data && data.code == "5000") {
+												showAlert('沒有權限', '沒有權限', '')
+											} else {
+
+												var data = data.data;
+												console.log(data)
+												$('#safety_fid').val(data.safetyId);
+												$('.season').html(data.season);
+												$('#season').val(data.season);
+												$('#season').attr("disabled", "disabled");
+												$(".loginUser").html(data.checkName);
+												$(".reviewName").html(data.reviewName);
+												$('.upDate').html(data.checkTime)
+												if (data.formContent != '[{formContentJson}]' && data.formContent != 'undefined' && data.formContent != undefined) {
+													var jsonStr = data.formContent
+
+													var jsonObj = $.parseJSON(jsonStr);
+
+													var data_g = [];
+													$.each(jsonObj, function (index, item) {
+														data_g[index] = {
+															"title": item.title,
+															"selectData": item.selectData,
+															"ramark": item.ramark,
+														}
+
+													});
+
+													$.each(data_g, function (index, item) {
+														$('#secret tbody tr').eq(index).find('td:eq(-2)').text(item.title)
+														$('#secret tbody tr').eq(index).find('td:eq(-1)').find('select').val(item.selectData.replace('undefined', ''));
+														$('#secret tbody tr').eq(index).find('td:eq(-1)').find('input').val(item.selectData.replace('undefined', ''));
+
+													});
+												}
+
+
+											}
+										}
+									});
+								}
+							}
+						},
+						error: function (data, textStatus, errorThrown) {
+							console.log(data);
+						},
+					});
+
+				}
+			}
+
+		});
+
+		var cellIndex = parseInt($(".tbStyle th").length) - 1;
+		$("#jsGrid tr td").each(function () {
+			alert($(this).text())
+			if (this.cellIndex != cellIndex) {
+				$(this).attr("title", $(this).text());
+				//alert($(this).parent().get(0).rowIndex);輸出所在行
+			}
+		});
+	});
+</script>

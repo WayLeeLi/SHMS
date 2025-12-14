@@ -1,0 +1,289 @@
+﻿<div>
+	<h4>發送EMAIL通知</h4>
+	
+	<form id="dialogForm">
+		<div class="details-form-field">
+            <label for="email">收件者 (ctrl+滑鼠左鍵 可複選)</label>
+            	<select class="custom-select" id="sendGroupType" name="sendGroupType" multiple ></select>
+            	<br>or 指定 E-Mail: (輸入E-Mail後，請按一下「加入收件者」)
+            	<input type="text" id="email" name="email"  class="w-25 my-1" data-error="inline" /><button id="btnAddMail" class="btn btn-primary mx-1">加入收件者</button>
+            	<div id="divMail"></div>
+        </div>
+        <div class="details-form-field my-2">
+            <label for="emailSubject">標題  </label>
+            	<input id="emailSubject" name="emailSubject" type="text" class="w-50"/>
+        </div>
+        <div class="details-form-field">
+            <label for="emailContent" class="justify-content-top">內容  </label>
+            <textarea id="emailContent" name="emailContent"  rows="10" cols="100"></textarea>
+        </div>
+		<div class="details-form-field my-1">
+            <button type="submit" id="dialogFormSubmit" class="btn btn-primary">送出</button>
+        </div>
+	</form>
+</div>
+
+<div>
+	<h4>EMAIL LOG</h4>
+	
+	<div id="jsGrid" >
+	</div>
+</div>
+
+<script>
+//需要用的JS
+require(["jquery", "global_setting", "jquery_validate","jquery_validate_addition"], function (jquery, jquery_validate) {
+	//頁面讀取後執行
+	$(document).ready(function(){
+	    $.ajax({
+		    url: "/"+CONFIG.SYSTEM_NAME + '/sendEmail/api/init',
+		    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    async: false,
+		    cache: false,
+		    type: "GET",
+		    success: function(data, textStatus){  
+		    	
+		    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    		 alert("沒有權限");
+		    	 }else{
+		    	 
+		    		 $("#dialogForm").validate({
+		    	    	 //錯誤訊息元素預設為label改成p會換行
+		    			 errorElement: "p",
+		    			 errorPlacement: function(err, ele){
+		    					var isInline = $(ele).data('error');
+		    					if($(ele).prop("id") == "email"){
+		    						var placement = $(ele).parents("div").children("button");
+			    					if (isInline && isInline == 'inline' && placement){
+			    						err.insertAfter(placement);
+			    					}
+			    					else{
+			    						err.insertAfter(ele);
+			    					}
+		    		 			}
+		    					else{
+		    						err.insertAfter(ele);
+		    					}
+		    				},
+		    	         rules: {
+		    	        	 emailSubject: { required: true, maxlength:70, minlength:2},
+		    	        	 emailContent: { required: true, minlength:2, maxlength:300 },
+		    	        	 email: { coEmail: true}
+		    	         },
+		    	         messages: {
+		    			        emailSubject:{
+		    			          required: "請輸入標題",
+		    			          minlength:"至少2個字元",
+		    					  maxlength:"最多70個中文字"
+		    			        },
+		    			        emailContent:{
+		    			          required: "請輸入內容",
+		    			          minlength:"至少2個字元",
+		    			          maxlength:"最多300個字元"
+		    			        },
+		    			        email:{
+		    			        	
+		    			        }
+		    	         },
+		    	         submitHandler: function() {
+		    	        	 	//中止form submit換頁事件
+		    	        		 $.noop;
+		    	        	 	var item = {};
+		    	        	 	//email: $("#email").val(),
+			    	        	$.extend(item, {
+			    	        		emailSubject: $("#emailSubject").val(),
+			    	        		emailContent: $("#emailContent").val(),
+			    	        		sendGroupType: $("#sendGroupType").val()
+			    	            });
+			    	        	
+			    	        	let arr = [];
+			    		    	$("#divMail").children("button").each(function(){
+			    		    		let addr = $(this).text().substring(0, $(this).text().length-1);
+			    		    		arr.push(addr);
+			    		    	});
+			    		    	
+			    		    	if(arr.length > 0){
+			    		    		item.sendGroupType = [];
+			    		    		for(var i = 0; i<arr.length; i++){
+				    		    		if(!validateCoEmail(arr[i])){
+				    		    			alert("不合法的EMAIL，"+ arr[i]);
+				    		    			return false;
+				    		    		}
+				    		    		item.sendGroupType.push(arr[i]);
+				    		    	}
+			    		    	}
+
+			    		    	debugger;
+			    		    	if(item.sendGroupType.length == 0){
+			    		    		alert("請輸入收件者或群組");
+		    		    			return false;
+			    		    	}
+			    	        	//send review instead
+		    		        	$.ajax({
+		    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/sendEmail/api/sendReview',
+		    		 			    data: JSON.stringify(item),
+		    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    		 			    async: false,
+		    		 			    cache: false,
+		    		 			    type: "POST",
+		    		 			    success: function(data, textStatus){   
+		    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    					    		 alert("沒有權限");
+		    					    	 }else{
+		    					    		 if(data.result == "success"){
+		    					    			 alert("已送出審核");
+		    					    			 bodyHref("/content/setting/sendEmail.html");
+		    					    		 }else if(data.errorMsg){
+		    					    			 alert(data.errorMsg);
+		    					    		 }
+		    					    	 }
+		    		 			    },
+		    		 			    error: function (data, textStatus, errorThrown) {
+		    		 			        console.log(data);
+		    		 			    },
+		    		 			});
+		    		        	
+		    		        	
+	    	         		}
+		    	     });
+		    		 
+		    		 //產生寄件群組下拉選單
+		    		 $.ajax({
+ 		 			    url: "/"+CONFIG.SYSTEM_NAME + '/sendEmail/api/getSendGroupType',
+ 		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+ 		 			    async: false,
+ 		 			    cache: false,
+ 		 			    type: "GET",
+ 		 			    success: function(data, textStatus){   
+ 		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+ 					    		alert("沒有權限");
+ 					    	 }else{ 					    		 
+ 					    		createSelect("sendGroupType", data, "SEND_GROUP_TYPE", "GROUP_NAME"); 					    		
+ 					    	 }
+ 		 			    },
+ 		 			    error: function (data, textStatus, errorThrown) {
+ 		 			        console.log(data);
+ 		 			    },
+ 		 			});
+		    		 
+		    		 
+		    		 //產生email log table		    		 
+		    		 $.ajax({
+		    			    url: "/"+CONFIG.SYSTEM_NAME + '/sendEmail/api/getEmailLog',
+		    			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    			    async: false,
+		    			    cache: false,
+		    			    type: "GET",
+		    			    success: function(data, textStatus){  
+		    			    	
+		    			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    			    		 alert("沒有權限");
+		    			    	 }else{
+		    				    	 $("#jsGrid").jsGrid({
+		    			    	        width: "100%",
+		    			    	        height: "auto",
+		    			    	        heading: true,
+		    			    		    filtering: false,
+		    			    		    inserting: false,
+		    			    		    editing: false,
+		    			    		    selecting: false,
+		    			    		    sorting: true,
+		    			    		    paging: true,
+		    			    		    pageLoading: false,
+		    			    		    pageSize: 10,
+		    			    		    
+		    			    	        data: data,
+		    			    	 
+		    			    	        fields: [
+		    			    	            { title:"標題", name: "title", type: "text", width: 120 },
+		    			    	            { title:"內容", name: "content", type: "text	", width: 150 },
+		    			    	            { title:"收件者", name: "recipient", type: "text", width: 50 },
+		    			    	            { title:"發送時間", name: "sendTime", type: "text", width: 50 },
+		    			    	            { title:"狀態", name: "status", type: "text", width: 30, itemTemplate: function(e){
+		    			    	            	switch(e){
+		    			    	            	case 1:
+		    			    	            		return "已審核";
+		    			    	            	case 2:
+		    			    	            		return "被退回";
+		    			    	            	default:
+		    			    	            		return "未審核";
+		    			    	            	}
+		    			    	            },}
+		    			    	        ],
+		    				            
+		    			    	    });
+		    				    	 
+		    				    	//依時間排序
+		    				    	$("#jsGrid").jsGrid("sort", "sendTime","desc");
+		    				    	
+		    			    	 }
+		    			    	 
+		    			    },
+		    			    error: function (data, textStatus, errorThrown) {
+		    			        console.log(data);
+		    			    },
+		    			});
+		    		 
+		    	 
+		    	 }
+		    	 
+		    },
+		    error: function (data, textStatus, errorThrown) {
+		        console.log(data);
+		    },
+		});
+	    
+	    
+	    function createSelect(id, data, key, val, selectedKey){
+	    	//$('#' + id).append($('<option>').val("").text("請選擇"));
+			$.each(data, function( index, item ) {
+				if(item[key] == selectedKey){
+					if(item[val]){
+						$('#' + id).append($('<option>').val(item[key]).text(item[val]).attr('selected','selected'));	
+					}else{
+						$('#' + id).append($('<option>').val(item[key]).text(val).attr('selected','selected'));
+					}
+					
+				}else{
+					if(item[val]){
+						$('#' + id).append($('<option>').val(item[key]).text(item[val]));	
+					}else{
+						$('#' + id).append($('<option>').val(item[key]).text(val));
+					}
+				}
+			});
+		}
+	    
+    
+	    var tmpEmailArray =[];
+	    $("#btnAddMail").click(function(e){
+	    	e.preventDefault();
+	    	if(!validateCoEmail($("#email").val())) return false;
+	    	if(tmpEmailArray.indexOf($("#email").val()+"X")>=0){
+	    		shmsToast('EMAIL已在清單中','', 'error');
+	    		return false;
+	    	}
+	    	
+	    	let tmpBtn = $("<button class='btn btn-outline-primary mx-1 '></button>");
+	    	tmpBtn.append($("#email").val());
+	    	tmpBtn.append($("<span>").text("X").addClass("badge badge-danger ml-1 del"));
+	    	tmpBtn.on("click", function(e1){ e1.preventDefault();});
+	    	$("#divMail").append(tmpBtn);
+	    	tmpEmailArray.push(tmpBtn.text());
+	    	$("#email").val('');
+	    	
+	    });
+	    $("#divMail").on("click", ".del", function(){
+	    	let btn = $(this).parent();
+	    	if(btn.length > 0){
+	    		let idx = tmpEmailArray.indexOf(btn.text());
+		    	if(idx >= 0){
+		    		tmpEmailArray.splice(idx, 1);
+			    	btn.remove();
+		    	}
+	    	}
+	    	
+	    });
+	});  
+});
+</script>

@@ -1,0 +1,79 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3922659 */
+  src: url('iconfont.woff2?t=1692000469295') format('woff2'),
+       url('iconfont.woff?t=1692000469295') format('woff'),
+       url('iconfont.ttf?t=1692000469295') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-Microsoft-Excel:before {
+  content: "\e6d6";
+}
+
+.icon-WORD:before {
+  content: "\e640";
+}
+
+.icon-PDF:before {
+  content: "\e645";
+}
+
+.icon-riqi:before {
+  content: "\e612";
+}
+
+.icon-riqi1:before {
+  content: "\e646";
+}
+
+.icon-exportexcel:before {
+  content: "\e71b";
+}
+
+.icon-iczoomout:before {
+  content: "\e647";
+}
+
+.icon-shanchu:before {
+  content: "\e621";
+}
+
+.icon-tianjia:before {
+  content: "\e622";
+}
+
+.icon-xiugai:before {
+  content: "\e8cf";
+}
+
+.icon-icon_tianjia:before {
+  content: "\eb89";
+}
+
+.icon-baocun:before {
+  content: "\e648";
+}
+
+.icon-tupiantianjia:before {
+  content: "\ec7d";
+}
+
+.icon-fangda-copy:before {
+  content: "\e649";
+}
+
+.icon-xiugai1:before {
+  content: "\e610";
+}
+
+.icon-shanchu1:before {
+  content: "\e8b6";
+}
+

@@ -1,0 +1,911 @@
+﻿<div>
+	<input type="hidden" id="unitId">
+	<input type="hidden" id="id">
+	<h2 style="text-align: center;">職災通報作業-每月通報表</h2>
+	<div class="date_time">
+		<div class="date_box">
+			<label>
+				<select id="startDate" class="custom-select w_200p">
+					<option disabled>年度</option>
+
+				</select>
+			</label>
+		</div>
+		<button class="btn btn-primary  my-2" id="search">搜尋</button>
+	</div>
+	<div id="jsGrid"></div>
+
+</div>
+<br>
+<div id="showFileDialog" style="display:none" class="container">
+	<div>
+		<form id="inputForm">
+			<table class="w-100 safe_form">
+				<tbody>
+
+					<tr>
+						<td class="table-header " width="200">選擇檔案</td>
+
+					</tr>
+					<tr>
+
+						<td class="">
+							<div class="date_box w_200p">
+								<div class="input_file" style="padding: 0;">
+									<div class="showFileName"></div>
+									<input type="file" id="file1" accept="application/vnd.ms-excel">
+									<input type="hidden" id="file1_base64">
+									<label for="file1" class="btn btn-primary  my-2" style="margin: 0 !important;">選擇檔案
+									</label>
+								</div>
+							</div>
+						</td>
+
+
+					</tr>
+
+				</tbody>
+			</table>
+		</form>
+
+	</div>
+	<br>
+	<div style="text-align: center;">
+		<button type="button" id="submitBtn_x" class="btn btn-primary  my-2">匯入</button>
+
+	</div>
+</div>
+<div id="showEditDialog" style="display:none" class="container">
+	<div>
+		<form id="inputForm">
+			<div class="month1">
+				<div class="jsgrid" id="load_table" style="position: relative; height: auto; width: 100%;">
+					<div class="jsgrid-grid-header jsgrid-header-scrollbar">
+						<table class="jsgrid-table">
+							<tr class="jsgrid-header-row">
+								<th class="jsgrid-header-cell jsgrid-header-sortable" style="width: 200px;">項目</th>
+								<th class="jsgrid-header-cell jsgrid-header-sortable">總員工人數</th>
+								<th class="jsgrid-header-cell jsgrid-header-sortable">加班人數</th>
+								<th class="jsgrid-header-cell jsgrid-header-sortable">加班時數</th>
+								<th class="jsgrid-header-cell jsgrid-header-sortable">備註</th>
+							</tr>
+
+						</table>
+					</div>
+					<div class="jsgrid-grid-body">
+						<table class="jsgrid-table">
+							<tbody>
+								<tr class="jsgrid-row">
+									<td class="jsgrid-cell" style="width: 200px;">主管(男)</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="mngManTotalNum" maxlength="5"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="mngManOverNum" maxlength="5"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="mngManOverHour" maxlength="7"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="mngManRemark"  class="normalManRemark" />
+									</td>
+								</tr>
+								<tr class="jsgrid-alt-row">
+									<td class="jsgrid-cell" style="width: 200px;">主管(女)</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="mngWomanTotalNum" maxlength="5"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="mngWomanOverNum" maxlength="5"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="mngWomanOverHour" maxlength="7"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="mngWomanRemark"  class="normalManRemark" />
+									</td>
+								</tr>
+								<tr class="jsgrid-row">
+									<td class="jsgrid-cell" style="width: 200px;">一般員工(男)</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="normalManTotalNum" maxlength="5"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="normalManOverNum" maxlength="5"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="normalManOverHour" maxlength="7"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="normalManRemark" class="normalManRemark" />
+									</td>
+								</tr>
+								<tr class="jsgrid-alt-row">
+									<td class="jsgrid-cell" style="width: 200px;">一般員工(女)</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="normalWomanTotalNum" maxlength="5"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="normalWomanOverNum" maxlength="5"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="normalWomanOverHour" maxlength="7"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="normalWomanRemark"  class="normalManRemark" />
+									</td>
+								</tr>
+								<tr class="jsgrid-row">
+									<td class="jsgrid-cell" style="width: 200px;">合計(男)</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="manNum" maxlength="5"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="totalManOverNum" maxlength="5"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="mngManOverHour" maxlength="5"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="totalManRemark" class="normalManRemark"  />
+									</td>
+								</tr>
+								<tr class="jsgrid-alt-row">
+									<td class="jsgrid-cell" style="width: 200px;">合計(女)</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="womanNum" maxlength="5"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="totalWomanOverNum" maxlength="5"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="totalManOverHour" maxlength="5"/>
+									</td>
+									<td class="jsgrid-cell jsgrid-control-field jsgrid-align-center">
+										<input type="text" name="totalWomanRemark" class="normalManRemark"  />
+									</td>
+								</tr>
+
+								<tr class="jsgrid-row">
+									<td class="jsgrid-cell" style="width: 100px;">當月工作日數</td>
+									<td class="jsgrid-cell jsgrid-control-field" colspan="4">
+										<select class="custom-select w_200p" name="workNum">
+											<option value="0">0</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+											<option value="13">13</option>
+											<option value="14">14</option>
+											<option value="15">15</option>
+											<option value="16">16</option>
+											<option value="17">17</option>
+											<option value="18">18</option>
+											<option value="19">19</option>
+											<option value="20">20</option>
+											<option value="21">21</option>
+											<option value="22">22</option>
+											<option value="23">23</option>
+											<option value="24">24</option>
+											<option value="25">25</option>
+											<option value="26">26</option>
+											<option value="27">27</option>
+											<option value="28">28</option>
+											<option value="29">29</option>
+											<option value="30">30</option>
+											<option value="31">31</option>
+
+										</select>
+									</td>
+								</tr>
+								<!-- <tr class="jsgrid-row">
+									<td class="jsgrid-cell" style="width: 100px;">總工時</td>
+									<td class="jsgrid-cell jsgrid-control-field" colspan="4">
+										<input class=" w_200p" type="number" name="workHour">
+											
+									</td>
+								</tr> -->
+								<tr class="jsgrid-row">
+									<td class="jsgrid-cell" style="width: 100px;">申報年月</td>
+									<td class="jsgrid-cell jsgrid-control-field" colspan="4">
+										<span class="year_s"></span>年<span class="mouth_s"></span>月
+									</td>
+								</tr>
+
+
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+				<br>
+				<div style="text-align: center;">
+
+					<button type="button" id="submitBtn" class="btn btn-success  my-2">儲存</button>
+					<button id="add" class="btn btn-primary  my-2">匯入</button>
+
+				</div>
+				<br />
+			</div>
+			<div class="month2" style="display: none;">
+				<form id="inputForm">
+
+					<br />
+					<table class="w-100 safe_form">
+						<tbody>
+							<tr>
+								<td class="table-header " width="200">申報年月</td>
+								<td colspan="3">
+									<span class="year_s"></span>年<span class="mouth_s"></span>月
+								</td>
+							</tr>
+							<tr>
+								<td class="table-header " width="200">當月工作日數(A)</td>
+								<td class="workNum" colspan="3">
+								</td>
+
+							</tr>
+							<tr>
+								<td class="table-header " width="200">受雇勞工總數(B)</td>
+								<td class="totalNum" colspan="3">
+
+								</td>
+
+							</tr>
+							<tr>
+								<td class="table-header " width="200">男</td>
+								<td class="manNum">
+
+								</td>
+								<td class="table-header " width="200">女</td>
+								<td class="womanNum">
+
+								</td>
+
+							</tr>
+							<tr>
+								<td class="table-header " width="200">總工作日數(C)=(A)*(B)</td>
+								<td class="ToalworkNum" colspan="3">
+
+								</td>
+
+							</tr>
+
+
+							<tr>
+								<td class="table-header " width="200">總加班時數</td>
+								<td class="totalOverHour" colspan="3">
+
+								</td>
+
+							</tr>
+
+
+							<tr>
+								<td class="table-header " colspan="2" width="200">總經歷工時(D)=總工作日數(C)*8+總加班時數</td>
+								<td class="totalHour" colspan="2">
+
+								</td>
+
+							</tr>
+
+
+
+						</tbody>
+					</table>
+				</form>
+				<br>
+				<div style="text-align: center;">
+
+					<button type="button" id="download_btn" class="btn btn-success  my-2">匯出</button>
+				</div>
+				<br />
+			</div>
+		</form>
+
+	</div>
+
+</div>
+
+
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui"], function (jquery, jquery_validate, jsgrid, jquery_ui) {
+		//頁面讀取後執行
+		$(document).ready(function () {
+			var currentDate = new Date();
+			var year = currentDate.getFullYear();
+		
+				var month = currentDate.getMonth();
+			
+			
+			var monthprev = currentDate.getMonth();
+			var day = currentDate.getDate();
+
+			var myDate = new Date();
+			var startYear = 2016;
+			var endYear = myDate.getFullYear();
+			var obj = document.getElementById('startDate')
+			for (var i = startYear; i <= endYear; i++) {
+				obj.options.add(new Option(i, i));
+			}
+
+			$("#startDate").val(myDate.getFullYear());
+			$('#search').click(function () {
+				get_menuData();
+			})
+			function get_list(menuData, yearg) {
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/occupationalMonthlyNotification/api/list?year=' + yearg + '&month=0',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						console.log(data)
+						if (data && data == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						} if (data && data == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+						} else {
+							var data = data.data;
+							console.log(data)
+							//提示
+							$.toast({ heading: '', text: '資料載入成功' + textStatus, icon: 'success', position: 'toast-top-center', hideAfter: 6000, });
+							$("#jsGrid").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: true, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: true,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+														callback(value.length)
+													}
+
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+															callback(item[key].toString().indexOf(value))
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+															callback(item[key].indexOf(value))
+														}
+													}
+
+												}
+
+											}
+											return true;
+										});
+										return result;
+									},
+
+								},
+
+								fields: [
+
+									{ title: "年度", name: "year", type: "text", width: 80, validate: "required" },
+									{ title: "月度", name: "month", type: "text", width: 80 },
+									{ title: "通報單位", name: "unitName", type: "text" },
+									{
+										type: "control",
+										name: "id",
+										width: 200,
+										editButton: false,
+										deleteButton: false,
+										modeSwitchButton: false,
+										filtercss: "display:none;",
+										itemTemplate: function (value, item) {
+											var $result = jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments);
+
+											if (menuData.functionArray.indexOf('edit') < 0) {
+												var $customEditButton = ""
+											} else {
+												var $customEditButton = $("<button>").attr("type", "button").text("編輯").addClass("btn btn-primary")
+													.on("click", function () {
+
+														if (menuData.functionArray.indexOf('edit') < 0) {
+															showAlert('無編輯權限', '您沒有當前通報的編輯權限。', '')
+														} else {
+															showEditDialog("編輯", item.year, item.month,item.unitId);
+														}
+													})
+											}
+											var $customLookButton = $("<button>").attr("type", "button").text("查看").addClass("btn btn-success")
+												.on("click", function () {
+													showEditDialog("查看", item.year, item.month,item.unitId);
+												});
+											return $("<div>").append($customEditButton).append($customLookButton);
+										}, headerTemplate: function () {
+											if (menuData.functionArray.indexOf('add') < 0) {
+												return "操作";
+											} else {
+												return $("<button>").attr("type", "button").text("新增").addClass("btn btn-primary")
+													.on("click", function () {
+														$.ajax({
+															url: "/" + CONFIG.SYSTEM_NAME + '/occupationalMonthlyNotification/api/check',
+															contentType: "application/json;charset=utf-8", // 因為上面是JSON
+															async: false,
+															cache: false,
+															type: "GET",
+															success: function (data, textStatus) {
+																console.log(data.data)
+																if (data.data == 0 || data.data == "0") {
+																	showEditDialog("新增", year, month,unitId);
+																} else {
+																	shmsToast((data.data ? "已上傳紀錄" : "已上傳紀錄") + "，目前無法新增！");
+																}
+															}
+														});
+													});
+											}
+
+										}
+									}
+
+								],
+								rowClick: function (args) {
+								},
+								deleteConfirm: function (item) {
+									return "公告 \"" + item.announcementName + "\" 確認刪除?";
+								},
+
+
+							});
+
+							//依時間排序
+							$("#jsGrid").jsGrid("sort", "safetyTime", "desc");
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			//獲取按鈕權限
+			get_menuData()
+			function get_menuData() {
+				var menuid = 84;
+
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/buttonRole/api/getByMenuId?menuId=' + menuid,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON資料
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							var menuData = data.data
+							get_list(menuData, $('#startDate').val());
+							console.log(menuData.functionArray)
+							console.log(menuData)
+							// 		<button type="button" id='submit_o' class="btn btn-warning  my-2 pressing_hide tempButton">暫存</button>
+							// <button type="button" id='submit_s' class="btn btn-primary  my-2 pressing_hide sendButton">儲存送出</button>
+							// <button type="button" id="checkBtn" class="btn btn-success  my-2 pressing_hide reviewButton">審核通過</button>
+							// <button type="button" id="return" class="btn btn-danger  my-2 pressing_hide returnButton">退件</button>
+							// <button type="button" id='submit_p' class="btn btn-primary  my-2 pressing_show sendButton">儲存送出</button>
+							// <button type="button" id="printBtn1" class="btn btn-secondary  my-2 pressing_show printButton">列印</button>
+							// <button type="button" id="printBtn" class="btn btn-secondary  my-2 pressing_hide printButton">列印</button>
+							if (menuData.functionArray.indexOf('export') < 0) {
+								$('#download_btn').hide()
+							}
+							if (menuData.functionArray.indexOf('review') < 0) {
+								$('.reviewButton').hide()
+							}
+							if (menuData.functionArray.indexOf('temp') < 0) {
+								$('.tempButton').hide()
+							}
+							if (menuData.functionArray.indexOf('reject') < 0) {
+								$('.returnButton').hide()
+							}
+							if (menuData.functionArray.indexOf('temp') < 0) {
+								$('.tempButton').hide()
+							}
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			$(".input_file").on("change", "input[type='file']", function () {
+				var filePath = $(this).val();
+
+				$(".fileerrorTip").html("").hide();
+				var arr = filePath.split('\\');
+				var fileName = arr[arr.length - 1];
+				$(this).parent().find(".showFileName").html(fileName);
+
+			});
+			$("#file1").change(function () {
+				var v = $(this).val();
+				var reader = new FileReader();
+				reader.readAsDataURL(this.files[0]);
+				reader.onload = function (e) {
+					$('#file1_base64').val(e.target.result);
+				};
+			});
+
+			$('#download_btn').click(function () {
+				download($(".year_s").html(),$(".mouth_s").html())
+			})
+			function download(yeard,monthd) {
+				showAlert('檔案下載', '檔案正在下載中，請稍候。', '')
+				window.location.href = "/" + CONFIG.SYSTEM_NAME + '/occupationalMonthlyNotification/api/export?year=' + yeard + '&month=' + monthd + '&unitId=' + $('#unitId').val()
+				console.log('/occupationalMonthlyNotification/api/export?year=' + yeard + '&month=' + monthd + '&unitId=' + $('#unitId').val())
+			}
+
+			get_unitList()
+			function get_unitList() {
+
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/user/api/getInitData',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							alert("沒有權限");
+						} else {
+
+							var data = data.loginUser
+							console.log(data)
+							var unitId = data.unitId
+							$('#unitId').val(unitId)
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+
+			function load(years, months,unitid) {
+				console.log('/occupationalMonthlyNotification/api/getByMonth?year=' + years + '&month=' + months + '&unitId=' + unitid)
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/occupationalMonthlyNotification/api/getByMonth?year=' + years + '&month=' + months + '&unitId=' + unitid,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						console.log(data)
+						if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+
+						if (data && data == 5000) {
+							alert("沒有權限");
+						} if (data.code == 1001) {
+							showAlert('無報表', '當前無每月通報表。', '')
+
+						} else {
+							console.log(data)
+							var data = data.data
+							$("#load_table *[name='mngManTotalNum']").val(data.mngManTotalNum);
+							$("#load_table *[name='mngWomanTotalNum']").val(data.mngWomanTotalNum);
+							$("#load_table *[name='mngManOverNum']").val(data.mngManOverNum);
+							$("#load_table *[name='mngManOverHour']").val(data.mngManOverHour);
+							$("#load_table *[name='mngManRemark']").val(data.mngManRemark);
+							$("#load_table *[name='mngWomanOverNum']").val(data.mngWomanOverNum);
+							$("#load_table *[name='mngWomanOverHour']").val(data.mngWomanOverHour);
+							$("#load_table *[name='mngWomanRemark']").val(data.mngWomanRemark);
+							$("#load_table *[name='normalManTotalNum']").val(data.normalManTotalNum);
+							$("#load_table *[name='normalManOverNum']").val(data.normalManOverNum);
+							$("#load_table *[name='normalManOverHour']").val(data.normalManOverHour);
+							$("#load_table *[name='normalManRemark']").val(data.normalManRemark);
+							$("#load_table *[name='normalWomanTotalNum']").val(data.normalWomanTotalNum);
+							$("#load_table *[name='normalWomanOverNum']").val(data.normalWomanOverNum);
+							$("#load_table *[name='normalWomanOverHour']").val(data.normalWomanOverHour);
+							$("#load_table *[name='normalWomanRemark']").val(data.normalWomanRemark);
+							$("#load_table *[name='totalManOverNum']").val(data.totalManOverNum);
+							$("#load_table *[name='manNum']").val(data.manNum);
+							$("#load_table *[name='totalManOverHour']").val(data.totalManOverHour);
+							$("#load_table *[name='totalManRemark']").val(data.totalManRemark);
+							$("#load_table *[name='womanNum']").val(data.womanNum);
+							$("#load_table *[name='totalWomanOverNum']").val(data.totalWomanOverNum);
+							$("#load_table *[name='totalWomanOverHour']").val(data.totalWomanOverHour)
+							$("#load_table *[name='totalWomanRemark']").val(data.totalWomanRemark);
+							$("#load_table *[name='workNum']").val(data.workNum);
+							$("#id").val(data.id)
+							$(".year_s").html(years)
+							$(".mouth_s").html(months)
+							$('.totalNum').html(parseInt(data.totalNum))
+							$('.manNum').html(parseInt(data.manNum))
+							$('.womanNum').html(parseInt(data.womanNum))
+							$('.ToalworkNum').html(parseInt(data.workNum) * parseInt(data.totalNum))
+							$('.workNum').html(data.workNum)
+							$('.totalOverHour').html(parseInt(data.totalWomanOverHour) + parseInt(data.womanNum))
+							$('.totalHour').html(parseInt(data.workNum) * parseInt(data.totalNum) * 8 + parseInt(data.totalWomanOverHour) + parseInt(data.womanNum))
+							console.log(parseInt(data.workNum) * parseInt(data.totalNum))
+
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+
+			}
+			function validateForm(ID, successCallback, exclude = "") {
+  // 選擇需要驗證的元素，並排除指定元素
+  const $elements = $(`${ID} td select, ${ID} td input[type="text"], ${ID} td textarea`).not(exclude);
+  let allFilled = true;
+
+  // 遍歷檢查元素（已自動排除指定元素）
+  $elements.each(function() {
+    if (!$(this).is(':disabled') && $.trim($(this).val()) === '') {
+      allFilled = false;
+      return false; // 中止遍歷
+    }
+  });
+
+  // 根據結果執行回調或提示
+  allFilled ? successCallback() : showAlert('提示', '除了備註欄位外，其餘欄位都為必填，請完整填寫！', '');
+}
+function submit_data(){
+var saveItem = {
+					id: $("#id").val(),
+					year: $(".year_s").html(),
+					month: $(".mouth_s").html(),
+					mngManTotalNum: $("#load_table *[name='mngManTotalNum']").val(),
+					mngWomanTotalNum: $("#load_table *[name='mngWomanTotalNum']").val(),
+					mngManOverNum: $("#load_table *[name='mngManOverNum']").val(),
+					mngManOverHour: $("#load_table *[name='mngManOverHour']").val(),
+					mngManRemark: $("#load_table *[name='mngManRemark']").val(),
+					mngWomanOverNum: $("#load_table *[name='mngWomanOverNum']").val(),
+					mngWomanOverHour: $("#load_table *[name='mngWomanOverHour']").val(),
+					mngWomanRemark: $("#load_table *[name='mngWomanRemark']").val(),
+					normalManTotalNum: $("#load_table *[name='normalManTotalNum']").val(),
+					normalManOverNum: $("#load_table *[name='normalManOverNum']").val(),
+					normalManOverHour: $("#load_table *[name='normalManOverHour']").val(),
+					normalManRemark: $("#load_table *[name='normalManRemark']").val(),
+					normalWomanTotalNum: $("#load_table *[name='normalWomanTotalNum']").val(),
+					normalWomanOverNum: $("#load_table *[name='normalWomanOverNum']").val(),
+					normalWomanOverHour: $("#load_table *[name='normalWomanOverHour']").val(),
+					normalWomanRemark: $("#load_table *[name='normalWomanRemark']").val(),
+					totalManOverNum: $("#load_table *[name='totalManOverNum']").val(),
+					manNum: $("#load_table *[name='manNum']").val(),
+					totalManOverHour: $("#load_table *[name='totalManOverHour']").val(),
+					totalManRemark: $("#load_table *[name='totalManRemark']").val(),
+					womanNum: $("#load_table *[name='womanNum']").val(),
+					totalWomanOverNum: $("#load_table *[name='totalWomanOverNum']").val(),
+					totalWomanOverHour: $("#load_table *[name='totalWomanOverHour']").val(),
+					totalWomanRemark: $("#load_table *[name='totalWomanRemark']").val(),
+					workNum: $("#load_table *[name='workNum']").val(),
+					totalNum: parseInt($("#load_table *[name='manNum']").val()) + parseInt($("#load_table *[name='womanNum']").val()),
+
+				}
+				var saveItem1 = {
+		
+					year: $(".year_s").html(),
+					month: $(".mouth_s").html(),
+					mngManTotalNum: $("#load_table *[name='mngManTotalNum']").val(),
+					mngWomanTotalNum: $("#load_table *[name='mngWomanTotalNum']").val(),
+					mngManOverNum: $("#load_table *[name='mngManOverNum']").val(),
+					mngManOverHour: $("#load_table *[name='mngManOverHour']").val(),
+					mngManRemark: $("#load_table *[name='mngManRemark']").val(),
+					mngWomanOverNum: $("#load_table *[name='mngWomanOverNum']").val(),
+					mngWomanOverHour: $("#load_table *[name='mngWomanOverHour']").val(),
+					mngWomanRemark: $("#load_table *[name='mngWomanRemark']").val(),
+					normalManTotalNum: $("#load_table *[name='normalManTotalNum']").val(),
+					normalManOverNum: $("#load_table *[name='normalManOverNum']").val(),
+					normalManOverHour: $("#load_table *[name='normalManOverHour']").val(),
+					normalManRemark: $("#load_table *[name='normalManRemark']").val(),
+					normalWomanTotalNum: $("#load_table *[name='normalWomanTotalNum']").val(),
+					normalWomanOverNum: $("#load_table *[name='normalWomanOverNum']").val(),
+					normalWomanOverHour: $("#load_table *[name='normalWomanOverHour']").val(),
+					normalWomanRemark: $("#load_table *[name='normalWomanRemark']").val(),
+					totalManOverNum: $("#load_table *[name='totalManOverNum']").val(),
+					manNum: $("#load_table *[name='manNum']").val(),
+					totalManOverHour: $("#load_table *[name='totalManOverHour']").val(),
+					totalManRemark: $("#load_table *[name='totalManRemark']").val(),
+					womanNum: $("#load_table *[name='womanNum']").val(),
+					totalWomanOverNum: $("#load_table *[name='totalWomanOverNum']").val(),
+					totalWomanOverHour: $("#load_table *[name='totalWomanOverHour']").val(),
+					totalWomanRemark: $("#load_table *[name='totalWomanRemark']").val(),
+					workNum: $("#load_table *[name='workNum']").val(),
+					totalNum: parseInt($("#load_table *[name='manNum']").val()) + parseInt($("#load_table *[name='womanNum']").val()),
+
+				}
+				console.log(saveItem)
+				inserthistory(saveItem,saveItem1)
+}
+			$('#submitBtn').click(function (e) {
+e.preventDefault(); // 防止表單提交
+validateForm('#inputForm', submit_data, '.normalManRemark');
+			})
+			//紀錄送出
+			function inserthistory(data,data1) {
+				if($("#id").val()==''){
+					url='occupationalMonthlyNotification/api/save'
+					var datas=data1
+					
+				}else{
+					url='occupationalMonthlyNotification/api/update'
+					var datas=data
+				}
+				console.log(datas)
+				$.ajax({
+					data: JSON.stringify(datas),
+					url: "/" + CONFIG.SYSTEM_NAME + '/'+url,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						console.log(data)
+						if (data && data == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+
+							showAlert('更新每月周報', '更新每月周報成功', '')
+							$('.month2').show()
+							$('.month1').show()
+							load($(".year_s").html(),$(".mouth_s").html(),$("#unitId").html());
+							$('#download_btn').show()
+							$('#download_btn').focus()
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						//console.log(data);
+					},
+				});
+			};
+			$('#add').click(function () {
+				showFileDialog('匯入檔案', '')
+			})
+			$("#submitBtn_x").click(function () {
+				var saveItem = {
+					file: $('#file1_base64').val(),
+				}
+				insert(saveItem)
+			})
+			function insert(data) {
+				console.log(JSON.stringify(data))
+				$.ajax({
+					data: JSON.stringify(data),
+					url: "/" + CONFIG.SYSTEM_NAME + '/occupationalMonthlyNotification/api/import',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} if (data && data.code == 1000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('提示', '檢查日期、TCB帳號、身分證字號不能爲空', '')
+						} if (data && data.code == 2000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('提示', '請選擇檔後匯入', '')
+						} else {
+							showAlert('匯入成功', '匯入成功', '')
+							console.log(data);
+							$("#tableDialog").dialog("close");
+							bodyHref("/content/disasters/DIsasters_mouth.html");
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+			var showFileDialog = function (dialogType, item) {
+				$("#showFileDialog").dialog("option", "title", dialogType + "").dialog("open");
+			};
+			$("#showFileDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 550,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+					// bodyHref("/content/disasters/DIsasters_mouth.html");
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+			var showEditDialog = function (dialogType, itemyear, itemmonth,itemunitId) {
+				if (dialogType == '新增') {
+					$('.year_s').html(year)
+					$('.mouth_s').html(month)
+				}
+				if (dialogType == '編輯') {
+					load(itemyear, itemmonth,itemunitId)
+				}
+				if (dialogType == '查看') {
+					load(itemyear, itemmonth,itemunitId)
+					$('.month1').hide();
+					$('.month2').show();
+				}
+
+				$("#showEditDialog").dialog("option", "title", dialogType + "").dialog("open");
+			};
+			$("#showEditDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 950,
+				height:650,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+					bodyHref("/content/disasters/DIsasters_mouth.html");
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+			function Processing(id) {
+				bodyHref("/content/disasters/DIsasters_mouth.html");
+			}
+
+		});
+	});
+</script>

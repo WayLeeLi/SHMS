@@ -1,0 +1,298 @@
+﻿<div>
+	<h2 style="text-align: center;">平安通報事件</h2>
+	<br>
+	<table style="border-collapse: collapse; width: 100%;display:none; " border="1">
+	  <tbody>
+	    <tr>
+	      <td style="width: 15%;">單位名稱</td>
+	      <td style="width: 18%;"><div id="unitName"></div></td>
+	      <td style="width: 20%;">作業人員</td>
+	      <td style="width: 28%;"><div id="workMan"></div></td>
+	      <td style="width: 20%;"><div id="userName"></div></td>
+	    </tr>
+	  </tbody>
+	</table>
+	<div id="jsGrid" >
+	</div>
+</div>
+
+<div class="container-fluid" id="templateContainer">
+	
+</div>
+<div class="row justify-content-end" id="templateRow" style="display:none;">
+		<div class ="col-4 table-dark text-white">@TITLE@</div>
+		<div class ="col-4">@CONTENT@</div>
+	</div>
+
+<div id="tableDialog" class="container-fluid" style="display:none;">
+	<div class="row">
+		<div class="col-4 text-right table-secondary">通報者</div>
+		<div class="col-8 text-left border-bottom" id="dlgEditId"></div>
+	</div>
+	<div class="row">
+		<div class="col-4 text-right table-secondary">通報時間</div>
+		<div class="col-8 text-left border-bottom" id="dlgEditTime"></div>
+	</div>
+	<div class="row">
+		<div class="col-4 text-right table-secondary">是否平安</div>
+		<div class="col-8 text-left border-bottom" id="dlgIsSafe"></div>
+	</div>
+	<div class="row">
+		<div class="col-4 text-right table-secondary">影響類別</div>
+		<div class="col-8 text-left border-bottom" id="dlgEffectType"></div>
+	</div>
+	<div class="row">
+		<div class="col-4 text-right table-secondary">行舍產權</div>
+		<div class="col-8 text-left float-left border-bottom" id="dlgPropertyType"></div>
+	</div>
+	<div class="row">
+		<div class="col-4 text-right table-secondary">營業狀況</div>
+		<div class="col-8 text-left border-bottom" id="dlgStatusType"></div>
+	</div>
+	<div class="row">
+		<div class="col-4 text-right table-secondary">簡要說明重要案情</div>
+		<div class="col-8 text-left overflow-auto border-bottom" style="height:150px;max-height:150px;" id="dlgMemo"></div>
+	</div>
+	
+	<div class="row d-none">
+		<div class="col-4 text-right table-secondary">是否審核</div>
+		<div class="col-8 text-left" id="dlgReviewTime"></div>
+	</div>
+	
+	<div class="row m-1">
+		<div class="col-12 text-center">
+			<button class="btn btn-primary" id="returnAgain">重新通報</button>
+		</div>
+	</div>
+</div>
+
+<script>
+//需要用的JS
+require(["jquery", "jsgrid"], function (jquery, jsgrid) {
+	//頁面讀取後執行
+	$(document).ready(function(){
+	    $.ajax({
+		    url: "/"+CONFIG.SYSTEM_NAME + '/eventSafeNotification/api/getEventSafeNotificationAll',
+		    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    async: false,
+		    cache: false,
+		    type: "GET",
+		    success: function(data, textStatus){    	
+		    	
+		    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    		 alert("沒有權限");
+		    	 }else{
+		    		//第一行資訊
+		    			initPage(data);
+			    	 buildTable(data);
+			    	 //依時間排序
+			    	 $("#jsGrid").jsGrid("sort", "eventKey","desc");
+		    	 }
+		    	 
+		    },
+		    error: function (data, textStatus, errorThrown) {
+		        console.log(data);
+		    },
+		});
+    
+	});  
+	
+	
+	function initPage(data){
+		//第一行資訊
+		if(data.unit){
+			$("#unitName").text(data.unit.unitName);	
+		}
+		if(data.loginUser){		
+			$("#userName").text(data.loginUser.name);
+		}
+		$("#workMan").text(data.workMan);
+	}
+	
+	function buildTable(data){
+		let parentGridFields =[
+            { title:"事件編號", name: "eventKey", type: "text", width: 'auto' },
+            { title:"事件名稱", name: "eventName", type: "text", width:  'auto' },
+            { title:"通報", name: "", type: "text", width:  'auto' }
+        ];
+		let childGridFiedls = [
+			{ title: '', name: '', type: 'text',headercss: "table-primary" },
+      	  	{ title: '回報時間', name: 'returnTime', type: 'text' },
+      		{ title: '回報者', name: 'createId', type: 'text' },
+    	];
+		$("#jsGrid").jsGrid({
+	        width: "100%",
+	        height: "auto",
+	        heading: true,
+		    filtering: false,
+		    inserting: false,
+		    editing: false,
+		    selecting: true,
+		    sorting: true,
+		    paging: true,
+		    pageLoading: false,
+		    pageSize: 10,
+	 
+	        data: data.eventSafeNotificationList,
+	 
+	        fields: parentGridFields,
+	        rowClick: function(args) {
+	        	
+            },
+            rowRenderer: function(item, itemIndex){
+            	var row = $("<tr>");
+                var divContainer = $("<div>").addClass("container-fluid");
+                if(item.eventSafeNotificationReturn == undefined){
+                	divContainer.append($("<div>").addClass("row justify-content-center")
+                			.append($("<button>").addClass("btn btn-primary text-center").html("新增通報"))
+                			.on("click", function(){
+                		doReport(item)
+                	}));
+                }
+                else
+                {
+                	if(item.eventSafeNotificationReturn.isSend == "0"){
+                		divContainer.append($("<div>").addClass("row justify-content-center")
+                    			.append($("<button>").addClass("btn btn-dark text-center").html("被退回，檢視內容"))
+                    			.on("click", function(){
+                    				showDetailsDialog(item, data);
+                    	}));
+                	}
+                	else if(item.eventSafeNotificationReturn.isSend == "1" && item.eventSafeNotificationReturn.reviewTime == undefined){
+                		divContainer.append($("<div>").addClass("row justify-content-center")
+                    			.append($("<button>").addClass("btn btn-info text-center").html("待簽核，檢視內容"))
+                    			.on("click", function(){
+                    				showDetailsDialog(item, data);
+                    	}));
+                	}
+                	else{
+                		divContainer.append($("<div>").addClass("row justify-content-center")
+                    			.append($("<button>").addClass("btn btn-warning text-center").html("檢視內容"))
+                    			.on("click", function(){
+                    				showDetailsDialog(item, data);
+                    	}));
+                	}
+                }
+                let childRow = $("<tr>").hide();
+                let childCol = $("<td>").addClass("jsgrid-cell");
+                //childRow.append(childCol);
+                childCol.append(divContainer);
+                
+                items = Object.keys(item);
+                $.map(parentGridFields, function(field, index){
+                	return field.name ? field.name : null ;
+                }).forEach(function(key){
+                	var cell = $("<td>").addClass("jsgrid-cell").append(item[key]);
+                    row.append(cell)
+                });
+                
+                row.click(function() {
+                  //childRow.toggle();
+                });
+                
+                return row.append(childCol);
+            },
+	    });
+	}
+	
+	function doReport(item){
+    	if(!$("#eventId").val()){
+    		var iframe = document.createElement('input');
+    		iframe.setAttribute('type', 'hidden');
+    		iframe.setAttribute('id', 'eventId');
+    		iframe.setAttribute('value', item.id);
+    		$("#bodyContent").after(iframe);
+    	}else{
+    		$("#eventId").val(item.id);
+    	}
+    	
+    	if(item.eventSafeNotificationReturn){
+    		if(!$("#returnId").val()){
+        		var iframe = document.createElement('input');
+        		iframe.setAttribute('type', 'hidden');
+        		iframe.setAttribute('id', 'returnId');
+        		iframe.setAttribute('value', item.eventSafeNotificationReturn.id);
+        		$("#bodyContent").after(iframe);
+        	}else{
+        		$("#returnId").val(item.eventSafeNotificationReturn.id);
+        	}
+    	}
+    	else{
+    		$("#returnId").val("");
+    	}
+
+    	$("#tableDialog").dialog("close");
+    	$.ajax({
+		    url: "/" +CONFIG.SYSTEM_NAME + "/content/eventSafeNotification/eventSafeNotificationReturn.html",
+		    cache: false,
+		    dataType: "html",
+		    success: function(data) {
+		    	$("#bodyContent").html(data);
+		    }
+		});
+	}
+	
+	function getUserName(data, userId){
+	    var	user;
+		$.each(data, function( index, item ) {
+			if(item.rocId == userId){
+				user = item;
+				return false; 
+			}
+		});
+		return user ? user.name : "";
+	}
+	
+	function getConfigName(data, value){
+	    var ret;
+		$.each(data, function( index, item ) {
+			if(item.cfgValue == value){
+				ret = item;
+				return false; 
+			}
+		});
+		return ret ? ret.cfgName : "";
+	}
+	
+	//**dialog
+	
+	var showDetailsDialog = function(item, data) {
+		let dm = item.eventSafeNotificationReturn;
+			$("#dlgEditTime").html("").html(dm.editTime ? dm.editTime : dm.createTime);
+            $("#dlgEditId").html("").html(dm.createId ?  getUserName(data.userList, dm.createId) : (dm.editId ? getUserName(data.userList, dm.eidtId) : ""));
+            $("#dlgEffectType").html("").html(dm.effectType);
+            $("#dlgIsSafe").html("").html(CONFIG.IS_SAFE[dm.isSafe]);
+            $("#dlgMemo").html("").html(dm.memo);
+            $("#dlgReviewId").html("").html( dm.reviewId ? getUserName(data.userList, dm.reviewId) : "");
+            //$("#dlgReviewTime").html("").html(dm.reviewTime ? "是" : "否");
+            $("#dlgPropertyType").html("").html(getConfigName(data.propertyTypeList, dm.propertyType));
+            $("#dlgStatusType").html("").html(getConfigName(data.propertyTypeList, dm.statusType));
+            
+            $("#returnAgain").off("click").on("click", function(){
+        		if(confirm("注意 : 重新通報將會覆蓋之前的資料!")){
+        			doReport(item);
+        			}
+        	});
+            
+            $("#tableDialog").dialog("open");
+        };
+        $("#tableDialog").dialog({
+			 title: "回報資料",
+	         autoOpen: false,
+	         width: 550,
+	         modal: true,
+	         close: function() {
+	             $('.ui-widget-overlay').removeClass('custom-overlay');
+	         },
+		 	 open: function (event, ui)
+	         {
+		 		$('.ui-widget-overlay').addClass('custom-overlay');
+		 		customCloseBtn();
+	         },
+	         classes: dlgSetting.classes,
+		     show: dlgSetting.show,
+			 hide: dlgSetting.hide
+	     });
+	//end
+});
+</script>

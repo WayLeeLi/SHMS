@@ -1,0 +1,246 @@
+﻿
+<div>
+	<div>
+		<h4>待簽核平安通報</h4>
+		<table style="border-collapse: collapse; width: 100%; height: 108px;" border="1">
+		  <thead>
+		    <tr>
+		    	<td width="90px">事件編號</td>
+		      	<td width="150px">事件名稱</td>
+		      	<td width="75px">單位名稱</td>
+		      	<td width="165px">開始通報時間</td>
+		      	<td width="75px">是否平安</td>
+		      	<td width="200px">影響類別</td>
+		      	<td width="250px">簡要說明重要案情</td>
+		      	<td width="55px">建立者</td>
+		      	<td width="75px">執行動作</td>
+		    </tr>
+		  </thead>
+		  <tbody id="tbody">
+		  
+		  </tbody>
+		</table>
+	</div>
+</div>
+
+<style>
+/* 讓表格內容換行 */
+.jsgrid-table{
+		word-wrap:break-word;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require([ "jquery", "jquery_validate", "jsgrid", "jquery_ui" ], function(
+			jquery, jquery_validate, jsgrid, jquery_ui) {
+		
+		var tempData;
+		
+		//頁面讀取後執行
+		$(document).ready(function() {
+			
+			$.ajax({
+ 			    url: "/"+CONFIG.SYSTEM_NAME + '/eventSafeNotificationReview/api/getReviewData',
+ 			   	contentType: "application/json;charset=utf-8", // 因為上面是JSON
+ 			    async: false,
+ 			    cache: false,
+ 			    type: "GET",
+ 			    success: function(data, textStatus){   
+ 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    		 alert("沒有權限");
+			    	 }else{
+			    		 createTable(data);
+			    	 }
+ 			    },
+ 			    error: function (data, textStatus, errorThrown) {
+ 			        console.log(data);
+ 			    },
+ 			});
+			
+		});
+	});
+	
+	
+	function createTable(data){
+		$.each(data.eventSafeNotificationReturnCreateIdList, function( index, item ) {
+			let event = getEvent(data.eventSafeNotificationList, item.eventId);
+			if(!event) return true;
+			var tr = $('<tr/>');
+			tr.value = item;
+			var td = $('<td/>');	
+			tr.addClass(index % 2 == 0 ? "" : "even");
+			tr.append(td.clone().html( event.eventKey ));
+			tr.append(td.clone().html( event.eventName ));
+			tr.append(td.clone().html( data.unit.unitName) );
+			tr.append(td.clone().html( item.returnTime) );
+			if(item.isSafe){
+				tr.append(td.clone().html("是") );	
+			}else{
+				tr.append(td.clone().html("否") );
+			}
+			var effectType;
+			if(item.effectType){
+				var effectTypeArray = item.effectType.split(";");				
+				$.each(effectTypeArray, function(index, value){
+					if(effectType){
+						effectType = effectType + "<br>" + value;
+					}else{
+						effectType = value;
+					}
+				});
+			}			
+			tr.append(td.clone().html( effectType) );
+			tr.append(td.clone().html( item.memo) );
+			tr.append(td.clone().html( getUserName(data.userList, item.createId)) );			
+			var cancelBtn = $('<button/>', {
+			        text: "取消", 
+			        id: 'btn_cancel_' + item.id,
+			        css: { 'margin': '5px'},
+			        class:'btn btn-danger',
+			        click: function () { 
+			        	if(confirm("確認取消?")){
+			        		cancelBtnClick(item.id);
+			        	}			        	
+			        }
+			    });
+			tr.append(td.clone().append(cancelBtn) );
+			$("#tbody").append(tr);
+		});
+		$.each(data.eventSafeNotificationReturnReviewerList, function( index, item ) {
+			let event = getEvent(data.eventSafeNotificationList, item.eventId);
+			if(!event) return true;
+			var tr = $('<tr/>');
+			tr.value = item;
+			var td = $('<td/>');		
+			tr.addClass(index % 2 == 0 ? "" : "even");
+			tr.append(td.clone().html(event.eventKey ));
+			tr.append(td.clone().html(event.eventName ));
+			tr.append(td.clone().html( data.unit.unitName) );
+			tr.append(td.clone().html(convert2YMD(new Date(item.returnTime))));
+			if(item.isSafe){
+				tr.append(td.clone().html("是") );	
+			}else{
+				tr.append(td.clone().html("否") );
+			}
+			var effectType;
+			if(item.effectType){
+				var effectTypeArray = item.effectType.split(";");				
+				$.each(effectTypeArray, function(index, value){
+					if(effectType){
+						effectType = effectType + "<br>" + value;
+					}else{
+						effectType = value;
+					}
+				});
+			}			
+			tr.append(td.clone().html( effectType) );
+			tr.append(td.clone().html( item.memo) );
+			tr.append(td.clone().html( getUserName(data.userList, item.createId)) );
+			var submitBtn = $('<button/>', {
+		        text: "核准", 
+		        id: 'btn_submit_' + item.id,
+		        class:'btn btn-success',
+		        css: { 'margin': '5px'},
+		        click: function () { 
+		        	if(confirm("確認核准?")){
+		        		submitBtnClick(item.id);
+		        	}	
+		        	
+		        }
+		    });
+			var cancelBtn = $('<button/>', {
+		        text: "退回", //set text 1 to 10
+		        id: 'btn_cancel_' + item.id,
+		        class:'btn btn-danger',
+		        css: { 'margin': '5px'},
+		        click: function () { 
+		        	if(confirm("確認退回?")){
+		        		cancelBtnClick(item.id);
+		        	}	
+		        }
+		    });
+			tr.append(td.clone().append(submitBtn).append(cancelBtn) );
+			$("#tbody").append(tr);
+		});
+	}
+	
+	function getUserName(data, userId){
+	    var	user;
+		$.each(data, function( index, item ) {
+			if(item.rocId == userId){
+				user = item;
+				return false; 
+			}
+		});
+		return user ? user.name : "";
+	}
+	
+	function getEvent(data, eventId){
+	    var	event;
+		$.each(data, function( index, item ) {
+			if(item.id == eventId){
+				event = item;
+				return false; 
+			}
+		});
+		return event;
+	}
+	
+	function submitBtnClick(id){
+		$.ajax({
+			    url: "/"+CONFIG.SYSTEM_NAME + '/eventSafeNotificationReview/api/submitReview',
+			    data: '{"ID":' + id + '}',
+			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    async: false,
+			    cache: false,
+			    type: "POST",
+			    success: function(data, textStatus){   
+			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    		 alert("沒有權限");
+		    	 }else{
+		    		 if(data.result == "success"){
+		    			 alert("審核成功");
+		    			 loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + "/content/eventSafeNotification/eventSafeNotificationReview.html");
+		    			 //刷新MENU 不然審核數不對
+		    			 loadNoCache($("#menuContent"), "/" +CONFIG.SYSTEM_NAME + $("#menuContent").data("src"));
+		    		 }else if(data.errorMsg){
+		    			 alert(data.errorMsg);
+		    		 }
+		    	 }
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+			    },
+			});
+	}
+	
+	function cancelBtnClick(id){
+		$.ajax({
+		    url: "/"+CONFIG.SYSTEM_NAME + '/eventSafeNotificationReview/api/rejectReview',
+		    data: '{"ID":' + id + '}',
+		    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    async: false,
+		    cache: false,
+		    type: "POST",
+		    success: function(data, textStatus){   
+		    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+	    		 alert("沒有權限");
+	    	 }else{
+	    		 if(data.result == "success"){
+	    			 alert("退回成功");
+	    			 loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + "/content/eventSafeNotification/eventSafeNotificationReview.html");
+	    			 //刷新MENU 不然審核數不對
+	    			 loadNoCache($("#menuContent"), "/" +CONFIG.SYSTEM_NAME + $("#menuContent").data("src"));
+	    		 }else if(data.errorMsg){
+	    			 alert(data.errorMsg);
+	    		 }
+	    	 }
+		    },
+		    error: function (data, textStatus, errorThrown) {
+		        console.log(data);
+		    },
+		});
+	}
+	
+</script>

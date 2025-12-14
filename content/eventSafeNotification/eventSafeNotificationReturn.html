@@ -1,0 +1,572 @@
+﻿<div id="printDiv">
+	<h2 style="text-align: center;" class="d-print-none" id="editTitle">平安通報資料維護</h2>
+	<h2 style="text-align: center;" class="d-print-block d-none" id="printTitle"></h2>
+	<form id="inputForm">
+		<table style="border-collapse: collapse; width: 100%; height: 36px;" border="1">
+		  <tbody>
+		    <tr style="height: 18px;">
+		      <td style="width: 25.7441%; height: 18px;" >單位名稱</td>
+		      <td style="width: 15.4308%; height: 18px;"><div id="unitName"></div></td>
+		      <td style="width: 14.9087%; height: 18px;" >作業人員</td>
+		      <!--  <td style="width: 24.0469%; height: 18px;"><div id="workMan"></div></td>-->
+		      <td style="width: 43.8695%; height: 18px;"><div id="userName"></div></td>
+		    </tr>
+		    <tr>
+		      <td style="width: 25.7441%;" class="table-header">開始通報時間<br>(實際通報時間以送出通報當下為主)</td>
+		      <td style="height: 18px;" colspan="4"><div id="now"></div></td>
+		    </tr>
+		    <tr>
+		      <td style="width: 25.7441%;" class="table-header">事件編號</td>
+		      <td colspan="4"><div id="eventKey"></div></td>
+		    </tr>
+		    <tr>
+		      <td style="width: 25.7441%;" class="table-header">事件名稱</td>
+		      <td colspan="4"><div id="eventName"></div></td>
+		    </tr>
+		    <tr>
+		      <td style="width: 25.7441%;" class="table-header">事件說明</td>
+		      <td colspan="4"><div id="eventDesc"></div></td>
+		    </tr>
+		    <tr>
+		      	<td style="width: 25.7441%;" class="table-header">是否平安</td>
+		      	<td colspan="4">
+		      		<div class="custom-control custom-radio custom-control-inline">
+							 <input id="isSafe_1" name="isSafe" type="radio" value="1" class="custom-control-input" checked/>
+							<label class="custom-control-label" for="isSafe_1">是</label>
+					</div>
+					<div class="custom-control custom-radio custom-control-inline">
+							 <input id="isSafe_0" name="isSafe" type="radio" value="0" class="custom-control-input"/>
+							<label class="custom-control-label" for="isSafe_0">否</label>
+					</div>
+				</td>
+		    </tr>
+		    <tr>
+		      <td style="width: 25.7441%;" class="table-header">影響類別</td>
+		      <td colspan="4" id="effectTypeTd" name="effectTypeTd"></td>
+		    </tr>
+		    <tr>
+		      <td style="width: 25.7441%;" class="table-header">行舍產權</td>
+		      <td colspan="4" id="propertyTypeTd" name="propertyTypeTd"></td>
+		    </tr>
+		    <tr>
+		      <td style="width: 25.7441%;" class="table-header">營業狀況</td>
+		      <td colspan="4" id="statusTypeTd" name="statusTypeTd"></td>
+		    </tr>
+		    <tr>
+		      <td style="width: 25.7441%;" class="table-header">簡要說明重要案情<br>(200中文字以內)</td>
+		      <td colspan="4">
+		      	<textarea id="memo" name="memo" cols="50" rows="5" disabled></textarea>
+		      </td>
+		    </tr>
+			<tr>
+				<td style="width: 25.7441%;" class="table-header">檔案上傳<br>格式(JPEG、PNG、JPG、PDF等)</td>
+				<td colspan="4">
+					<div><input type="file" accept=".pdf,image/*"></div>
+				<p>(10MB以內圖檔或PDF)</p>
+				</td>
+			  </tr>
+		  </tbody>
+		</table>
+		<div style="text-align: center;" class="d-print-none">
+			<button type="submit" id="saveBtn" class="btn btn-primary d-print-none">送出</button>
+			<button type="button" id="cleanBtn" class="btn btn-danger">清空</button>
+			<button type="button" id="returnBtn" class="btn btn-info">返回</button>
+		</div>		
+	</form>
+	<br>
+	<div>
+	使用說明<br>
+	達開始通報時間，由單位主管指派「職業安全衛生業務主管」、「防火管理人」或襄理級(含以上)人員填報，紙本印出後逐級呈核，留存備查。<br>
+	註：
+	<br>
+	一、「天然災害平安通報機制」之災害程度界定:<br> 
+	&nbsp;&nbsp;&nbsp;&nbsp;(一)地震:台灣本島發生芮氏規模6級以上強震。<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;(二)水災、風災:國內任一縣市政府宣布停班且停課<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(即使金融機構於宣布停班停課縣市未設分支機構，仍請一併辦理平安通報)。<br>
+	二、如「是否平安」欄，勾選「否」者，通報後，請另填製「安全狀況反映通報表」報送行政管理部勞工安全科<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FAX:02-2731-5669，並速與02-2173-8888#3213、3215聯繫。	
+	</div>
+	<table style="border-collapse: collapse; width: 100%; height: 108px;" border="1">
+	  <thead>
+	    <tr style="height: 18px;">
+	      <td style="width: 28.1332%; height: 18px;">業務負責人職稱</td>
+	      <td style="width: 14.295%; height: 18px;">姓名</td>
+	      <td style="width: 22.389%; height: 18px;">手機</td>
+	      <td style="width: 35.1828%; height: 18px;">EMAIL</td>
+	    </tr>
+	  </thead>
+	  <tbody id="tbody">
+	  	<tr>
+	  		<td>單位主管</td>
+	  		<td></td>
+	  		<td></td>
+	  		<td></td>
+	  	</tr>
+	  	<tr>
+	  		<td>職業安全衛生主管</td>
+	  		<td></td>
+	  		<td></td>
+	  		<td></td>
+	  	</tr>
+	  	<tr>
+	  		<td>總務</td>
+	  		<td></td>
+	  		<td></td>
+	  		<td></td>
+	  	</tr>
+	  	<tr>
+	  		<td>防火管理人</td>
+	  		<td></td>
+	  		<td></td>
+	  		<td></td>
+	  	</tr>
+	  	<tr>
+	  		<td>急救人員</td>
+	  		<td></td>
+	  		<td></td>
+	  		<td></td>
+	  	</tr>
+	  </tbody>
+	</table>
+	<table style="border-collapse: collapse; width: 100%; " border="0" class="d-print-block d-none">
+		<tr>
+	  		<td>填報者：</td>
+	  		<td></td>
+	  		<td>核章：</td>
+	  		<td></td>
+	  	</tr>
+	</table>
+
+</div>
+<div id="template_checkbox" style="display:none;"  class="custom-control custom-checkbox">
+	<input type='checkbox' class='custom-control-input' id="@INPUT_ID@" name="@INPUT_NAME@" value="@INPUT_VALUE@" disabled/>
+	<label class='custom-control-label' for="@INPUT_ID@">@LABEL@</label>
+</div>
+<div id="template_radiobox" style="display:none;"  class="custom-control custom-radio custom-control-inline"">
+	<input type='radio' class='custom-control-input' id="@INPUT_ID@" name="@INPUT_NAME@" value="@INPUT_VALUE@"  data-error="inline" disabled/>
+	<label class='custom-control-label' for="@INPUT_ID@">@LABEL@</label>
+</div>
+<style>
+#print_helper { 
+    display: block;
+    overflow: visible;
+    font-family: Menlo, "Deja Vu Sans Mono", "Bitstream Vera Sans Mono", Monaco, monospace;
+    white-space: pre;
+    white-space: pre-wrap;
+}
+
+</style>
+
+<script type="text/javascript">
+var tempData;
+var eventId = $("#eventId").val();
+var returnId = $("#returnId").val();
+//需要用的JS
+require(["jquery", "jsgrid"], function (jquery, jsgrid) {	
+	//頁面讀取後執行
+	$(document).ready(function(){	
+		
+		let jsonData = {
+				eventId: eventId,
+				returnId: returnId
+		};
+		
+	    $.ajax({
+		    url: "/"+CONFIG.SYSTEM_NAME + '/eventSafeNotification/api/getEventSafeNotificationReturn',
+		    contentType: "application/json;charset=utf-8", // 因為上面是JSON 
+		    async: false,
+		    cache: false,
+		    data: JSON.stringify(jsonData),
+		    type: "POST",
+		    success: function(data, textStatus){    	
+		    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    		 alert("沒有權限");
+		    	 }else{
+		    		 tempData = data;
+		    		 //第一行資訊
+		    		 initPage(data);		  
+		    	 }
+		    	 
+		    },
+		    error: function (data, textStatus, errorThrown) {
+		        console.log(data);
+		    },
+		});
+	    
+	    $("#saveBtn").click(function(){
+			saveData();
+		});
+		
+		$("#cleanBtn").click(function(){
+			$("input[name='effectType']:checked").each(function(i, item){
+				$(this).prop('checked', false);
+			});
+			$("#isSafe_1").prop('checked', true).trigger("change");
+			$("#memo").val("");
+		});
+		
+		$("input[name='isSafe']").on("change", function(){
+			if($(this).val() =="1"){
+				$("#memo").val("").prop("disabled", true);
+				$("input[name='effectType']").each(function(i, item){
+					$(item).prop('checked', false);
+				});
+				$("#effectTypeTd *").prop("disabled", true);
+				$("#statusTypeTd *").prop("disabled", true);
+				$("#propertyTypeTd *").prop("disabled", true);
+				$("#statusTypeTd *").prop("checked", false);
+				$("#propertyTypeTd *").prop("checked", false);
+			}
+			else{
+				$("#effectTypeTd *").prop("disabled", false);
+				$("#statusTypeTd *").prop("disabled", false);
+				$("#memo").prop("disabled", false);
+			}
+		});
+		
+		$("#EVENT_EFFECT_TYPE_2").on("change", function(){
+			if($(this).prop("checked")){
+				$("#propertyTypeTd *").prop("disabled", false);
+			}
+			else{
+				$("input[name='propertyType']").each(function(i, item){
+					$(item).prop("checked", false);
+				});
+				$("#propertyTypeTd *").prop("disabled", true);
+			}
+		});
+		
+		$("#returnBtn").click(function(){
+			loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + "/content/eventSafeNotification/eventSafeNotification.html");
+		});
+    
+		
+		 $("input[name='isSafe']:checked").trigger("change");
+		 $("input[name='effectType']:checked").trigger("change");
+	});  
+	
+	
+	function initPage(data){
+		//第一行資訊
+		if(data.unit){
+			$("#unitName").text(data.unit.unitName);	
+		}
+		if(data.loginUser){		
+			$("#userName").text(data.loginUser.name);
+		}
+		//$("#workMan").text(data.workMan);		
+		$("#now").html(data.nowTime);
+		if(data.eventSafeNotification){
+			$("#eventKey").html(data.eventSafeNotification.eventKey);
+			$("#eventName").html(data.eventSafeNotification.eventName);
+			$("#eventDesc").html(data.eventSafeNotification.eventDesc);
+		}	
+		//長影響類別
+		createCheckBox("effectTypeTd", "effectType", data.eventEffectTypeList, "cfgKey", "cfgValue");
+		
+		createRadioBox("propertyTypeTd", "propertyType", data.eventPropertyTypeList, "cfgKey", "cfgValue", "cfgName");
+		createRadioBox("statusTypeTd", "statusType", data.eventStatusTypeList, "cfgKey", "cfgValue", "cfgName");
+		
+		//此處是原本以為一個單位只能回報一次 覆蓋已儲存資料
+ 		//塞已儲存資料
+ 	
+ 		if(data.eventSafeNotificationReturn){			
+ 			$("#now").html(data.eventSafeNotificationReturn.returnTime);			
+ 			if(data.eventSafeNotificationReturn.reviewTime){
+ 				$("#reviewType").html("已審核");
+ 			}else{
+ 				$("#reviewType").html("未審核");
+ 			}
+ 			$("input[type='radio'][name='isSafe']").each(function(i, item){
+				  if($(this).val() == data.eventSafeNotificationReturn.isSafe){
+					  $(this).prop('checked',true);
+				  }
+			});
+ 			
+ 			if(data.eventSafeNotificationReturn.memo){
+ 				$("#memo").val(data.eventSafeNotificationReturn.memo);
+ 			}
+ 			//$("#reviewTime").html(data.eventSafeNotificationReturn.reviewTime);
+ 			if(data.eventSafeNotificationReturn.effectType){
+ 				var effectTypeArray = data.eventSafeNotificationReturn.effectType.split(";");
+ 				$.each(effectTypeArray, function(index, value){
+ 					$("input[name='effectType']").each(function(i, item){
+ 						  if( $(this).val() == value){
+ 							  $(this).prop('checked',true);
+ 							  return false; // 等於 break
+ 						  }
+					});
+ 				});
+ 			}
+
+ 			$("input[name='propertyType'][value=" + data.eventSafeNotificationReturn.propertyType +"]").prop("checked", true);
+ 			$("input[name='statusType'][value=" + data.eventSafeNotificationReturn.statusType +"]").prop("checked", true);
+ 		}	
+		if(data.reviewer){
+ 			//$("#reviewName").html(data.reviewer.name);
+ 		}
+ 		if(data.creater){
+ 			//$("#createName").html(data.creater.name);
+ 		}
+				
+		
+		//下面表格資料
+		setTableData(data);
+
+	}
+	
+	function setTableData(data){
+		if(data.unit){
+			$("#unitId").text(data.unit.unitId);
+			$("#unitName").text(data.unit.unitName);
+			$("#unitTel").text(data.unit.tel);
+		}
+		
+		if(data.manager){
+			$("#tbody").find("tr").eq(0).find("td").eq(1).text(data.manager.name);
+			$("#tbody").find("tr").eq(0).find("td").eq(2).text(data.manager.phone);
+			$("#tbody").find("tr").eq(0).find("td").eq(3).text(data.manager.email);
+		}
+		if(data.saveManager){
+			$("#tbody").find("tr").eq(1).find("td").eq(1).text(data.saveManager.name);
+			$("#tbody").find("tr").eq(1).find("td").eq(2).text(data.saveManager.phone);
+			$("#tbody").find("tr").eq(1).find("td").eq(3).text(data.saveManager.email);
+		}
+		
+		if(data.affairs){
+			$("#tbody").find("tr").eq(2).find("td").eq(1).text(data.affairs.name);
+			$("#tbody").find("tr").eq(2).find("td").eq(2).text(data.affairs.phone);
+			$("#tbody").find("tr").eq(2).find("td").eq(3).text(data.affairs.email);
+		}
+		
+		if(data.fireHelper){
+			$("#tbody").find("tr").eq(3).find("td").eq(1).text(data.fireHelper.name);
+			$("#tbody").find("tr").eq(3).find("td").eq(2).text(data.fireHelper.phone);
+			$("#tbody").find("tr").eq(3).find("td").eq(3).text(data.fireHelper.email);
+		}
+		
+		if(data.helper){
+			$("#tbody").find("tr").eq(4).find("td").eq(1).text(data.helper.name);
+			$("#tbody").find("tr").eq(4).find("td").eq(2).text(data.helper.phone);
+			$("#tbody").find("tr").eq(4).find("td").eq(3).text(data.helper.email);
+		}
+		
+		if(data.affairs){
+			$("#affairs").val(data.affairs.rocId);
+			$("#affairsPhone").val(data.affairs.phone);
+			$("#affairsEmail").val(data.affairs.email);
+		}
+		
+		if(data.manager){
+			$("#manager").text(data.manager.name);
+			$("#managerPhone").val(data.manager.phone);
+			$("#managerEmail").val(data.manager.email);
+		}
+		
+		if(data.saveManager){
+			$("#saveManager").text(data.saveManager.name);
+			$("#saveManagerPhone").val(data.saveManager.phone);
+			$("#saveManagerEmail").val(data.saveManager.email);
+		}
+		
+		if(data.fireHelper){
+			$("#fireHelper").text(data.fireHelper.name);
+			$("#fireHelperPhone").val(data.fireHelper.phone);
+			$("#fireHelperEmail").val(data.fireHelper.email);
+		}
+		
+		if(data.helper){
+			$("#helper").text(data.helper.name);
+			$("#helperPhone").val(data.helper.phone);
+			$("#helperEmail").val(data.helper.email);
+		}
+	}
+	
+	function createCheckBox(appenId, id, data, key, val){
+		$.each(data, function( index, item ) {
+			let template = $("#template_checkbox").clone();
+			template.removeAttr("style");
+			template.removeAttr("id");
+			let template_html = template.html()
+													.replace(/@INPUT_ID@/g, item[key])
+													.replace(/@INPUT_NAME@/g, id)
+													.replace(/@INPUT_VALUE@/g, item[val])
+													.replace(/@LABEL@/g,  item[val]);
+			template.html(template_html);
+			$('#' + appenId).append(template);
+		});
+	}
+	
+	function createRadioBox(appenId, id, data, key, val, label){
+		$.each(data, function( index, item ) {
+			let template = $("#template_radiobox").clone();
+			template.removeAttr("style");
+			template.removeAttr("id");
+			let template_html = template.html()
+													.replace(/@INPUT_ID@/g, item[key])
+													.replace(/@INPUT_NAME@/g, id)
+													.replace(/@INPUT_VALUE@/g, item[val])
+													.replace(/@LABEL@/g,  item[label]);
+			template.html(template_html);
+			$('#' + appenId).append(template);
+		});
+	}
+	
+	function saveData(){	
+		/*
+		if(!confirm("確認儲存")){
+			event.preventDefault();
+			return false;
+		}*/
+		//檢核
+		$("#inputForm").validate({
+			//錯誤訊息元素預設為label改成p會換行 //minlength: function (ele){ return $("#isSafe_0").is(":checked") ? 1 : 0; }
+			errorElement: "p",
+			errorPlacement: function(err, ele){
+				var isInline = $(ele).data('error');
+				var placement = $(ele).parents("td");
+				if (isInline && isInline == 'inline' && placement){
+					$(placement).append(err);
+				}
+				else{
+					err.insertAfter(ele);
+				}
+			},
+		    rules: {
+		    	isSafe: { required: true},
+		        memo:{ maxlength:200,
+		        				required : function (ele){ return $("#isSafe_0").is(":checked"); },
+		        				 },
+		        effectType:{ required : function (ele){ return $("#isSafe_0").is(":checked"); }},
+		        propertyType: { required: function(ele){ return $("#EVENT_EFFECT_TYPE_2").is(":checked");}},
+		        statusType: { required: function(ele){ return $("#isSafe_0").is(":checked"); }}
+		      },
+		      messages: {
+		    	isSafe: {required: "請選擇是否平安" },
+		        memo:{maxlength:"200中文字以內",required:"因為選擇了是否平安: 否，請填寫說明!" },
+		        effectType:{required:"因為選擇了是否平安: 否，請選擇影響類別!" },
+		        propertyType: { required: "<br>因為選擇了" + $("#EVENT_EFFECT_TYPE_2").val() + "，請選擇!"},
+		        statusType: { required: "<br>因為選擇了是否平安: 否，請選擇!"}
+			  },
+			  //檢核後送出
+			  submitHandler: function(form) 
+			   {      
+				  var inputData = {};				 
+				  inputData.isSafe = $("input[name='isSafe']:checked").val();				  
+				  inputData.memo = $("#memo").val();
+				  inputData.eventId = eventId;
+				  inputData.returnTime = tempData.nowTime;
+				  inputData.propertyType = $("input[name='propertyType']:checked").val();			
+				  inputData.statusType = $("input[name='statusType']:checked").val();			
+				  //列印畫面調整
+				  if(inputData.isSafe == 1){
+					  $("#isSafe_1").attr("checked","checked");
+				  }else{
+					  $("#isSafe_0").attr("checked","checked");					  
+				  }
+				  $("input[name='propertyType'][value="+inputData.propertyType+"]").attr("checked","checked");
+				  $("input[name='statusType'][value="+inputData.statusType+"]").attr("checked","checked");
+				  //列印畫面調整
+				  $("#memo").html($("#memo").val());
+				  if($("input[name='effectType']:checked").length > 0){
+					  var effectType;
+					  $("input[name='effectType']:checked").each(function(i, item){
+						  //列印畫面調整
+						  $(this).attr("checked","checked");					 
+						  if(effectType){
+							  effectType = effectType + ";" + $(this).val();
+						  }else{
+							  effectType = $(this).val();
+						  }
+					  });
+					  if(effectType){
+						  inputData.effectType = effectType;
+					  }
+				  }
+				  
+				  if(tempData.eventSafeNotificationReturn){
+					  doDelete(tempData.eventSafeNotificationReturn.id, inputData);
+				  }
+				  else{
+					  doSave(inputData);
+				  }
+			   }  
+		});		
+	}
+	
+	function doDelete(id, inputData){
+		if(id == undefined || inputData == undefined) return;
+		$.ajax({
+		    url: "/"+CONFIG.SYSTEM_NAME + '/eventSafeNotification/api/deleteEventSafeNotificationReturn',
+		    data: "{'ID': " + id + "}",
+		    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    async: false,
+		    cache: false,
+		    type: "POST",
+		    success: function(data, textStatus){   
+			     if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    		 alert("沒有權限");
+		    	 }else{
+		    		 if(data.result == "success"){
+		    			 doSave(inputData);
+		    		 }else if(data.errorMsg){
+		    			 alert(data.errorMsg);
+		    		 }
+		    	 }
+		    },
+		    error: function (data, textStatus, errorThrown) {
+		        console.log(data);
+		    },
+		});
+	}
+	
+	function doSave(inputData){
+		$.ajax({
+		    url: "/"+CONFIG.SYSTEM_NAME + '/eventSafeNotification/api/addEventSafeNotificationReturn',
+		    data: JSON.stringify(inputData),
+		    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    async: false,
+		    cache: false,
+		    type: "POST",
+		    success: function(data, textStatus){   
+			     if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    		 alert("沒有權限");
+		    	 }else{
+		    		 if(data.result == "success"){
+		    			 alert("通報成功!\n請將紙本印出後逐級呈核，留存備查。");
+		    			 let oldTitle = document.title;
+		    			 document.title = $("#eventKey").text() + "_" + $("#eventName").text();
+		    			 let editTitle = $("#editTitle").text();
+		    			 $("#editTitle").text('')
+		    			 $("#printTitle").text(CONFIG.SYSTEM_NAME_CHT + "_" + "平安通報事件表");
+		    			 printByDiv(document.getElementById("printDiv"));
+		    			 document.title = oldTitle;
+		    			 loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + "/content/eventSafeNotification/eventSafeNotification.html");
+		    			 //刷新MENU 不然審核數不對
+		    			 //loadNoCache($("#menuContent"), "/" +CONFIG.SYSTEM_NAME + $("#menuContent").data("src"));
+		    		 }else if(data.errorMsg){
+		    			 alert(data.errorMsg);
+		    		 }
+		    	 }
+		    },
+		    error: function (data, textStatus, errorThrown) {
+		        console.log(data);
+		    },
+		});
+	}
+	
+	function printByDiv(printpage){ 
+		var iframe = document.createElement('IFRAME');
+		iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+		document.body.appendChild(iframe);
+		$(":button").hide();
+		iframe.contentWindow.document.write(printpage.innerHTML + "<script>document.getElementById('memo').style.height = document.getElementById('memo').scrollHeight+5+'px';<\/script>");
+		$(":button").show();
+		iframe.contentWindow.document.close(); //important!
+		iframe.contentWindow.focus(); //IE fix
+		iframe.contentWindow.print();
+		iframe.parentNode.removeChild(iframe);
+	}
+	
+});
+</script>

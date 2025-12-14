@@ -1,0 +1,1245 @@
+﻿<input type="hidden" id="jobLevel_f">
+<div id="editDialog" style="display:none" class="container">
+	<div class="safety_fbox">
+		<div>
+			<h2 style="text-align: center;">在職員工教育訓練紀錄</h2>
+			<br>
+			<input type="hidden" id="safety_fid">
+			<form id="inputForm">
+				<table class="w-100 safe_form headtable">
+					<tbody>
+						<tr>
+							<td class="table-header " width="200">單位連線代號</td>
+							<td class="unitId" colspan="2">
+								1234
+							</td>
+							<td class="table-header " width="200">單位名稱</td>
+							<td class="unitName" colspan="2">
+								ＯＯ分行
+							</td>
+
+						</tr>
+
+
+					</tbody>
+				</table>
+				<br>
+				<table class="w-100 safe_form">
+					<tbody>
+						<tr>
+							<td class="table-header " width="200">&nbsp;</td>
+							<td class="table-header ">日期 </td>
+							<td class="table-header ">單位已完成時數 </td>
+							<td class="table-header ">實施紀錄上傳 </td>
+
+						</tr>
+						<tr>
+							<td class="table-header " width="200">在職員工教育訓練紀錄上傳</td>
+							<td>
+								<div class="date_box">
+									<label>
+										<input id="trainDate" name="trainDate" type="text" readonly="readonly"
+											class="w_150p" placeholder="選擇日期" />
+										<i class="iconfont icon-riqi1"></i>
+									</label>
+								</div>
+							</td>
+							<td><label><select class="custom-select w_150p" id="trainHour" name="trainHour">
+										<option value="0">0小時</option>
+										<option value="0.5">0.5小時</option>
+										<option value="1">1小時</option>
+										<option value="1.5">1.5小時</option>
+										<option value="2">2小時</option>
+										<option value="2.5">2.5小時</option>
+										<option value="3">3小時</option>
+									</select></label></td>
+							<td width="160">
+								<div>
+									<div class="input_file planFile">
+										<DIV class="showFileName"></DIV>
+										<input type="file" accept=".pdf" @change="changeExcel($event)" id="planFile"
+											class="a-upload"><input type="hidden" id="planFile_base64">
+										<label for="planFile" class="btn btn-primary  my-2 w_150p">實施計畫書
+										</label><button type="button" class="btn btn-danger  my-2 del-file"
+											style="display:none">移除實施計畫書</button>
+									</div>
+
+								</div>
+								<div>
+									<div class="input_file courseFile">
+										<DIV class="showFileName"></DIV>
+										<input type="file" accept=".pdf" @change="changeExcel($event)" id="courseFile"
+											class="a-upload"><input type="hidden" id="courseFile_base64">
+										<label for="courseFile" class="btn btn-primary  my-2 w_150p">課程表
+										</label>
+										<button type="button" class="btn btn-danger  my-2 del-file"
+											style="display:none">移除課程表</label>
+									</div>
+
+								</div>
+								<div>
+									<div class="input_file signFile">
+										<DIV class="showFileName"></DIV>
+										<input type="file" accept=".pdf" @change="changeExcel($event)" id="signFile"
+											class="a-upload"><input type="hidden" id="signFile_base64">
+										<label for="signFile" class="btn btn-primary  my-2 w_150p">
+
+											受訓人員名冊與簽到表
+										</label><button type="button" class="btn btn-danger  my-2 del-file"
+											style="display:none">移除受訓人員名冊與簽到表</button>
+									</div>
+
+								</div>
+								<div>
+									<div class="input_file trainFile">
+										<DIV class="showFileName"></DIV>
+										<input type="file" accept=".pdf" @change="changeExcel($event)" id="trainFile"
+											class="a-upload"><input type="hidden" id="trainFile_base64">
+										<label for="trainFile" class="btn btn-primary  my-2 w_150p">受訓紀錄
+										</label><button type="button" class="btn btn-danger  my-2 del-file"
+											style="display:none">移除受訓紀錄</button>
+									</div>
+
+								</div>
+							</td>
+
+						</tr>
+
+						<tr>
+							<td class="table-header " width="150">已完成數位學習課程
+							</td>
+							<td>
+								<div class="date_box">
+									<label>
+										<input id="studyDate" name="studyDate" type="text" readonly="readonly"
+											class="w_150p" placeholder="選擇日期" />
+										<i class="iconfont icon-riqi1"></i>
+									</label>
+								</div>
+							</td>
+							<td><label><select class="custom-select w_150p" id="studyHour" name="studyHour">
+										<option value="0">0小時</option>
+										<option value="0.5">0.5小時</option>
+										<option value="1">1小時</option>
+										<option value="1.5">1.5小時</option>
+										<option value="2">2小時</option>
+										<option value="2.5">2.5小時</option>
+										<option value="3">3小時</option>
+
+									</select></label></td>
+							<td>&nbsp;</td>
+
+						</tr>
+
+
+					</tbody>
+				</table>
+			</form>
+		</div>
+		<br />
+		<table class="w-100 safe_form">
+			<tbody>
+				<tr>
+					<td class="table-header " width="200">填表人</td>
+					<td class="loginUser">
+						蔡小雯
+					</td>
+					<td class="table-header " width="200">審核人員(職安主管)</td>
+					<td class="">
+						<select class="custom-select w_150p" id="reviewName" name="reviewName">
+
+
+
+						</select>
+					</td>
+
+					<td class="table-header  text-center">
+						上傳日期
+					</td>
+					<td colspan="2" id="checkTime">
+
+					</td>
+				</tr>
+
+
+
+
+			</tbody>
+		</table>
+		<div style="text-align: center;">
+			<button type="button" id="submitBtn_x" class="btn btn-warning  my-2">暫存</button>
+			<button type="button" id="submitBtn" class="btn btn-primary  my-2">送出</button>
+
+		</div>
+
+
+
+
+	</div>
+</div>
+<div class="m-t50 m-b30">
+	<h2 style="text-align: center;">在職員工教育訓練紀錄</h2>
+	<div class="date_time">
+		<div class="date_box">
+			<label>
+				<input id="startDate" name="startDate" type="text" readonly="readonly" class="w_100p"
+					placeholder="開始日期" />
+				<i class="iconfont icon-riqi1"></i>
+			</label>
+		</div>
+		<div class="date_box">
+			<label>
+				<input id="endDate" name="endDate" type="text" readonly="readonly" class="w_100p" placeholder="結束日期" />
+				<i class="iconfont icon-riqi1"></i>
+			</label>
+		</div>
+		<!-- <div class="date_box">
+			<label>
+				<input id="unitId_s" name="" type="text" class="w_100p" placeholder="連線代號" />
+			</label>
+		</div>
+		<div class="date_box">
+			<label>
+				<input id="unitName_s" name="" type="text" class="w_100p" placeholder="銀行名稱" />
+			</label>
+		</div> -->
+		<button class="btn btn-primary  my-2" id="getlist_search">查詢</button>
+	</div>
+
+	<div id="jsGrid"></div>
+</div>
+<div id="detailDialog" style="display:none" class="container">
+	<div id="printDiv">
+		<h2 style="text-align: center;">在職員工教育訓練紀錄</h2>
+		<input type="hidden" id="safetyId">
+		<br>
+
+		<form id="inputForm">
+			<table class="w-100 safe_form headtable">
+				<tbody>
+					<tr>
+						<td class="table-header " width="200">單位連線代號</td>
+						<td class="unitId" colspan="2">
+							1234
+						</td>
+						<td class="table-header " width="200">單位名稱</td>
+						<td class="unitName" colspan="2">
+							ＯＯ分行
+						</td>
+
+					</tr>
+
+
+				</tbody>
+			</table>
+			<br>
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header " width="200">&nbsp;</td>
+						<td class="table-header ">日期 </td>
+						<td class="table-header ">單位已完成時數 </td>
+						<td class="table-header ">實施紀錄上傳 </td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">在職員工教育訓練紀錄上傳</td>
+						<td class="trainDate"></td>
+						<td class="trainHour"></td>
+						<td width="160">
+							<div class="planFile">
+
+							</div>
+
+							<div class="courseFile">
+
+							</div>
+							<div class="signFile">
+
+							</div>
+							<div class="trainFile">
+
+							</div>
+						</td>
+
+					</tr>
+
+					<tr>
+						<td class="table-header " width="150">已完成數位學習課程</td>
+						<td class="studyDate"></td>
+						<td class="studyHour"></td>
+						<td>&nbsp;</td>
+
+					</tr>
+					<tr>
+						<td class="table-header " width="200">填表人</td>
+						<td class="loginUser">
+							蔡小雯
+						</td>
+						<td class="table-header " width="200">審核人員(職安主管)</td>
+						<td class="reviewName">
+
+						</td>
+
+
+					</tr>
+
+				</tbody>
+			</table>
+		</form>
+		<br />
+
+	</div>
+	<br>
+
+	<div class="dialog-alert" id="dialog-return">
+		<div class="dialog-return">
+			<textarea placeholder="退件原因" id="returnReason1" maxlength="100"></textarea>
+		</div>
+		<div class="dialog-alert-button text-center">
+			<button type="button" id="returncancel" class="btn btn-danger  my-2">取消</button>
+			<button type="button" id="returnFormSubmit" class="btn btn-primary  my-2 ">確認</button>
+
+		</div>
+	</div>
+	<div style="text-align: center;">
+		<button type="button" id="submitBtn_s" class="btn btn-success  my-2 pressing_hide reviewButton">審核通過</button>
+		<button type="button" id="return" class="btn btn-danger  my-2 returnButton">退件</button>
+		<button type="button" id="printBtn" class="btn btn-secondary  my-2 printButton">列印</button>
+	</div>
+</div>
+
+
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui", "print", "timepicker", "multiselect"], function (jquery, jquery_validate, jsgrid, jquery_ui, print, timepicker, multiselect) {
+		//頁面讀取後執行
+		$(document).ready(function () {
+			//獲取按鈕權限
+			function isDateFormatValid(dateString){
+				// 使用正則表達式來判斷日期字串是否符合 YYYY-MM-DD 格式    
+				var datePattern = /^\d{4}-\d{2}-\d{2}$/;
+				return datePattern.test(dateString);
+			}
+
+			function formatDate(date) {
+				// 將Date 對象轉換為 YYYY/MM/DD 格式的字串   
+				var year = date.getFullYear();
+				var month = ("0" + (date.getMonth() + 1)).slice(-2); // 月份是從 0 開始的，所以要加 1  
+				var day = ("0" + date.getDate()).slice(-2); // 獲取日期，並確保是兩位數  
+				return year + "/" + month + "/" + day;
+			}
+
+			function addOneDay(dateString) {
+				// 將字串轉換為 Date 物件，並延後一天  
+				var date = new Date(dateString);
+				date.setDate(date.getDate() + 1); // 延後一天  
+				return date;
+			}
+			function prevOneDay(dateString) {
+				// 將字串轉換為 Date 物件，並提前一天  
+				var date = new Date(dateString);
+				date.setDate(date.getDate() - 1); // 延後一天  
+				return date;
+			}
+			getByMenuId()
+			function getByMenuId() {
+				var menuid = 47;
+
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/buttonRole/api/getByMenuId?menuId=' + menuid,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							var menuData = data.data
+							get_list(menuData);
+
+							console.log(menuData)
+							// 		<button type="button" id='submit_o' class="btn btn-warning  my-2 pressing_hide tempButton">暫存</button>
+							// <button type="button" id='submit_s' class="btn btn-primary  my-2 pressing_hide sendButton">儲存送出</button>
+							// <button type="button" id="checkBtn" class="btn btn-success  my-2 pressing_hide reviewButton">審核通過</button>
+							// <button type="button" id="return" class="btn btn-danger  my-2 pressing_hide returnButton">退件</button>
+							// <button type="button" id='submit_p' class="btn btn-primary  my-2 pressing_show sendButton">儲存送出</button>
+							// <button type="button" id="printBtn1" class="btn btn-secondary  my-2 pressing_show printButton">列印</button>
+							// <button type="button" id="printBtn" class="btn btn-secondary  my-2 pressing_hide printButton">列印</button>
+
+							if (menuData.functionArray.indexOf('review') < 0) {
+								$('.reviewButton').hide()
+							}
+							if (menuData.functionArray.indexOf('temp') < 0) {
+								$('.tempButton').hide()
+							}
+							if (menuData.functionArray.indexOf('reject') < 0) {
+								$('.returnButton').hide()
+							}
+							if (menuData.functionArray.indexOf('temp') < 0) {
+								$('.tempButton').hide()
+							}
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			$("#printBtn").click(function () {
+				//printByDiv(document.getElementById("printDiv"));
+				printJS({
+					printable: 'printDiv',
+					type: 'html',
+					header: '',
+					css: '../resources/css/print.css',
+
+
+
+				})
+			});
+			$(".input_file").on("change", "input[type='file']", function () {
+				var filePath = $(this).val();
+				//  if (filePath.indexOf("xls") != -1 || filePath.indexOf("xlsx") != -1) {
+				$(".fileerrorTip").html("").hide();
+				var arr = filePath.split('\\');
+				var fileName = arr[arr.length - 1];
+				$(this).parent().find(".showFileName").html(fileName);
+				if (filePath != '') {
+					$(this).parent().parent().find(".date_box").show();
+					$(this).parent().find(".del-file").show();
+				} else {
+					$(this).parent().parent().find(".date_box").hide();
+					$(this).parent().find(".del-file").hide();
+				}
+				// 				} else {
+				// alert("請上傳正確檔案")
+				// 					return false
+				// 				}
+			})
+			$('.del-file').click(function () {
+				$(this).parent().find(".showFileName").html('');
+				$(this).parent().find("input").val('');
+				$(this).parent().find(".date_box").hide();
+				$(this).parent().find(".del-file").hide();
+			})
+			isLogin();//登入狀態
+			function isLogin() {
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/login/api/getLogin',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "get",
+					success: function (data, textStatus) {
+						if (data.msg != "success") {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+			var currentDate = new Date();
+			var year = currentDate.getFullYear();
+			var month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+			var monthprev = currentDate.getMonth();
+			var day = currentDate.getDate().toString().padStart(2, '0');
+			var hour = currentDate.getHours();
+			var miunte = currentDate.getHours();
+			var second = currentDate.getHours();
+			$('#checkTime').html(year + '/' + month + '/' + day + " " + hour + ":" + miunte + ":" + second)
+			//取得日期
+
+			$("#studyDate").datetimepicker({
+				changeMonth: true,
+				changeYear: true,
+				maxDate: 0,
+				minDate: '-1y',
+				dateFormat: "yy/mm/dd",
+				timeFormat: "HH:mm:ss",
+			});
+			//取得日期
+
+			$("#trainDate").datetimepicker({
+				changeMonth: true,
+				changeYear: true,
+				maxDate: 0,
+				minDate: '-1y',
+				dateFormat: "yy/mm/dd",
+				timeFormat: "HH:mm:ss",
+			});
+			$('#startDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				dateFormat: 'yy/mm/dd',
+
+				onSelect: function (dateText, inst) {
+					$("#endDate").datepicker("option", "minDate", dateText);
+				},
+				maxDate: 0
+
+			})
+
+			$('#endDate').datepicker({
+
+				autoclose: true, //選擇後自動關閉
+				dateFormat: 'yy/mm/dd',
+				onSelect: function (dateText, inst) {
+					$("#startDate").datepicker("option", "maxDate", dateText);
+				}
+
+			})
+			$(".select_unit").each(
+				function () {
+					if ($(this).val() == '否') {
+						$(this).parents('tr').find('textarea').show()
+					} else {
+						$(this).parents('tr').find('textarea').hide();
+
+						$(this).parents('tr').find('textarea').val('');
+					}
+				}
+			)
+
+
+			$('#getlist_search').click(function () {
+				getByMenuId()
+			})
+			$("#planFile").change(function () {
+				var v = $(this).val();
+				var reader = new FileReader();
+				reader.readAsDataURL(this.files[0]);
+				reader.onload = function (e) {
+					$('#planFile_base64').val(e.target.result);
+				};
+			});
+			$("#courseFile").change(function () {
+				var v = $(this).val();
+				var reader = new FileReader();
+				reader.readAsDataURL(this.files[0]);
+				reader.onload = function (e) {
+					$('#courseFile_base64').val(e.target.result);
+				};
+			});
+			$("#signFile").change(function () {
+				var v = $(this).val();
+				var reader = new FileReader();
+				reader.readAsDataURL(this.files[0]);
+				reader.onload = function (e) {
+					$('#signFile_base64').val(e.target.result);
+				};
+			});
+			$("#trainFile").change(function () {
+				var v = $(this).val();
+				var reader = new FileReader();
+				reader.readAsDataURL(this.files[0]);
+				reader.onload = function (e) {
+					$('#trainFile_base64').val(e.target.result);
+				};
+			});
+			$("#submitBtn").click(function () {
+				var tableData = [];
+				$('.safe_form tbody tr').each(function (row, tr) {
+					tableData[row] = {
+						"title": $(tr).find('td:eq(0)').text(),
+					}
+				});
+				var saveItem = {
+					safetyId: $('#safety_fid').val(),
+					formContent: JSON.stringify(tableData),
+					status: "n",
+					unitId: $('.unitId').html(),
+					unitName:$('.unitName').html(),
+					trainHour: $("#trainHour").find("option:selected").val(),
+					trainDate: $('#trainDate').val(),
+					planFile: $('#planFile_base64').val(),
+					courseFile: $('#courseFile_base64').val(),
+					signFile: $('#signFile_base64').val(),
+					trainFile: $('#trainFile_base64').val(),
+					studyHour: $("#studyHour").find("option:selected").val(),
+					studyDate: $('#studyDate').val(),
+					requiredReviewId: $("#reviewName").find("option:selected").val(),
+					requiredReviewName: $("#reviewName").find("option:selected").text(),
+					// checkTime: year + '/' + month + '/' + day,
+					version: "1.0.1"
+				}
+				if ($('#trainDate').val() == '') {
+					shmsToast(("請選擇在職員工教育訓練紀錄上傳日期"  ? "請選擇在職員工教育訓練紀錄上傳日期" : "在職員工教育訓練紀錄上傳日期不能為空") + "請選擇在職員工教育訓練紀錄上傳日期！");
+				} else {
+					$.ajax({
+						url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceEmployee/api/check?testNum=0',
+						contentType: "application/json;charset=utf-8", // 因為上面是JSON
+						async: false,
+						cache: false,
+						type: "GET",
+						success: function (data, textStatus) {
+							console.log(data.data)
+							var datas = data.data
+							if (datas.length >=2 ){
+								shmsToast(("上傳紀錄數量已達上限" ? "上傳紀錄數量已達上限" : "上傳紀錄數量已達上限") + "，目前無法新增！");
+							}if (datas.length < 2 && datas.length > 0) {
+								if (datas.length > 0) {
+									var dateString = datas[datas.length - 1].trainDate;
+
+									var date = new Date(dateString); // 將字串轉換為 Date 物件  
+									var oneDayLater = addOneDay(dateString); // 延後一天  
+									var formattedDateString = formatDate(oneDayLater); // 轉換為 YYYY/MM/DD 格式  
+									$("#trainDate").datepicker("option", "minDate", formattedDateString);
+
+								}
+								var date1 = new Date($('#trainDate').val());
+								var date2 = new Date(datas[datas.length - 1].trainDate);
+
+								if (date1 < date2) {
+									shmsToast(("在職員工教育訓練紀錄上傳日期不能早於上一次的日期" ? "在職員工教育訓練紀錄上傳日期不能早於上一次的日期" : "當前在職員工教育訓練紀錄上傳日期日期不能早於上次在職員工教育訓練紀錄上傳日期日期") + "，請檢查！");
+								} else {
+									showAlert('檔案上傳中……', '請稍候！', '')
+									insert(saveItem)
+
+								}
+
+							}else{
+								showAlert('檔案上傳中……', '請稍候！', '')
+									insert(saveItem)
+							}
+
+						}
+					});
+				}
+			})
+			$("#submitBtn_x").click(function () {
+
+				var tableData = [];
+				$('.safe_form tbody tr').each(function (row, tr) {
+					tableData[row] = {
+						"title": $(tr).find('td:eq(0)').text(),
+					}
+				});
+				var saveItem = {
+					safetyId: $('#safety_fid').val(),
+					formContent: JSON.stringify(tableData),
+					status: "t",
+					unitId: $('.unitId').html(),
+					unitName:$('.unitName').html(),
+					trainHour: $("#trainHour").find("option:selected").val(),
+					trainDate: $('#trainDate').val(),
+					planFile: $('#planFile_base64').val(),
+					courseFile: $('#courseFile_base64').val(),
+					signFile: $('#signFile_base64').val(),
+					trainFile: $('#trainFile_base64').val(),
+					studyHour: $("#studyHour").find("option:selected").val(),
+					studyDate: $('#studyDate').val(),
+					requiredReviewId: $("#reviewName").find("option:selected").val(),
+					requiredReviewName: $("#reviewName").find("option:selected").text(),
+					// checkTime: year + '/' + month + '/' + day,
+					version: "1.0.1"
+				}
+				if ($('#trainDate').val() == '') {
+					shmsToast(("請選擇在職員工教育訓練紀錄上傳日期" ? "請選擇在職員工教育訓練紀錄上傳日期" : "在職員工教育訓練紀錄上傳日期不能為空") + "請選擇在職員工教育訓練紀錄上傳日期！");
+				} else {
+					showAlert('檔案上傳中……', '請稍候！', '')
+					insert(saveItem)
+				}
+			})
+			//提交
+			function insert(data) {
+				console.log(JSON.stringify(data))
+				showAlert('檔案上傳中……', '請稍候！', '')
+				$.ajax({
+					data: JSON.stringify(data),
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceEmployee/api/save',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						console.log(data)
+						if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						}if (data.code == 7002||data.code == '7002') {
+							showAlert('上傳資料已達最大數量', '上傳資料已達最大數量，無法上傳！', '')
+						}if (data.code == 7003||data.code == '7003') {
+							showAlert('訊息', '本筆資料已經上傳，無需重複送出！', '')
+						} if (data.code == 7000||data.code == '7000') {
+							showAlert('訊息', '新增服務錯誤', '')
+						}  else {
+							getByMenuId();
+							showAlert('上傳成功', '在職員工教育訓練紀錄上傳成功！', bodyHref("/content/safety/Safety_edu.html"))
+							console.log(data);
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+			function get_list(menuData) {
+
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceEmployee/api/list?startDate=' + $('#startDate').val() + '&endDate=' + $('#endDate').val(),
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data.code == "5000") {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							var data = data.data
+							console.log('1')
+							console.log(data)
+							//提示
+							$.toast({ heading: '', text: '資料載入成功' + textStatus, icon: 'success', position: 'toast-top-center', hideAfter: 6000, });
+							$("#jsGrid").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: false, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: false,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+														callback(value.length)
+													}
+
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+															callback(item[key].toString().indexOf(value))
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+															callback(item[key].indexOf(value))
+														}
+													}
+
+												}
+
+											}
+											return true;
+										});
+										return result;
+									},
+
+								},
+
+								fields: [
+
+									{ title: "上傳日期", name: "addTime", type: "text", },
+									{ title: "時數", name: "trainHour", type: "text", },
+									{ title: "檢核人", name: "checkName", type: "text", validate: "required" },
+									{ title: "審核人員", name: "requiredReviewName", type: "text", validate: "required", itemTemplate: function (value, item) {
+											if (item.status == 'c') {
+												return $("<span>").text(item.reviewName)
+											}if (item.status == 'n')  {
+												return $("<span>").text(item.requiredReviewName)
+											}
+										}},
+									{
+										title: "狀態", name: "status", type: "text", width: 80, itemTemplate: function (value, item) {
+											if (item.status == 't') {
+												return $("<span>").text('暫存')
+											} if (value == 'n') {
+												return $("<span>").text('已送審')
+											} if (value == 'c') {
+												return $("<span>").text('已審核')
+											} if (value == 'r') {
+												return $("<span class='text-danger'>").text('已退件')
+											}
+											if (value == 'p') {
+												return $("<span>").text('已處理')
+											}
+										}
+									},
+
+									{
+										title: "操作", name: "safetyId", filtercss: "display:none;", sorting: false, type: "control", width: 180,
+										itemTemplate: function (value, item) {
+											var $result = jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments);
+
+											if (menuData.functionArray.indexOf('edit') < 0) {
+												var $customEditButton = ""
+											} else {
+												var $customEditButton = $("<button>").attr("type", "button").text("編輯").addClass("btn btn-primary")
+													.on("click", function () {
+
+														if (menuData.functionArray.indexOf('edit') < 0) {
+															showAlert('無編輯權限', '您沒有編輯權限', '')
+														} else {
+															if (item.status == 'r' || item.status == 't') {
+																get_old(value)
+
+
+															} else {
+																shmsToast((item.reviewId ? "當前狀態" : "當前狀態") + "無法編輯！！！");
+															}
+														}
+													})
+											}
+
+
+											var $customLookButton = $("<button>").attr("type", "button").text("查看").addClass("btn btn-success")
+												.on("click", function () {
+													showDetailsDialog("查看", item.safetyId);
+												});
+											return $("<div>").append($customEditButton).append($customLookButton);
+										}, headerTemplate: function () {
+											if (menuData.functionArray.indexOf('add') < 0) {
+												return "操作";
+											} else {
+												return $("<button>").attr("type", "button").text("新增").addClass("btn btn-primary")
+													.on("click", function () {
+														get_old('0');
+
+
+													});
+											}
+
+										}
+
+									},
+
+								],
+							});
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			//取得默認資料
+			function insert_mr() {
+				let id = 0;
+				$("#id").val(id);
+				$.ajax({
+					data: JSON.stringify({ "safetyNo": "" }),
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenance/api/getInitData',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							initPage(data);
+							console.log(data);
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+			//默認資料帶入
+			function initPage(data,reviewNameid) {
+				tempData = data;
+				$(".unitId").html(data.unit.unitId);
+				$(".unitName").html(data.unit.unitName);
+				$(".loginUser").html(data.loginUser.name);
+				$('#detailDialog  .reviewName').html(data.loginUser.name);
+				$('#jobLevel_f').val(data.loginUser.jobLevel)
+				//$('#reviewName').empty(); // 清空select里的内容
+				createSelect("reviewName", data.userList, "rocId", "name", '');
+				$("#reviewName option[value='" + data.loginUser.rocId + "']").remove();
+			}
+			var formSubmitHandler = $.noop;
+			function get_old(item) {
+				var item = item
+				if (item == '0') {
+					$.ajax({
+						url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceEmployee/api/check?testNum=0',
+						contentType: "application/json;charset=utf-8", // 因為上面是JSON
+						async: false,
+						cache: false,
+						type: "GET",
+						success: function (data, textStatus) {
+							console.log(data.data.length)
+							var datas = data.data
+							if (datas.length < 2) {
+
+								if (datas.length > 0) {
+									var dateString = datas[datas.length - 1].trainDate;
+
+									var date = new Date(dateString); // 將字串轉換為 Date 對象  
+									var oneDayLater = addOneDay(dateString); // 延後一天  
+									var formattedDateString = formatDate(oneDayLater); // 轉換為 YYYY/MM/DD 格式  
+									$("#trainDate").datepicker("option", "minDate", formattedDateString);
+
+								}
+								showeditDialog('在職員工教育訓練紀錄', item)
+								insert_mr()
+								$('.safety_fbox').show();
+								$('#safety_fid').val('0')
+							} else {
+								shmsToast(("上傳紀錄數量已達上限" ? "上傳紀錄數量已達上限" : "上傳紀錄數量已達上限") + "，目前無法新增！");
+							}
+						}
+					});
+
+				} else {
+					insert_mr()
+					showeditDialog('在職員工教育訓練紀錄', item)
+					$('.safety_fbox').show();
+					$.ajax({
+						url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceEmployee/api/check?testNum=0',
+						contentType: "application/json;charset=utf-8", // 因為上面是JSON
+						async: false,
+						cache: false,
+						type: "GET",
+						success: function (data, textStatus) {
+							console.log(data.data.length)
+							var datas = data.data
+							if (datas.length > 1) {
+								var dateString = datas[datas.length - 1].trainDate;
+								if (isDateFormatValid(dateString)) {
+									var date = new Date(dateString); // 將字串轉為date對象  
+									var oneDayLater = addOneDay(dateString); // 延後一天  
+									var formattedDateString = formatDate(oneDayLater); // 轉換為 YYYY/MM/DD 格式  
+									$("#trainDate").datepicker("option", "minDate", formattedDateString);
+								} else {
+									var date = new Date(dateString); // 將字串轉為date對象  
+									var oneDayLater = addOneDay(dateString); // 延後一天  
+									var formattedDateString = formatDate(oneDayLater); // 轉換為 YYYY/MM/DD 格式  
+									$("#trainDate").datepicker("option", "minDate", formattedDateString);
+								}
+
+
+							}
+							$.ajax({
+
+								url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceEmployee/api/get?safetyId=' + item,
+								contentType: "application/json;charset=utf-8", // 因為上面是JSON
+								async: false,
+								cache: false,
+								type: "GET",
+								success: function (data, textStatus) {
+									if (data && data.code == "5000") {
+										showAlert('沒有權限', '沒有權限', '')
+									} else {
+										console.log(data.data);
+										var data = data.data;
+										if (data.trainHour != '') {
+											$('.safe_form  #trainHour').val(data.trainHour);
+										}
+										if (data.studyHour != '') {
+											$('.safe_form  #studyHour').val(data.studyHour);
+										}
+										if (data.status == 'c') {
+											$('.safe_form  #reviewName').val(data.requiredReviewId);
+										} if (data.status == 'r') {
+											$('.safe_form  #reviewName').val(data.rejectId);
+										}else{
+											$('.safe_form  #reviewName').val(data.requiredReviewId);
+										}
+										$('#safety_fid').val(data.safetyId);
+										$('.safe_form #safetyId').val(data.safetyId);
+										$('.safe_form  .unitId').html(data.unitId);
+										$('.safe_form  .unitName').html(data.unitName);
+										$('.safe_form  .loginuser').html(data.checkName);
+										$('.safe_form #trainDate').val(data.trainDate);
+
+										$('.safe_form  #studyDate').val(data.studyDate);
+										$('.safe_form  #checkTime').val(data.checkTime);
+										$('.safe_form .planFile').find('.showFileName').text(data.planFile.split('/').pop().trim());
+										$('.safe_form .signFile').find('.showFileName').text(data.signFile.split('/').pop().trim());
+										$('.safe_form .courseFile').find('.showFileName').text(data.courseFile.split('/').pop().trim());
+										$('.safe_form .trainFile').find('.showFileName').text(data.trainFile.split('/').pop().trim());
+										if (data.status == 'r') {
+											$('#editDialog  .headtable tbody').append('<tr><td class="table-header " width="200">退件原因</td><td class="" colspan="5">' + data.rejectReason + '</td></tr>');
+
+										}
+										$('.safe_form .planFile').find('#planFile_base64').val(data.planFile.split('/').pop().trim());
+										$('.safe_form .signFile').find('#signFile_base64').val(data.signFile.split('/').pop().trim());
+										$('.safe_form .courseFile').find('#courseFile_base64').val(data.courseFile.split('/').pop().trim());
+										$('.safe_form .trainFile').find('#trainFile_base64').val(data.trainFile.split('/').pop().trim());
+										if ($('.planFile .showFileName').html() != '') {
+											$('.planFile .showFileName').parent().find(".del-file").show();
+										}
+										if ($('.signFile .showFileName').html() != '') {
+											$('.signFile .showFileName').parent().find(".del-file").show();
+										}
+										if ($('.courseFile .showFileName').html() != '') {
+											$('.courseFile .showFileName').parent().find(".del-file").show();
+										}
+										if ($('.trainFile .showFileName').html() != '') {
+											$('.trainFile .showFileName').parent().find(".del-file").show();
+										}
+
+
+
+									}
+								}
+							});
+						}
+					});
+
+
+
+				}
+			}
+
+			var showeditDialog = function (dialogType, item) {
+
+				$("#editDialog").dialog("option", "title", dialogType + "").dialog("open");
+			}
+			var showDetailsDialog = function (dialogType, item) {
+
+				$("#detailDialog").dialog("option", "title", dialogType + "").dialog("open");
+				$('#safetyId').val(item)
+				$.ajax({
+
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceEmployee/api/get?safetyId=' + item,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data.code == "5000") {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							console.log(data.data.checkName);
+							var data = data.data;
+							console.log(data);
+							$('#detailDialog #safetyId').val(data.safetyId);
+							$('#detailDialog  .unitId').html(data.unitId);
+							$('#detailDialog  .unitName').html(data.unitName);
+							$('#detailDialog  .loginUser').html(data.checkName);
+
+							if (data.reviewName == undefined || data.reviewName == 'undefined') {
+								$('#detailDialog  .reviewName').html(data.requiredReviewName);
+							} else {
+								$('#detailDialog  .reviewName').html(data.reviewName);
+							}
+
+							$('#detailDialog  .trainDate').html(data.trainDate);
+							$('#detailDialog  .trainHour').html(data.trainHour + '小時');
+							$('#detailDialog  .studyDate').html(data.studyDate);
+							$('#detailDialog  .studyHour').html(data.studyHour + '小時');
+							if (data.status == 'c') {
+								$('#detailDialog  .reviewName').html(data.reviewName);
+							}
+							if (data.status == 'r') {
+								$('#detailDialog  .reviewName').html(data.rejectName);
+								$('#detailDialog  .headtable tbody').append('<tr><td class="table-header " width="200">退件原因</td><td class="" colspan="5">' + data.rejectReason + '</td></tr>');
+
+							}
+							$('.rejectReason_f').html(data.rejectReason);
+
+							if (data.planFile != 'base64' && data.planFile != '') {
+								$('#detailDialog  .planFile').html('<div class="input_file"><DIV class="showFileNames">' + data.planFile.split('/').pop().trim() + '</DIV><a class="btn btn-primary  my-2" href="' + data.planFile + '" target="_blank" type="button">下載實施計畫書</a></div>');
+							}
+							if (data.courseFile != 'base64' && data.courseFile != '') {
+								$('#detailDialog  .courseFile').html('<div class="input_file"><DIV class="showFileNames">' + data.courseFile.split('/').pop().trim() + '</DIV><a class="btn btn-primary  my-2" href="' + data.courseFile + '" target="_blank"  type="button">下載課程表</a></div>');
+							}
+							if (data.signFile != 'base64' && data.signFile != '') {
+								$('#detailDialog  .signFile').html('<div class="input_file"><DIV class="showFileNames">' + data.signFile.split('/').pop().trim() + '</DIV><a class="btn btn-primary  my-2" href="' + data.signFile + '" target="_blank"  type="button">下載受訓人員名冊與簽到表</a></div>');
+							}
+							if (data.trainFile != 'base64' && data.trainFile != '') {
+								$('#detailDialog  .trainFile').html('<div class="input_file"><DIV class="showFileNames">' + data.trainFile.split('/').pop().trim() + '</DIV><a class="btn btn-primary  my-2" href="' + data.trainFile + '"  target="_blank" type="button">下載受訓紀錄</a></div>');
+							}
+						}
+					}
+				});
+			};
+			//查看
+			$("#detailDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 960,
+				height: 550,
+
+				modal: true,
+				close: function () {
+					bodyHref("/content/safety/Safety_edu.html")
+
+				},
+				open: function (event, ui) {
+
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+			$("#editDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 960,
+				height: 550,
+
+				modal: true,
+				close: function () {
+
+					bodyHref("/content/safety/Safety_edu.html")
+				},
+				open: function (event, ui) {
+
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+			//通報退件
+			$('#return').click(function () {
+				$('#dialog-return').addClass('shows');
+				$('#dialog-return').removeClass('hides');
+				$('#returnReason1').removeAttr('disabled')
+			})
+			$('#returnFormSubmit').click(function () {
+				cancleBtnsubmit()
+			})
+			$('#submitBtn_s').click(function () {
+				AuditBtnsubmit();
+			})
+			$('#returncancel').click(function () {
+				$('#dialog-return').addClass('hides');
+				$('#dialog-return').removeClass('shows');
+			})
+			function cancleBtnsubmit() {
+				var id = parseFloat($("#safetyId").val());
+				var data = { safetyId: id, rejectReason: $("#returnReason1").val() }
+				console.log(JSON.stringify(data))
+				return $.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceEmployee/api/reject',
+					data: JSON.stringify(data),
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					type: "POST",
+					dataType: "json",
+					success: function (data, textStatus) {
+						console.log(data)
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							if (data.code == 0) {
+								showAlert('拒絕通報成功', '拒絕通報成功', bodyHref("/content/safety/Safety_edu.html"))
+								$.toast({ heading: '', text: '拒絕通報成功' + textStatus, icon: 'success', position: 'toast-top-center', hideAfter: 6000, });
+
+							} else if (data.errorMsg) {
+								alert(data.errorMsg);
+							}
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+						alert('拒絕通報失敗' + data + ',' + JSON.stringify(updatingItem))
+					},
+				});
+			}
+			function AuditBtnsubmit() {
+				var id = parseFloat($("#safetyId").val());
+				var data = { safetyId: id }
+				console.log(JSON.stringify(data))
+				return $.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceEmployee/api/review',
+					data: JSON.stringify(data),
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					type: "POST",
+					dataType: "json",
+					success: function (data, textStatus) {
+						console.log(data)
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							if (data.code == 0) {
+								showAlert('審核通報成功', '審核通報成功', bodyHref("/content/safety/Safety_edu.html"))
+								$.toast({ heading: '', text: '審核通報成功' + textStatus, icon: 'success', position: 'toast-top-center', hideAfter: 6000, });
+
+							} else if (data.errorMsg) {
+								alert(data.errorMsg);
+							}
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+						alert('審核通報失敗' + data + ',' + JSON.stringify(updatingItem))
+					},
+				});
+			}
+			function downloadExcel(id, excel) {
+
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/safetyMaintenanceEmployee/api/get?safetyId=' + id,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data) {
+						if (excel == 'planFile') {
+							window.location.href = data.data.planFile;
+						}
+						if (excel == 'courseFile') {
+							window.location.href = data.data.courseFile;
+						}
+						if (excel == 'signFile') {
+							window.location.href = data.data.signFile;
+						}
+						if (excel == 'trainFile') {
+							window.location.href = data.data.trainFile;
+						}
+						$('#detailDialog').dialog('close')
+
+
+					}
+				});
+			}
+			//創建select
+			function createSelect(id, data, key, val, eventKey) {
+				$.each(data, function (index, item) {
+					$('#' + id).append($('<option>').val(item[key]).text(eventKey ? item[eventKey] + "_" + item[val] : item[val]));
+					$('#' + id + '1').append($('<a>').html(item[val]).addClass('dropdown-item'));
+				});
+			}
+
+		});
+
+
+	});
+	//11233
+</script>

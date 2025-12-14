@@ -1,0 +1,356 @@
+﻿<div>
+	<h4>平安通報事件設定</h4>
+	
+	    <div id="jsGrid"></div>
+</div>
+
+<div id="tableDialog" style="display:none" class="container">
+    <form id="dialogForm">
+        <div class="details-form-field row">
+			<div class="col text-right"><label for="eventKey">事件編號</label></div>
+			<div class="col-8 align-self-center"><input id="eventKey" name="eventKey" type="text" readonly="readonly"/></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label for="eventName">事件名稱</label></div>
+			<div class="col-8 align-self-center"><input id="eventName" name="eventName" type="text" /></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label for="eventName">事件說明</label></div>
+			<div class="col-8 align-self-center"><textarea id="eventDesc" name="eventDesc" cols="50" rows="6"></textarea></div>
+        </div>
+        <div class="details-form-field row justify-content-center">
+			<div class="col text-right"></div>
+			<div class="col-7">
+				<button type="submit" id="dialogFormSubmit" class="btn btn-primary">新增</button>
+				<button type="button" id="dialogClose" class="btn btn-danger">取消</button>
+			</div>
+        </div>
+    </form>
+</div>
+
+<style>
+/* 讓表格內容換行 */
+.jsgrid-table{
+		word-wrap:break-word;
+	}
+input[type=text]{
+	width: 100%;
+}
+input[type=file]{
+	width: 100%;
+}
+textarea{
+	width:100%;
+}
+</style>
+
+<script>
+//需要用的JS
+require(["jquery", "jquery_validate", "jsgrid", "jquery_ui", "toast", "jquery_cookie"], function (jquery, jquery_validate, jsgrid, jquery_ui , toast) {
+	//頁面讀取後執行
+	$(document).ready(function(){
+			
+		 $.ajax({
+			    url: "/"+CONFIG.SYSTEM_NAME + '/eventSafeNotification/api/getEventSafeNotification',
+			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    async: false,
+			    cache: false,
+			    type: "GET",
+			    success: function(data, textStatus){    
+			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    		 alert("沒有權限");
+			    	 }else{
+						 console.log(data)
+			    	 	$("#jsGrid").jsGrid({
+			    	        width: "100%",
+			    	        height: "auto",
+			    	        heading: true, //是否顯示表頭
+			    		    filtering: true, //啟動查找
+			    		    inserting: false, //啟動新增  關掉使用自定義的
+			    		    editing: true,  //啟動編輯 
+			    		    selecting: true,
+			    		    sorting: true, //啟動排序
+			    		    paging: true, //啟動分頁 
+			    		    pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+			    		    autoload: true,
+			    		    pageSize: 10,
+			    		    
+			    		    controller: {
+			    		        loadData: function(filter) {
+			    		        	//查詢
+			    		        	 	var result = $.grep(data.eventSafeNotificationList, function(item, idx) {
+			    		                    for (var key in filter) {
+			    		                        var value = filter[key];
+			    		                        if (value.length > 0) {
+			    		                        	if (!item[key]){
+			    		                                return false;
+			    		                        	}
+			    		                        	if(typeof item[key] === 'number'){
+			    		                        		if (item[key].toString().indexOf(value) == -1){
+				    		                                return false;
+			    		                        		}
+			    		                        	}else if(typeof item[key] === 'string'){
+			    		                        		if (item[key].indexOf(value) == -1){
+				    		                                return false;
+			    		                        		}
+			    		                        	}
+			    		                        	
+			    		                        }
+			    		                    }
+			    		                    return true;
+			    		                });
+			    		            return result;
+			    		        },
+			    		        insertItem: function(insertingItem) {
+			    		        	return $.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/eventSafeNotificationSetting/api/addEventSafeNotification',
+			    		 			    data: JSON.stringify(insertingItem),
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    dataTyoe: "json",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 insertingItem.id = data.id;
+			    					    			 alert("新增成功");
+			    					    			 loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + "/content/eventSafeNotification/eventSafeNotificationSetting.html");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        },
+			    		        updateItem: function(updatingItem) { 
+			    		        	$.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/eventSafeNotificationSetting/api/updateEventSafeNotification',
+			    		 			    data: JSON.stringify(updatingItem),
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 alert("更新成功");
+			    					    			 loadNoCache($("#bodyContent"), "/" +CONFIG.SYSTEM_NAME + "/content/eventSafeNotification/eventSafeNotificationSetting.html");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        },
+			    		        deleteItem: function(deletingItem) {
+			    		        	 $.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/eventSafeNotificationSetting/api/deleteEventSafeNotification',
+			    		 			    data: '{"ID":' + deletingItem.id +'}',
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 alert("刪除成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			    	debugger;
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        }
+			    		    },
+			    	 
+			    	        fields: [
+			    	        	{ title:"狀態", name: "isSend", type: "text", width: 50, itemTemplate: function(value, item) { 
+			    	        		return value == "1" ? item.reviewId ? "審核完成" : "已送審" : "未送出"; 
+			    	        		} 
+			    	        	},
+			    	            { title:"事件編號", name: "eventKey", type: "text", width: 70 },
+			    	            { title:"事件名稱", name: "eventName", type: "text", width: 200 },
+			    	            { title:"事件說明", name: "eventDesc", type: "text", width: 230 },
+			    	            { title:"通報數(已審核)", name: "returnCount", type: "text", width: 70 },
+			    	            { title:"未通報單位", name:"notReturnUnit", type: "control", width: 70, filtercss:"display:none;", itemTemplate: function(value, item){
+			    	            	return  $("<button>").attr("type", "button").text("下載").addClass("btn btn-warning")
+		                                .on("click", function () {
+		                                	downloadExcel(item.id);
+		                                });
+			    	            }, headerTemplate: function(){
+			    	            	return "未通報單位";
+			    	            }, filterTemplate: function(){
+			    	            	return "";
+			    	            }},
+			    	            { type: "control",
+			                        editButton: false,
+			                        modeSwitchButton: false,
+			                        headerTemplate: function() {
+			                            return $("<button>").attr("type", "button").text("新增").addClass("btn btn-primary")
+			                                .on("click", function () {
+			                                	showDetailsDialog("新增", {});
+			                                });
+			                        }
+			    	            }             
+			    	        ],
+				    	 	rowClick: function(args) {
+				    	 		if(args.item.isSend != 1)
+				    	 		 	showDetailsDialog("修改", args.item);
+				    	 		else{
+				    	 			shmsToast((args.item.reviewId ? "審核完成" : "已送審") + "，目前無法編輯");
+				    	 		}
+				            },
+			    		    deleteConfirm: function(item) {
+			                    return "事件編號 \"" + item.eventKey + "\" 確認刪除? 已回報事件會一併刪除";
+			                },
+			    	    });
+			    	 	
+			    	 	//依時間排序
+			    	 	$("#jsGrid").jsGrid("sort", "eventKey","desc");
+			    	 }
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+			    },
+			});
+	
+		 $("#tableDialog").dialog({
+			 title: "參數設定",
+	         autoOpen: false,
+	         width: 550,
+	         modal: true,
+	         close: function() {
+	             $("#dialogForm").validate().resetForm();
+	             $("#dialogForm").find(".error").removeClass("error");
+	             $('.ui-widget-overlay').removeClass('custom-overlay');
+	         },
+             open: function(){
+            	 $('.ui-widget-overlay').addClass('custom-overlay');
+            	 customCloseBtn();
+             },
+             classes: dlgSetting.classes,
+ 	         show: dlgSetting.show,
+ 			 hide: dlgSetting.hide
+	     });
+		 
+		 var formSubmitHandler = $.noop;
+		 
+		 var showDetailsDialog = function(dialogType, item) {
+             $("#eventKey").val(item.eventKey);
+             $("#eventName").val(item.eventName);
+             $("#eventDesc").val(item.eventDesc);
+             formSubmitHandler = function() {
+            	 saveItem(item, dialogType === "新增");
+             };
+            
+             //自動長事件編號
+             if(dialogType === "新增"){
+            	 $.ajax({
+		 			    url: "/"+CONFIG.SYSTEM_NAME + '/eventSafeNotificationSetting/api/getEventKey',
+		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		 			    async: false,
+		 			    cache: false,
+		 			    type: "GET",
+		 			    success: function(data, textStatus){   
+		 			    	let status = false;
+		 			    	 if(data && data.result && data.result == "success" && data.eventKey){
+		 			    		$("#eventKey").val(data.eventKey);
+	 			    			status = true;
+					    	 }
+		 			    	 if(!status){
+		 			    		alert("沒有權限");
+		 			    		window.parent.location = "/"+CONFIG.SYSTEM_NAME+"/page/";
+		 			    	 }
+		 			    },
+		 			    error: function (data, textStatus, errorThrown) {
+		 			        console.log(data);
+		 			    },
+		 			});
+             }
+
+             $("#tableDialog").dialog("option", "title", dialogType + " 事件").dialog("open");
+         };
+	
+	     $("#dialogForm").validate({
+	    	 //錯誤訊息元素預設為label改成p會換行
+			 errorElement: "p",
+	         rules: {
+	        	 eventKey: { required: true, rangelength: [9, 10] },
+	        	 eventName: { required: true, rangelength: [2, 200] },
+	        	 eventDesc: { required: false, rangelength: [0, 200] }
+	         },
+	         messages: {
+	        	 	eventKey:{
+			          required: "請輸入事件編號",
+			          rangelength: "密碼長度不得小於9個字母大於10個字母"
+			        },
+			        eventName:{
+			          required: "請輸入事件名稱",
+			          rangelength: "參數key不得小於2個字母大於200個字母"
+			        },
+			        eventDesc:{
+				          rangelength: "參數key不得大於200個字母"
+				    }
+	         },
+	         submitHandler: function() {
+	             formSubmitHandler();
+	         }
+	     });
+	     
+	     var saveItem = function(item, isNew) {
+             $.extend(item, {
+            	 eventKey: $("#eventKey").val(),
+            	 eventName: $("#eventName").val(),
+            	 eventDesc: $("#eventDesc").val()
+             });
+             
+             $("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", item);
+
+             $("#tableDialog").dialog("close");
+         };
+         
+         $("#dialogClose").on("click", function(){
+        	 $("#tableDialog").dialog("close");
+         });
+	
+         function downloadExcel(id){		 		
+			  var newForm = jQuery('<form>', {
+				  	'action': "/"+CONFIG.SYSTEM_NAME + '/eventSafeNotificationSetting/api/downloadNotReturn',
+				  	'method': 'post',
+			        'target': '_blank'
+			    }).append(jQuery('<input>',{
+			    	'name' : 'id',
+			    	'value': id,
+			    	'type': 'text'
+			    })).append(jQuery('<input>',{
+			    	'name' : '_csrf',
+			    	'value': $.cookie("XSRF-TOKEN"),
+			    	'type': 'text'
+			    }));
+			  	var iframe = document.createElement('IFRAME');
+				iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+				$(iframe).append(newForm);
+				document.body.appendChild(iframe);
+			    newForm.submit();
+			    iframe.parentNode.removeChild(iframe);
+		}
+	});
+});
+</script>

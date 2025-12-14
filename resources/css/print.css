@@ -1,0 +1,369 @@
+@media  print {
+   .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
+        float: left;
+   }
+   .col-xs-12 {
+        width: 100%;
+   }
+   .col-xs-11 {
+        width: 91.66666667%;
+   }
+   .col-xs-10 {
+        width: 83.33333333%;
+   }
+   .col-xs-9 {
+        width: 75%;
+   }
+   .col-xs-8 {
+        width: 66.66666667%;
+   }
+   .col-xs-7 {
+        width: 58.33333333%;
+   }
+   .col-xs-6 {
+        width: 50%;
+   }
+   .col-xs-5 {
+        width: 41.66666667%;
+   }
+   .col-xs-4 {
+        width: 33.33333333%;
+   }
+   .col-xs-3 {
+        width: 25%;
+   }
+   .col-xs-2 {
+        width: 16.66666667%;
+   }
+   .col-xs-1 {
+        width: 8.33333333%;
+   }
+}
+
+@media print { h1, h2, h3, h4, h5, h6 {
+          margin-top: 0;
+          margin-bottom: .5rem;
+      }.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+          margin-bottom: .5rem;
+          font-weight: 500;
+          line-height: 1.2;
+      }
+     .h2, h2 {
+          font-size: 36px;
+      }
+      label{white-space: nowrap; padding-left: 0; margin-left: 0;}
+    .safe_form{font-size: 0.8rem;}
+       label input{margin: 0;}
+      .white_normal{white-space: normal;}
+      .table_div{padding:8px!important; height:auto !important; margin:0 !important;}
+   
+      .table_div  .table_div{padding:15px!important;}
+      .table_div textarea{width:96% !important;}
+      .table_div label{margin-bottom:0!important;}
+     p input,label input{display:inline-block}
+     .input_table {
+    display: inline-block;
+    width: 80px !important;
+    border: 0;
+    background: transparent;
+    border-bottom: 1px solid;
+}
+     .Title{font-size: 36px; text-align: center; display: block;}
+     .w-100 {
+          width: 96% !important;
+          margin: 0 auto!important;
+      }
+      .custom-checkbox .custom-control-label {
+         float: left;
+         padding-left:25px;
+         padding-right: 5px;
+         margin-top: -27px;
+      }
+      .custom-checkbox {
+      display: inline-block;
+          padding-right: 0px;
+      }
+      .custom-control {
+          position: relative;
+          display: block;
+          min-height: 1.2rem;
+          padding-left: 0rem;
+      }
+      td div#SunitName{ margin-bottom: 4.5em;}
+     .safe_form td{padding: 8px 5px;}
+      .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6,
+      .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+           float: left;               
+      }
+     .container{width: 96%;}
+      .col-sm-12 {
+           width: 100%;
+      }
+
+      .col-sm-11 {
+           width: 91.66666666666666%;
+      }
+
+      .col-sm-10 {
+           width: 83.33333333333334%;
+      }
+
+      .col-sm-9 {
+            width: 75%;
+      }
+
+      .col-sm-8 {
+            width: 66.66666666666666%;
+      }
+
+       .col-sm-7 {
+            width: 58.333333333333336%;
+       }
+
+       .col-sm-6 {
+            width: 50%;
+       }
+
+       .col-sm-5 {
+            width: 41.66666666666667%;
+       }
+
+       .col-sm-4 {
+            width: 33.33333333333333%;
+       }
+
+       .col-sm-3 {
+            width: 25%;
+       }
+
+       .col-sm-2 {
+              width: 16.666666666666664%;
+       }
+
+       .col-sm-1 {
+              width: 8.333333333333332%;
+        }            
+}
+
+
+tr.hide_right > td, td.hide_right{
+        border-right-style:hidden;
+}
+tr.hide_left > td, td.hide_left{
+        border-left-style:hidden;
+}
+tr.hide_top > td, td.hide_top{
+        border-top-style:hidden;
+}
+tr.hide_all > td, td.hide_all{
+        border-style:hidden;
+}
+
+.print-table th, td {border: 1px solid gray;}td.print-noBorder {border: none;}.print-table {border-collapse: collapse;}
+
+
+
+@media print
+{
+     .body-parts {
+		/* height: 71px; */
+		line-height: 60px;
+		border-bottom: 4px solid #ccc;
+		margin-bottom: 8px;
+		font-size: 12px;
+	}
+
+	.tt_radio-box .tt_radio {
+		/* height: 70px; */
+		display: flex;
+		justify-items: center;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.tt_radio-box .tt_radio ul {
+		display: flex;
+		justify-content: space-between;
+		/* width: 100% !important; */
+		margin-bottom: 0;
+	}
+
+	.tt_radio-box .tt_radio span {
+		margin-left: 5px;
+		/*position: relative;*/
+		/*top: 6px;*/
+		font-size: 12px;
+	}
+
+	.pain-img {
+		width: calc(100% - 50px);
+	}
+	.no-print{
+		display:none !important;
+	}
+	.do-print{
+		display:block !important;
+	}
+
+	body{
+		padding-top: 0px !important;
+	}
+     .w-100{width: 96%;}
+}
+@media print {
+     .print-break {
+        width:300px;
+       word-wrap: break-word !important;
+       overflow-wrap: break-word !important;
+       white-space: pre-wrap !important;
+        word-break: break-all !important;
+     }
+   }
+@media print {
+     .content-img-list,.sys_imglist,.content-img,.upload-content {height: auto !important; padding: 0;}
+     .content-img-list li{list-style: none;}
+     .content-img-list li img{width: 120px;height: 120px;}
+     .file{display: none;}
+     .table-header{background-color: #dadada; font-weight: bold;}
+     .m-t50{margin-top: 50px;} .m-b30{margin-bottom: 30px;} .clear{clear: both;}
+        .pressing_form .pressing_hide{ display: none;}
+        h2{margin-bottom: 5px;padding-bottom: 5px; font-size: 24px; margin-bottom: 15px;}
+.dialogform  .pressing_tr{display: none;}
+.pressing_form  #eventTime{display: none;}
+ #eventTime_b{display: none;}
+.pressing_form  #eventTime_b{display: block;}
+.dialogform .pressing_show{display: none;}
+.safe_form{border:1px solid #000; font-size:  12px!important;}
+.safe_form td{border-bottom:1px solid #000;border-right:1px solid #000;padding: 8px}
+.safe_form td label{font-size: 12px!important;}
+
+        table {
+                border-collapse: collapse;
+        border: 1px solid #333  !important;
+      
+        }
+        th, td {
+        border-right: 1px solid #333  !important;
+        border-bottom: 1px solid #333  !important;
+
+        }
+        table thead tr, .table-header {
+          background-color: #dadada !important;
+      }
+      .safe_form td dl{padding:0; margin: 0;}
+.safe_form td dd{padding:0; margin: 0; display: inline-block;}
+        } 
+        .tt_radio{border-bottom: 4px solid #ccc; margin-bottom: 8px;}
+        .tt_radio:after{clear: both; display: block; content: ' ';}
+        .tt_radio i{width: 30px;height: 30px; margin: 8px 5px; font-size: 20px; text-align: center; line-height:30px; border: 2px solid #333; float: left; display: block; border-radius: 40px;}
+        .tt_radio ul{list-style: none; padding: 0; width: calc(100% - 50px); float: left;}
+        .tt_radio li{display: block; float:left; text-align: center; width: calc(100% / 6.1); padding: 8px 0;}
+        .tt_radio li:after{content:' '; clear: both; display: block;}
+        
+        .tiakuan_box{height: auto; display: none;}
+        .custom-control-input:checked~.custom-control-label::before {
+          color: #fff;
+          border-color: #007bff;
+          background-color: #007bff;
+      }
+      .custom-checkbox .custom-control-input:checked~.custom-control-label::after {
+          background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z'/%3e%3c/svg%3e);
+      }
+     
+        /*
+|--------------------------------------------------------------------------
+| Modules
+|--------------------------------------------------------------------------
+*/
+/*
+|--------------------------------------------------------------------------
+| Aliases
+|--------------------------------------------------------------------------
+*/
+/*
+|--------------------------------------------------------------------------
+| Partials
+|--------------------------------------------------------------------------
+*/
+.printModal {
+        font-family: sans-serif;
+        display: flex;
+        text-align: center;
+        font-weight: 300;
+        font-size: 30px;
+        left: 0;
+        top: 0;
+        position: absolute;
+        color: #045fb4;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.9); }
+      
+      /*
+      |--------------------------------------------------------------------------
+      | Close Button
+      |--------------------------------------------------------------------------
+      */
+      .printClose {
+        position: absolute;
+        right: 10px;
+        top: 10px; }
+      
+      .printClose:before {
+        content: "\00D7";
+        font-family: "Helvetica Neue", sans-serif;
+        font-weight: 100;
+        line-height: 1px;
+        padding-top: 0.5em;
+        display: block;
+        font-size: 2em;
+        text-indent: 1px;
+        overflow: hidden;
+        height: 1.25em;
+        width: 1.25em;
+        text-align: center;
+        cursor: pointer; }
+      
+      .printSpinner {
+        margin-top: 3px;
+        margin-left: -40px;
+        position: absolute;
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        border: 2px solid #045fb4;
+        border-radius: 50%;
+        animation: spin 0.75s infinite linear; }
+      
+      .printSpinner::before, .printSpinner::after {
+        left: -2px;
+        top: -2px;
+        display: none;
+        position: absolute;
+        content: '';
+        width: inherit;
+        height: inherit;
+        border: inherit;
+        border-radius: inherit; }
+      
+      .printSpinner, .printSpinner::before, .printSpinner::after {
+        display: inline-block;
+        border-color: transparent;
+        border-top-color: #045fb4;
+        animation-duration: 1.2s; }
+      
+      .printSpinner::before {
+        transform: rotate(120deg); }
+      
+      .printSpinner::after {
+        transform: rotate(240deg); }
+      
+      /* Keyframes for the animation */
+      @keyframes spin {
+        from {
+          transform: rotate(0deg); }
+        to {
+          transform: rotate(360deg); } }
+      
+      
+      /*# sourceMappingURL=print.map*/

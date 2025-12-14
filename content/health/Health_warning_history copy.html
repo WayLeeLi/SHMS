@@ -1,0 +1,570 @@
+﻿<div>
+
+	<div  class="m-t50 m-b30">
+		<h4>健康問題異常追蹤管理</h4>
+	
+		</div>
+        <div id="jsGrid"></div>
+		<div style="text-align: center;" class="m-t50 m-b30">
+			<button type="button" id="Track_btn" class="btn btn-primary  my-2" >追蹤關懷紀錄</button>
+			<button type="button" id="printBtn" class="btn btn-secondary  my-2">返回</button>
+		</div>
+</div>
+
+<div id="tableDialog" style="display:none" class="container">
+    <div id="pringDiv">
+        <h2 style="text-align: center;">健康關懷紀錄</h2>
+        <br>
+        <form id="inputForm">
+    
+            <table class="w-100 safe_form">
+                <thead>
+                    <tr>
+                        <td class="table-header text-center">單位</td>
+                        <td class="table-header text-center ">職稱</td>
+                        <td class="table-header text-center">姓名</td>
+                        <td class="table-header text-center">性別</td>
+                        <td class="table-header text-center">出生年月日</td>
+                        <td class="table-header text-center">訪談日期</td>
+    
+                    </tr></thead>
+                <tbody>
+                    <tr>
+                        <td class=" text-center">單位</td>
+                        <td class=" text-center ">職稱</td>
+                        <td class=" text-center">姓名</td>
+                        <td class=" text-center">性別</td>
+                        <td class=" text-center">出生年月日</td>
+                        <td class=" text-center">訪談日期</td>
+    
+                    </tr>
+                
+                    <tr>
+                        <td class="table-header  text-center"> 健康問題:</td>
+                        <td colspan="5">
+                            <label for=""><input type="checkbox">生理疾病<input type="text" class="input_table"></label>
+                            <label for=""><input type="checkbox">心理疾病<input type="text" class="input_table"></label>
+                            <label for=""><input type="checkbox">職場復工、配工、選工</label>
+                            <label for=""><input type="checkbox">健康檢查後處置</label>
+                            <label for=""><input type="checkbox">異常工作負荷</label>
+                            <label for=""><input type="checkbox">母性健康管理</label>
+                            <label for=""><input type="checkbox">骨骼肌肉傷害</label>
+                            <label for=""><input type="checkbox">其它<input type="text" class="input_table"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-header  text-center">健康狀況簡述:</td>
+                        <td colspan="5">
+                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+    
+                        <td>
+                            訪談方式
+                        </td>
+                        <td colspan="2">
+                            &nbsp;
+                        </td>
+                        <td>
+                            訪談地點
+                        </td>
+                        <td colspan="2">
+                            &nbsp;
+                        </td>
+    
+                    </tr>
+                    <tr>
+                        <td class="table-header  text-center">工作內容概要</td>
+                        <td colspan="5">
+                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-header  text-center">訪談概要</td>
+                        <td colspan="5">
+                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-header  text-center">醫師建議</td>
+                        <td colspan="5">
+                            <textarea name="" id="" cols="30" rows="10"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-header  text-center">健康指導</td>
+                        <td colspan="5">
+                            <h2>醫療或健康指導</h2>
+                            <label for=""><input type="checkbox">1、須接受治療及休養</label>
+                            <label for=""><input type="checkbox">2、須追蹤觀察</label>
+                            <label for=""><input type="checkbox">3、須接受飲食及生活習慣等衛教指導</label>
+                            <label for=""><input type="checkbox">4、無須要接受治療</label>
+                            <label for=""><input type="checkbox">5、下次追蹤日期：民國 年 月 日</label>
+                            <label for=""><input type="checkbox">6、其它<input type="text" class="input_table"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table-header  text-center" rowspan="2">健康關懷醫護人員</td>
+                        <td colspan="5">
+                            臨場健康服務醫師：<input type="text" class="input_table" >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            護理人員：<input type="text" class="input_table"> </td>
+                    </tr>
+    
+    
+                </tbody>
+            </table>
+    
+        </form>
+    </div>
+    <br>
+    <div style="text-align: center;">
+        <button type="button" id="addjilu" class="btn btn-warning  my-2" onclick='showAddDialog("新增", {});'>新增追蹤關懐紀錄</button>
+    
+        <button type="button" id="submitBtn" class="btn btn-success  my-2">送出</button>
+        <button type="button" id="printBtn" class="btn btn-secondary  my-2">列印</button>
+    </div>
+</div>
+
+<div id="addDialog" style="display:none" class="container">
+	<div>
+		<h2 style="text-align: center;">追蹤關懷紀錄</h2>
+		<br>
+		<form id="inputForm">
+	
+			<table class="w-100 safe_form">
+				<thead>
+					<tr>
+						<td class="table-header text-center">單位</td>
+						<td class="table-header text-center ">職稱</td>
+						<td class="table-header text-center">姓名</td>
+						<td class="table-header text-center">性別</td>
+						<td class="table-header text-center">出生年月日</td>
+						<td class="table-header text-center">訪談日期</td>
+	
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class=" text-center">單位</td>
+						<td class=" text-center ">職稱</td>
+						<td class=" text-center">姓名</td>
+						<td class=" text-center">性別</td>
+						<td class=" text-center">出生年月日</td>
+						<td class=" text-center">訪談日期</td>
+	
+					</tr>
+	
+					<tr>
+						<td class="table-header  text-center">健康問題:</td>
+						<td colspan="5">
+							&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header  text-center">醫師建議:</td>
+						<td colspan="5">
+							&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header  text-center">健康指導:</td>
+						<td colspan="5">
+							&nbsp;
+						</td>
+					</tr>
+					<tr>
+	
+						<td>
+							訪談方式
+						</td>
+						<td colspan="2">
+							&nbsp;
+						</td>
+						<td>
+							訪談地點
+						</td>
+						<td colspan="2">
+							&nbsp;
+						</td>
+	
+					</tr>
+					<tr>
+						<td class="table-header  text-center">追蹤日期</td>
+						<td class="table-header  text-center">時間</td>
+						<td class="table-header  text-center" colspan="4">內容</td>
+					</tr>
+					<tr>
+						<td><input type="text"></td>
+						<td></td>
+						<td colspan="4"></td>
+					</tr>
+	
+	
+				</tbody>
+			</table>
+	
+		</form>
+	</div>
+    <br>
+    <div style="text-align: center;">
+        <button type="button" id="addjilu" class="btn btn-warning  my-2" onclick='showAddDialog("新增", {});'>新增追蹤關懐紀錄</button>
+    
+        <button type="button" id="submitBtn" class="btn btn-success  my-2">送出</button>
+        <button type="button" id="printBtn" class="btn btn-secondary  my-2">列印</button>
+    </div>
+</div>
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui"], function (jquery, jquery_validate, jsgrid, jquery_ui) {
+		//頁面讀取後執行
+		$(document).ready(function () {
+			$('#Track_btn').click(function (){
+				bodyHref("/content/health/Health_warning_history.html");
+			})
+			$('#startDate').datepicker({
+
+autoclose: true, //選擇後自動關閉
+format: 'yy/mm/dd',
+maxDate: new Date() ,
+}).on('changeDate',function(e){  
+var startTime = e.date;  
+$('#endDate').datepicker('setStartDate',startTime);  
+});
+
+$('#endDate').datepicker({
+
+autoclose: true, //選擇後自動關閉
+format: 'yy/mm/dd',
+maxDate: new Date() ,
+minDate: $("#startDate").val(),
+}).on('changeDate',function(e){  
+var endTime = e.date;  
+$('#startDate').datepicker('setEndDate',endTime);  
+});
+
+			$.ajax({
+				url: "/" + CONFIG.SYSTEM_NAME + '/config/api/getConfig',
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+				async: false,
+				cache: false,
+				type: "GET",
+				success: function (data, textStatus) {
+					if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+						var data = new Array(
+							{
+								"MNAME":"ALICE9876",
+								"FNUM":"A12345678",
+                                "NAME":"王O玉",
+								"SEX":"女",
+                                "MANG":"圓山分行",
+								"AGE": "50",
+								"TIME": "2022/12/01",
+								"CM": "150",
+								"KG": "50",
+								"YCM": "50",
+								"EYE": "170",
+								"XUNIT": "正常",
+                                "UNIT":"1",
+                                "LOOK":"1"
+
+							}, {
+                                "MNAME":"ALICE9876",
+								"FNUM":"A12345678",
+                                "NAME":"王O玉",
+								"SEX":"女",
+                                "MANG":"圓山分行",
+								"AGE": "50",
+								"TIME": "2022/12/01",
+								"CM": "150",
+								"KG": "50",
+								"YCM": "50",
+								"EYE": "190",
+								"XUNIT": "正常",
+                                "UNIT":"1",
+                                "LOOK":"1"
+						},
+							{
+                                "MNAME":"ALICE9876",
+								"FNUM":"A12345678",
+                                "NAME":"王O玉",
+								"SEX":"女",
+                                "MANG":"圓山分行",
+								"AGE": "50",
+								"TIME": "2022/12/01",
+								"CM": "150",
+								"KG": "50",
+								"YCM": "50",
+								"EYE": "160",
+								"XUNIT": "正常",
+                                "UNIT":"1",
+                                "LOOK":"1"
+
+							}, {
+                                "MNAME":"ALICE9876",
+								"FNUM":"A12345678",
+                                "NAME":"王O玉",
+								"SEX":"女",
+                                "MANG":"圓山分行",
+								"AGE": "50",
+								"TIME": "2022/12/01",
+								"CM": "150",
+								"KG": "50",
+								"YCM": "50",
+								"EYE": "200",
+								"XUNIT": "正常",
+                                "UNIT":"1",
+                                "LOOK":"1"
+
+						}, {
+							"MNAME":"ALICE9876",
+								"FNUM":"A12345678",
+                                "NAME":"王O玉",
+								"SEX":"女",
+                                "MANG":"圓山分行",
+								"AGE": "50",
+								"TIME": "2022/12/01",
+								"CM": "150",
+								"KG": "50",
+								"YCM": "50",
+								"EYE": "180",
+								"XUNIT": "正常",
+                                "UNIT":"0",
+                                "LOOK":"1"
+						}, {
+                            "MNAME":"ALICE9876",
+								"FNUM":"A12345678",
+                                "NAME":"王O玉",
+								"SEX":"女",
+                                "MANG":"松山分行",
+								"AGE": "50",
+								"TIME": "2022/12/01",
+								"CM": "150",
+								"KG": "50",
+								"YCM": "50",
+								"EYE": "150",
+								"XUNIT": "正常",
+                                "UNIT":"1",
+                                "LOOK":"1"
+
+						});
+                        
+						$("#jsGrid").jsGrid({
+							width: "100%",
+							height: "auto",
+							heading: true, //是否顯示表頭
+							filtering: false, //啟動查找
+							inserting: false, //啟動新增  關掉使用自定義的
+							editing: true,  //啟動編輯 
+							selecting: true,
+							sorting: true, //啟動排序
+							paging: true, //啟動分頁 
+							pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+							autoload: true,
+							pageSize: 10,
+
+							controller: {
+								loadData: function (filter) {
+									//查詢
+									var result = $.grep(data, function (item, idx) {
+										for (var key in filter) {
+											var value = filter[key];
+											if (value.length > 0) {
+												if (!item[key]) {
+													return false;
+												}
+												if (typeof item[key] === 'number') {
+													if (item[key].toString().indexOf(value) == -1) {
+														return false;
+													}
+												} else if (typeof item[key] === 'string') {
+													if (item[key].indexOf(value) == -1) {
+														return false;
+													}
+												}
+
+											}
+										}
+										return true;
+									});
+									return result;
+								},
+							},
+
+							fields: [
+                          	
+							{ title: "TCB帳號", name: "MNAME", type: "text", validate: "required" },
+								{ title: "身分證字號", name: "FNUM", type: "text", validate: "required" },
+								{ title: "姓名", name: "NAME", type: "text", validate: "required" },
+								{ title: "性別", name: "SEX", type: "text", validate: "required" },
+                                { title: "部室", name: "MANG", type: "text", validate: "required" },
+								{ title: "出生年月日", name: "TIME", type: "text", validate: "required" },
+								{ title: "年齡", name: "AGE", type: "text", validate: "required" },
+								{ title: "身高", name: "CM", type: "text", validate: "required" },
+								{ title: "體重", name: "KG", type: "text", validate: "required" },
+								{ title: "腰圍", name: "YCM", type: "text", validate: "required" },
+								{ title: "膽固醇", name: "EYE", type: "text", validate: "required" },
+								{ title: "狀態", name: "UNIT", type: "text", itemTemplate: function(value, item){
+			    	            	if(value == '1'){
+                                        return  $("<DIV>").text("追蹤中")
+
+                                    }else{
+                                        return  $("<DIV>").text(" ")
+                                    }
+			    	            }, headerTemplate: function(){
+			    	            	return "狀態";
+			    	            }, filterTemplate: function(){
+			    	            	return "";
+			    	            }},
+                                { title: "關懷次數", name: "LOOK", type: "text", },
+                                {
+										type: "control",
+										name: "id",
+										width: 80,
+										editButton: false,
+										deleteButton: false,
+										modeSwitchButton: false,
+										filtercss: "display:none;",
+										itemTemplate: function (value, item) {
+											return $("<button>").attr("type", "button").text("查看").addClass("btn btn-success")
+												.on("click", function () {
+													console.log(value)
+													showDetailsDialog("查看", value);
+
+												})
+
+										}, headerTemplate: function () {
+											//if (menuData.functionArray.indexOf('add') < 0) {
+												//return "查看";
+											//} else {
+												return $("<button>").attr("type", "button").text("新增").addClass("btn btn-primary")
+													.on("click", function () {
+
+														showDetailsDialog("新增", {});
+													});
+											//}
+
+										}
+									}
+
+							],
+							rowClick: function (args) {
+
+								// bodyHref("/content/situation/Safetysituationreport_form.html");
+								//showDetailsDialog("修改", args.item);
+							},
+							deleteConfirm: function (item) {
+								return "參數\"" + item.NUM + "\"確認刪除?";
+							},
+						});
+                      
+					}
+				},
+				error: function (data, textStatus, errorThrown) {
+					console.log(data);
+				},
+			});
+
+			$("#tableDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 960,
+                height: 550,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+			var formSubmitHandler = $.noop;
+
+			var showDetailsDialog = function (dialogType, item) {
+
+				$("#tableDialog").dialog("option", "title", dialogType + "").dialog("open");
+			};
+			$("#addDialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 960,
+                height: 550,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			})
+
+			var showAddsDialog = function (dialogType, item) {
+
+				$("#addDialog").dialog("option", "title", dialogType + "").dialog("open");
+			};
+
+
+			var saveItem = function (item, isNew) {
+				$.extend(item, {
+					cfgType: $("#cfgType").val(),
+					cfgKey: $("#cfgKey").val(),
+					cfgName: $("#cfgName").val(),
+					cfgValue: $("#cfgValue").val(),
+					cfgMemo: $("#cfgMemo").val(),
+					cfgInUse: $('input[name*=cfgInUse]:checked').val()
+				});
+
+				$("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", item);
+
+				$("#tableDialog").dialog("close");
+				bodyHref("/content/situation/Safetysituationreport.html");
+			};
+
+			function Processing(id) {
+				bodyHref("/content/situation/Safetysituationreport_form7.html");
+			}
+
+		});
+
+
+	});
+</script>

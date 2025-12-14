@@ -1,0 +1,903 @@
+﻿<style>
+	.adminUnit{
+		display: none;
+	}
+	</style>
+	
+<div class="no-print">
+	<h4>單位職安業務基本資料維護</h4>
+	<form id="inputForm">
+		<table style="border-collapse: collapse; width: 100%; height: 108px;"
+			border="1">
+			<tbody>
+				<tr style="height: 18px;">
+					<td style="width: 21.3622%; height: 18px;" colspan="2" class="table-header">單位代號</td>
+					<td style="width: 22.3638%; height: 18px;"><div id="unitId"></div></td>
+					<td style="width: 6.3142%; height: 18px;" class="table-header">單位名稱</td>
+					<td style="width: 21.5187%; height: 18px;"><div id="unitName"></div></td>
+					<td style="width: 5.6832%; height: 18px;" class="table-header">單位電話</td>
+					<td style="width: 21.7581%; height: 18px;"><div id="unitTel"></div></td>
+				</tr>
+				<tr style="height: 18px;">
+					<td style="width: 5.09229%; height: 90px;" rowspan="9" class="table-header">單位</td>
+					<td style="width: 16.2699%; height: 18px;" class="table-header">總務</td>
+					<td style="width: 22.3638%; height: 18px;"><select required class="custom-select staff w-auto" id="affairs" name="affairs"></select></td>
+					<td style="width: 6.3142%; height: 18px;" class="table-header">手機</td>
+					<td style="width: 21.5187%; height: 18px;"><input type="text" id="affairsPhone" name="affairsPhone" placeholder="cell phone number" class="cellphone" data-rocid=""/></td>
+					<td style="width: 5.6832%; height: 18px;" class="table-header">email</td>
+					<td style="width: 21.7581%; height: 18px;"><input type="text" id="affairsEmail" name="affairsEmail" style="width: 260px;" readOnly/></td>
+				</tr>
+				<tr style="height: 18px;">
+					<td style="width: 16.2699%; height: 18px;" class="table-header">主管</td>
+					<td style="width: 22.3638%; height: 18px;"><div id="manager" class=" staff"></div></td>
+					<td style="width: 6.3142%; height: 18px;" class="table-header">手機</td>
+					<td style="width: 21.5187%; height: 18px;"><input type="text" id="managerPhone" name="managerPhone" placeholder="cell phone number" class="cellphone" data-rocid=""/></td>
+					<td style="width: 5.6832%; height: 18px;" class="table-header">email</td>
+					<td style="width: 21.7581%; height: 18px;"><input type="text" id="managerEmail" name="managerEmail" style="width: 260px;" readOnly/></td>
+				</tr>
+				<tr style="height: 18px;">
+					<td style="width: 16.2699%; height: 18px;" class="table-header">職業安全衛生業務主管</td>
+					<td style="width: 22.3638%; height: 18px;">
+						<select class="custom-select staff w-auto" id="saveManager" name="saveManager"></select>
+						<input type='hidden' id="saveManagerId" name="saveManagerId" />
+						<input type='hidden' id="prevSaveManagerId" name="prevSaveManagerId" />
+						<button class="btn btn-info float-right" data-func="history" data-type="CERTIFICATE_TYPE_SAVEMANAGER" data-target="saveManager">歷程</button>
+					</td>
+					<td style="width: 6.3142%; height: 18px;" class="table-header">手機</td>
+					<td style="width: 21.5187%; height: 18px;"><input type="text" id="saveManagerPhone" name="saveManagerPhone" placeholder="cell phone number" class="cellphone" data-rocid=""/></td>
+					<td style="width: 5.6832%; height: 18px;" class="table-header">email</td>
+					<td style="width: 21.7581%; height: 18px;"><input type="text" id="saveManagerEmail" name="saveManagerEmail" style="width: 260px;" readOnly/></td>
+					
+				</tr>
+				<tr style="height: 18px;">
+					<td style="width: 16.2699%; height: 18px;" class="table-header">防火管理人</td>
+					<td style="width: 22.3638%; height: 18px;">
+						<select class="custom-select staff w-auto" id="fireHelper" name="fireHelper"></select>
+						<input type='hidden' id="fireHelperId" name="fireHelperId" />
+						<input type='hidden' id="prevFireHelperId" name="prevFireHelperId" />
+						<button class="btn btn-info float-right" data-func="history" data-type="CERTIFICATE_TYPE_FIREHELPER" data-target="fireHelper">歷程</button>
+					</td>
+					<td style="width: 6.3142%; height: 18px;" class="table-header">手機</td>
+					<td style="width: 21.5187%; height: 18px;"><input type="text" id="fireHelperPhone" name="fireHelperPhone" placeholder="cell phone number" class="cellphone" data-rocid=""/></td>
+					<td style="width: 5.6832%; height: 18px;" class="table-header">email</td>
+					<td style="width: 21.7581%; height: 18px;"><input type="text" id="fireHelperEmail" name="fireHelperEmail" style="width: 260px;" readOnly/></td>
+					
+				</tr>
+				<tr style="height: 18px;">
+					<td style="width: 16.2699%; height: 18px;" class="table-header">急救人員</td>
+					<td style="width: 22.3638%; height: 18px;">
+						<select class="custom-select staff w-auto" id="helper" name="helper"></select>
+						<input type='hidden' id="helperId" name="helperId" />
+						<input type='hidden' id="prevHelperId" name="prevHelperId" />
+						<button class="btn btn-info float-right" data-func="history" data-type="CERTIFICATE_TYPE_HELPER" data-target="helper">歷程</button>
+					</td>
+					<td style="width: 6.3142%; height: 18px;" class="table-header">手機</td>
+					<td style="width: 21.5187%; height: 18px;"><input type="text" id="helperPhone" name="helperPhone" placeholder="cell phone number" class="cellphone" data-rocid=""/></td>
+					<td style="width: 5.6832%; height: 18px;" class="table-header">email</td>
+					<td style="width: 21.7581%; height: 18px;"><input type="text" id="helperEmail" name="helperEmail" style="width: 260px;" readOnly/></td>
+					
+				</tr>
+				<tr style="height: 18px;">
+					<td style="width: 16.2699%; height: 18px;" class="table-header">總務襄理</td>
+					<td style="width: 22.3638%; height: 18px;">
+						<select class="custom-select staff w-auto" id="juniorManager" name="juniorManager"></select>
+						<input type='hidden' id="juniorManagerId" name="juniorManagerId" />
+						<input type='hidden' id="prevJuniorManagerId" name="prevJuniorManagerId" />
+					</td>
+					<td style="width: 6.3142%; height: 18px;" class="table-header">手機</td>
+					<td style="width: 21.5187%; height: 18px;"><input type="text" id="juniorManagerPhone" name="juniorManagerPhone" placeholder="cell phone number" class="cellphone" data-rocid=""/></td>
+					<td style="width: 5.6832%; height: 18px;" class="table-header">email</td>
+					<td style="width: 21.7581%; height: 18px;"><input type="text" id="juniorManagerEmail" name="juniorManagerEmail" style="width: 260px;" readOnly/></td>
+					
+				</tr>
+				<!-- //僅行管部 -->
+				<tr style="height: 18px;" class="adminUnit">
+					<td style="width: 16.2699%; height: 18px;" class="table-header">職業安全衛生管理員</td>
+					<td style="width: 22.3638%; height: 18px;">
+						<select class="custom-select staff w-auto" id="safetyHealthMgr" name="safetyHealthMgr"></select>
+						<input type='hidden' id="safetyHealthMgrId" name="safetyHealthMgrId" />
+						<input type='hidden' id="prevSafetyHealthMgrId" name="prevSafetyHealthMgrId" />
+						<button class="btn btn-info float-right" data-func="history" data-type="CERTIFICATE_TYPE_SAFETY_HEALTH" data-target="safetyHealthMgr">歷程</button>
+					</td>
+					<td style="width: 6.3142%; height: 18px;" class="table-header">手機</td>
+					<td style="width: 21.5187%; height: 18px;"><input type="text" id="safetyHealthMgrPhone" name="safetyHealthMgrPhone" placeholder="cell phone number" class="cellphone" data-rocid=""/></td>
+					<td style="width: 5.6832%; height: 18px;" class="table-header">email</td>
+					<td style="width: 21.7581%; height: 18px;"><input type="text" id="safetyHealthMgrEmail" name="safetyHealthMgrEmail" style="width: 260px;" readOnly/></td>
+					
+				</tr>
+				<tr style="height: 18px;" class="adminUnit">
+					<td style="width: 16.2699%; height: 18px;" class="table-header">職業安全管理師</td>
+					<td style="width: 22.3638%; height: 18px;">
+						<select class="custom-select staff w-auto" id="safetyMgr" name="safetyMgr"></select>
+						<input type='hidden' id="safetyMgrId" name="safetyMgrId" />
+						<input type='hidden' id="prevSafetyMgrId" name="prevSafetyMgrId" />
+						<button class="btn btn-info float-right" data-func="history" data-type="CERTIFICATE_TYPE_SAFETY" data-target="safetyMgr">歷程</button>
+					</td>
+					<td style="width: 6.3142%; height: 18px;" class="table-header">手機</td>
+					<td style="width: 21.5187%; height: 18px;"><input type="text" id="safetyMgrPhone" name="safetyMgrPhone" placeholder="cell phone number" class="cellphone" data-rocid=""/></td>
+					<td style="width: 5.6832%; height: 18px;" class="table-header">email</td>
+					<td style="width: 21.7581%; height: 18px;"><input type="text" id="safetyMgrEmail" name="safetyMgrEmail" style="width: 260px;" readOnly/></td>
+					
+				</tr>
+				<tr style="height: 18px;" class="adminUnit">
+					<td style="width: 16.2699%; height: 18px;" class="table-header">職業衛生管理師</td>
+					<td style="width: 22.3638%; height: 18px;">
+						<select class="custom-select staff w-auto" id="healthMgr" name="healthMgr"></select>
+						<input type='hidden' id="healthMgrId" name="healthMgrId" />
+						<input type='hidden' id="prevHealthMgrId" name="prevHealthMgrId" />
+						<button class="btn btn-info float-right" data-func="history" data-type="CERTIFICATE_TYPE_HEALTH" data-target="healthMgr">歷程</button>
+					</td>
+					<td style="width: 6.3142%; height: 18px;" class="table-header">手機</td>
+					<td style="width: 21.5187%; height: 18px;"><input type="text" id="healthMgrPhone" name="healthMgrPhone" placeholder="cell phone number" class="cellphone" data-rocid=""/></td>
+					<td style="width: 5.6832%; height: 18px;" class="table-header">email</td>
+					<td style="width: 21.7581%; height: 18px;"><input type="text" id="healthMgrEmail" name="healthMgrEmail" style="width: 260px;" readOnly/></td>
+					
+				</tr>
+				<!-- //僅行管部 -->
+			</tbody>
+		</table>	
+	<br>
+	<div style="text-align: center;">
+		<button type="submit" id="saveBtn" class="btn btn-primary d-none">儲存</button>
+	</div>
+	</form>
+	<br>
+	<div id="printDiv">
+		<div id="printTitle" style="display:none">
+			<span style="font-size:18px;float:left; width:42%" id="printUnit"></span>
+			<span style="font-size:18px;float:center;">職安業務基本資料維護</span>
+			<span style="font-size:18px;float:right;" id="printUserName" ></span>
+		</div>
+		<table style="border-collapse: collapse; width: 100%; height: 108px;" border="1">
+		  <thead>
+		    <tr style="height: 18px;">
+		      <td style="width: 28.1332%; height: 18px;">業務負責人職稱</td>
+		      <td style="width: 14.295%; height: 18px;">姓名</td>
+		      <td style="width: 22.389%; height: 18px;">手機</td>
+		      <td style="width: 35.1828%; height: 18px;">EMAIL</td>
+		    </tr>
+		  </thead>
+		  <tbody id="tbody">
+		  	<tr>
+		  		<td>單位主管</td>
+		  		<td></td>
+		  		<td></td>
+		  		<td></td>
+		  	</tr>
+		  	<tr>
+		  		<td>
+		  			<span>職業安全衛生業務主管</span>
+		  			<button class="btn btn-info float-right" data-func="history_unit" data-type="CERTIFICATE_TYPE_SAVEMANAGER" >單位歷程</button>
+		  		</td>
+		  		<td></td>
+		  		<td></td>
+		  		<td></td>
+		  	</tr>
+		  	<tr>
+		  		<td>總務</td>
+		  		<td></td>
+		  		<td></td>
+		  		<td></td>
+		  	</tr>
+		  	<tr>
+		  		<td>
+		  			防火管理人
+		  			<button class="btn btn-info float-right" data-func="history_unit" data-type="CERTIFICATE_TYPE_FIREHELPER" >單位歷程</button>
+		  		</td>
+		  		<td></td>
+		  		<td></td>
+		  		<td></td>
+		  	</tr>
+		  	<tr>
+		  		<td>
+		  			急救人員
+		  			<button class="btn btn-info float-right" data-func="history_unit" data-type="CERTIFICATE_TYPE_HELPER" >單位歷程</button>
+		  		</td>
+		  		<td></td>
+		  		<td></td>
+		  		<td></td>
+		  	</tr>
+		  	<tr>
+		  		<td>
+		  			總務襄理
+		  		</td>
+		  		<td></td>
+		  		<td></td>
+		  		<td></td>
+		  	</tr>
+			  <tr class="adminUnit">
+				<td>
+					職業安全衛生管理員
+					<button class="btn btn-info float-right" data-func="history_unit" data-type="CERTIFICATE_TYPE_SAFETY_HEALTH" >單位歷程</button>
+				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr class="adminUnit">
+				<td>
+					職業安全管理師
+					<button class="btn btn-info float-right" data-func="history_unit" data-type="CERTIFICATE_TYPE_SAFETY" >單位歷程</button>
+				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr class="adminUnit">
+				<td>
+					職業衛生管理師
+					<button class="btn btn-info float-right" data-func="history_unit" data-type="CERTIFICATE_TYPE_HEALTH" >單位歷程</button>
+				</td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		  </tbody>
+		</table>
+	</div>
+	<br>
+	<div style="text-align: center;">
+		<button type="submit" id="printBtn"  class="btn btn-secondary">列印</button>
+		<button type="submit" id="backBtn" class="btn btn-info">回首頁</button>
+	</div>
+	<br>
+	<div>
+	使用說明：
+	單位基本資料，由「單位主管」填報資料。
+	確認輸入資料無誤後，按[儲存]即將本表上的資料，於系統中建檔。
+	<br>
+	註：
+	<br>
+	一、 單位如未補足「職業安全衛生業務主管」、 「防火管理人」 、「急救人員」，請單位主管速予派員受訓取證補足。
+	<br>
+	二、	單位有人員異動時，務必請「單位主管」或「職業安全衛生主管」進行資料維護。
+	<br>
+	三、「手機」、「Email」欄為必填欄位。
+	<br>
+	四、 如有疑問請與行政管理部勞工安全科2173-8888#3213、3215聯繫。
+	</div>
+
+</div>
+<div id="tableDialog" style="display:none;" class="container no-print">
+<div id="tableTitle" class="row  text-center no-print"></div>
+<div id="tableContent" style="max-height:300px; overflow-y:auto; overflow-x:hidden;" class="no-print"></div>
+</div>
+<div id="printLayout" class="do-print d-none pr-5">
+</div>
+<script>
+	//需要用的JS
+	require([ "jquery", "jquery_validate_addition", "jquery_validate", "jsgrid", "jquery_ui" ], function(
+			jquery, jquery_validate, jsgrid, jquery_ui) {
+		//頁面讀取後執行
+		$(document).ready(function() {
+			$(".adminUnit").hide(0);
+			
+			createSelect();
+			
+			var tempData;
+			
+			$.ajax({
+ 			    url: "/"+CONFIG.SYSTEM_NAME + '/unitData/api/getUnitByUser',
+				 contentType: "application/json;charset=utf-8", // 因為上面是JSON
+ 			    async: false,
+ 			    cache: false,
+ 			    type: "GET",
+ 			    success: function(data, textStatus){   
+ 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    		 alert("沒有權限");
+			    	 }else{
+			    		 tempData = data;
+			    		 setTableData(data);
+			    		 getUnitData(data);
+			    		 
+			    		 //disabled to affairs
+			    		 if(data.loginUser.rocId != data.unit.affairs){
+			    			 $("#saveBtn").removeClass("d-none");
+			    		 }
+			    		 if(data.unit.unitId == CONFIG.ADMIN_UNIT_ID){
+			    			 $(".adminUnit").show(0);
+			    		 }
+			    		 
+			    		 getPrincipalData(data);
+			    	 }
+ 			    },
+ 			    error: function (data, textStatus, errorThrown) {
+ 			        console.log(data);
+ 			    },
+ 			});
+			
+				
+			$("#saveBtn").click(function(){
+				
+				if(tempData.loginUser.rocId == tempData.unit.affairs){
+					alert("總務目前沒有儲存權限");
+	    			 return;
+	    		 }
+				$("#inputForm").validate({
+			    	 //錯誤訊息元素預設為label改成p會換行
+					 errorElement: "p",
+			         rules: {
+			        	 affairs:{
+			        		 required: true, 
+			        	 },
+			        	 affairsPhone: 
+			        	 {
+			        		 required: true,
+			            	 phoneTW:true,
+			             },
+			             managerPhone: 
+			             {
+			            	 required: true,
+			            	 phoneTW:true,
+			             },
+			             saveManagerPhone: 
+			             {
+			            	 required: function(){
+			            		 return $("#saveManager").val().length > 0;
+			            	 },
+			            	 phoneTW:true,
+			             },
+			             fireHelperPhone: 
+			             {
+			            	 required: function(){
+			            		 return $("#fireHelper").val().length > 0;
+			            	 },
+			            	 phoneTW:true,
+			             },
+			             helperPhone: 
+			             {
+			            	 required: function(){
+			            		 return $("#helper").val().length > 0;
+			            	 },
+			            	 phoneTW:true,
+							},
+			             safetyHealthMgrPhone: 
+			             {
+			            	 required: function(){
+			            		 return $("#safetyHealthMgr").val().length > 0;
+			            	 },
+			            	 phoneTW:true,
+			             },
+			             safetyMgrPhone: 
+			             {
+			            	 required: function(){
+			            		 return $("#safetyMgr").val().length > 0;
+			            	 },
+			            	 phoneTW:true,
+			             },
+			             healthMgrPhone: 
+			             {
+			            	 required: function(){
+			            		 return $("#healthMgr").val().length > 0;
+			            	 },
+			            	 phoneTW:true,
+			             }
+			         },
+			         messages: {
+			        	 	affairsPhone:
+			        	 	{
+			        	 		minlength:'不得低於10位',
+			                    maxlength:'不得超過10位',
+			                    number:'手機需為數字'
+					        },
+					        managerPhone:
+			        	 	{
+					        	minlength:'不得低於10位',
+			                    maxlength:'不得超過10位',
+			                    number:'手機需為數字'
+					        },
+					        saveManagerPhone:
+			        	 	{
+					        	minlength:'不得低於10位',
+			                    maxlength:'不得超過10位',
+			                    number:'手機需為數字'
+					        },
+					        fireHelperPhone:
+			        	 	{
+					        	minlength:'不得低於10位',
+			                    maxlength:'不得超過10位',
+			                    number:'手機需為數字'
+					        },
+					        helperPhone:
+							{
+					        	minlength:'不得低於10位',
+			                    maxlength:'不得超過10位',
+			                    number:'手機需為數字'
+					        },
+					        safetyHealthMgrPhone:
+			        	 	{
+					        	minlength:'不得低於10位',
+			                    maxlength:'不得超過10位',
+			                    number:'手機需為數字'
+					        },
+					        safetyMgrPhone:
+			        	 	{
+					        	minlength:'不得低於10位',
+			                    maxlength:'不得超過10位',
+			                    number:'手機需為數字'
+					        },
+					        healthMgrPhone:
+			        	 	{
+					        	minlength:'不得低於10位',
+			                    maxlength:'不得超過10位',
+			                    number:'手機需為數字'
+					        }
+			         },
+			         submitHandler: function() {
+			        	 saveData();			        	
+			         }
+			     });				
+			});
+			$("#printBtn").click(function(){
+				//printByDiv(document.getElementById("printDiv"), tempData);
+				window.print();
+			});
+			$("#backBtn").click(function(){
+				window.location.reload();
+			});
+
+		});
+		
+		$(":button[data-func='history']").on("click", function(){
+			let data = {rocId:$("#" + $(this).data("target") + " option:selected").val(), certificateType: $(this).data("type") }
+			$.ajax({
+				url: "/"+CONFIG.SYSTEM_NAME + '/certificateSetting/api/getHistory',
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			   	data: JSON.stringify(data),
+			    async: false,
+			    cache: false,
+			    type: "POST",
+			    success: function(data, textStatus){
+			    	if(data.result == "success"){
+			    		let html = "";
+			    		html += "<div class='col-2'></div><div class='col-5'>開始日期</div><div class='col-5'>結束日期</div>";
+			    		$("#tableTitle").html(html);
+			    		html = "";
+				    	$.map(data.data, function(item, idx){
+				    		html += "<div class='row border text-center " + (idx%2==0 ? "even" : "") + "'>"
+				    		html +="<div class='col-2'>" + (idx + 1) + "</div>";
+				    		html +="<div class='col-5'>" + item.startDate + "</div>";
+				    		html +="<div class='col-5'>" + (("endDate" in item) ? item.endDate : '~') + "</div>";
+				    		html += "</div>";
+				    	});
+				    	
+				    	$("#tableContent").html(html);
+				    	$("#tableDialog").dialog("open");
+			    	}
+			    	
+			    },
+			    error: function(e){
+			    	console.log(e);
+			    }
+			});
+			return false;
+		});
+		
+		$(":button[data-func='history_unit']").on("click", function(){
+			let data = {unitId:$("#unitId").text(), certificateType: $(this).data("type") };
+			$.ajax({
+				url: "/"+CONFIG.SYSTEM_NAME + '/certificateSetting/api/getUnitHistory',
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			   	data: JSON.stringify(data),
+			    async: false,
+			    cache: false,
+			    type: "POST",
+			    success: function(data, textStatus){
+			    	if(data.result == "success"){
+			    		let html = "";
+			    		html = "<div class='col-1'></div><div class='col-3'>姓名</div><div class='col-4'>開始日期</div><div class='col-4'>結束日期</div>";
+			    		$("#tableTitle").html(html);
+			    		html = "";
+				    	$.map(data.data, function(item, idx){
+				    		html += "<div class='row border text-center " + (idx%2==0 ? "even" : "") + "'>"
+				    		html +="<div class='col-1'>" + (idx + 1) + "</div>";
+				    		html +="<div class='col-3'>" + item.rocName + "</div>";
+				    		html +="<div class='col-4'>" + item.startDate + "</div>";
+				    		html +="<div class='col-4'>" + (("endDate" in item) ? item.endDate : '~') + "</div>";
+				    		html += "</div>";
+				    	});
+				    	
+				    	$("#tableContent").html(html);
+				    	$("#tableDialog").dialog("open");
+			    	}
+			    	
+			    },
+			    error: function(e){
+			    	console.log(e);
+			    }
+			});
+			return false;
+		});
+		
+		//sync cell phone, if a person has 2(up) position
+		$(".cellphone").on("blur",function(event){
+			$(".cellphone").each(function(i,e){
+				if(!$(event.currentTarget).is($(e))){
+					if($(e).attr("data-rocid") &&  $(e).attr("data-rocid").length > 0 && $(e).attr("data-rocid")== $(event.currentTarget).attr("data-rocid")){
+						$(e).val($(event.currentTarget).val());
+					}
+				}
+			});
+		});
+		
+		//set rocid to cellphone
+		$(".custom-select").on("change", function(e){
+			$(this).parents("tr").find(".cellphone").attr("data-rocid", $(this).val());
+		});
+		
+		$("#tableDialog").dialog({
+			 title: "歷程",
+	         autoOpen: false,
+	         width: 550,
+	         modal: true,
+	         close: function() {
+	             $('.ui-widget-overlay').removeClass('custom-overlay');
+	         },
+		 	 open: function (event, ui)
+	         {
+		 		 $('.ui-widget-overlay').addClass('custom-overlay');
+		 		customCloseBtn();
+	         },
+	         classes: dlgSetting.classes,
+	         show: dlgSetting.show,
+			 hide: dlgSetting.hide
+	     });
+	});
+	
+	
+	function getUnitData(unitData){
+		$.ajax({
+			    url: "/"+CONFIG.SYSTEM_NAME + '/certificate/api/getDefaultData',
+			   	contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    async: false,
+			    cache: false,
+			    type: "GET",
+			    success: function(data, textStatus){   
+			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    		 alert("沒有權限");
+		    	 }else{
+		    		 
+		    		 let helperType = data.certificateTypeList.filter(function(t){ return t.cfgType=='CERTIFICATE_TYPE_HELPER';});
+		    		 let fireHelperType = data.certificateTypeList.filter(function(t){ return  t.cfgType=='CERTIFICATE_TYPE_FIREHELPER';});
+		    		 let saveMgrType = data.certificateTypeList.filter(function(t){ return  t.cfgType=='CERTIFICATE_TYPE_SAVEMANAGER';});
+					 let safetyHealthType = data.certificateTypeList.filter(function(t){ return t.cfgType=='CERTIFICATE_TYPE_SAFETY_HEALTH';});
+		    		 let safetyType = data.certificateTypeList.filter(function(t){ return  t.cfgType=='CERTIFICATE_TYPE_SAFETY';});
+		    		 let healthType = data.certificateTypeList.filter(function(t){ return  t.cfgType=='CERTIFICATE_TYPE_HEALTH';});
+
+		    		 $.each(data.certificateList, function( index, item ) {
+		    			 
+		    			 let user= {};
+		    			 if(helperType.filter(function(t){ return t.cfgValue == item.certificateType;})[0] != undefined){
+		    				 user = data.userList.filter(function(t){ return t.rocId == item.rocId;})[0];
+		    			 	 if(user != undefined && $('#helper option[value="'+user.rocId+'"]').length == 0){
+		    			 		$('#helper').append($('<option>').val(user.rocId).text(user.name).attr("email",user.email).attr("phone",user.phone).attr("id",item.id));
+		    			 	 }
+		    			 }
+		    			 else if(fireHelperType.filter(function(t){ return t.cfgValue == item.certificateType;})[0] != undefined){
+		    				 user = data.userList.filter(function(t){ return t.rocId == item.rocId;})[0];
+		    			 	 if(user != undefined && $('#fireHelper option[value="'+user.rocId+'"]').length == 0){
+		    			 		$('#fireHelper').append($('<option>').val(user.rocId).text(user.name).attr("email",user.email).attr("phone",user.phone).attr("id",item.id));
+		    			 	 }
+		    			 }
+		    			 else if(saveMgrType.filter(function(t){ return t.cfgValue == item.certificateType;}).length > 0){
+		    				 user = data.userList.filter(function(t){ return t.rocId == item.rocId;})[0];
+		    			 	 if(user != undefined && $('#saveManager option[value="'+user.rocId+'"]').length == 0){
+		    			 		$('#saveManager').append($('<option>').val(user.rocId).text(user.name).attr("email",user.email).attr("phone",user.phone).attr("id",item.id));
+		    			 	 }
+		    			 }
+						 //
+		    			 else{
+		    				 setPersonInCharge(safetyHealthType, "safetyHealthMgr", data, item);
+		    				 setPersonInCharge(safetyType, "safetyMgr", data, item);
+		    				 setPersonInCharge(healthType, "healthMgr", data, item);
+		    			 }
+		    			
+		    			});	
+		    		 //add empty
+		    		 $('#saveManager').prepend($('<option>').val('').text(null));
+		    		 $('#fireHelper').prepend($('<option>').val('').text(null));
+		    		 $('#helper').prepend($('<option>').val('').text(null));
+					$('#juniorManager').prepend($('<option>').val('').text(null));
+					$('#safetyHealthMgr').prepend($('<option>').val('').text(null));
+		    		 $('#safetyMgr').prepend($('<option>').val('').text(null));
+		    		 $('#healthMgr').prepend($('<option>').val('').text(null));		    		
+		    		 //helper
+		    		 
+		    		 //$("#prevHelperId").val($('#helper option[value="'+unitData?.helper?.rocId+'"]').prop("id"));
+		    		 $("#prevHelperId").val(unitData?.helperDuration?.certificateId ?? "");
+			    	$('#helper').change(function(){
+			    		$("#helperPhone").val($("#helper option:selected").attr("phone"));
+			    		$("#helperEmail").val($("#helper option:selected").attr("email"));
+			    		$("#helperId").val($("#helper option:selected").attr("id"));
+			    	});
+			    	if(unitData?.helper?.rocId && $('#helper option[value="'+unitData?.helper?.rocId+'"]').length > 0)
+			    		$('#helper').val(unitData?.helper?.rocId).trigger("change");
+			    	else
+			    		$('#helper').val('').trigger("change");
+			    	//$('#helper').val(unitData?.helper?.rocId).trigger("change");
+			    	//fire helper
+			    	
+			    	//$("#prevFireHelperId").val($('#fireHelper option[value="'+unitData?.fireHelper?.rocId+'"]').prop("id"));
+			    	$("#prevFireHelperId").val(unitData?.fireHelperDuration?.certificateId ?? "");
+			    	$('#fireHelper').change(function(){
+			    		$("#fireHelperPhone").val($("#fireHelper option:selected").attr("phone"));
+			    		$("#fireHelperEmail").val($("#fireHelper option:selected").attr("email"));
+			    		$("#fireHelperId").val($("#fireHelper option:selected").attr("id"));
+			    	});
+			    	if(unitData?.fireHelper?.rocId && $('#fireHelper option[value="'+unitData?.fireHelper?.rocId+'"]').length > 0)
+			    		$('#fireHelper').val(unitData?.fireHelper?.rocId).trigger("change");
+			    	else
+			    		$('#fireHelper').val('').trigger("change");
+			    	//save manager
+			    	//$("#prevSaveManagerId").val($('#saveManager option[value="'+ unitData?.saveManager?.rocId +'"]').prop("id"));
+			    	$("#prevSaveManagerId").val(unitData?.saveManagerDuration?.certificateId ?? "");
+			    	$('#saveManager').change(function(){
+			    		$("#saveManagerPhone").val($("#saveManager option:selected").attr("phone"));
+			    		$("#saveManagerEmail").val($("#saveManager option:selected").attr("email"));
+			    		$("#saveManagerId").val($("#saveManager option:selected").attr("id"));
+			    	});
+			    	if(unitData?.saveManager?.rocId && $('#saveManager option[value="'+unitData?.saveManager?.rocId+'"]').length > 0)
+			    		$('#saveManager').val(unitData?.saveManager?.rocId).trigger("change");
+			    	else
+			    		$('#saveManager').val('').trigger("change");
+			    	//$('#saveManager').val(unitData?.saveManager?.rocId).trigger("change");
+			    	$("#prevJuniorManagerId").val(unitData?.juniorManagerDuration?.certificateId ?? "");
+			    	$('#juniorManager').change(function(){
+			    		$("#juniorManagerPhone").val($("#juniorManager option:selected").attr("phone"));
+			    		$("#juniorManagerEmail").val($("#juniorManager option:selected").attr("email"));
+			    		$("#juniorManagerId").val($("#juniorManager option:selected").attr("id"));
+			    	});
+			    	if(unitData?.saveManager?.rocId && $('#saveManager option[value="'+unitData?.saveManager?.rocId+'"]').length > 0)
+			    		$('#juniorManager').val(unitData?.juniorManager?.rocId).trigger("change");
+			    	else
+			    		$('#juniorManager').val('').trigger("change");
+
+			    	//
+			    	
+			    	initSelect("safetyHealthMgr", unitData?.safetyHealthMgr?.rocId, unitData?.safetyHealthMgrDuration?.certificateId);
+			    	initSelect("safetyMgr", unitData?.safetyMgr?.rocId, unitData?.safetyMgrDuration?.certificateId);
+			    	initSelect("healthMgr", unitData?.healthMgr?.rocId, unitData?.healthMgrDuration?.certificateId);
+			    	//			    
+			    	$("#affairs").change();
+		    	 }
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+			    },
+			});
+	}
+	
+	function setPersonInCharge(typeFilter, selectId, data, item){
+		if(typeFilter.filter(function(t){ return t.cfgValue == item.certificateType;}).length > 0){
+			 let user = data.userList.filter(function(t){ return t.rocId == item.rocId;})[0];
+		 	 if(user != undefined && $('#'+selectId+' option[value="'+user.rocId+'"]').length == 0){
+		 		$('#'+selectId).append($('<option>').val(user.rocId).text(user.name).attr("email",user.email).attr("phone",user.phone).attr("id",item.id));
+		 	 }
+		 }
+	}
+	function initSelect(selectId, rocId, certId){
+		let upper = selectId.toUpperCase().substring(0,1)+selectId.substring(1);
+		
+		$("#prev"+upper+"Id").val(certId ?? "");
+    	$("#"+selectId).change(function(){
+    		$("#"+selectId+"Phone").val($("#"+selectId+" option:selected").attr("phone"));
+    		$("#"+selectId+"Email").val($("#"+selectId+" option:selected").attr("email"));
+    		$("#"+selectId+"Id").val($("#"+selectId+" option:selected").attr("id"));
+    	});
+    	if(rocId && $('#'+selectId+' option[value="'+rocId+'"]').length > 0)
+    		$('#'+selectId).val(rocId).trigger("change");
+    	else
+    		$('#'+selectId).val('').trigger("change");
+    	//$('#saveManager').val(unitData?.saveManager?.rocId).trigger("change");
+	}
+	
+	function createSelect(){
+		$.ajax({
+			    url: "/"+CONFIG.SYSTEM_NAME + '/unitData/api/getUnitUserList',
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    async: false,
+			    cache: false,
+			    type: "GET",
+			    success: function(data, textStatus){   
+			   	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    		 alert("沒有權限");
+		    	 }else{
+		    		 data.sort((a,b)=>{ return a.name > b.name ? -1 : 1;});
+		    		$.each(data, function( index, item ) {
+						//把item.id, item.name, item.email, item.phone放到option的屬性裡
+						$('#affairs').append($('<option>').val(item.rocId).text(item.name).attr("email",item.email).attr("phone",item.phone).prop("disabled", item.isLeave == '1' ? true : false));
+						$('#manager').append($('<option>').val(item.rocId).text(item.name).attr("email",item.email).attr("phone",item.phone).prop("disabled", item.isLeave == '1' ? true : false));
+						$('#saveManager').append($('<option>').val(item.rocId).text(item.name).attr("email",item.email).attr("phone",item.phone).prop("disabled", item.isLeave == '1' ? true : false));
+						$('#fireHelper').append($('<option>').val(item.rocId).text(item.name).attr("email",item.email).attr("phone",item.phone).prop("disabled", item.isLeave == '1' ? true : false));
+						$('#helper').append($('<option>').val(item.rocId).text(item.name).attr("email",item.email).attr("phone",item.phone).prop("disabled", item.isLeave == '1' ? true : false));
+						if (item.jobLevel>=10)
+							$('#juniorManager').append($('<option>').val(item.rocId).text(item.name).attr("email",item.email).attr("phone",item.phone).prop("disabled", item.isLeave == '1' ? true : false));
+	    			});
+		    		
+		    		$("#affairs").change(function(){
+		    			$("#affairsPhone").val($("#affairs option:selected").attr("phone"));
+		    			$("#affairsEmail").val($("#affairs option:selected").attr("email"));
+		    		});
+		    		
+		    	 }
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+			    },
+			});
+	}
+	
+	function setTableData(data){
+		if(data.unit){
+			$("#unitId").text(data.unit.unitId);
+			$("#unitName").text(data.unit.unitName);
+			$("#unitTel").text(data.unit.tel);
+		}
+		let rowNumber = 0;
+		if(data.manager){
+			$("#tbody").find("tr").eq(0).find("td").eq(1).text(data.manager.name);
+			$("#tbody").find("tr").eq(0).find("td").eq(2).text(data.manager.phone);
+			$("#tbody").find("tr").eq(0).find("td").eq(3).text(data.manager.email);
+		}
+		if(data.saveManager){
+			$("#tbody").find("tr").eq(1).find("td").eq(1).text(data.saveManager.name);
+			$("#tbody").find("tr").eq(1).find("td").eq(2).text(data.saveManager.phone);
+			$("#tbody").find("tr").eq(1).find("td").eq(3).text(data.saveManager.email);
+		}
+		
+		if(data.affairs){
+			$("#tbody").find("tr").eq(2).find("td").eq(1).text(data.affairs.name);
+			$("#tbody").find("tr").eq(2).find("td").eq(2).text(data.affairs.phone);
+			$("#tbody").find("tr").eq(2).find("td").eq(3).text(data.affairs.email);
+		}
+		
+		if(data.fireHelper){
+			$("#tbody").find("tr").eq(3).find("td").eq(1).text(data.fireHelper.name);
+			$("#tbody").find("tr").eq(3).find("td").eq(2).text(data.fireHelper.phone);
+			$("#tbody").find("tr").eq(3).find("td").eq(3).text(data.fireHelper.email);
+		}
+		
+		if(data.helper){
+			$("#tbody").find("tr").eq(4).find("td").eq(1).text(data.helper.name);
+			$("#tbody").find("tr").eq(4).find("td").eq(2).text(data.helper.phone);
+			$("#tbody").find("tr").eq(4).find("td").eq(3).text(data.helper.email);
+		}
+		
+		if(data.juniorManager){
+			$("#tbody").find("tr").eq(5).find("td").eq(1).text(data.juniorManager.name);
+			$("#tbody").find("tr").eq(5).find("td").eq(2).text(data.juniorManager.phone);
+			$("#tbody").find("tr").eq(5).find("td").eq(3).text(data.juniorManager.email);
+		}
+		rowNumber = 6;
+		if(data.safetyHealthMgr){
+			setTbodyData(data.safetyHealthMgr, rowNumber++);
+		}
+		if(data.safetyMgr){
+			setTbodyData(data.safetyMgr, rowNumber++);
+		}
+		if(data.healthMgr){
+			setTbodyData(data.healthMgr, rowNumber++);
+		}
+
+
+		if(data.affairs){
+			$("#affairs").val(data.affairs.rocId);
+			$("#affairsPhone").val(data.affairs.phone);
+			$("#affairsEmail").val(data.affairs.email);
+		}
+		else{
+			$("#affairs").val(null);
+		}
+		
+		if(data.manager){
+			$("#manager").text(data.manager.name);
+			$("#managerPhone").val(data.manager.phone);
+			$("#managerEmail").val(data.manager.email);
+		}
+		
+	}
+		
+	function setTbodyData(dm, rowNumber){
+		if(dm){
+			$("#tbody").find("tr").eq(rowNumber).find("td").eq(1).text(dm.name);
+			$("#tbody").find("tr").eq(rowNumber).find("td").eq(2).text(dm.phone);
+			$("#tbody").find("tr").eq(rowNumber).find("td").eq(3).text(dm.email);
+		}
+	}
+	
+	
+	function saveData(){		
+		$.ajax({
+		    url: "/"+CONFIG.SYSTEM_NAME + '/unitData/api/saveData',
+		    data: JSON.stringify(getFormData($('#inputForm'))),
+			contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    async: false,
+		    cache: false,
+		    type: "POST",
+		    success: function(data, textStatus){   
+			     if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    		 alert("沒有權限");
+		    	 }else{
+		    		 if(data.result == "success"){
+		    			 alert("儲存成功");
+		    			 loadNoCache($("#bodyContent"),  "/" +CONFIG.SYSTEM_NAME +  "/content/unitData/unitData.html");
+		    		 }else if(data.errorMsg){
+		    			 alert(data.errorMsg);
+		    		 }
+		    	 }
+		    },
+		    error: function (data, textStatus, errorThrown) {
+		        console.log(data);
+		    },
+		});
+	}
+	
+	function getFormData($form){
+	    var unindexed_array = $form.serializeArray();
+	    var indexed_array = {};
+
+	    $.map(unindexed_array, function(n, i){
+	        indexed_array[n['name']] = n['value'];
+	    });
+	    
+	    return indexed_array;
+	}
+	
+
+	function getPrincipalData(unitData){
+		return $.ajax({
+		    url: "/"+CONFIG.SYSTEM_NAME + '/unitSetting/api/getReport',
+			contentType: "application/json;charset=utf-8", // 因為上面是JSON		   	
+			data: JSON.stringify({'rpt': 'unitPrincipal'}),
+		    async: false,
+		    cache: false,
+		    type: "POST",
+		    success: function(data, textStatus){   
+		   	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+	    		 //do nothing
+	    	 }else{
+	    		let template = data;
+	    		template = template.replace("@SAVA_MANAGER", ("saveManager" in unitData) ? unitData.saveManager.name : '');
+	    		template = template.replace("@FIRE_HELPER", ("fireHelper" in unitData) ? unitData.fireHelper.name : '');
+	    		template = template.replace("@HELPER", ("helper" in unitData) ? unitData.helper.name : '');
+	    		
+	    		$("#printLayout").html(template);
+	    	 }
+		    },
+		    error: function (data, textStatus, errorThrown) {
+		        console.log(data);
+		    },
+		});
+	}
+	
+	function printByDiv(printpage, tempData){ 
+		var iframe = document.createElement('IFRAME');
+		iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+		document.body.appendChild(iframe);
+		$("#printUnit").html("單位:" + tempData.unit.unitName);
+		$("#printUserName").html("印表人:" + tempData.unit.unitName);
+		//列印表格表頭SHOW出來
+		$("#printTitle").show();
+		$(":button").hide();
+		iframe.contentWindow.document.write(printpage.innerHTML);
+		$("#printTitle").hide();
+		$(":button").show();
+		iframe.contentWindow.document.close(); //important!
+		iframe.contentWindow.focus(); //IE fix
+		iframe.contentWindow.print();
+		iframe.parentNode.removeChild(iframe);
+	} 
+	function printByDiv2(printpage){ 
+		var iframe = document.createElement('IFRAME');
+		iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+		document.body.appendChild(iframe);
+		$(":button").hide();
+		iframe.contentWindow.document.write(printpage.innerHTML);
+		$("#printTitle").hide();
+		$(":button").show();
+		iframe.contentWindow.document.close(); //important!
+		iframe.contentWindow.focus(); //IE fix
+		iframe.contentWindow.print();
+		iframe.parentNode.removeChild(iframe);
+	} 
+</script>

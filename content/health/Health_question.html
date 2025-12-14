@@ -1,0 +1,360 @@
+﻿<div>
+	<h4>健康電子問卷</h4>
+    <div class="date_time">
+        <div class="date_box w_100p">
+            <label>
+            <select class="custom-select w_100p" placeholder="全部狀態">
+            
+                <option >額滿關閉</option>
+                <option >公開</option>
+                <option >即將公開</option>
+            </select>
+        </label>
+        </div>
+        <div class="date_box">
+            <label>
+            <select class="custom-select w_200p" placeholder="最新建立日期">
+                <option >最新建立日期</option>
+                <option >最早建立日期</option>
+            </select>
+        </label>
+        </div>
+        
+        <button class="btn btn-primary  my-2">搜尋</button>
+
+    </div>
+	    <div id="jsGrid"></div>
+</div>
+<div id="tableDialog" style="display:none" class="container">
+    <form id="dialogForm">
+		<div class="Tracking-dialog">
+			<ul>
+				<li>2022/12/01 14:30 <b>總行-李四</b>審核批准通報單</li>
+				<li>2022/12/01 14:30 <b>總行-李四</b>審核批准通報單</li>
+				<li>2022/12/01 12:30 <b>臺北分行-王五</b>建立通報單</li>
+			</ul>
+		</div>
+    </form>
+</div>
+
+<style>
+/* 讓表格內容換行 */
+.jsgrid-table{
+		word-wrap:break-word;
+	}
+input[type=text]{
+	width: 100%;
+}
+textarea{
+	width:100%;
+}
+</style>
+
+<script>
+//需要用的JS
+require(["jquery", "jquery_validate", "jsgrid", "jquery_ui"], function (jquery, jquery_validate, jsgrid, jquery_ui ) {
+	//頁面讀取後執行
+	$(document).ready(function(){
+        $('#startDate').datepicker({
+
+autoclose: true, //選擇後自動關閉
+format: 'yy/mm/dd',
+maxDate: new Date() ,
+}).on('changeDate',function(e){  
+var startTime = e.date;  
+$('#endDate').datepicker('setStartDate',startTime);  
+});	
+		 $.ajax({
+			    url: "/"+CONFIG.SYSTEM_NAME + '/config/api/getConfig',
+			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    async: false,
+			    cache: false,
+			    type: "GET",
+			    success: function(data, textStatus){    
+			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    		 alert("沒有權限");
+			    	 }else{
+						 var data = new Array(
+							{
+		"NAME": "減重計畫意願",
+		"TIME": "2022/12/01 12:30",
+		"UNIT":"額滿關閉",
+		"CLASS":"50",
+		"STATUS":"16%"
+
+	},{
+		"NAME": "減重計畫意願",
+		"TIME": "2022/12/01 12:30",
+		"UNIT":"額滿關閉",
+		"CLASS":"50",
+		"STATUS":"16%"
+
+	},
+	{
+        "NAME": "健走活動調查",
+		"TIME": "2022/12/01 12:30",
+		"UNIT":"公開",
+		"CLASS":"50",
+		"STATUS":"32%"
+	},{
+        "NAME": "健康講座主題調查",
+		"TIME": "2022/12/01 12:30",
+		"UNIT":"即將公開",
+		"CLASS":"50",
+		"STATUS":"16%"
+
+	});
+			    	 	$("#jsGrid").jsGrid({
+			    	        width: "100%",
+			    	        height: "auto",
+			    	        heading: true, //是否顯示表頭
+			    	        filtering: false, //啟動查找
+			    		    inserting: false, //啟動新增  關掉使用自定義的
+			    		    editing: true,  //啟動編輯 
+			    		    selecting: true,
+			    		    sorting: true, //啟動排序
+			    		    paging: true, //啟動分頁 
+			    		    pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+			    		    autoload: true,
+			    		    pageSize: 10,
+			    		    
+			    		    controller: {
+			    		        loadData: function(filter) {
+				    		        	//查詢
+			    		        	 	var result = $.grep(data, function(item, idx) {
+			    		                    for (var key in filter) {
+			    		                        var value = filter[key];
+			    		                        if (value.length > 0) {
+			    		                        	if (!item[key]){
+			    		                                return false;
+			    		                        	}
+			    		                        	if(typeof item[key] === 'number'){
+			    		                        		if (item[key].toString().indexOf(value) == -1){
+				    		                                return false;
+			    		                        		}
+			    		                        	}else if(typeof item[key] === 'string'){
+			    		                        		if (item[key].indexOf(value) == -1){
+				    		                                return false;
+			    		                        		}
+			    		                        	}
+			    		                        	
+			    		                        }
+			    		                    }
+			    		                    return true;
+			    		                });
+			    		            return result;
+			    		        },
+			    		        insertItem: function(insertingItem) {
+			    		        	$.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/config/api/addConfig',
+			    		 			    data: JSON.stringify(insertingItem),
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 insertingItem.id = data.id;
+			    					    			 alert("新增成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        },
+			    		        updateItem: function(updatingItem) { 
+			    		        	$.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/config/api/updateConfig',
+			    		 			    data: JSON.stringify(updatingItem),
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 alert("更新成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        },
+			    		        deleteItem: function(deletingItem) {
+			    		        	 $.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/config/api/deleteConfig',
+			    		 			    data: '{"ID":' + deletingItem.id + '}',
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 alert("刪除成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        }
+			    		    },
+				
+			    	        fields: [
+			    	            { title:"問卷名稱", name: "NAME", type: "text", width: 150, validate: "required" },
+                                { title:"回覆數", name: "STATUS", type: "text", width: 80, },
+                                { title:"狀態", name: "UNIT", type: "text", width: 130 },
+			    	            { title:"回覆率", name: "CLASS", type: "text", width: 80 }, 
+                                { title:"建立日期", name: "TIME", type: "text", width: 150 },
+			    	            { type: "control",width: 200,
+			                        editButton: false,
+									deleteButton: false,
+			                        modeSwitchButton: false,
+									filtercss:"display:none;", 
+									itemTemplate: function(value, item){
+			    	            	return  [$("<button>").attr("type", "button").text("編輯").addClass("btn btn-primary")
+		                                .on("click", function () {
+		                                	downloadExcel(item.id);
+		                                }),$("<button>").attr("type", "button").text("匯出").addClass("btn btn-success")
+		                                .on("click", function () {
+		                                	downloadExcel(item.id);
+		                                })];
+			    	            }, headerTemplate: function() {
+			                            return $("<button>").attr("type", "button").text("建立新問卷").addClass("btn btn-primary iconfont icon-tianjia")
+			                                .on("click", function () {
+			                                	showDetailsDialog("新增", {});
+			                                });
+			                        }
+			    	            }             
+			    	        ],
+				    	 	rowClick: function(args) {
+								 
+								// bodyHref("/content/situation/Safetysituationreport_form.html");
+				    	 		 //showDetailsDialog("修改", args.item);
+				            },
+			    		    deleteConfirm: function(item) {
+			                    return "參數\"" + item.NUM + "\"確認刪除?";
+			                },loadComplete:function(){
+        alert("jqGrid資料載入完之後調用");
+    }
+			    	    });
+			    	 }
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+			    },
+			});
+	
+		 $("#tableDialog").dialog({
+			 title: "參數設定",
+	         autoOpen: false,
+	         width: 550,
+	         modal: true,
+	         open:function(){
+	         	$('.ui-widget-overlay').addClass('custom-overlay');
+	         	customCloseBtn();
+	         },
+	         close: function() {
+	       
+	             $("#dialogForm").find(".error").removeClass("error");
+	             $('.ui-widget-overlay').removeClass('custom-overlay');
+	         },
+             classes: dlgSetting.classes,
+	         show: dlgSetting.show,
+			 hide: dlgSetting.hide
+	     });
+		 
+		 var formSubmitHandler = $.noop;
+		 
+		 var showDetailsDialog = function(dialogType, item) {
+  
+             $("#tableDialog").dialog("option", "title", dialogType + "").dialog("open");
+         };
+	
+	     $("#dialogForm").validate({
+	    	 //錯誤訊息元素預設為label改成p會換行
+			 errorElement: "p",
+	         rules: {
+	        	 cfgType: { required: true, rangelength: [2, 50] },
+	        	 cfgKey: { required: true, rangelength: [3, 80] },
+	        	 cfgName: { required: true, rangelength: [2, 50] },
+	        	 cfgValue: { required: true, rangelength: [0, 80] },
+	        	 cfgInUse: { required: true }
+	         },
+	         messages: {
+	        	 	cfgType:{
+			          required: "請輸入參數類型",
+			          rangelength: "密碼長度不得小於2個字母大於50個字母"
+			        },
+			     	cfgKey:{
+			          required: "請輸入參數key",
+			          rangelength: "參數key不得小於4個字母大於80個字母"
+			        },
+			     	cfgName:{
+			          required: "請輸入參數名稱",
+			          rangelength: "參數名稱不得小於2個字母大於50個字母"
+			        },
+			     	cfgValue:{
+			          required: "請輸入參數值",
+			          rangelength: "參數值不得小於0個字母大於80個字母"
+			        },
+			        cfgInUse:{
+			          required: "請選擇是否啟用"
+			        }
+	         },
+	         submitHandler: function() {
+	             formSubmitHandler();
+	         }
+	     });
+	     
+	     var saveItem = function(item, isNew) {
+             $.extend(item, {
+            	 cfgType: $("#cfgType").val(),
+            	 cfgKey: $("#cfgKey").val(),
+            	 cfgName: $("#cfgName").val(),
+            	 cfgValue: $("#cfgValue").val(),
+            	 cfgMemo: $("#cfgMemo").val(),
+            	 cfgInUse: $('input[name*=cfgInUse]:checked').val()
+             });
+             
+             $("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", item);
+
+             $("#tableDialog").dialog("close");
+			 bodyHref("/content/situation/Safetysituationreport.html");
+         };
+	
+		 function Processing(id){		 		
+		bodyHref("/content/situation/Safetysituationreport_form7.html");
+		}
+
+	});
+	
+	var cellIndex=parseInt($(".tbStyle th").length)-1;
+  $("#jsGrid tr td").each(function(){
+	  alert($(this).text())
+    if(this.cellIndex != cellIndex){
+      $(this).attr("title",$(this).text());
+      //alert($(this).parent().get(0).rowIndex);輸出所在行
+     }
+  });
+});
+</script>

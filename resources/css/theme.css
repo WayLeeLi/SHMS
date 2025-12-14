@@ -1,0 +1,436 @@
+<!--錯誤訊息style-->
+	input.error { border: 1px solid red; }
+	p.error {
+	  padding-left: 16px;
+	  font-weight: bold;
+	  color: #EA5200;
+	}
+	
+
+body{
+	font-family:Arial,Helvetica,sans-serif;
+	font-size: 18px;
+	padding-top: 90px;
+	height:100%;
+	background: #dde3d9
+	/*background-image: url('../image/bg.png');;*/
+}
+
+.divrole-tips h4 , .divrole-tips h5{font-size: 16px;}
+.divrole-tips h5{display: inline-block; padding-right: 10px;}
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+.ui-timepicker-rtl{ direction: rtl; }
+.ui-timepicker-rtl dl { text-align: right; }
+.ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
+.text-grey{color: gray;}
+
+		/*背景底*/
+        /*加!important覆寫原本樣式*/
+        .blockOverlay {
+            /*background-color: #fff !important;*/ /*白色底，視自己需求看要不要加*/  
+            cursor: default !important; /*預設游標*/
+        }
+
+        /*loading icon*/
+        /*定義動畫*/
+        @keyframes circle {
+            0% {  transform: rotate(0deg);  }
+            100% {  transform: rotate(360deg); }
+        } 
+        /*加!important覆寫原本樣式*/
+        .blockMsg {
+            display: block !important; /*當message為null時，強制顯示*/
+            width: 100px;
+            height: 100px;
+            top: 50% !important;
+            left: 50% !important;
+            margin-top: -50px;
+            margin-left: -50px;
+            border-radius: 50%; /*正圓形*/
+            border: 6px solid #f2f2f2; /*灰色線條*/
+            border-left: 6px solid #1696e7; /*藍色線條*/
+            animation: circle 1.1s infinite linear; /*轉動效果*/
+        }
+        
+        .text-ellipsis {
+          white-space: nowrap;
+          text-overflow : ellipsis;
+        }
+        .text-break{word-break: break-all; white-space: normal!important}
+.bgHeader{
+  background-image: linear-gradient(to bottom right, darkgray, lightgray);
+}
+
+
+table{
+		border-radius: 20px 20px 0px 0px;
+}
+
+table thead tr, .table-header{
+	background-color: #dadada;
+}
+
+.round-border{
+	border-radius: 10px;
+}
+
+/*input style*/
+textarea:focus, input:focus {
+    outline: none !important;
+    border:1px solid orange;
+    box-shadow: 0 0 5px #719ECE;
+}
+
+
+
+/* back to top**/
+.back-to-top{
+	position: fixed;
+	right: 0px;
+	bottom:20px;
+	z-index:99;
+	background-image:url('../image/rocket.png');
+	background-repeat: no-repeat;
+	background-position: center;
+  	background-size: cover;
+  	width:64px;
+  	height:64px;
+  	opacity:.8;
+
+  	/*transform: translateY(0);
+  	transition: 1s;
+  	*/
+}
+.back-to-top-hide{
+	opacity:0;
+}
+.back-to-top-fly-up{
+	animation-name: rocket-fly;
+    animation-duration: .5s;
+    /*animation-fill-mode: forwards;*/
+}
+.back-to-top:hover{
+	opacity: 1;
+}
+
+
+
+@keyframes rocket-fly {
+  0%   {bottom:20px; }
+  90% {bottom:1000px;}
+  91% {opacity:0;}
+  92% {bottom:20px; }
+  100%{opacity:0;}
+}
+
+/*
+override bootstrap
+*/
+.custom-control-label::before, 
+.custom-control-label::after {
+top: .3rem;
+width: 1.25rem;
+height: 1.25rem;
+}
+
+/*end*/
+
+/*
+for jquery ui dialog
+*/
+.ui-widget-overlay.custom-overlay
+{
+    background-color: black;
+    background-image: none;
+    opacity: 0.7;
+}
+
+/*end*/
+
+/*color*/
+.btn-indigo-400{
+	background-color: #8c4cf5 ;
+	color: #eee;
+}
+
+.btn-indigo-400:hover{
+	background-color: #ac6cf5;
+	color: #eee;
+}
+
+.btn-orange-400{
+	background-color: #fe9e4f ;
+}
+.color-light-green{ background:#bee5eb; }
+.color-light-blue{ background:#c4e2ff; }
+
+/*end*/
+
+
+/*for jsgrid*/
+.jsgrid-header-row > .jsgrid-header-cell {
+    background-color: #dadada;
+}
+
+.jsgrid-grid-header {
+    border-radius: 20px 20px 0px 0px;
+}
+
+.jsgrid-alt-row>.jsgrid-cell, .even
+{
+	background:#bee5eb;
+}
+.jsgrid-selected-row>.jsgrid-cell, .odd
+{
+	background:#c4e2ff;
+}
+.jsgrid-table{
+		word-wrap:break-word;
+}
+
+.jsgrid-grid-header,
+.jsgrid-grid-body{
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.jsgrid-cell {text-overflow:ellipsis;overflow: hidden;white-space: nowrap;}
+
+
+/*end*/
+
+/*svg class*/
+.icon-file {
+  display: inline-block;
+  content: "";
+  background-image: url('images/svg/file-earmark-post.svg');
+  background-repeat: no-repeat;
+  background-size: 24px 24px;
+}
+
+/*navbar*/
+.navbar-primary{
+	background-color:#0000ff;
+}
+.navbar-collapse {
+  top: 50px;
+  left: 0;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+}
+
+.navbar-collapse.collapsing {
+  left: -50%;
+  transition: height 0s ease;
+}
+
+.navbar-collapse.show {
+  left: 0;
+  transition: left 1000ms ease-in-out;
+}
+
+.navbar-toggler.collapsed~.navbar-collapse {
+  transition: left 1000ms ease-in-out;
+}
+
+/*for ul with no fore bullets*/
+.nobull{
+	list-style-type: none;
+}
+
+button.titlebar-close:hover{background: red;}
+
+/*for jquery autocomplete*/
+.ui-autocomplete{
+	max-height: 200px;
+	overflow-y:auto;
+	overflow-x:hidden;
+	padding-right: 20px;
+}
+
+/*dropdown item style*/
+a.dropdown-item:hover{
+	background-color: #3c883c;
+	border-radius: 5px;
+	color: #eee;
+}
+
+/*direcotry */
+.select-checkbox-fa option::before {
+  font-family: "Font Awesome 5 Free";
+  content: "\f0c8";
+  width: 1.3em;
+  display: inline-block;
+  margin-left: 2px;
+}
+.select-checkbox-fa option:checked::before {
+  content: "\f14a";
+}
+
+
+.directory{
+	cursor: pointer;
+}
+
+.directory:hover{
+	color: blue;
+}
+
+.label-checkbox:hover{
+	color: green;
+}
+
+.label-checkbox::before {
+	font-family: "Font Awesome 5 Free";
+	content: "\f0c8";
+	width: 1.3em;
+	display: inline-block;
+	margin-left: 2px;
+}
+.label-checkbox:has(input[type='checkbox']:checked)::before {
+	color:green;
+	content: "\f14a";
+}
+
+.safe_form textarea{height:120px;width: 100%;padding: 0.3em 0.5em;}
+.safe_form input{padding: 0.3em 0.5em;}
+.pull-left{float: left;}
+.pull-right{float: right;}
+.safe_form{border-left: 1px solid #333;border-top: 1px solid #333}
+.safe_form td{padding: 8px 5px;border-right: 1px solid #333;border-bottom: 1px solid #333}
+.safe_form td dl{padding:0; margin: 0;}
+.safe_form td dd{padding:0; margin: 0; display: inline-block;}
+
+.w_100p{width: 100px !important;}
+.w_200p{width: 200px !important;}
+.w_150p{width: 150px !important;}
+.inline-block{display: inline-block;}
+.date_box{width: 200px; display: inline-block; position: relative;}
+.date_box input{width: 100%  !important;    padding: 0.3em 0.5em;}
+.date_box i{position: absolute; right: 5px; top:5px; color: #EA5200;}
+
+.download-excel{background: transparent; border: 0; color: #3c883c; font-size: 24px;}
+.download-excel.iconfont{ font-size: 24px;}
+
+.input_file{display: inline-block;}
+
+.m-t50{margin-top: 50px;}
+.m-b30{margin-bottom: 30px;}
+.dialog-alert{z-index: 999; display:none;border-radius: 10px; box-shadow: 0 0 5px #ccc; background-color: #fff; padding: 15px; position: fixed; height: 180px;width: 400px; top: calc(50vh - 100px); left: calc(50vw - 200px);}
+.dialog-alert .dialog-alert-c{height: 80px; font-size: 22px;}
+.dialog-alert .dialog-return textarea{height: 80px;}
+.dialog-alert-button{}
+.dialog-alert.shows{display: block;}
+.dialog-alert.hides{display: none;}
+
+.pressing_form .pressing_hide{ display: none !important;}
+.dialogform  .pressing_tr{display: none;}
+.pressing_form  #eventTime{display: none;}
+ #eventTime_b{display: none;}
+.pressing_form  #eventTime_b{display: block;}
+.pressing_form .pressing_tr{display: none;}
+.dialogform .pressing_show{display: none;}
+
+.steps_2,.steps_1,.steps_3_1,.steps_3_2,.steps_3_3,.steps_3_4{display: none;}
+.steps_2.show,.steps_1.show,.steps_3_1.show,.steps_3_2.show,.steps_3_3.show,.steps_3_4.show{display: block;}
+
+.upload-content .modal-dialog {
+  
+  margin: 1.75rem auto;
+  margin-top: 120px;
+}
+.jsgrid-clear-filter-button{display: none;}
+
+.Tracking-dialog{height: 300px; overflow-y: auto;}
+
+.btn-hide{display: none;}
+
+.modal-content{padding: 8px;}
+.modal-content .show img{max-width: 100%;}
+
+.input_file input[type='file'] {
+  display: none;
+}
+.input_file .showFileName{display: inline;}
+.input_file{    border: 1px solid #ccc;
+  margin: 3px;
+  padding: 3px;
+  background: #fff;}
+  .safety_fbox{display: none;}
+  @media print {
+    table {
+    border-left: 1px solid #333  !important;
+    border-top: 1px solid #333  !important;
+    }
+    th, td {
+    border-color: #000;
+    border-right: 1px solid #333  !important;
+    border-bottom: 1px solid #333  !important;
+    padding: 5px !important;
+    }
+    table thead tr, .table-header {
+      background-color: #dadada !important;
+  }
+  
+    }
+
+    .input_table{    display: inline-block;
+
+      width: 120px !important;
+      border: 0;
+      background: transparent;
+      border-bottom: 1px solid;}
+    .tt_radio{border-bottom: 4px solid #ccc; margin-bottom: 8px;}
+    .tt_radio:after{clear: both; display: block; content: ' ';}
+    .tt_radio i{width: 30px;height: 30px; margin: 8px 5px; font-size: 20px; text-align: center; line-height:30px; border: 2px solid #333; float: left; display: block; border-radius: 40px;}
+    .tt_radio ul{list-style: none; padding: 0; width: calc(100% - 50px); float: left;}
+    .tt_radio li{display: block; float:left; text-align: center; width: calc(100% / 6); padding: 8px 0;}
+
+    .tiakuan_box{height: 200px; overflow-y: auto; padding: 8px; border: 1px solid #ccc; border-radius: 10px;}
+    .fixed-top {
+   
+      z-index: 100;
+  }
+  .con-tab{}
+  .con-tab ul{padding: 0;border-bottom: 2px solid #ccc;}
+  .con-tab li{list-style: none; cursor: pointer; display: inline-block; border: #ccc 1px solid;padding: 8px 25px;}
+  .con-tab li.con-active{color: #fff; background-color: #3c883c;}
+  .con-tabx{display: none;}
+  .table_div{padding: 8px 0; border-bottom: 1px solid #ccc;}
+  .table_div .table_div{padding: 20px;}
+  .safe_form{font-size: 0.8rem;}
+  .table_div label{padding-right: 20px;}
+  .table_div label.other{padding-right: 10px;}
+  .table_div label input[type='radio'],.table_div label input[type='checkbox']{margin-right: 5px;}
+  
+  .w_300p, .w_200p{width: 50%;}
+  .custom-checkbox{ display: inline-block; padding-right: 20px; }
+  .select2-container{display: block;}
+  .select2-container--default .select2-selection--single {display: inline-block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    vertical-align: middle;
+    
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.select2-container .select2-selection--single .select2-selection__rendered {
+    
+    padding-left: 0;
+    
+}

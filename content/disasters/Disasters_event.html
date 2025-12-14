@@ -1,0 +1,404 @@
+﻿<div>
+	<h4>職災統計與查詢</h4>
+	<div class="date_time">
+		<div class="date_box w_200p">
+            <label>
+                <select class="custom-select w_200p" name="year" id="year" placeholder="請選擇年度">
+					<option value="0">全部</option>
+              
+                </select>
+        </label>
+        </div>
+		<div class="date_box w_200p">
+            <label>
+                <select class="custom-select w_200p" name="harmCatagory" id="harmCatagory" placeholder="災害類型">
+                    <option value="">全部</option>
+                </select>
+        </label>
+        </div>
+        <button class="btn btn-primary  my-2" id="search">搜尋</button>
+<div class="pull-right">
+	 <button id="download_btn" class="btn btn-success  my-2">匯出</button>
+</div>
+       
+   
+    </div>
+	    <div id="jsGrid"></div>
+</div>
+<div id="tableDialog" style="display:none" class="container">
+    <form id="dialogForm">
+		<div class="Tracking-dialog">
+			<ul>
+				<li>2022/12/01 14:30 <b>總行-李四</b>審核批准通報單</li>
+				<li>2022/12/01 14:30 <b>總行-李四</b>審核批准通報單</li>
+				<li>2022/12/01 12:30 <b>臺北分行-王五</b>建立通報單</li>
+			</ul>
+		</div>
+    </form>
+</div>
+
+<style>
+/* 讓表格內容換行 */
+.jsgrid-table{
+		word-wrap:break-word;
+	}
+input[type=text]{
+	width: 100%;
+}
+textarea{
+	width:100%;
+}
+</style>
+
+<script>
+//需要用的JS
+require(["jquery", "jquery_validate", "jsgrid", "jquery_ui"], function (jquery, jquery_validate, jsgrid, jquery_ui ) {
+	//頁面讀取後執行
+	$(document).ready(function(){
+		var myDate = new Date();
+			var startYear = 2016;
+			var endYear = myDate.getFullYear();
+			var obj = document.getElementById('year')
+			for (var i = startYear; i <= endYear; i++) {
+				obj.options.add(new Option(i, i));
+			}
+
+			$("#year").val(myDate.getFullYear());
+			//獲取按鈕權限
+			var menuid = 80;
+			$.ajax({
+				url: "/" + CONFIG.SYSTEM_NAME + '/buttonRole/api/getByMenuId?menuId=' + menuid,
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+				async: false,
+				cache: false,
+				type: "GET",
+				success: function (data, textStatus) {
+					if (data && data == "<script>alert('沒有權限')<\/script>") {
+						//showAlert('沒有權限','沒有權限','')
+						showAlert('沒有權限', '沒有權限', '');
+					} else {
+						var menuData = data.data
+						
+						console.log(menuData.functionArray)
+						console.log(menuData)
+						// <button type="button" id='submit_o' class="btn btn-warning  my-2 pressing_hide tempButton">暫存</button>
+						// <button type="button" id='submit_s' class="btn btn-primary  my-2 pressing_hide sendButton">儲存送出</button>
+						// <button type="button" id="checkBtn" class="btn btn-success  my-2 pressing_hide reviewButton">審核通過</button>
+						// <button type="button" id="return" class="btn btn-danger  my-2 pressing_hide returnButton">退件</button>
+						// <button type="button" id='submit_p' class="btn btn-primary  my-2 pressing_show sendButton">儲存送出</button>
+						// <button type="button" id="printBtn1" class="btn btn-secondary  my-2 pressing_show printButton">列印</button>
+						// <button type="button" id="printBtn" class="btn btn-secondary  my-2 pressing_hide printButton">列印</button>
+						if (menuData.functionArray.indexOf('export') < 0) {
+							$('#download_btn').hide()
+						}
+					}
+				},
+				error: function (data, textStatus, errorThrown) {
+					console.log(data);
+				},
+			});
+$('#search').click(function (){
+	search($("*[name='year']").val())
+})
+var currentDate = new Date();
+			var year = currentDate.getFullYear();
+			var month = currentDate.getMonth() + 1;
+			var day = currentDate.getDate();
+$('#download_btn').click(function () {
+				download()
+			})
+			function download() {
+				showAlert('檔案下載', '檔案正在下載中，請稍候。', '')
+				window.location.href = "/" + CONFIG.SYSTEM_NAME + '/occupationalDisasters/api/export1?year='+year+'&harmCatagory='
+			}
+search(myDate.getFullYear())
+function search(date){
+	console.log('/occupationalDisasters/api/listCount?year='+date+'&harmCatagory='+$("*[name='harmCatagory']").val())
+	$.ajax({
+			    url: "/"+CONFIG.SYSTEM_NAME + '/occupationalDisasters/api/listCount?year='+$("*[name='year']").val()+'&harmCatagory='+$("*[name='harmCatagory']").val(),
+			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    async: false,
+			    cache: false,
+			    type: "GET",
+			    success: function(data, textStatus){    
+					if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    		 alert("沒有權限");
+			    	 }else{
+						 console.log(data)
+						 var data = data.data
+			    	 	$("#jsGrid").jsGrid({
+			    	        width: "100%",
+			    	        height: "auto",
+			    	        heading: true, //是否顯示表頭
+			    	        filtering: false, //啟動查找
+			    		    inserting: false, //啟動新增  關掉使用自定義的
+			    		    editing: true,  //啟動編輯 
+			    		    selecting: true,
+			    		    sorting: true, //啟動排序
+			    		    paging: true, //啟動分頁 
+			    		    pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+			    		    autoload: true,
+			    		    pageSize: 10,
+			    		    
+			    		    controller: {
+			    		        loadData: function(filter) {
+				    		        	//查詢
+			    		        	 	var result = $.grep(data, function(item, idx) {
+			    		                    for (var key in filter) {
+			    		                        var value = filter[key];
+			    		                        if (value.length > 0) {
+			    		                        	if (!item[key]){
+			    		                                return false;
+			    		                        	}
+			    		                        	if(typeof item[key] === 'number'){
+			    		                        		if (item[key].toString().indexOf(value) == -1){
+				    		                                return false;
+			    		                        		}
+			    		                        	}else if(typeof item[key] === 'string'){
+			    		                        		if (item[key].indexOf(value) == -1){
+				    		                                return false;
+			    		                        		}
+			    		                        	}
+			    		                        	
+			    		                        }
+			    		                    }
+			    		                    return true;
+			    		                });
+			    		            return result;
+			    		        },
+			    		        insertItem: function(insertingItem) {
+			    		        	$.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/config/api/addConfig',
+			    		 			    data: JSON.stringify(insertingItem),
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 insertingItem.id = data.id;
+			    					    			 alert("新增成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        },
+			    		        updateItem: function(updatingItem) { 
+			    		        	$.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/config/api/updateConfig',
+			    		 			    data: JSON.stringify(updatingItem),
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 alert("更新成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        },
+			    		        deleteItem: function(deletingItem) {
+			    		        	 $.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/config/api/deleteConfig',
+			    		 			    data: '{"ID":' + deletingItem.id + '}',
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 alert("刪除成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        }
+			    		    },
+				
+			    	        fields: [
+                        
+			    	            { title:"案件發生年度", name: "year", type: "text", width: 120 },
+                                { title:"單位名稱", name: "unitName", type: "text", width: 120, validate: "required" },
+                                { title:"災害類型", name: "harmCategoryTxt", type: "text" ,classes: "text-ellipsis", itemTemplate: function (value, item) {
+											return $("<span>").text(value).attr('title', value).addClass('text-ellipsis')
+										}},
+								{ title:"總計案件數", name: "num", type: "text", width: 80 },
+							
+						           
+			    	        ],
+				    	 	rowClick: function(args) {
+								 
+								// bodyHref("/content/situation/Safetysituationreport_form.html");
+				    	 		 //showDetailsDialog("修改", args.item);
+				            },
+			    		    deleteConfirm: function(item) {
+			                    return "參數\"" + item.NUM + "\"確認刪除?";
+			                },loadComplete:function(){
+        alert("jqGrid資料載入完之後調用");
+    }
+			    	    });
+			    	 }
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+			    },
+			});
+	
+}
+get_unitList()
+  function get_unitList() {
+
+$.ajax({
+  url: "/" + CONFIG.SYSTEM_NAME + '/config/api/getConfig?type=OCCUPATIONAL_DISASTERS',
+  contentType: "application/json;charset=utf-8", // 因為上面是JSON
+  async: false,
+  cache: false,
+  type: "GET",
+  success: function (data, textStatus) {
+    if (data && data == "<script>alert('沒有權限')<\/script>") {
+      alert("沒有權限");
+    } else {
+
+      var data = data
+console.log(data)
+      createSelect("harmCatagory", data, 'cfgKey', 'cfgName', '');
+    }
+  },
+  error: function (data, textStatus, errorThrown) {
+    console.log(data);
+  },
+});
+}
+
+function createSelect(id, data, key, val, eventKey) {
+				$.each(data, function (index, item) {
+    
+					$('#' + id).append($('<option>').val(item[key]).text(eventKey ? item[eventKey] + "_" + item[val] : item[val]));
+				});
+        $('#' + id).find("option").eq(0).prop("selected",true)
+			}
+		 $("#tableDialog").dialog({
+			 title: "參數設定",
+	         autoOpen: false,
+	         width: 550,
+	         modal: true,
+	         open:function(){
+	         	$('.ui-widget-overlay').addClass('custom-overlay');
+	         	customCloseBtn();
+	         },
+	         close: function() {
+	       
+	             $("#dialogForm").find(".error").removeClass("error");
+	             $('.ui-widget-overlay').removeClass('custom-overlay');
+	         },
+             classes: dlgSetting.classes,
+	         show: dlgSetting.show,
+			 hide: dlgSetting.hide
+	     });
+		 
+		 var formSubmitHandler = $.noop;
+		 
+		 var showDetailsDialog = function(dialogType, item) {
+  
+             $("#tableDialog").dialog("option", "title", dialogType + "").dialog("open");
+         };
+	
+	     $("#dialogForm").validate({
+	    	 //錯誤訊息元素預設為label改成p會換行
+			 errorElement: "p",
+	         rules: {
+	        	 cfgType: { required: true, rangelength: [2, 50] },
+	        	 cfgKey: { required: true, rangelength: [3, 80] },
+	        	 cfgName: { required: true, rangelength: [2, 50] },
+	        	 cfgValue: { required: true, rangelength: [0, 80] },
+	        	 cfgInUse: { required: true }
+	         },
+	         messages: {
+	        	 	cfgType:{
+			          required: "請輸入參數類型",
+			          rangelength: "密碼長度不得小於2個字母大於50個字母"
+			        },
+			     	cfgKey:{
+			          required: "請輸入參數key",
+			          rangelength: "參數key不得小於4個字母大於80個字母"
+			        },
+			     	cfgName:{
+			          required: "請輸入參數名稱",
+			          rangelength: "參數名稱不得小於2個字母大於50個字母"
+			        },
+			     	cfgValue:{
+			          required: "請輸入參數值",
+			          rangelength: "參數值不得小於0個字母大於80個字母"
+			        },
+			        cfgInUse:{
+			          required: "請選擇是否啟用"
+			        }
+	         },
+	         submitHandler: function() {
+	             formSubmitHandler();
+	         }
+	     });
+	     
+	     var saveItem = function(item, isNew) {
+             $.extend(item, {
+            	 cfgType: $("#cfgType").val(),
+            	 cfgKey: $("#cfgKey").val(),
+            	 cfgName: $("#cfgName").val(),
+            	 cfgValue: $("#cfgValue").val(),
+            	 cfgMemo: $("#cfgMemo").val(),
+            	 cfgInUse: $('input[name*=cfgInUse]:checked').val()
+             });
+             
+             $("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", item);
+
+             $("#tableDialog").dialog("close");
+			 bodyHref("/content/situation/Safetysituationreport.html");
+         };
+	
+		 function Processing(id){		 		
+		bodyHref("/content/situation/Safetysituationreport_form7.html");
+		}
+
+	});
+	
+	var cellIndex=parseInt($(".tbStyle th").length)-1;
+  $("#jsGrid tr td").each(function(){
+	  alert($(this).text())
+    if(this.cellIndex != cellIndex){
+      $(this).attr("title",$(this).text());
+      //alert($(this).parent().get(0).rowIndex);輸出所在行
+     }
+  });
+});
+</script>

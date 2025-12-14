@@ -1,0 +1,287 @@
+<div>
+    <h2 style="text-align: center;">轉置重大偶發緊急事件通報</h2>
+    <div class="clear-fix">
+        通報編號: OHS000000700
+    </div>
+    <br>
+    <form id="inputForm">
+        <table class="w-100 safe_form">
+            <tbody>
+                <tr>
+                    <td class="table-header  ">單位名稱</td>
+                    <td>
+                        △△分行
+                    </td>
+                    <td class="table-header  ">通報人員</td>
+                    <td>
+                        副理
+                    </td>
+                    <td>
+                        王五
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-header ">事件發生時間</td>
+                    <td>
+                        111/04/14 08:30:00
+                    </td>
+                    <td class="table-header ">單位電話</td>
+                    <td>
+                        09-99999999
+                    </td>
+                    <td>
+                        分機999
+                    </td>
+                </tr>
+
+            </tbody>
+        </table><br />
+        <table class="w-100 safe_form">
+            <tbody>
+                <tr>
+                    <td class="table-header text-center" width="120" rowspan=2>案由<br />
+                        <small class="text-grey">(請重點敘明)<br />
+                        (100中文字內)</small></td>
+                    <td class="table-header  text-center">
+                        類別
+                    </td>
+                    <td>
+                        <select class="custom-select" id="eventName" name="eventName">
+                            
+                            <option value="1">天然災害</option>
+                            <option value="1">安全問題</option>
+                            <option value="1">財務及設施安全維護</option>
+                            <option value="1">陳情抗議</option>
+                            <option value="1">企業形象輿情</option>
+                            <option value="1">公務機密</option>
+                            <option value="1">其他</option>
+
+                        </select>
+                    </td>
+                    <td class="table-header  text-center">
+                        等級
+                    </td>
+                    <td>
+                        <select class="custom-select" id="eventName" name="eventName">
+                            
+                            <option value="1">普通</option>
+                            <option value="1">較重要</option>
+                            <option value="1">極重要</option>
+                            <option value="1">非常重要</option>
+                        </select>
+                    </td>
+                    <td class="table-header  text-center">
+                        來源
+                    </td>
+                    <td>
+                        <select class="custom-select" id="eventName" name="eventName">
+                            
+                            <option value="1">主動發掘</option>
+                            <option value="1">媒體報導</option>
+                            <option value="1">民眾陳情</option>
+                            <option value="1">交辦案件</option>
+                            <option value="1">其他</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td colspan="6">
+                        <textarea></textarea>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="table-header  text-center">案件發生原因<br />
+                        <small class="text-grey">(請詳敘明發
+                        生時間、內容)</small></td>
+                    <td colspan="6">
+                        <textarea></textarea>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="table-header  text-center">受損情形及
+                        處置措施<br />
+                        <small class="text-grey">(請詳敘明受
+                        損處置、處置
+                        內容)</small></td>
+                    <td colspan="6">
+                        <textarea></textarea>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="table-header  text-center">是否平安</td>
+                    <td colspan="6">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input id="isSafe_1" name="isSafe" type="radio" value="1"
+                                class="custom-control-input">
+                            <label class="custom-control-label" for="isSafe_1">無</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input id="isSafe_0" name="isSafe" type="radio" value="0"
+                                class="custom-control-input">
+                            <label class="custom-control-label"
+                                for="isSafe_0">有，新臺幣：$</label>
+                            <input type="text" value="0"></input>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="table-header  text-center" rowspan="2">營業狀況</td>
+                    <td><select class="custom-select" id="eventName"
+                            name="eventName">
+                            
+                            <option value="1">可正常營業</option>
+                            <option value="1">無法或部分營業</option>
+
+                        </select></td>
+                        <td colspan="5">&nbsp;</td>
+                </tr>
+                <tr>
+
+                    <td colspan="6"><textarea placeholder="說明"></textarea></td>
+                </tr>
+                <tr>
+                    <td class="table-header  text-center" rowspan="2">須總行協助</td>
+                    <td><select class="custom-select" id="eventName"
+                            name="eventName">
+                            
+                            <option value="1">無須總行協助</option>
+                            <option value="1">須總行協助</option>
+
+                        </select></td>
+                        <td colspan="5">&nbsp;</td>
+                </tr>
+                
+                <tr>
+
+                    <td colspan="6"><textarea placeholder="說明"></textarea></td>
+                </tr>
+                <tr>
+                    <td class="table-header  text-center">照片上傳</td>
+                    <td colspan="6">
+                        <div class="upload-content">
+
+                            <div class="content-img">
+                                <ul class="content-img-list">
+                                    <li class="content-img-list-item">
+                                        <img src="http://67.229.77.101:8080/SHMS/resources/image/pic.jpg" alt="">
+                                        <div class="hide">
+                                            <a index="0" class="big-btn" type="button" data-toggle="modal"
+                                                data-target=".bs-example-modal-lg"><i
+                                                    class="iconfont icon-iczoomout"></i></a>
+                                        </div>
+                                    </li>
+                                    <li class="content-img-list-item">
+                                        <img src="http://67.229.77.101:8080//SHMS/resources/image/pic.jpg" alt="">
+                                        <div class="hide">
+                                            <a index="1" class="big-btn" type="button" data-toggle="modal"
+                                                data-target=".bs-example-modal-lg"><i
+                                                    class="iconfont icon-iczoomout"></i></a>
+                                        </div>
+                                    </li>
+                                    <li class="content-img-list-item">
+                                        <img src="/SHMS/resources/image/pic.jpg" alt="">
+                                        <div class="hide">
+                                            <a index="2" class="big-btn" type="button" data-toggle="modal"
+                                                data-target=".bs-example-modal-lg"><i
+                                                    class="iconfont icon-iczoomout"></i></a>
+                                        </div>
+                                    </li>
+                                    <li class="content-img-list-item">
+                                        <img src="/SHMS/resources/image/pic.jpg" alt="">
+                                        <div class="hide">
+                                            <a index="3" class="big-btn" type="button" data-toggle="modal"
+                                                data-target=".bs-example-modal-lg"><i
+                                                    class="iconfont icon-iczoomout"></i></a>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+                                aria-labelledby="myLargeModalLabel">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="table-header  text-center">審核人員</td>
+                    <td colspan="3">
+                        <select class="custom-select" id="eventName" name="eventName">
+                            
+                            <option value="1"></option>
+                            <option value="1"></option>
+
+                        </select>
+                    </td>
+                    <td class="table-header  text-center">
+                        通報時間
+                    </td>
+                    <td colspan="2">
+                        111/04/15 08:30:00
+                    </td>
+                </tr>
+                <tr class="d-none">
+                    <td class="table-header  text-center">是否審核</td>
+                    <td colspan="6">
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input id="isReview_notNull" name="isReview" type="radio"
+                                value="1" class="custom-control-input">
+                            <label class="custom-control-label"
+                                for="isReview_notNull">是</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input id="isReview_null" name="isReview" type="radio" value="0"
+                                class="custom-control-input">
+                            <label class="custom-control-label"
+                                for="isReview_null">否</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="d-none">
+                    <td class="table-header  text-center">建立者(請輸身分證字號)</td>
+                    <td colspan="6"><input type="input" id="createId" name="createId"></td>
+                </tr>
+         
+            </tbody>
+        </table>
+    </form>
+</div>
+<br>
+<div style="text-align: center;">
+<button type="button" id="submitBtn"  class="btn btn-primary  my-2">下一頁</button>
+<button type="button" id="return" class="btn btn-warning  my-2">返回</button>
+</div>
+<div class="container-fluid" id="templateContainer">
+
+</div>
+<script>
+//需要用的JS
+require(["jquery", "jquery_validate", "jsgrid", "jquery_ui", "uploadimg"], function (jquery, jquery_validate, jsgrid, jquery_ui , uploadimg) {
+	//頁面讀取後執行
+$(document).ready(function(){
+    $('#submitBtn').on("click",
+        function (){
+            bodyHref("/content/situation/SafetysituationreportX_form1.html");
+        }
+    );
+    $('#return').on("click",
+        function (){
+            bodyHref("/content/situation/SafetysituationreportX.html");
+        }
+    );
+	});
+	
+	
+});
+</script>

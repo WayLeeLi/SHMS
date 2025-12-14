@@ -1,0 +1,291 @@
+﻿<div>
+	<h4>健康問題異常統計</h4>
+	<div class="date_time">
+        <div class="date_box w_200p" >
+            <label>
+                <select class=" w_200p custom-select" id="year"   placeholder="年度">
+             
+                </select>
+        </label>
+        </div>
+        <div class="date_box w_200p" >
+          <label>
+              <select class=" w_200p custom-select" id="unitIds"    placeholder="單位名稱">
+               
+              
+              </select>
+      </label>
+      </div>
+      <div class=" w_200p" style="display: inline-block;">
+        
+            <select class=" w_200p my-select" multiple="multiple" id="my-select" name="my-select" placeholder="檢查項目">
+             
+   
+            </select>
+   
+    </div>
+        <button class="btn btn-primary  my-2" id="search_btn">搜尋</button>
+    </div>
+	    <div id="Craft" style="height: 800px;"></div>
+</div>
+<div id="tableDialog" style="display:none" class="container">
+    <form id="dialogForm">
+		<div class="Tracking-dialog">
+			<ul>
+				<li>2022/12/01 14:30 <b>總行-李四</b>審核批准通報單</li>
+				<li>2022/12/01 14:30 <b>總行-李四</b>審核批准通報單</li>
+				<li>2022/12/01 12:30 <b>台北分行-王五</b>建立通報單</li>
+			</ul>
+		</div>
+    </form>
+</div>
+
+
+
+<script>
+//需要用的JS
+require(["jquery", "jquery_ui","echarts","multiselect"], function (jquery, jquery_ui ,echarts ,multiselect) {
+  //創建select
+  $(document).ready(function () {
+    var myDate = new Date();
+			var startYear = 2016;
+			var endYear = myDate.getFullYear();
+			var obj = document.getElementById('year')
+			for (var i = startYear; i <= endYear; i++) {
+				obj.options.add(new Option(i, i));
+			}
+
+			$("#year").val(myDate.getFullYear());
+  get_select()
+  function get_select() {
+
+$.ajax({
+  url: "/" + CONFIG.SYSTEM_NAME + '/healthMedicalEquipment/api/getInitData',
+  contentType: "application/json;charset=utf-8", // 因為上面是JSON
+  async: false,
+  cache: false,
+  type: "GET",
+  success: function (data, textStatus) {
+    if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						}else {
+
+      var data = data.data
+      console.log(data.unitList)
+      createSelect("my-select", data, 'cfgKey', 'cfgValue', '');
+      createSelect("unitIds", data.unitList, 'unitId', 'unitName', '');
+    }
+  },
+  error: function (data, textStatus, errorThrown) {
+    console.log(data);
+  },
+});
+}
+get_unitList()
+  function get_unitList() {
+
+$.ajax({
+  url: "/" + CONFIG.SYSTEM_NAME + '/user/api/getInitData',
+  contentType: "application/json;charset=utf-8", // 因為上面是JSON
+  async: false,
+  cache: false,
+  type: "GET",
+  success: function (data, textStatus) {
+    if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						}else {
+
+      var data = data.unitList
+console.log(data)
+      createSelect("unitIds", data, 'unitId', 'unitName', '');
+    }
+  },
+  error: function (data, textStatus, errorThrown) {
+    console.log(data);
+  },
+});
+}
+
+function createSelect(id, data, key, val, eventKey) {
+				$.each(data, function (index, item) {
+    
+					$('#' + id).append($('<option>').val(item[key]).text(eventKey ? item[eventKey] + "_" + item[val] : item[val]));
+				});
+        $('#' + id).find("option").eq(0).prop("selected",true)
+			}
+      $('.my-select').multipleSelect(
+    {
+					noneSelectedText: "",
+					checkAllText: "全選",
+					uncheckAllText: '全不選',
+					selectedList: 15
+
+				}
+  ); 
+  $("#search_btn").click(function (){
+
+  var saveItem = {
+						years:[$('#year').val()],
+            unitIds:[$('#unitIds').val()],
+            items:$('#my-select').val(),
+				}
+				Get(saveItem)
+}
+)
+Get('')
+  function Get(data) {
+				console.log(JSON.stringify(data))
+				$.ajax({
+					data: JSON.stringify(data),
+					url: "/" + CONFIG.SYSTEM_NAME + '/healthCheckAbnormal/api/list',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						if (data && data.code == 5000) {
+							//showAlert('沒有權限','沒有權限','')
+							showAlert('沒有權限', '沒有權限', '')
+						} else {
+							console.log(data.data);
+              var datatest= data.data
+              var chartDom = document.getElementById('Craft');
+var myChart = echarts.init(chartDom);
+var option;
+
+
+option = {
+    legend: {},
+    tooltip: {
+      trigger: 'axis',
+      showContent: false
+    },
+    dataset: {
+      source:datatest
+    },
+    xAxis: { type: 'category' },
+    yAxis: { gridIndex: 0 },
+    grid: { top: '55%' },
+    series: [
+      {
+        type: 'line',
+        smooth: true,
+        seriesLayoutBy: 'row',
+        emphasis: { focus: 'series' }
+      },
+      {
+        type: 'line',
+        smooth: true,
+        seriesLayoutBy: 'row',
+        emphasis: { focus: 'series' }
+      },
+      {
+        type: 'line',
+        smooth: true,
+        seriesLayoutBy: 'row',
+        emphasis: { focus: 'series' }
+      },
+      {
+        type: 'line',
+        smooth: true,
+        seriesLayoutBy: 'row',
+        emphasis: { focus: 'series' }
+      },
+      {
+        type: 'line',
+        smooth: true,
+        seriesLayoutBy: 'row',
+        emphasis: { focus: 'series' }
+      },
+      {
+        type: 'line',
+        smooth: true,
+        seriesLayoutBy: 'row',
+        emphasis: { focus: 'series' }
+      },
+      {
+        type: 'line',
+        smooth: true,
+        seriesLayoutBy: 'row',
+        emphasis: { focus: 'series' }
+      },
+      {
+        type: 'line',
+        smooth: true,
+        seriesLayoutBy: 'row',
+        emphasis: { focus: 'series' }
+      },
+      {
+        type: 'line',
+        smooth: true,
+        seriesLayoutBy: 'row',
+        emphasis: { focus: 'series' }
+      },
+      {
+        type: 'line',
+        smooth: true,
+        seriesLayoutBy: 'row',
+        emphasis: { focus: 'series' }
+      },
+      {
+        type: 'pie',
+        id: 'pie',
+        radius: '30%',
+        center: ['50%', '25%'],
+        emphasis: {
+          focus: 'self'
+        },
+        label: {
+          formatter: '{b}: {@2012} ({d}%)'
+        },
+        encode: {
+          itemName: 'year',
+          value: '2012',
+          tooltip: '2012'
+        }
+      }
+    ]
+  };
+  myChart.on('updateAxisPointer', function (event) {
+    const xAxisInfo = event.axesInfo[0];
+    if (xAxisInfo) {
+      const dimension = xAxisInfo.value + 1;
+      myChart.setOption({
+        series: {
+          id: 'pie',
+          label: {
+            formatter: '{b}: {@[' + dimension + ']} ({d}%)'
+          },
+          encode: {
+            value: dimension,
+            tooltip: dimension
+          }
+        }
+      });
+    }
+  });
+  myChart.setOption(option);
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						//console.log(data);
+					},
+				});
+			};
+})
+
+  
+    
+  });
+
+</script>

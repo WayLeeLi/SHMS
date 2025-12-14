@@ -1,0 +1,154 @@
+﻿<div>
+	<h4>LOGFILE</h4>
+	
+	<div id="log4jfileTree" >
+	</div>
+	<hr>
+	<div id="serverLogfileTree" >
+	</div>
+	<h4><span class="badge bg-primary">log4j</span></h4>
+	<div id="jsGrid_log4j"></div>
+	
+	<h4><span class="badge bg-primary">message</span></h4>
+	<div id="jsGrid_message"></div>
+	
+	<h4><span class="badge bg-primary">serverLog</span></h4>
+	<div id="jsGrid_serverLog"></div>
+</div>
+
+<script>
+//需要用的JS
+require(["jquery", "jsgrid"], function (jquery, jsgrid) {
+	//頁面讀取後執行
+	$(document).ready(function(){
+	    $.ajax({
+		    url: "/"+CONFIG.SYSTEM_NAME + '/logFile/api/getDirectory',
+		    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+		    async: false,
+		    cache: false,
+		    type: "GET",
+		    success: function(data, textStatus){  
+		    	
+		    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+		    		 alert("沒有權限");
+		    	 }else{
+		    		 /*
+		    		 console.log(data);
+		    		$.each( data.log4jFileList, function( index , val) {
+		    			 createFileLink( data.log4jPath, val, "#log4jfileTree");
+		    		});
+		    		$.each( data.serverLogFileList, function( index , val) {
+		    			 createFileLink( data.serverLogPath, val, "#serverLogfileTree");
+		    		});
+		    		*/
+		    		jsonData = data.log4jFileList
+		    		.filter(f => f.startsWith('shms'))
+		    		.reduce((jsonData, val, indx)=>{
+		    			jsonData.push({"name": val});
+		    			return jsonData;
+		    		}, []);
+		    		
+		    		createJsgrid("jsGrid_log4j", data.log4jPath, jsonData);
+		    		
+		    		jsonData = data.log4jFileList
+		    		.filter(f => f.endsWith('sms.txt'))
+		    		.reduce((jsonData, val, indx)=>{
+		    			jsonData.push({"name": val});
+		    			return jsonData;
+		    		}, []);
+		    		
+		    		createJsgrid("jsGrid_message", data.log4jPath, jsonData);
+		    		
+		    		jsonData = data.serverLogFileList.reduce((jsonData, val, indx)=>{
+		    			jsonData.push({"name": val});
+		    			return jsonData;
+		    		}, []);
+		    		
+		    		createJsgrid("jsGrid_serverLog", data.log4jPath, jsonData);
+		    	 }
+		    	 
+		    },
+		    error: function (data, textStatus, errorThrown) {
+		        console.log(data);
+		    },
+		});
+	    
+	    function createJsgrid(grid ,filePath, data){
+	    	$("#"+grid).jsGrid({
+    	        width: "100%",
+    	 		height: "auto",
+    	        heading: true,
+    		    filtering: false,
+    		    inserting: false,
+    		    editing: false,
+    		    selecting: true,
+    		    sorting: true,
+    		    paging: true,
+    		    pageLoading: false,
+    		    pageSize: 10,
+    		    
+    	        data: data,
+    	 
+    	        fields: [
+    	            { title:"檔案", name: "name", type: "text", width: 50, itemTemplate: function(value, item){
+    	            	
+    	            	var a = $('<a>',{
+    	    	    	    text: value,
+    	    	    	    href: 'javascript:void(0)'
+    	    	    	});
+    	    	    	
+    	    	    	a.click(function() {
+    	    	    		var downloadFrame = document.createElement("iframe"); 
+    	    	    		downloadFrame.setAttribute('src', "/"+CONFIG.SYSTEM_NAME + "/logFile/api/downLoadFile");
+    	    	    		downloadFrame.setAttribute('style', "display:none;"); 
+    	    	    		
+    	    	    		var inputs = '';
+    	    	    	     inputs+='<input type="hidden" name="filePath" value="'+ filePath +'" />'; 
+    	    	    	     inputs+='<input type="hidden" name="fileName" value="'+ value +'" />';
+    	    	    	     
+    	    	    	     jQuery('<form target="_blank" action="'+ "/"+CONFIG.SYSTEM_NAME + "/logFile/api/downLoadFile" +'" method="GET">'+inputs+'</form>')
+    	    	    	     .appendTo('body').submit().remove();
+    	    	    		
+    	    	    		document.body.appendChild(downloadFrame); 
+    	    	        });
+    	    	    	return a;
+    	            } },
+    	        ],
+    	        rowClick: function(args) {
+
+	            },
+	            
+    	    });
+	    }
+	    
+	    function createFileLink(path, filename, id){
+	    	var a = $('<a>',{
+	    	    text: filename,
+	    	    href: 'javascript:void(0)'
+	    	});
+	    	
+	    	a.click(function() {
+	    		var downloadFrame = document.createElement("iframe"); 
+	    		downloadFrame.setAttribute('src', "/"+CONFIG.SYSTEM_NAME + "/logFile/api/downLoadFile");
+	    		downloadFrame.setAttribute('style', "display:none;"); 
+	    		
+	    		var inputs = '';
+	    	     inputs+='<input type="hidden" name="filePath" value="'+ path +'" />'; 
+	    	     inputs+='<input type="hidden" name="fileName" value="'+ filename +'" />';
+	    	     
+	    	     jQuery('<form target="_blank" action="'+ "/"+CONFIG.SYSTEM_NAME + "/logFile/api/downLoadFile" +'" method="GET">'+inputs+'</form>')
+	    	     .appendTo('body').submit().remove();
+	    		
+	    		document.body.appendChild(downloadFrame); 
+	        });
+	    	
+	    	a.appendTo(id);
+	    	$("<br>").appendTo(id);
+	    }
+	    
+    
+	});  
+	
+	
+});
+</script>

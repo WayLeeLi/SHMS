@@ -1,0 +1,412 @@
+﻿<div>
+	<h4>公告設定</h4>
+	
+	<div style="text-align: left;">
+		<button type="button" id="printBtn" class="btn btn-secondary">列印</button>
+		<button type="button" id="downloadExcelBtn" class="btn btn-warning">下載EXCEL</button>
+	</div>
+	
+	    <div id="jsGrid"></div>
+</div>
+
+<div id="tableDialog" style="display:none" class="container">
+    <form id="dialogForm"  enctype="multipart/form-data">
+        <div class="details-form-field row">
+			<div class="col text-right"><label for="announcementDate">發佈日期</label></div>
+			<div class="col-8 align-self-center"><input id="announcementDate" name="announcementDate" type="text" readonly="readonly" /></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label for="announcementName">公告標題</label></div>
+			<div class="col-8 align-self-center"><textarea  id="announcementName" name="announcementName"  rows="10" cols="60" autofocus></textarea></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label for="announcementFile">上傳附件(限定pdf)</label></div>
+			<div class="col-8 align-self-center"><input id="announcementFile" name="announcementFile" type="file" accept="application/pdf"/></div>
+        </div>
+        <input type="hidden" id="id" name="id">
+        <div class="details-form-field row justify-content-center">
+			<div class="col text-right"></div>
+			<div class="col-7"><button type="submit" id="dialogFormSubmit" class="btn btn-primary">送出</button></div>
+        </div>
+    </form>
+</div>
+
+
+<div id="printDiv" style="display:none">
+	<table style="border-collapse: collapse; width: 100%; height: 108px;" border="1">
+	  <thead>
+	    <tr>
+	    	<td >發佈時間</td>
+	      	<td >公告標題</td>
+	      	<td >檔案名稱</td>
+	      	<td >建立時間</td>
+	    </tr>
+	  </thead>
+	  <tbody id="tbody">
+	  
+	  </tbody>
+	</table>
+</div>
+
+
+<style>
+/* 讓表格內容換行 */
+.jsgrid-table{
+		word-wrap:break-word;
+	}
+input[type=text]{
+	width: 100%;
+}
+input[type=file]{
+	width: 100%;
+}
+textarea{
+	width:100%;
+}
+</style>
+
+<script>
+//需要用的JS
+require(["jquery", "jquery_validate", "jsgrid", "jquery_ui", "jquery_cookie"], function (jquery, jquery_validate, jsgrid, jquery_ui ) {
+	//頁面讀取後執行
+	$(document).ready(function(){
+		
+		
+		$.validator.addMethod('filesize', function(value, element, param) {
+            // param = size (en bytes) 
+            // element = element to validate (<input>)
+            // value = value of the element (file name)
+            $.validator.messages.filesize = "檔案大小超過限制";
+            return this.optional(element) || (element.files[0].size <= param) 
+        });
+			
+		 $.ajax({
+			    url: "/"+CONFIG.SYSTEM_NAME + '/announcement/api/getAnnouncement',
+			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    async: false,
+			    cache: false,
+			    type: "GET",
+			    success: function(data, textStatus){    
+			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    		 alert("沒有權限");
+			    	 }else{
+			    		//產生列印用的表格
+			    		createPrintTable(data);
+			    		//產生TABLE
+			    	 	$("#jsGrid").jsGrid({
+			    	        width: "100%",
+			    	        height: "auto",
+			    	        heading: true, //是否顯示表頭
+			    		    filtering: true, //啟動查找
+			    		    inserting: false, //啟動新增  關掉使用自定義的
+			    		    editing: true,  //啟動編輯 
+			    		    selecting: true,
+			    		    sorting: true, //啟動排序
+			    		    paging: true, //啟動分頁 
+			    		    pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+			    		    autoload: true,
+			    		    pageSize: 10,
+			    		    
+			    		    controller: {
+			    		        loadData: function(filter) {
+				    		        	//查詢
+			    		        	 	var result = $.grep(data, function(item, idx) {
+			    		                    for (var key in filter) {
+			    		                        var value = filter[key];
+			    		                        if (value.length > 0) {
+			    		                        	if (!item[key]){
+			    		                                return false;
+			    		                        	}
+			    		                        	if(typeof item[key] === 'number'){
+			    		                        		if (item[key].toString().indexOf(value) == -1){
+				    		                                return false;
+			    		                        		}
+			    		                        	}else if(typeof item[key] === 'string'){
+			    		                        		if (item[key].indexOf(value) == -1){
+				    		                                return false;
+			    		                        		}
+			    		                        	}
+			    		                        	
+			    		                        }
+			    		                    }
+			    		                    return true;
+			    		                });
+			    		            return result;
+			    		        },
+			    		        insertItem: function(insertingItem) {
+			    		        	 var fileName = $("#announcementFile").val().split("\\").pop();
+			    					 var reg = /^.*\.(?:pdf)$/i; 
+			    				     if (fileName != '' && !reg.test(fileName)) {//校驗是否是PDF格式的檔案
+			    				      	alert("請上傳PDF格式的檔案!");
+			    				     	return;
+			    				     }
+			    		        	var formData = new FormData($('#dialogForm')[0]);
+			    		        	console.log(JSON.stringify(formData))
+			    		        	$.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/announcement/api/addAnnouncement',
+			    		 			    data: formData,
+			    		 			    processData: false,  // tell jQuery not to process the data
+			    		 		        contentType: false,  // tell jQuery not to set contentType
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 insertingItem.id = data.id;
+													 console.log(data)
+			    					    			 alert("新增成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        },
+			    		        updateItem: function(updatingItem) { 
+			    		        	var fileName = $("#announcementFile").val().split("\\").pop();
+			    					 var reg = /^.*\.(?:pdf)$/i; 
+			    				     if (fileName != "" && !reg.test(fileName)) {//校驗是否是PDF格式的檔案
+			    				      	alert("請上傳PDF格式的檔案!");
+			    				     	return;
+			    				     }
+			    		        	var formData = new FormData($('#dialogForm')[0]);
+			    		        	
+			    		        	$.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/announcement/api/updateAnnouncement',
+			    		 			    data: formData,
+			    		 			    processData: false,  // tell jQuery not to process the data
+			    		 		        contentType: false,  // tell jQuery not to set contentType
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+													 alert("更新成功");
+													 console.log(data.data)
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        },
+			    		        deleteItem: function(deletingItem) {
+			    		        	 $.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/announcement/api/deleteAnnouncement',
+			    		 			    data: '{"ID":' + deletingItem.id + '}',
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 alert("刪除成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        }
+			    		    },
+			    	 
+			    	        fields: [
+			    	        	{ title:"狀態", name: "isSend", type: "text", width: 50, itemTemplate: function(value, item) { 
+			    	        		return value == "1" ? item.reviewId ? "審核完成" : "已送審" : "未送出"; 
+			    	        		} 
+			    	        	},
+			    	        	{ title:"發佈時間", name: "announcementDate", type: "text", width: 70 },
+			    	            { title:"公告標題", name: "announcementName", type: "text", width: 150 },
+			    	            { title:"檔案名稱", name: "fileName", type: "text", width: 110 },
+			    	            { title:"檔案路徑", name: "filePath", type: "text", width: 120 },
+			    	            { title:"建立者", name: "createName", type: "text", width: 50 },
+			    	            { title:"建立時間", name: "createTime", type: "text", width: 70 },
+			    	            { title:"修改者", name: "editName", type: "text", width: 50 },
+			    	            { title:"修改時間", name: "editTime", type: "text", width: 70 },
+			    	            { type: "control",
+			                        editButton: false,
+			                        modeSwitchButton: false,
+			                        headerTemplate: function() {
+			                            return $("<button>").attr("type", "button").text("新增").addClass("btn btn-primary")
+			                                .on("click", function () {
+			                                	showDetailsDialog("新增", {});
+			                                });
+			                        }
+			    	            }             
+			    	        ],
+				    	 	rowClick: function(args) {
+				    	 		if(args.item.reviewTime){
+				    	 			shmsToast("審核完成，無法編輯", '', 'info');
+				    	 			return;
+				    	 		}
+				    	 		if(args.item.isSend ==1){
+				    	 			shmsToast("已送審，無法編輯", '', 'info');
+				    	 			return;
+				    	 		}
+				    	 		
+				    	 		 showDetailsDialog("修改", args.item);
+				            },
+			    		    deleteConfirm: function(item) {
+			                    return "公告 \"" + item.announcementName + "\" 確認刪除?";
+			                },
+				            
+			    	    });
+			    	 	
+			    	 	//依時間排序
+			    	 	$("#jsGrid").jsGrid("sort", "announcementDate","desc");
+			    	 }
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+			    },
+			});
+	
+		 $("#tableDialog").dialog({
+			 title: "參數設定",
+	         autoOpen: false,
+	         width: 550,
+	         modal: true,
+	         close: function() {
+	             $("#dialogForm").validate().resetForm();
+	             $("#dialogForm").find(".error").removeClass("error");
+	             $('#announcementDate').datepicker('disable');
+	             $('.ui-widget-overlay').removeClass('custom-overlay');
+	         },
+		 	 open: function (event, ui)
+	         {
+		 		 $('#announcementDate').datepicker('enable');
+		 		 $('.ui-widget-overlay').addClass('custom-overlay');
+		 		customCloseBtn();
+	         },
+	         classes: dlgSetting.classes,
+	         show: dlgSetting.show,
+			 hide: dlgSetting.hide
+	     });
+		 
+		 var formSubmitHandler = $.noop;
+		 
+		 var showDetailsDialog = function(dialogType, item) {
+             $("#announcementDate").val(item.announcementDate);
+             $("#announcementName").val(item.announcementName);
+             $("#id").val(item.id);
+             
+             formSubmitHandler = function() {
+            	 saveItem(item, dialogType === "新增");
+             };
+
+             $("#tableDialog").dialog("option", "title", dialogType + " announcement").dialog("open");
+         };
+	
+	     $("#dialogForm").validate({
+	    	 //錯誤訊息元素預設為label改成p會換行
+			 errorElement: "p",
+	         rules: {
+	        	 announcementDate: { required: true},
+	        	 announcementName: { required: true, maxlength:200, minlength:2},
+	        	 announcementFile: { required: false, filesize: 10485760 }
+	         },
+	         messages: {
+	        	 	announcementDate:{
+			          required: "請輸入公告時間"
+			        },
+	        	 	announcementName:{
+			          required: "請輸入公告名稱",
+			          minlength:"至少2個字元",
+					  maxlength:"最多200個字元"
+			        },
+			        announcementFile:{
+			          required: "請選擇檔案，檔案只能是PDF檔，最大不得超過10MB"
+			        }
+	         },
+	         submitHandler: function() {
+	             formSubmitHandler();
+	         }
+	     });
+	     
+	     var saveItem = function(item, isNew) {
+             $("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", item);
+             $("#tableDialog").dialog("close");
+             bodyHref("/content/setting/announcementSetting.html");
+         };
+	
+        $( "#announcementDate" ).datepicker({
+      	  	dateFormat: "yy/mm/dd",
+    		disabled: true ,
+    		minDate: new Date()         
+       	});
+        
+        
+        
+        $("#printBtn").click(function(){
+			printByDiv(document.getElementById("printDiv"));
+		});
+		
+		$("#downloadExcelBtn").click(function(){
+			downloadExcel();
+		});	
+		
+		
+		function printByDiv(printpage){ 
+			var iframe = document.createElement('IFRAME');			
+			iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+			document.body.appendChild(iframe);
+			iframe.contentWindow.document.write(printpage.innerHTML);
+			iframe.contentWindow.document.close(); //important!
+			iframe.contentWindow.focus(); //IE fix
+			iframe.contentWindow.print();
+			iframe.parentNode.removeChild(iframe);
+		}	
+		
+		function downloadExcel(){		 		
+			  var newForm = jQuery('<form>', {
+				  	'action': "/"+CONFIG.SYSTEM_NAME + '/announcement/api/downloadExcel',
+				  	'method': 'post',
+			        'target': '_blank'
+			    }).append(jQuery('<input>',{
+			    	'name' : '_csrf',
+			    	'value': $.cookie("XSRF-TOKEN"),
+			    	'type': 'text'
+			    }));
+			  	var iframe = document.createElement('IFRAME');
+				iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+				$(iframe).append(newForm);
+				document.body.appendChild(iframe);
+			    newForm.submit();
+			    iframe.parentNode.removeChild(iframe);
+		}
+		
+		
+		function createPrintTable(data){
+			$.each(data.reverse(), function( index, item ) {
+				var tr = $('<tr/>');
+				var td = $('<td/>');			
+				tr.append(td.clone().html( item.announcementDate) );
+				tr.append(td.clone().html( item.announcementName) );
+				tr.append(td.clone().html( item.fileName) );
+				tr.append(td.clone().html( item.createTime) );
+				$("#tbody").append(tr);
+			});
+		}
+		
+        
+	});
+});
+</script>

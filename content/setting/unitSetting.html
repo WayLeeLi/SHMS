@@ -1,0 +1,408 @@
+﻿<div>
+	<h4>單位設定</h4>
+	<div style="text-align: left;">
+
+		<button class="dropdown-toggle btn btn-warning" id="navDropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  aria-controls="dropdownExcel">下載EXCEL</button>
+			<div class="dropdown-menu" id="dropdownExcel" aria-labelledby="navDropdown" >
+				<a class="dropdown-item" href="#" data-excel="full">完整單位資料</a>
+				<a class="dropdown-item" href="#" data-excel="noneSetting">未完整設定之單位</a>
+			</div>
+	</div>
+	    <div id="jsGrid"></div>
+</div>
+
+<div id="tableDialog" style="display:none" class="container">
+    <form id="dialogForm">
+        <div class="details-form-field row">
+        	<div class="col text-right"><label for="unitId">單位代號</label></div>
+			<div class="col-6 align-self-center"><input id="unitId" name="unitId" type="text" /></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label for="unitName">單位名稱</label></div>
+			<div class="col-6 align-self-center"><input id="unitName" name="unitName" type="text" /></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label for="manager">單位主管</label></div>
+			<div class="col-6 align-self-center"><input id="manager" name="manager" type="text" /></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label for=saveManager>職業安全衛生業務組主管</label></div>
+			<div class="col-6 align-self-center"><input id="saveManager" name="saveManager" type="text" /></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label>職稱</label></div>
+			<div class="col-6 align-self-center"><span id="saveManagerJobName"/></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label for="fireHelper">防火管理人</label></div>
+			<div class="col-6 align-self-center"><input  id="fireHelper" name="fireHelper"  type="text"/></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label>職稱</label></div>
+			<div class="col-6 align-self-center"><span id="fireHelperJobName"/></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label for="helper">急救人員</label></div>
+			<div class="col-6 align-self-center"><input  id="helper" name="helper"  type="text"/></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label>職稱</label></div>
+			<div class="col-6 align-self-center"><span id="helperJobName"/></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label for="affairs">總務</label></div>
+			<div class="col-6 align-self-center"><input  id="affairs" name="affairs"  type="text"/></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label>職稱</label></div>
+			<div class="col-6 align-self-center"><span id="affairsJobName"/></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label for="juniorManager">總務襄理</label></div>
+			<div class="col-6 align-self-center"><input  id="juniorManager" name="juniorManager"  type="text"/></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label>職稱</label></div>
+			<div class="col-6 align-self-center"><span id="juniorManagerJobName"/></div>
+        </div>
+        <div class="details-form-field row">
+			<div class="col text-right"><label for="tel">單位電話</label></div>
+			<div class="col-6 align-self-center"><input  id="tel" name="tel"  type="text"/></div>
+        </div>
+        <div class="details-form-field row justify-content-center">
+			<div class="col text-right"></div>
+			<div class="col-7"><button type="submit" id="dialogFormSubmit" class="btn btn-primary">送出</button></div>
+            
+        </div>
+    </form>
+</div>
+
+<style>
+/* 讓表格內容換行 */
+.jsgrid-table{
+		word-wrap:break-word;
+	}
+input[type=text]{
+	width: 100%;
+}
+</style>
+
+<script>
+//需要用的JS
+require(["jquery","global_setting", "jquery_validate", "jsgrid", "jquery_ui", "jquery_cookie"], function (jquery, jquery_validate, jsgrid, jquery_ui ) {
+	//頁面讀取後執行
+	$(document).ready(function(){
+			
+		 $.ajax({
+			    url: "/"+CONFIG.SYSTEM_NAME + '/unitSetting/api/getUnitAll',
+			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    async: false,
+			    cache: false,
+			    type: "GET",
+			    success: function(data, textStatus){    
+			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    		 alert("沒有權限");
+			    	 }else{
+			    	 	$("#jsGrid").jsGrid({
+			    	        width: "100%",
+			    	        height: "auto",
+			    	        heading: true, //是否顯示表頭
+			    		    filtering: true, //啟動查找
+			    		    inserting: false, //啟動新增  關掉使用自定義的
+			    		    editing: true,  //啟動編輯 
+			    		    selecting: true,
+			    		    sorting: true, //啟動排序
+			    		    paging: true, //啟動分頁 
+			    		    pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+			    		    autoload: true,
+			    		    pageSize: 10,
+			    		    
+			    		    controller: {
+			    		        loadData: function(filter) {
+				    		        	//查詢
+			    		        	 	var result = $.grep(data, function(item, idx) {
+			    		                    for (var key in filter) {
+			    		                        var value = filter[key];
+			    		                        if (value.length > 0) {
+			    		                        	if (!item[key]){
+			    		                                return false;
+			    		                        	}
+			    		                        	if(typeof item[key] === 'number'){
+			    		                        		if (item[key].toString().indexOf(value) == -1){
+				    		                                return false;
+			    		                        		}
+			    		                        	}else if(typeof item[key] === 'string'){
+			    		                        		if (item[key].indexOf(value) == -1){
+				    		                                return false;
+			    		                        		}
+			    		                        	}
+			    		                        	
+			    		                        }
+			    		                    }
+			    		                    return true;
+			    		                });
+			    		            return result;
+			    		        },
+			    		        insertItem: function(insertingItem) {
+			    		        	$.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/unitSetting/api/addUnit',
+			    		 			    data: JSON.stringify(insertingItem),
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 insertingItem.id = data.id;
+			    					    			 alert("新增成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        },
+			    		        updateItem: function(updatingItem) { 
+			    		        	$.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/unitSetting/api/updateUnit',
+			    		 			    data: JSON.stringify(updatingItem),
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 alert("更新成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        },
+			    		        deleteItem: function(deletingItem) {
+			    		        	 $.ajax({
+			    		 			    url: "/"+CONFIG.SYSTEM_NAME + '/unitSetting/api/deleteUnit',
+			    		 			    data: '{"ID":' + deletingItem.id + '}',
+			    		 			    contentType: "application/json;charset=utf-8", // 因為上面是JSON
+			    		 			    async: false,
+			    		 			    cache: false,
+			    		 			    type: "POST",
+			    		 			    success: function(data, textStatus){   
+			    		 			    	 if(data && data == "<script>alert('沒有權限')<\/script>"){
+			    					    		 alert("沒有權限");
+			    					    	 }else{
+			    					    		 if(data.result == "success"){
+			    					    			 alert("刪除成功");
+			    					    		 }else if(data.errorMsg){
+			    					    			 alert(data.errorMsg);
+			    					    		 }
+			    					    	 }
+			    		 			    },
+			    		 			    error: function (data, textStatus, errorThrown) {
+			    		 			        console.log(data);
+			    		 			    },
+			    		 			});
+			    		        }
+			    		    },
+			    	 
+			    	        fields: [
+			    	            { title:"單位代號", name: "unitId", type: "text", width: 100},
+			    	            { title:"單位名稱", name: "unitName", type: "text", width: 110 },
+			    	            { title:"主管", name: "manager", type: "text", width: 120, itemTemplate: function (value, item){  return (value == undefined || value.length == 0) ? "" :  `<div title=${maskID(value)} data-toggle="tooltip" data-placement="top">${item.managerName}(${maskID(value)})</div>`; } },
+			    	            { title:"職業安全衛生業務主管", name: "saveManager", type: "text", width: 100, itemTemplate: function (value, item){ return (value == undefined || value.length == 0) ? "" :  `<div title=${maskID(value)}>${item.saveManagerName}(${maskID(value)})</div>`; } },
+			    	            { title:"職稱", name: "saveManagerJobName", type: "text", width: 45 },
+			    	            { title:"防火管理人", name: "fireHelper", type: "text", width: 100, itemTemplate: function (value, item){ return (value == undefined || value.length == 0) ? "" :  `<div title=${maskID(value)}>${item.fireHelperName}(${maskID(value)})</div>`; } },
+			    	            { title:"職稱", name: "fireHelperJobName", type: "text", width: 45 },
+			    	            { title:"急救人員", name: "helper", type: "text", width: 100, itemTemplate: function (value, item){ return (value == undefined || value.length == 0) ? "" :  `<div title=${maskID(value)}>${item.helperName}(${maskID(value)})</div>`; } },
+			    	            { title:"職稱", name: "helperJobName", type: "text", width: 45 },
+			    	            { title:"總務", name: "affairs", type: "text", width: 100, itemTemplate: function (value, item){ return (value == undefined || value.length == 0) ? "" : `<div title=${maskID(value)}>${item.affairsName}(${maskID(value)})</div>`; } },
+			    	            { title:"職稱", name: "affairsJobName", type: "text", width: 45 },
+			    	            { title:"總務襄理", name: "juniorManager", type: "text", width: 100, itemTemplate: function (value, item){ return (value == undefined || value.length == 0) ? "" : `<div title=${maskID(value)}>${item.juniorManagerName}(${maskID(value)})</div>`; } },
+			    	            { title:"職稱", name: "juniorManagerJobName", type: "text", width: 45 },
+			    	            { title:"單位電話", name: "tel", type: "text", width: 100 },
+			    	            { type: "control",
+			                        editButton: false,
+			                        modeSwitchButton: false,
+			                        headerTemplate: function() {
+			                            return $("<button>").attr("type", "button").text("新增").addClass("btn btn-primary")
+			                                .on("click", function () {
+			                                	showDetailsDialog("新增", {});
+			                                });
+			                        }
+			    	            }             
+			    	        ],
+				    	 	rowClick: function(args) {
+				    	 		 showDetailsDialog("修改", args.item);
+				            },
+			    		    deleteConfirm: function(item) {
+			                    return "單位 \"" + item.unitName + "\" 確認刪除?";
+			                },
+				            
+			    	    });
+			    	 }
+			    },
+			    error: function (data, textStatus, errorThrown) {
+			        console.log(data);
+			    },
+			});
+	
+		 
+		 
+		 $("#tableDialog").dialog({
+			 title: "參數設定",
+	         autoOpen: false,
+	         width: 550,
+	         modal: true,
+	         close: function() {
+	             $("#dialogForm").validate().resetForm();
+	             $("#dialogForm").find(".error").removeClass("error");
+	             $('.ui-widget-overlay').removeClass('custom-overlay');
+	         },
+             open: function(){
+            	 $('.ui-widget-overlay').addClass('custom-overlay');
+            	 customCloseBtn();
+             },
+             classes: dlgSetting.classes,
+	         show: dlgSetting.show,
+			 hide: dlgSetting.hide
+	     });
+		 
+		 var formSubmitHandler = $.noop;
+		 
+		 var showDetailsDialog = function(dialogType, item) {
+			 /*clear*/
+			 $("#saveManagerJobName").text('');
+             $("#fireHelperJobName").text('');
+             $("#helperJobName").text('');
+             $("#affairsJobName").text('');
+			 /**/
+             $("#unitId").val(item.unitId);
+             $("#unitName").val(item.unitName);
+             $("#manager").val(item.manager);
+             $("#saveManager").val(item.saveManager);
+             $("#fireHelper").val(item.fireHelper);
+             $("#helper").val(item.helper);
+             $("#affairs").val(item.affairs);
+             $("#juniorManager").val(item.juniorManager);
+             $("#tel").val(item.tel);
+             $("#saveManagerJobName").text(item.saveManagerJobName);
+             $("#fireHelperJobName").text(item.fireHelperJobName);
+             $("#helperJobName").text(item.helperJobName);
+             $("#affairsJobName").text(item.affairsJobName);
+             $("#juniorManagerJobName").text(item.juniorManagerJobName);
+             if(dialogType === "修改"){
+            	 $("#unitId").attr("disabled", true);
+             }
+             formSubmitHandler = function() {
+            	 saveItem(item, dialogType === "新增");
+             };
+
+             $("#tableDialog").dialog("option", "title", dialogType + " unit").dialog("open");
+         };
+	
+	     $("#dialogForm").validate({
+	    	 //錯誤訊息元素預設為label改成p會換行
+			 errorElement: "p",
+	         rules: {
+	        	 unitId: { required: true, rangelength: [2, 30] },
+	        	 unitName: { required: true, rangelength: [2, 30] }
+	         },
+	         messages: {
+	        	 	unitId:{
+			          required: "請輸入單位代號",
+			          rangelength: "長度不得小於2個字母大於30個字母"
+			        },
+			        unitName:{
+			          required: "請輸入單位名稱",
+			          rangelength: "長度不得小於2個字母大於30個字母"
+			        }
+	         },
+	         submitHandler: function() {
+	             formSubmitHandler();
+	         }
+	     });
+	     
+	     var saveItem = function(item, isNew) {
+             $.extend(item, {
+            	 id: item.ID,
+            	 unitId: $("#unitId").val(),
+            	 unitName: $("#unitName").val(),
+            	 manager: $("#manager").val(),
+            	 saveManager: $("#saveManager").val(),
+            	 fireHelper: $("#fireHelper").val(),
+            	 helper: $("#helper").val(),
+            	 affairs: $("#affairs").val(),
+            	 juniorManager: $("#juniorManager").val(),
+            	 tel: $("#tel").val()
+             });
+             $("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", item);
+             $("#tableDialog").dialog("close");
+             bodyHref("/content/setting/unitSetting.html");
+         };
+	
+         $("#downloadExcelBtn").click(function(){
+ 			downloadExcel();
+ 		 });
+         
+         
+         $(".dropdown-item").on("click", function(){
+        	 if($(this).data("excel") == "full"){
+        		 downloadExcel();
+        	 }
+        	 else if($(this).data("excel") == "noneSetting"){
+        		 downloadExcel_noneSetting();
+        	 }
+        	 return true;
+         });
+	});
+	function downloadExcel(){				
+		  var newForm = jQuery('<form>', {
+			  	'action': "/"+CONFIG.SYSTEM_NAME + '/unitSetting/api/downloadExcel',
+			  	'method': 'post',
+		        'target': '_blank'
+		    }).append(jQuery('<input>',{
+		    	'name' : '_csrf',
+		    	'value': $.cookie("XSRF-TOKEN"),
+		    	'type': 'text'
+		    }));
+		  	var iframe = document.createElement('IFRAME');
+			iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+			$(iframe).append(newForm);
+			document.body.appendChild(iframe);
+		    newForm.submit();
+		    iframe.parentNode.removeChild(iframe);
+	}
+	
+	function downloadExcel_noneSetting(){				
+		  var newForm = jQuery('<form>', {
+			  	'action': "/"+CONFIG.SYSTEM_NAME + '/unitSetting/api/getNoneSettingUnit',
+			  	'method': 'post',
+		        'target': '_blank'
+		    }).append(jQuery('<input>',{
+		    	'name' : '_csrf',
+		    	'value': $.cookie("XSRF-TOKEN"),
+		    	'type': 'text'
+		    }));
+		  	var iframe = document.createElement('IFRAME');
+			iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;');
+			$(iframe).append(newForm);
+			document.body.appendChild(iframe);
+		    newForm.submit();
+		    iframe.parentNode.removeChild(iframe);
+	}
+	
+});
+</script>

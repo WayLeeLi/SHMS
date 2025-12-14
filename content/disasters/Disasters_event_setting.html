@@ -1,0 +1,871 @@
+﻿<div>
+	<h4>職業災害事故調查、分析與追蹤管理</h4>
+	<div class="date_time">
+	
+		<div class="pull-right">
+
+			<button id="download_btn" class="btn btn-primary  my-2 pull-right">匯出</button>
+		</div>
+
+
+	</div>
+	<div id="jsGrid"></div>
+</div>
+<br />
+<!-- <div style="text-align: center;">
+	<button type="button" id="printBtn" class="btn btn-primary  my-2">暫存</button>
+	<button type="button" id="submitBtn" class="btn btn-success  my-2">送出</button>
+	<button type="button" id="submitBtn" class="btn btn-secondary  my-2">送出</button>
+</div> -->
+
+<div id="AddDialog" style="display:none" class="dialog container">
+	<div id="PrintDiv">
+		<h2 style="text-align: center;">事故調查、分析與追蹤管理</h2>
+		<br>
+		<form id="inputForm">
+			<input type="hidden" name="" id="addOredit">
+			<input type="hidden" name="" id="editid">
+			<table class="w-100 safe_form">
+				<tbody>
+
+					<tr>
+						<td class="table-header text-center">案件發生日期</td>
+						<td>
+							<div class="date_box">
+								<label>
+									<input type="text" name="eventDate" id="shop_date" readonly placeholder="案件發生日期" required/>
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+
+						</td>
+						<td class="table-header text-center">單位名稱</td>
+						<td>
+							<select name="unitName" id="unitName" class="custom-select select_unit w_200p"></select>
+
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header text-center">姓名</td>
+						<td>
+							<input type="text" name="name" maxlength="10">
+						</td>
+						<td class="table-header text-center">出生年月</td>
+						<td>
+							<div class="date_box">
+								<label>
+									<input type="text" name="birthday" id="birthday" readonly placeholder="出生年月" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header text-center">身份證字號</td>
+						<td>
+							<input type="text" name="idNumber" maxlength="10">
+						</td>
+						<td class="table-header text-center">身份別（非/原住民）</td>
+						<td>
+							<select name="idCatagory" id="" class="custom-select select_unit w_200p">
+								<option value="是">是</option>
+								<option value="非">非</option>
+							</select>
+						</td>
+						
+
+					</tr>
+					<tr><td class="table-header text-center">受傷部位</td>
+						<td>
+							<input type="text" name="harmBody" maxlength="50">
+						</td>
+						<td class="table-header text-center">失能災害類型</td>
+						<td>
+							<select name="harmCatagory" id="harmCatagory"
+								class="custom-select select_unit w_200p"></select>
+						</td>
+						
+
+					</tr>
+					<tr><td class="table-header text-center">失能傷害種類</td>
+						<td>
+							<select name="medium" id="medium" class="custom-select select_unit w_200p"></select>
+						</td>
+						<td class="table-header text-center">失能傷害損失日數</td>
+						<td><input type="text" name="daysOfDisabilityInjury" maxlength="4"></td>
+						
+
+					</tr>
+					<tr><td class="table-header text-center">事故發生經過及概況敘述</td>
+						<td>
+							<input type="text" name="processAndDescription" maxlength="50">
+						</td>
+						<td class="table-header text-center">直接原因</td>
+						<td>
+
+							<input type="text" name="directCause"  maxlength="50">
+						</td>
+					
+
+					</tr>
+					<tr>	<td class="table-header text-center">間接原因</td>
+						<td>
+							<input type="text" name="indirectCause" maxlength="50">
+						</td>
+						<td class="table-header text-center">基本原因</td>
+						<td>
+
+							<input type="text" name="basicCause" maxlength="50">
+						</td>
+						
+
+					</tr>
+					<tr><td class="table-header text-center">建議改善措施</td>
+						<td>
+							<input type="text" name="suggestedMeasures" maxlength="50">
+						</td>
+						<td class="table-header text-center">勞動檢查機關職業災害統計</td>
+						<td>
+
+							<input type="text" name="occupationalAgencies" maxlength="50">
+						</td>
+					
+
+					</tr>
+					<tr>	<td class="table-header text-center">追縱情形</td>
+						<td>
+							<input type="text" name="tracking" maxlength="50">
+						</td>
+						<td class="table-header text-center">結案</td>
+						<td>
+
+							<input type="text" name="closingCase" id="closingCase" required  maxlength="50">
+						</td>
+					
+
+					</tr>
+
+
+				</tbody>
+			</table>
+		</form>
+	</div>
+	<br>
+	<div style="text-align: center;">
+		<button type="button" id="submitBtn" class="btn btn-success  my-2">送出</button>
+
+	</div>
+</div>
+<div id="EditDialog" style="display:none" class="dialog container">
+	<input type="hidden" name="id" id="id">
+	<div id="PrintDiv">
+		<h2 style="text-align: center;">事故調查、分析與追蹤管理</h2>
+		<br>
+		<form id="inputForm_edit">
+
+			<table class="w-100 safe_form">
+				<tbody>
+					<tr>
+						<td class="table-header text-center">案件發生日期</td>
+						<td>
+							<div class="date_box">
+								<label>
+									<input type="text" name="eventDate" id="shop_date" readonly placeholder="案件發生日期" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+
+						</td>
+						<td class="table-header text-center">單位名稱</td>
+						<td>
+							<select name="unitName" id="unitName1" class="custom-select select_unit w_200p"></select>
+
+						</td>
+					</tr>
+					<tr>
+						<td class="table-header text-center">姓名</td>
+						<td>
+							<input type="text" name="name" maxlength="10">
+						</td>
+						<td class="table-header text-center">出生年月</td>
+						<td>
+							<div class="date_box">
+								<label>
+									<input type="text" name="birthday" id="birthday" readonly placeholder="出生年月" />
+									<i class="iconfont icon-riqi1"></i>
+								</label>
+							</div>
+
+						</td>
+
+					</tr>
+					<tr>
+						<td class="table-header text-center">身份證字號</td>
+						<td>
+							<input type="text" name="idNumber" maxlength="20">
+						</td>
+						<td class="table-header text-center">身份別（非/原住民）</td>
+						<td>
+							<select name="idCatagory" id="" class="custom-select select_unit w_200p">
+								<option value="是">是</option>
+								<option value="非">非</option>
+							</select>
+						</td>
+
+					</tr>
+					<tr><td class="table-header text-center">受傷部位</td>
+						<td>
+							<input type="text" name="harmBody" maxlength="20">
+						</td>
+						<td class="table-header text-center">失能災害類型</td>
+						<td>
+							<select name="harmCatagory" id="harmCatagory1"
+								class="custom-select select_unit w_200p"></select>
+						</td>
+						
+
+					</tr>
+					<tr><td class="table-header text-center">失能傷害種類</td>
+						<td>
+							<select name="medium" id="medium1" class="custom-select select_unit w_200p"></select>
+						</td>
+						<td class="table-header text-center">失能傷害損失日數</td>
+						<td><input type="text" name="daysOfDisabilityInjury" maxlength="4"></td>
+						
+
+					</tr>
+					<tr><td class="table-header text-center">事故發生經過及概況敘述</td>
+						<td>
+							<input type="text" name="processAndDescription" maxlength="100">
+						</td>
+						<td class="table-header text-center">直接原因</td>
+						<td>
+
+							<input type="text" name="directCause" maxlength="100">
+						</td>
+						
+
+					</tr>
+					<tr><td class="table-header text-center">間接原因</td>
+						<td>
+							<input type="text" name="indirectCause" maxlength="100">
+						</td>
+						<td class="table-header text-center">基本原因</td>
+						<td>
+
+							<input type="text" name="basicCause" maxlength="100">
+						</td>
+						
+
+					</tr>
+					<tr><td class="table-header text-center">建議改善措施</td>
+						<td>
+							<input type="text" name="suggestedMeasures" maxlength="100">
+						</td>
+						<td class="table-header text-center">勞動檢查機關職業災害統計</td>
+						<td>
+
+							<input type="text" name="occupationalAgencies" maxlength="100">
+						</td>
+						
+
+					</tr>
+					<tr>
+						<td class="table-header text-center">追縱情形</td>
+						<td>
+							<input type="text" name="tracking" maxlength="20">
+						</td>
+						<td class="table-header text-center">結案</td>
+						<td>
+
+							<input type="text" name="closingCase" maxlength="10">
+						</td>
+						
+
+					</tr>
+
+
+				</tbody>
+			</table>
+		</form>
+	</div>
+	<br>
+	<div style="text-align: center;">
+		<button type="button" id="submitBtn_edit" class="btn btn-success  my-2">送出</button>
+
+	</div>
+</div>
+<style>
+	/* 讓表格內容換行 */
+	.jsgrid-table {
+		word-wrap: break-word;
+	}
+
+	input[type=text] {
+		width: 100%;
+	}
+
+	textarea {
+		width: 100%;
+	}
+</style>
+
+<script>
+	//需要用的JS
+	require(["jquery", "jquery_validate", "jsgrid", "jquery_ui"], function (jquery, jquery_validate, jsgrid, jquery_ui ) {
+		$(document).ready(function () {
+			//獲取按鈕權限
+			var menuid = 80;
+			$.ajax({
+				url: "/" + CONFIG.SYSTEM_NAME + '/buttonRole/api/getByMenuId?menuId=' + menuid,
+				contentType: "application/json;charset=utf-8", // 因為上面是JSON
+				async: false,
+				cache: false,
+				type: "GET",
+				success: function (data, textStatus) {
+					if (data && data == "<script>alert('沒有權限')<\/script>") {
+						//showAlert('沒有權限','沒有權限','')
+						showAlert('沒有權限', '沒有權限', '');
+					} else {
+						var menuData = data.data
+						console.log(menuData.functionArray)
+						console.log(menuData)
+						// <button type="button" id='submit_o' class="btn btn-warning  my-2 pressing_hide tempButton">暫存</button>
+						// <button type="button" id='submit_s' class="btn btn-primary  my-2 pressing_hide sendButton">儲存送出</button>
+						// <button type="button" id="checkBtn" class="btn btn-success  my-2 pressing_hide reviewButton">審核通過</button>
+						// <button type="button" id="return" class="btn btn-danger  my-2 pressing_hide returnButton">退件</button>
+						// <button type="button" id='submit_p' class="btn btn-primary  my-2 pressing_show sendButton">儲存送出</button>
+						// <button type="button" id="printBtn1" class="btn btn-secondary  my-2 pressing_show printButton">列印</button>
+						// <button type="button" id="printBtn" class="btn btn-secondary  my-2 pressing_hide printButton">列印</button>
+						if (menuData.functionArray.indexOf('export') < 0) {
+							$('#download_btn').hide()
+						}
+					}
+				},
+				error: function (data, textStatus, errorThrown) {
+					console.log(data);
+				},
+			});
+			$('#shop_date').datepicker({
+				autoclose: true, //選擇後自動關閉
+				dateFormat: "yy/mm/dd",
+			});
+			$('#birthday').datepicker({
+			    changeYear: true,// 啟用年份下拉選單
+    			yearRange: "1900:", // 可選年份範圍（1900年到2020年）
+				autoclose: true, //選擇後自動關閉
+				dateFormat: "yy/mm/dd",
+			});
+			var currentDate = new Date();
+			var year = currentDate.getFullYear();
+			var month = currentDate.getMonth() + 1;
+			var day = currentDate.getDate();
+			isLogin();//登入狀態
+			function isLogin() {
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/login/api/getLogin',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "get",
+					success: function (data, textStatus) {
+						if (data.msg != "success") {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			};
+			search()
+			var currentDate = new Date();
+			var year = currentDate.getFullYear();
+			var month = currentDate.getMonth() + 1;
+			var day = currentDate.getDate();
+			function search() {
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/occupationalDisasters/api/list?year='+year+'&harmCatagory=',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						console.log(data.code)
+						if (data.code == 4000) {
+							alert('您登入已逾時或未登入，請重新登入！')
+							location.href = "/" + CONFIG.SYSTEM_NAME + "/page/login.html";
+
+						}
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							alert("沒有權限");
+						} else {
+							var data = data.data
+							$("#jsGrid").jsGrid({
+								width: "100%",
+								height: "auto",
+								heading: true, //是否顯示表頭
+								filtering: false, //啟動查找
+								inserting: false, //啟動新增  關掉使用自定義的
+								editing: true,  //啟動編輯 
+								selecting: true,
+								sorting: true, //啟動排序
+								paging: true, //啟動分頁 
+								pageLoading: false, //是否支援分頁載入資料（相比較paging，這個屬性是向伺服器請求資料時要求分頁，而paging是本機進行分頁，無關伺服器）
+								autoload: true,
+								pageSize: 10,
+
+								controller: {
+									loadData: function (filter) {
+										//查詢
+										var result = $.grep(data, function (item, idx) {
+											for (var key in filter) {
+												var value = filter[key];
+												if (value.length > 0) {
+													if (!item[key]) {
+														return false;
+													}
+													if (typeof item[key] === 'number') {
+														if (item[key].toString().indexOf(value) == -1) {
+															return false;
+														}
+													} else if (typeof item[key] === 'string') {
+														if (item[key].indexOf(value) == -1) {
+															return false;
+														}
+													}
+
+												}
+											}
+											return true;
+										});
+										return result;
+									},
+								},
+
+								fields: [
+
+									{ title: "案件發生日期", name: "eventDate", type: "text", width: 120 },
+									{ title: "姓名", name: "name", type: "text", width: 100, validate: "required" },
+									{ title: "出生年月", name: "birthday", type: "text", width: 100, validate: "required" },
+									{ title: "身份證字號", name: "idNumber", type: "text", width: 100 },
+									{ title: "身份別（非/原住民）", name: "idCatagory", type: "text", width: 100 },
+									{ title: "受傷部位情形", name: "harmBody", type: "text", width: 130 ,classes: "text-ellipsis", itemTemplate: function (value, item) {
+											return $("<span>").text(value).attr('title', value).addClass('text-ellipsis')
+										}},
+									{ title: "災害類型", name: "harmCatagory", type: "text", width: 130 ,classes: "text-ellipsis", itemTemplate: function (value, item) {
+											return $("<span>").text(value).attr('title', value).addClass('text-ellipsis')
+										}},
+									{ title: "媒介物（失能傷害種類）", name: "medium", type: "text", width: 100, classes: "text-ellipsis", itemTemplate: function (value, item) {
+											return $("<span>").text(value).attr('title', value).addClass('text-ellipsis')
+										}},
+
+									{ title: "追蹤情形", name: "tracking", type: "text", width: 80 },
+									{
+										type: "control",
+										name: "id",
+										width: 80,
+										editButton: false,
+										deleteButton: false,
+										modeSwitchButton: false,
+										filtercss: "display:none;",
+
+										itemTemplate: function (value, item) {
+											return $("<button>").attr("type", "button").text("修改").addClass("btn btn-primary")
+												.on("click", function () {
+
+													showeditDialog("修改", value);
+												});
+
+										}, headerTemplate: function () {
+
+											return $("<button>").attr("type", "button").text("新增").addClass("btn btn-primary")
+												.on("click", function () {
+
+													showaddDialog("新增", {});
+												});
+
+
+										}
+									}
+
+								],
+								rowClick: function (args) {
+								},
+								deleteConfirm: function (item) {
+									return "參數\"" + item.NUM + "\"確認刪除?";
+								}, loadComplete: function () {
+									alert("jqGrid資料載入完之後調用");
+								}
+							});
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			$('#addbtn').click(function () {
+				showaddDialog("新增", {});
+			})
+			$('#download_btn').click(function () {
+				download()
+			})
+			function download() {
+				showAlert('檔案下載', '檔案正在下載中，請稍候。', '')
+				window.location.href = "/" + CONFIG.SYSTEM_NAME + '/occupationalDisasters/api/export2?year='+year+'&harmCatagory=';
+				isLogin();//登入狀態
+			}
+			$(".dialog").dialog({
+				title: "參數設定",
+				autoOpen: false,
+				width: 960,
+				modal: true,
+				open: function () {
+					$('.ui-widget-overlay').addClass('custom-overlay');
+					customCloseBtn();
+				},
+				close: function () {
+
+					$("#dialogForm").find(".error").removeClass("error");
+					$('.ui-widget-overlay').removeClass('custom-overlay');
+				},
+				classes: dlgSetting.classes,
+				show: dlgSetting.show,
+				hide: dlgSetting.hide
+			});
+
+			var formSubmitHandler = $.noop;
+
+			var showaddDialog = function (dialogType, item) {
+
+				$("#AddDialog").dialog("option", "title", dialogType + "").dialog("open");
+			};
+
+
+			var showeditDialog = function (dialogType, item) {
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/occupationalDisasters/api/get?id=' + item,
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON資料
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							alert("沒有權限");
+						} else {
+							console.log(data)
+							var data = data.data
+							 $("#EditDialog *[name='id']").val(item)
+					 $("#EditDialog *[name='eventDate']").val(data.eventDate)
+					$("#EditDialog *[name='idNumber']").val(data.idNumber)
+					$("#EditDialog *[name='unitName']").val(data.unitName)
+					$("#EditDialog *[name='name']").val(data.name)
+					$("#EditDialog *[name='birthday']").val(data.birthday)
+					$("#EditDialog *[name='idCatagory']").val(data.idCatagory)
+					$("#EditDialog *[name='harmBody']").val(data.harmBody)
+					$("#EditDialog *[name='harmCatagory']").val(data.harmCatagory)
+					$("#EditDialog *[name='medium']").val(data.medium)
+					$("#EditDialog *[name='daysOfDisabilityInjury']").val(data.daysOfDisabilityInjury)
+					$("#EditDialog *[name='processAndDescription']").val(data.processAndDescription)
+					$("#EditDialog *[name='accidentCause']").val(data.accidentCause)
+
+					$("#EditDialog *[name='suggestedMeasures']").val(data.suggestedMeasures)
+					$("#EditDialog *[name='occupationalAgencies']").val(data.occupationalAgencies)
+					$("#EditDialog *[name='closingCase']").val(data.closingCase)
+					$("#EditDialog *[name='directCause']").val(data.directCause)
+					$("#EditDialog *[name='indirectCause']").val(data.indirectCause)
+					$("#EditDialog *[name='basicCause']").val(data.basicCause)
+					$("#EditDialog *[name='tracking']").val(data.tracking)
+						
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+				$("#EditDialog").dialog("option", "title", dialogType + "").dialog("open");
+			};
+			get_unitList()
+			function get_unitList() {
+
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/config/api/getConfig?type=OCCUPATIONAL_DISASTERS',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							alert("沒有權限");
+						} else {
+
+							var data = data
+							console.log(data)
+							createSelect("harmCatagory", data, 'cfgKey', 'cfgName', '');
+							createSelect("harmCatagory1", data, 'cfgKey', 'cfgName', '');
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			get_unitList1()
+			function get_unitList1() {
+
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/config/api/getConfig?type=TYPE_OF_DISABILITY_DAMAGE',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							alert("沒有權限");
+						} else {
+
+							var data = data
+							console.log(data)
+							createSelect("medium", data, 'cfgKey', 'cfgName', '');
+							createSelect("medium1", data, 'cfgKey', 'cfgName', '');
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+			get_unitList2()
+			function get_unitList2() {
+
+				$.ajax({
+					url: "/" + CONFIG.SYSTEM_NAME + '/user/api/getInitData',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "GET",
+					success: function (data, textStatus) {
+						if (data && data == "<script>alert('沒有權限')<\/script>") {
+							alert("沒有權限");
+						} else {
+
+							var data = data.unitList
+							console.log(data)
+							createSelect("unitName", data, 'unitName', 'unitName', '');
+							createSelect("unitName1", data, 'unitName', 'unitName', '');
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						console.log(data);
+					},
+				});
+			}
+
+			function createSelect(id, data, key, val, eventKey) {
+				$.each(data, function (index, item) {
+
+					$('#' + id).append($('<option>').val(item[key]).text(eventKey ? item[eventKey] + "_" + item[val] : item[val]));
+				});
+				$('#' + id).find("option").eq(0).prop("selected", true)
+			}
+			$("#submitBtn").click(function () {
+			
+	// 			var flag = $("#inputForm").valid();
+    // if(!flag){
+    //   alert("沒有通過驗證")
+    //     return;
+    //  }else{  
+				var saveItem = {
+					year: year,
+					month: month,
+					eventDate: $("#AddDialog *[name='eventDate']").val(),
+					idNumber: $("#AddDialog *[name='idNumber']").val(),
+					name: $("#AddDialog *[name='name']").val(),
+					birthday: $("#AddDialog *[name='birthday']").val(),
+					idCatagory: $("#AddDialog *[name='idCatagory']").val(),
+					harmBody: $("#AddDialog *[name='harmBody']").val(),
+					harmCatagory: $("#AddDialog *[name='harmCatagory']").val(),
+					medium: $("#AddDialog *[name='medium']").val(),
+					daysOfDisabilityInjury: $("#AddDialog *[name='daysOfDisabilityInjury']").val(),
+					processAndDescription: $("#AddDialog *[name='processAndDescription']").val(),
+				
+					accidentCause: $("#AddDialog *[name='accidentCause']").val(),
+					suggestedMeasures: $("#AddDialog *[name='suggestedMeasures']").val(),
+					occupationalAgencies: $("#AddDialog *[name='occupationalAgencies']").val(),
+					closingCase: $("#AddDialog *[name='closingCase']").val(),
+					directCause: $("#AddDialog *[name='directCause']").val(),
+					indirectCause: $("#AddDialog *[name='indirectCause']").val(),
+					basicCause: $("#AddDialog *[name='basicCause']").val(),
+					tracking: $("#AddDialog *[name='tracking']").val(),
+				}
+				insert(saveItem)
+			// }
+			})
+			//送出
+			function insert(data) {
+				console.log(JSON.stringify(data));
+				$.ajax({
+					data: JSON.stringify(data),
+					url: "/" + CONFIG.SYSTEM_NAME + '/occupationalDisasters/api/save',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						console.log(data.code)
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						}if (data && data.code == 7000) {
+							showAlert('提示', '服務異常'+data.msg, '')
+						}   else {
+							search();
+							$("#AddDialog").dialog("close");
+
+							console.log(data);
+
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						//console.log(data);
+					},
+				});
+			}; 
+
+			$("#submitBtn_edit").click(function () {
+			
+				var saveItem = {
+					id: $("#EditDialog *[name='id']").val(),
+					year: year,
+					month: month,
+					eventDate: $("#EditDialog *[name='eventDate']").val(),
+					idNumber: $("#EditDialog *[name='idNumber']").val(),
+					name: $("#EditDialog *[name='name']").val(),
+					birthday: $("#EditDialog *[name='birthday']").val(),
+					idCatagory: $("#EditDialog *[name='idCatagory']").val(),
+					harmBody: $("#EditDialog *[name='harmBody']").val(),
+					harmCatagory: $("#EditDialog *[name='harmCatagory']").val(),
+					medium: $("#EditDialog *[name='medium']").val(),
+					daysOfDisabilityInjury: $("#EditDialog *[name='daysOfDisabilityInjury']").val(),
+					processAndDescription: $("#EditDialog *[name='processAndDescription']").val(),
+					accidentCause: $("#EditDialog *[name='accidentCause']").val(),
+					suggestedMeasures: $("#EditDialog *[name='suggestedMeasures']").val(),
+					occupationalAgencies: $("#EditDialog *[name='occupationalAgencies']").val(),
+					closingCase: $("#EditDialog *[name='closingCase']").val(),
+					directCause: $("#EditDialog *[name='directCause']").val(),
+					indirectCause: $("#EditDialog *[name='indirectCause']").val(),
+					basicCause: $("#EditDialog *[name='basicCause']").val(),
+					tracking: $("#EditDialog *[name='tracking']").val(),
+				}
+
+
+				edit(saveItem)
+			
+			})
+			//送出
+			function edit(data) {
+				console.log(JSON.stringify(data))
+
+				$.ajax({
+					data: JSON.stringify(data),
+					url: "/" + CONFIG.SYSTEM_NAME + '/occupationalDisasters/api/update',
+					contentType: "application/json;charset=utf-8", // 因為上面是JSON
+					async: false,
+					cache: false,
+					type: "POST",
+					success: function (data, textStatus) {
+						console.log(data.code)
+						if (data && data.code == 5000) {
+							showAlert('沒有權限', '沒有權限', '')
+						}if (data.code == 7000) {
+							showAlert('提示', '請填寫各項資料', '')
+						}  else {
+							search();
+							$("#EditDialog").dialog("close");
+
+							console.log(data);
+
+
+						}
+					},
+					error: function (data, textStatus, errorThrown) {
+						//console.log(data);
+					},
+				});
+			};
+			
+
+
+	 $("#inputForm").validate({
+				// 錯誤訊息元素預設為label改成p會換行
+				errorElement: "p",
+				rules: {
+					eventDate: { required: true, rangelength: [2, 50] },
+					closingCase: { required: true, rangelength: [3, 80] },
+					// cfgName: { required: true, rangelength: [2, 50] },
+					// cfgValue: { required: true, rangelength: [0, 80] },
+					// cfgInUse: { required: true }
+				},
+				messages: {
+					eventDate: {
+						required: "請選擇案件發生日期",
+						
+					},
+					closingCase: {
+						required: "請輸入參數key",
+						// rangelength: "參數key不得小於4個字母大於80個字母"
+					},
+					// cfgName: {
+					// 	required: "請輸入參數名稱",
+					// 	rangelength: "參數名稱不得小於2個字母大於50個字母"
+					// },
+					// cfgValue: {
+					// 	required: "請輸入參數值",
+					// 	rangelength: "參數值不得小於0個字母大於80個字母"
+					// },
+					// cfgInUse: {
+					// 	required: "請選擇是否啟用"
+					// }
+				},
+			
+			});
+
+
+
+			var saveItem = function (item, isNew) {
+				$.extend(item, {
+					cfgType: $("#cfgType").val(),
+					cfgKey: $("#cfgKey").val(),
+					cfgName: $("#cfgName").val(),
+					cfgValue: $("#cfgValue").val(),
+					cfgMemo: $("#cfgMemo").val(),
+					cfgInUse: $('input[name*=cfgInUse]:checked').val()
+				});
+
+				$("#jsGrid").jsGrid(isNew ? "insertItem" : "updateItem", item);
+
+				$("#tableDialog").dialog("close");
+				bodyHref("/content/situation/Safetysituationreport.html");
+			};
+
+			function Processing(id) {
+				bodyHref("/content/situation/Safetysituationreport_form7.html");
+			}
+
+		});
+
+		var cellIndex = parseInt($(".tbStyle th").length) - 1;
+		$("#jsGrid tr td").each(function () {
+			alert($(this).text())
+			if (this.cellIndex != cellIndex) {
+				$(this).attr("title", $(this).text());
+				//alert($(this).parent().get(0).rowIndex);輸出所在行
+			}
+		});
+	});
+</script>

@@ -387,12 +387,17 @@ a.dropdown-item:hover{
       border: 0;
       background: transparent;
       border-bottom: 1px solid;}
-    .tt_radio{border-bottom: 4px solid #ccc; margin-bottom: 8px;}
+    .tt_radio{border-bottom: 4px solid #ccc; margin-bottom: 8px; width: 100%; float: left;}
     .tt_radio:after{clear: both; display: block; content: ' ';}
     .tt_radio i{width: 30px;height: 30px; margin: 8px 5px; font-size: 20px; text-align: center; line-height:30px; border: 2px solid #333; float: left; display: block; border-radius: 40px;}
-    .tt_radio ul{list-style: none; padding: 0; width: calc(100% - 50px); float: left;}
-    .tt_radio li{display: block; float:left; text-align: center; width: calc(100% / 6); padding: 8px 0;}
-
+    .tt_radio ul{list-style: none; padding: 0; float: left; }
+    .tt_radio li{ float:left; text-align: center; padding: 8px 5px; margin-right: 3px;}
+	.tt_radio-box .tt_radio span {
+	  margin: 8px 0 0 5px;
+	  display: block;
+	  font-size: 12px;
+	  float: left;
+	}
     .tiakuan_box{height: 200px; overflow-y: auto; padding: 8px; border: 1px solid #ccc; border-radius: 10px;}
     .fixed-top {
    

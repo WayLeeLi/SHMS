@@ -38,6 +38,7 @@
    .col-xs-1 {
         width: 8.33333333%;
    }
+   .w-100 {width:90%; display: block; float: left;}
 }
 
 @media print { h1, h2, h3, h4, h5, h6 {
@@ -51,15 +52,29 @@
      .h2, h2 {
           font-size: 36px;
       }
+      .printDiv h2,.printDiv h3{    font-size: 2rem; text-align: center;}
+      .page-break{page-break-before: always;}
+      .print-left{float: left;}
+      .print-right{float: right;}
       label{white-space: nowrap; padding-left: 0; margin-left: 0;}
-    .safe_form{font-size: 0.8rem;}
+      .pain-lists{padding: 0; margin: 0; height: auto;}
+      .safe_form label{margin: 0 5px; margin-top: 5px; min-height: 30px; padding: 8px 5px; display: inline-block;}
+    .pain-lists label,.tt_radio  label{margin: 0 ; margin-top: 0; min-height: auto; padding: 0; }
+    .tt_radio-box .tt_radio span{margin: 0; height: 30px; display: inline-block; font-size: 0.85rem;}
+    .tt_radio{padding: 0; margin: 0; height: 30px;}
+    .tt_radio li{padding: 0; margin: 0; height: auto;}
+      .safe_form{font-size: 0.8rem;}
        label input{margin: 0;}
       .white_normal{white-space: normal;}
       .table_div{padding:8px!important; height:auto !important; margin:0 !important;}
-   
+.text-center{text-align: center;}
       .table_div  .table_div{padding:15px!important;}
       .table_div textarea{width:96% !important;}
-      .table_div label{margin-bottom:0!important;}
+      .table_div label{margin-bottom:0!important;}   
+      .safe_form td,.safe_form th{height: auto;}
+      .safe_form label textarea{margin-bottom: 30px;width:90% !important;}
+      /*.form-box{height: auto; width: 100%;}
+   .form-box p{margin: 10px 0; }*/
      p input,label input{display:inline-block}
      .input_table {
     display: inline-block;
@@ -70,7 +85,7 @@
 }
      .Title{font-size: 36px; text-align: center; display: block;}
      .w-100 {
-          width: 96% !important;
+          width:90% !important;  display: block;
           margin: 0 auto!important;
       }
       .custom-checkbox .custom-control-label {
@@ -95,7 +110,7 @@
       .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
            float: left;               
       }
-     .container{width: 96%;}
+     .container{width:100% !important; background-color: #ff3300;}
       .col-sm-12 {
            width: 100%;
       }
@@ -179,20 +194,27 @@ tr.hide_all > td, td.hide_all{
 		justify-items: center;
 		align-items: center;
 		justify-content: space-between;
+		height:40px !important;
 	}
 
 	.tt_radio-box .tt_radio ul {
-		display: flex;
-		justify-content: space-between;
+		/*display: flex;
+		justify-content: space-between; */
+		float: left;
 		/* width: 100% !important; */
-		margin-bottom: 0;
+		height:30px  !important;
+		overflow:hidden;
+		width:150px  !important;
 	}
+.tt_radio-box .tt_radio ul li{float: left; margin:0 4px}
 
-	.tt_radio-box .tt_radio span {
-		margin-left: 5px;
-		/*position: relative;*/
-		/*top: 6px;*/
-		font-size: 12px;
+.tt_radio span {
+	  width:130px  !important;
+	  margin: 22px 0 0 5px;
+	  float: left;
+	  color:#333;
+	  /* overflow:hidden; */
+ 
 	}
 
 	.pain-img {
@@ -208,7 +230,7 @@ tr.hide_all > td, td.hide_all{
 	body{
 		padding-top: 0px !important;
 	}
-     .w-100{width: 96%;}
+     .w-100{width:80%; background-color:#ff3300; display: block;}
 }
 @media print {
      .print-break {
@@ -233,7 +255,8 @@ tr.hide_all > td, td.hide_all{
  #eventTime_b{display: none;}
 .pressing_form  #eventTime_b{display: block;}
 .dialogform .pressing_show{display: none;}
-.safe_form{border:1px solid #000; font-size:  12px!important;}
+.safe_form{border:1px solid #000; font-size:  12px!important; width:96%; float: left;}
+
 .safe_form td{border-bottom:1px solid #000;border-right:1px solid #000;padding: 8px}
 .safe_form td label{font-size: 12px!important;}
 
@@ -253,12 +276,13 @@ tr.hide_all > td, td.hide_all{
       .safe_form td dl{padding:0; margin: 0;}
 .safe_form td dd{padding:0; margin: 0; display: inline-block;}
         } 
-        .tt_radio{border-bottom: 4px solid #ccc; margin-bottom: 8px;}
+        .tt_radio{border-bottom: 4px solid #ccc; margin-bottom: 8px; width: 100%;}
         .tt_radio:after{clear: both; display: block; content: ' ';}
         .tt_radio i{width: 30px;height: 30px; margin: 8px 5px; font-size: 20px; text-align: center; line-height:30px; border: 2px solid #333; float: left; display: block; border-radius: 40px;}
-        .tt_radio ul{list-style: none; padding: 0; width: calc(100% - 50px); float: left;}
-        .tt_radio li{display: block; float:left; text-align: center; width: calc(100% / 6.1); padding: 8px 0;}
+        .tt_radio ul{list-style: none; padding: 0;   float: left;}
+        .tt_radio li{display: block; float:left; text-align: center; padding: 8px 0; margin: 0 3px 0 3px;}
         .tt_radio li:after{content:' '; clear: both; display: block;}
+         
         
         .tiakuan_box{height: auto; display: none;}
         .custom-control-input:checked~.custom-control-label::before {

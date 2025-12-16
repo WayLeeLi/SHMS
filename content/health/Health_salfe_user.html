@@ -7,7 +7,7 @@
 </div>
 <input type="hidden" id="addOredit">
 <input type="hidden" id="id">
-
+<input type="hidden" id="mainId">
 
 <div id="AddDialog" style="display:none" class="container Dialog">
 	<div id="printDiv">
@@ -6073,7 +6073,7 @@
 							hideAfter: 6000,
 						});
 						if (data.data) {
-							inputFormAddDialog21ValId = data.data.id //評估問卷的成功的id
+							$("#mainId").data("wId", data.data.id) //評估問卷的成功的id
 							$("#AddDialog21").dialog("close");
 							// 置空過勞量表
 							$("#inputFormAddDialog22")[0].reset()
@@ -6450,7 +6450,8 @@
 				}
 			})
 			data22['status'] = 'n'
-			data22['wId'] = inputFormAddDialog21ValId
+			debugger
+			data22['wId'] = $("#mainId").data("wId")
 
 			$('#inputFormAddDialog22').validate(
 				{
@@ -6467,7 +6468,7 @@
 					messages: msg22,
 					submitHandler: function (form) {
 						console.log(data22, '我儲存的值')
-
+						data22['wId'] = $("#mainId").data("wId")
 						// let _url =''
 						// if(inputFormAddDialog21Val.id){
 						// 	// 修改
@@ -6568,7 +6569,8 @@
 			})
 
 			data23["status"] = "n"
-			data23['wId'] = inputFormAddDialog21ValId
+			debugger
+			data23['wId'] = $("#mainId").data("wId")
 
 			$('#inputFormAddDialog23').validate(
 				{
@@ -6584,6 +6586,7 @@
 					rules: rules23,
 					messages: msg23,
 					submitHandler: function (form) {
+						data23['wId'] = $("#mainId").data("wId")
 						// let url =''
 						// if(inputFormAddDialog21Val.id){
 						// 	// 修改

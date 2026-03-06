@@ -1401,7 +1401,7 @@
 			var year = currentDate.getFullYear();
 			var month = currentDate.getMonth() + 1;
 			var day = currentDate.getDate();
-			$('.upDates').html(year + '/' + month + '/' + day)
+			$('.upDates').html('-')
 			$("#submitBtn_divce1").click(function () {
 				insertdata('1','0')
 				
@@ -1544,7 +1544,7 @@
 									$("td:contains(" + info['dvName'] + ")").parent().find('select[name="supplierList"]').val(info['comKey'])
 								}
 								$("td:contains(" + info['dvName'] + ")").parent().find('select[name="signStatus"]').val(info['signStatus'])
-								$("td:contains(" + info['dvName'] + ")").parent().find('.upDates').text(year + '/' + month + '/' + day)
+								$("td:contains(" + info['dvName'] + ")").parent().find('.upDates').text(info['upDate'] ? info['upDate'] : '-')
 
 								if (info['selfLease'] == '駐警') {
 									$("td:contains(" + info['dvName'] + ")").parent().find('select[name="supplierList"]').hide()

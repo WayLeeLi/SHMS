@@ -636,10 +636,21 @@
 								},
 								fields: [
 									{ title: "項次", name: "testNumText", type: "text", },
-									{ title: "上傳日期", name: "addTime", type: "text", },
+								    { title: "上傳日期", name: "testDate", type: "text", },
 									{
-										title: "檢測年月", name: "addTime", type: "text", itemTemplate: function (value, item) {
-											return $("<span>").text(item.itemYear + '年' + item.season + '月').attr('title', item.itemYear + '年' + item.season + '月').addClass('text-ellipsis')
+										title: "檢測年月", name: "itemYear", type: "text", itemTemplate: function (value, item) {
+											var add = item.testDate ? item.testDate : '';
+											// 嘗試從 testDate 解析年/月，支援 YYYY-MM-DD 或 YYYY/MM/DD 或帶時間戳的格式
+											var m = add.match(/(\d{4})[-\/](\d{1,2})/);
+											if (m) {
+												var yy = m[1];
+												var mm = ("0" + m[2]).slice(-2);
+												return $("<span>").text(yy + '年' + mm + '月').attr('title', yy + '年' + mm + '月').addClass('text-ellipsis');
+											}
+											// fallback 使用原本的 itemYear / season
+											var y = item.itemYear ? item.itemYear : '';
+											var s = item.season ? item.season : '';
+											return $("<span>").text(y + '年' + s + '月').attr('title', y + '年' + s + '月').addClass('text-ellipsis');
 										}
 									},
 									{
